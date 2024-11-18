@@ -30,8 +30,10 @@ class UserRepositoryImpl implements UserRepository {
         }
         return Right(remoteUser);
       } on ServerException catch (e) {
+        print(e.message);
         return Left(ServerFailure(message: e.message));
       } catch (e) {
+        
         return Left(ServerFailure());
       }
     // } else {

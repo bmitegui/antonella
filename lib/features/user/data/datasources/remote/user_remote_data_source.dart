@@ -33,21 +33,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<UserModel> signIn(
       {required String email, required String password}) async {
     try {
-      // final result = await client.get(Environment.signIn,
-      //     data: {'email': email, 'password': password},
-      //     options: Options(contentType: Headers.jsonContentType));
+      print(Environment.signIn);
+      final result = await client.post(Environment.signIn,
+          data: {'account': email, 'password': password},
+          options: Options(
+              contentType: Headers.jsonContentType,
+              validateStatus: (status) => status != null && status < 500));
 
-      // final status = result.data['state'];
-      // if (status == 'ENABLED') {
-      //   return UserModel.fromJson(result.data);
-      // } else {
-      //   throw const ServerException(message: 'TODO: Mensaje de error del back');
-      // }
+      print('result: $result');
 
-      if (email == 'bmite@gmail.com' && password == '12345678') {
-        return UserModel.fromJson(data);
+      final status = result.data['status'];
+      if (status == 'success') {
+        return UserModel.fromJson(result.data['data']);
       } else {
-        throw const ServerException(message: 'Usuario no registrado');
+        throw ServerException(message: result.data['message']);
       }
     } on ServerException {
       rethrow;
@@ -65,7 +64,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     try {
       final result = await client.post(Environment.signUp,
           data: {
-            'email': email,
+            'account': email,
             'name': name,
             'password': password,
             'birthdate': birthdate

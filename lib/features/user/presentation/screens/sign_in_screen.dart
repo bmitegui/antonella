@@ -111,7 +111,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         const SizedBox(height: 16),
                         const AuthPromptWidget()
                       ]))))
-          : LottieBuilder.asset("assets/lottie/loading_screen.json");
+          : const CircularProgressIndicator();
     })));
   }
 }
