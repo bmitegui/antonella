@@ -22,18 +22,12 @@ String? validatePassword(String? value) {
   if (value == null || value.isEmpty) {
     return 'Por favor ingresa tu contraseña';
   }
-  if (value.length < 8) {
-    return 'La contraseña debe tener al menos 8 caracteres';
-  }
   return null;
 }
 
 String? validateName(String? value) {
   if (value == null || value.isEmpty) {
     return 'Por favor ingresa tu nombre';
-  }
-  if (value.length < 3) {
-    return 'El nombre debe tener al menos 3 caracteres';
   }
   return null;
 }

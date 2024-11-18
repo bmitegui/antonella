@@ -33,14 +33,11 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<UserModel> signIn(
       {required String email, required String password}) async {
     try {
-      print(Environment.signIn);
       final result = await client.post(Environment.signIn,
           data: {'account': email, 'password': password},
           options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));
-
-      print('result: $result');
 
       final status = result.data['status'];
       if (status == 'success') {
@@ -62,8 +59,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       required String password,
       required String birthdate}) async {
     try {
-      print(Environment.signUp);
-      print(birthdate);
       final result = await client.post(Environment.signUp,
           data: {
             'account': email,
@@ -74,7 +69,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));
-      print(result);
       final status = result.data['status'];
       if (status == 'success') {
         return UserModel.fromJson(result.data['data']);

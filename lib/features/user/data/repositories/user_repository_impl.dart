@@ -21,7 +21,7 @@ class UserRepositoryImpl implements UserRepository {
       {required String email,
       required String password,
       required bool rememberMe}) async {
-    // if (await networkInfo.isConnected) {
+    if (await networkInfo.isConnected) {
       try {
         final remoteUser =
             await userRemoteDataSource.signIn(email: email, password: password);
@@ -30,15 +30,13 @@ class UserRepositoryImpl implements UserRepository {
         }
         return Right(remoteUser);
       } on ServerException catch (e) {
-        print(e.message);
         return Left(ServerFailure(message: e.message));
       } catch (e) {
-        
         return Left(ServerFailure());
       }
-    // } else {
-    //   return Left(ServerFailure(message: networkConnectionError));
-    // }
+    } else {
+      return Left(ServerFailure(message: networkConnectionError));
+    }
   }
 
   @override
@@ -49,20 +47,16 @@ class UserRepositoryImpl implements UserRepository {
       required String birthdate}) async {
     if (await networkInfo.isConnected) {
       try {
-        print('trata');
         final remoteUser = await userRemoteDataSource.signUp(
             email: email, name: name, password: password, birthdate: birthdate);
         await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
-        print(remoteUser);
         return Right(remoteUser);
       } on ServerException catch (e) {
-        print(e);
         return Left(ServerFailure(message: e.message));
       } catch (e) {
         return Left(ServerFailure());
       }
     } else {
-      print('No hay??');
       return Left(ServerFailure(message: networkConnectionError));
     }
   }
