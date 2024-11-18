@@ -121,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const TermsAndConditionsWidget(isSignIn: false),
                         const SizedBox(height: 16)
                       ]))))
-          : LottieBuilder.asset("assets/lottie/loading_screen.json");
+          : const CircularProgressIndicator();
     })));
   }
 }

@@ -34,7 +34,9 @@ final appRouter = GoRouter(
       if (userBloc.state is UserLoading) {
         return null;
       } else if (userBloc.state is UserAuthenticated) {
-        if (isGoingTo == '/signIn' || isGoingTo == '/loading') {
+        if (isGoingTo == '/signIn' ||
+            isGoingTo == '/signUp' ||
+            isGoingTo == '/loading') {
           return '/pages';
         }
       } else if (userBloc.state is UserUnauthenticated) {

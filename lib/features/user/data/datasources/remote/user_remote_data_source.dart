@@ -62,6 +62,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       required String password,
       required String birthdate}) async {
     try {
+      print(Environment.signUp);
+      print(birthdate);
       final result = await client.post(Environment.signUp,
           data: {
             'account': email,
@@ -69,13 +71,15 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
             'password': password,
             'birthdate': birthdate
           },
-          options: Options(contentType: Headers.jsonContentType));
-
-      final status = result.data['state'];
-      if (status == 'ENABLED') {
-        return UserModel.fromJson(result.data);
+      options: Options(
+              contentType: Headers.jsonContentType,
+              validateStatus: (status) => status != null && status < 500));
+      print(result);
+      final status = result.data['status'];
+      if (status == 'success') {
+        return UserModel.fromJson(result.data['data']);
       } else {
-        throw const ServerException(message: 'TODO: Mensaje de error del back');
+        throw ServerException(message: result.data['message']);
       }
     } on ServerException {
       rethrow;

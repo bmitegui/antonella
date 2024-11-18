@@ -49,16 +49,20 @@ class UserRepositoryImpl implements UserRepository {
       required String birthdate}) async {
     if (await networkInfo.isConnected) {
       try {
+        print('trata');
         final remoteUser = await userRemoteDataSource.signUp(
             email: email, name: name, password: password, birthdate: birthdate);
         await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
+        print(remoteUser);
         return Right(remoteUser);
       } on ServerException catch (e) {
+        print(e);
         return Left(ServerFailure(message: e.message));
       } catch (e) {
         return Left(ServerFailure());
       }
     } else {
+      print('No hay??');
       return Left(ServerFailure(message: networkConnectionError));
     }
   }
