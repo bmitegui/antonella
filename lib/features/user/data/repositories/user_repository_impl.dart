@@ -18,13 +18,13 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, UserModel>> signIn(
-      {required String email,
+      {required String account,
       required String password,
       required bool rememberMe}) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteUser =
-            await userRemoteDataSource.signIn(email: email, password: password);
+        final remoteUser = await userRemoteDataSource.signIn(
+            account: account, password: password);
         if (rememberMe) {
           await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
         }
@@ -41,14 +41,17 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, UserModel>> signUp(
-      {required String email,
+      {required String account,
       required String name,
       required String password,
       required String birthdate}) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteUser = await userRemoteDataSource.signUp(
-            email: email, name: name, password: password, birthdate: birthdate);
+            account: account,
+            name: name,
+            password: password,
+            birthdate: birthdate);
         await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
         return Right(remoteUser);
       } on ServerException catch (e) {
@@ -66,20 +69,6 @@ class UserRepositoryImpl implements UserRepository {
     try {
       await userLocalDataSource.signOut();
       return const Right(null);
-    } catch (e) {
-      return Left(ServerFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, UserModel>> checkAuthentication() async {
-    try {
-      final localUser = await userLocalDataSource.checkUserAuthentication();
-      if (localUser != null) {
-        return Right(localUser);
-      } else {
-        return Left(ServerFailure(message: userNotAuthenticatedError));
-      }
     } catch (e) {
       return Left(ServerFailure());
     }

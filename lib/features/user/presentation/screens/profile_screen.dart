@@ -1,3 +1,4 @@
+import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/profile_option_widget.dart';
 import 'package:antonella/features/user/presentation/widgets/user_photo_widget.dart';
@@ -38,15 +39,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const UserPhotoWidget(),
                     const SizedBox(height: 16),
                     Text(state.user.name,
-                        style: Theme.of(context).textTheme.titleMedium),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: themeClass.lightEighthColor)),
                     Text(state.user.email,
                         style: Theme.of(context).textTheme.bodyMedium),
                     const SizedBox(height: 16),
-                    ProfileOptionWidget(
-                        title: 'Mis citas',
-                        iconData: Icons.calendar_month,
-                        onTap: () {}),
-                    const SizedBox(height: 8),
                     ProfileOptionWidget(
                         title: 'Datos de facturación',
                         iconData: Icons.description,

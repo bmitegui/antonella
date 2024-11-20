@@ -1,4 +1,5 @@
 import 'package:antonella/core/theme/app_theme.dart';
+import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
@@ -7,7 +8,6 @@ import 'package:antonella/features/user/presentation/widgets/remember_me_widget.
 import 'package:antonella/features/user/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -20,20 +20,20 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _emailController;
+  late TextEditingController _accountController;
   late TextEditingController _passwordController;
   late bool _value;
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController();
+    _accountController = TextEditingController();
     _passwordController = TextEditingController();
     _value = false;
   }
 
   @override
   void dispose() {
-    _emailController.clear();
+    _accountController.clear();
     _passwordController.clear();
     super.dispose();
   }
@@ -59,19 +59,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Form(
                       key: _formKey,
                       child: Column(children: [
-                        Image.asset('assets/icon/logo.png', width: 320),
+                        Image.asset('assets/icon/logo.png', width: 300.rh(context)),
                         const SizedBox(height: 16),
                         Text('Bienvenido de vuelta!',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
                                 .copyWith(color: themeClass.lightEighthColor)),
-                        const SizedBox(height: 64),
+                        const SizedBox(height: 32),
                         CustomTextFormField(
-                            controller: _emailController,
-                            title: 'Correo:',
-                            hintText: 'Ingrese su correo',
-                            prefixIcon: const Icon(Icons.email),
+                            controller: _accountController,
+                            title: 'Correo o teléfono:',
+                            hintText: 'Correo o teléfono',
+                            prefixIcon: const Icon(Icons.person),
                             keyboardType: TextInputType.emailAddress,
                             validator: validateEmail),
                         const SizedBox(height: 16),
@@ -100,7 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 context.read<UserBloc>().add(SignInEvent(
-                                    email: _emailController.text.trim(),
+                                    account: _accountController.text.trim(),
                                     password: _passwordController.text.trim(),
                                     rememberMe: _value));
                               }
@@ -109,7 +109,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         const SizedBox(height: 16),
                         const TermsAndConditionsWidget(),
                         const SizedBox(height: 16),
-                        const AuthPromptWidget()
+                        const AuthPromptWidget(),
+                                                const SizedBox(height: 8)
+
                       ]))))
           : const CircularProgressIndicator();
     })));

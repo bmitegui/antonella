@@ -14,13 +14,12 @@ class BirthdateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      Expanded(
-          flex: 10,
-          child: Text('Fecha de nacimiento:',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontWeight: FontWeight.bold))),
+      Text('Fecha de nacimiento:',
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(fontWeight: FontWeight.bold)),
+      const SizedBox(width: 8),
       Expanded(
           flex: 7,
           child: GestureDetector(

@@ -13,7 +13,7 @@ class ThemeClass {
   Color lightSeventhColor = const Color(0XFFADADAD);
   Color lightEighthColor = const Color(0XFF484850);
 
-  Color lightscaffoldBackgroundColor = Colors.white;
+  Color lightscaffoldBackgroundColor = const Color.fromARGB(255, 254, 254, 254);
 
   ThemeData getTheme(BuildContext context) => ThemeData(
       useMaterial3: true,

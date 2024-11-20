@@ -1,6 +1,7 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/router/router.dart';
 import 'package:antonella/core/theme/app_theme.dart';
+import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/core/injection/injection_container.dart' as di;
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => di.sl<UserBloc>()),
+          BlocProvider(create: (context) => di.sl<ServiceBloc>()),
         ],
         child: MaterialApp.router(
             locale: const Locale('es', 'EC'),

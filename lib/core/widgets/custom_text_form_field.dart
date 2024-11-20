@@ -10,6 +10,11 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputType? keyboardType;
   final bool enable;
   final String? Function(String?)? validator;
+  final Widget? icon;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onChanged;
+  final Widget? suffixIcon;
+  final void Function(PointerDownEvent)? onTapOutside;
   const CustomTextFormField(
       {super.key,
       this.controller,
@@ -19,7 +24,12 @@ class CustomTextFormField extends StatefulWidget {
       this.obscureText = false,
       this.keyboardType,
       this.enable = true,
-      this.validator});
+      this.validator,
+      this.icon,
+      this.onEditingComplete,
+      this.suffixIcon,
+      this.onChanged,
+      this.onTapOutside});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -46,21 +56,25 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     .bodyMedium!
                     .copyWith(fontWeight: FontWeight.bold))),
       TextFormField(
+          onChanged: widget.onChanged,
+          onEditingComplete: widget.onEditingComplete,
+          textInputAction: TextInputAction.done,
           validator: widget.validator,
           enabled: widget.enable,
           keyboardType: widget.keyboardType,
           controller: widget.controller,
-          onTapOutside: (event) => FocusScope.of(context).unfocus(),
+          onTapOutside: widget.onTapOutside ?? (event) => FocusScope.of(context).unfocus(),
           obscureText: _obscureText,
           style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
+              icon: widget.icon,
               suffixIcon: widget.obscureText
                   ? GestureDetector(
                       onTap: () => setState(() => _obscureText = !_obscureText),
                       child: Icon(_obscureText
                           ? Icons.visibility_off
                           : Icons.visibility))
-                  : null,
+                  : widget.suffixIcon,
               prefixIconColor: themeClass.lightSixthColor,
               suffixIconColor: themeClass.lightSixthColor,
               labelStyle: Theme.of(context).textTheme.bodyMedium,

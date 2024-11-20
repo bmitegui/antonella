@@ -25,8 +25,8 @@ class ProfileOptionWidget extends StatelessWidget {
                   maxLines: 2,
                   style: Theme.of(context)
                       .textTheme
-                      .titleMedium!
-                      .copyWith(color: themeClass.lightEighthColor)))
+                      .bodyMedium!
+                      .copyWith(fontWeight: FontWeight.bold)))
         ]),
         trailing:
             Icon(Icons.arrow_forward_ios, color: themeClass.lightEighthColor));

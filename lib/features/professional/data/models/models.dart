@@ -1,0 +1,1 @@
+export './profesional_model.dart';

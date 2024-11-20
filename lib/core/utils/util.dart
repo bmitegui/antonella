@@ -8,7 +8,7 @@ DateTime parseStringToDate(String dateString) {
 
 String? validateEmail(String? value) {
   if (value == null || value.isEmpty) {
-    return 'Por favor ingresa tu correo electrónico';
+    return 'Por favor ingresa tu correo o teléfono';
   }
   final emailRegExp =
       RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$');
@@ -34,7 +34,7 @@ String? validateName(String? value) {
 
 String? validateBirthdate(String? value) {
   if (value == null || value.isEmpty) {
-    return 'Campo faltante';
+    return 'Fecha faltante';
   }
   return null;
 }

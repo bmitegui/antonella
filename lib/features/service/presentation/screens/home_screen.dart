@@ -1,5 +1,7 @@
+import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/features/service/presentation/widgets/bienvenida_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/services_type_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/custom_search_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,12 +16,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.white,
+            backgroundColor: themeClass.lightscaffoldBackgroundColor,
             title: const BienvenidaWidget(),
             actions: [Image.asset('assets/icon/logo.png')]),
-        body: SingleChildScrollView(
+        body: const SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.all(16),
-                child: Column(children: [ServicesTypeWidget()]))));
+                child: Column(children: [
+                  CustomSearchWidget(),
+                  SizedBox(height: 16),
+                  ServicesFilterWidget()
+
+                ]))));
   }
 }

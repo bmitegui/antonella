@@ -4,16 +4,15 @@ import 'package:dartz/dartz.dart';
 
 abstract class UserRepository {
   Future<Either<Failure, UserModel>> signIn({
-    required String email,
+    required String account,
     required String password,
     required bool rememberMe,
   });
   Future<Either<Failure, UserModel>> signUp({
-    required String email,
+    required String account,
     required String name,
     required String password,
     required String birthdate,
   });
   Future<Either<Failure, void>> signOut();
-  Future<Either<Failure, UserModel>> checkAuthentication();
 }

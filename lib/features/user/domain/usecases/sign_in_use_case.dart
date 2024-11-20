@@ -11,16 +11,16 @@ class SignInUseCase implements UseCase<UserEntity, SignInParams> {
   @override
   Future<Either<Failure, UserEntity>> call(SignInParams signInParams) async {
     return await userRepository.signIn(
-        email: signInParams.email,
+        account: signInParams.account,
         password: signInParams.password,
         rememberMe: signInParams.rememberMe);
   }
 }
 
 class SignInParams {
-  final String email;
+  final String account;
   final String password;
   final bool rememberMe;
   SignInParams(
-      {required this.email, required this.password, required this.rememberMe});
+      {required this.account, required this.password, required this.rememberMe});
 }

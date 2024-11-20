@@ -1,4 +1,5 @@
 import 'package:antonella/core/theme/app_theme.dart';
+import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
@@ -7,7 +8,6 @@ import 'package:antonella/features/user/presentation/widgets/bithdate_widget.dar
 import 'package:antonella/features/user/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -63,7 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Form(
                       key: _formKey,
                       child: Column(children: [
-                        Image.asset('assets/icon/logo.png', width: 320),
+                        Image.asset('assets/icon/logo.png', width: 300.rh(context)),
                         const SizedBox(height: 16),
                         Text('Crea tu propia cuenta!',
                             style: Theme.of(context)
@@ -112,14 +112,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 context.read<UserBloc>().add(SignUpEvent(
                                     name: _nameController.text.trim(),
                                     birthdate: _birthdateController.text.trim(),
-                                    email: _emailController.text.trim(),
+                                    account: _emailController.text.trim(),
                                     password: _passwordController.text.trim()));
                               }
                             },
                             child: const Text('Registrarse')),
                         const SizedBox(height: 16),
                         const TermsAndConditionsWidget(isSignIn: false),
-                        const SizedBox(height: 16)
+                        const SizedBox(height: 8)
                       ]))))
           : const CircularProgressIndicator();
     })));

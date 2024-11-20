@@ -1,3 +1,5 @@
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/screens/agenda_screen.dart';
 import 'package:antonella/features/service/presentation/screens/home_screen.dart';
 import 'package:antonella/features/service/presentation/screens/notifications_screen.dart';
@@ -31,6 +33,7 @@ class _PagesScreenState extends State<PagesScreen> {
     _pageController = PageController(initialPage: 0);
     _currentIndex = 0;
     _pageController.addListener(_handleTabSelection);
+    sl<ServiceBloc>().add(GetServicesEvent());
   }
 
   @override

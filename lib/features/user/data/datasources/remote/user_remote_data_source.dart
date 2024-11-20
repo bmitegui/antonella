@@ -5,25 +5,16 @@ import 'package:dio/dio.dart';
 
 abstract class UserRemoteDataSource {
   Future<UserModel> signIn({
-    required String email,
+    required String account,
     required String password,
   });
   Future<UserModel> signUp({
-    required String email,
+    required String account,
     required String name,
     required String password,
     required String birthdate,
   });
 }
-
-final data = {
-  'id': 'hsdkjhakjasd',
-  'email': 'bmite@gmail.com',
-  'name': 'Brian',
-  'birthdate': '2001-05-11',
-  'number': null,
-  'cedula': null
-};
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   final Dio client;
@@ -31,10 +22,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
   @override
   Future<UserModel> signIn(
-      {required String email, required String password}) async {
+      {required String account, required String password}) async {
     try {
       final result = await client.post(Environment.signIn,
-          data: {'account': email, 'password': password},
+          data: {'account': account, 'password': password},
           options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));
@@ -54,19 +45,19 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
   @override
   Future<UserModel> signUp(
-      {required String email,
+      {required String account,
       required String name,
       required String password,
       required String birthdate}) async {
     try {
       final result = await client.post(Environment.signUp,
           data: {
-            'account': email,
+            'account': account,
             'name': name,
             'password': password,
             'birthdate': birthdate
           },
-      options: Options(
+          options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));
       final status = result.data['status'];

@@ -1,7 +1,6 @@
+class ProfessionalEntity {
+  final String id;
+  final String name;
 
-
-
-
-class ProfessionalEntity{
-  
+  ProfessionalEntity({required this.id, required this.name});
 }
