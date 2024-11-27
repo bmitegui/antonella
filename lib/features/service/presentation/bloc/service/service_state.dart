@@ -9,11 +9,23 @@ final class ServiceInitial extends ServiceState {}
 final class ServiceLoading extends ServiceState {}
 
 final class ServicesLoaded extends ServiceState {
-  final List<ServiceEntity> services;
-  ServicesLoaded({required this.services});
+  final ListServicesEntity listServices;
+  ServicesLoaded({required this.listServices});
+
+  Map<String, List<ServiceEntity>> getDataBySubCategories() {
+    Map<String, List<ServiceEntity>> data = {};
+    for (var service in listServices.services) {
+      if (!data.containsKey(service.subCategory)) {
+        data[service.subCategory] = [service];
+      } else {
+        data[service.subCategory]!.add(service);
+      }
+    }
+    return data;
+  }
 }
 
-final class ServiceError extends ServiceState {
+final class ServicesError extends ServiceState {
   final String message;
-  ServiceError({required this.message});
+  ServicesError({required this.message});
 }

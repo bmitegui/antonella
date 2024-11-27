@@ -1,16 +1,22 @@
-import 'package:antonella/features/service/domain/entities/sub_service_entity.dart';
-
 class ServiceEntity {
   final String id;
   final String name;
+  final String description;
+  final String category;
+  final String subCategory;
+  final String urlImage;
+  final double minPrice;
+  final double maxPrice;
   final bool isSelected;
-  final String asset;
-  final List<SubServiceEntity> subServices;
 
   ServiceEntity(
       {required this.id,
       required this.name,
-      required this.isSelected,
-      required this.asset,
-      required this.subServices});
+      required this.description,
+      required this.category,
+      required this.subCategory,
+      required this.urlImage,
+      required this.minPrice,
+      required this.maxPrice,
+      required this.isSelected});
 }

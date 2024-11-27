@@ -33,7 +33,7 @@ class _PagesScreenState extends State<PagesScreen> {
     _pageController = PageController(initialPage: 0);
     _currentIndex = 0;
     _pageController.addListener(_handleTabSelection);
-    sl<ServiceBloc>().add(GetServicesEvent());
+    sl<ServiceBloc>().add(GetServicesEvent(filter: null));
   }
 
   @override

@@ -6,14 +6,16 @@ class CustomCircularIconButtom extends StatelessWidget {
   final Color? borderColor;
   final EdgeInsetsGeometry? padding;
   final Color? bottomTitleColor;
-  final Function() onTap;
+  final Function()? onTap;
   final FontWeight? fontWeight;
+  final Color? color;
   const CustomCircularIconButtom(
       {super.key,
       required this.icon,
-      required this.onTap,
+      this.onTap,
       this.bottomTitle,
       this.borderColor,
+      this.color,
       this.padding = const EdgeInsets.all(16),
       this.bottomTitleColor,
       this.fontWeight});
@@ -25,11 +27,12 @@ class CustomCircularIconButtom extends StatelessWidget {
 
     return Column(children: [
       GestureDetector(
-          onTap: onTap(),
+          onTap: onTap,
           child: Container(
               clipBehavior: Clip.hardEdge,
               padding: padding,
               decoration: BoxDecoration(
+                  color: color,
                   shape: BoxShape.circle,
                   border: Border.all(color: effectiveborderColor)),
               child: icon)),

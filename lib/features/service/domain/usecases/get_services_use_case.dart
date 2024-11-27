@@ -4,12 +4,20 @@ import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/domain/repositories/service_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class GetServicesUseCase implements UseCase<void, NoParams> {
+class GetServicesUseCase implements UseCase<void, GetServicesParams> {
   final ServiceRepository serviceRepository;
   GetServicesUseCase({required this.serviceRepository});
 
   @override
-  Future<Either<Failure, List<ServiceEntity>>> call(NoParams noParams) async {
-    return await serviceRepository.getServices();
+  Future<Either<Failure, ListServicesEntity>> call(
+      GetServicesParams getServicesParams) async {
+    return await serviceRepository.getServices(
+        filter: getServicesParams.filter);
   }
+}
+
+class GetServicesParams {
+  final String? filter;
+
+  GetServicesParams({required this.filter});
 }

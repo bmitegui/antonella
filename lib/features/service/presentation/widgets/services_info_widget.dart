@@ -1,0 +1,30 @@
+import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/services_by_subcategory_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class ServicesInfoWidget extends StatelessWidget {
+  final List<String> servicesSelected;
+  const ServicesInfoWidget({super.key, required this.servicesSelected});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ServiceBloc, ServiceState>(builder: (context, state) {
+      return (state is ServicesLoaded)
+          ? (state.listServices.services.isNotEmpty)
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: state.getDataBySubCategories().entries.map((entry) {
+                    return ServicesBySubcategoryWidget(
+                        subCategory: entry.key,
+                        services: entry.value,
+                        servicesSelected: servicesSelected);
+                  }).toList())
+              : const Center(
+                  child: Text('No existen servicios para esta categoría'))
+          : (state is ServicesError)
+              ? Center(child: Text(state.message))
+              : const Center(child: CircularProgressIndicator());
+    });
+  }
+}

@@ -14,10 +14,12 @@ class ServiceRepositoryImpl implements ServiceRepository {
       {required this.networkInfo, required this.serviceRemoteDataSource});
 
   @override
-  Future<Either<Failure, List<ServiceModel>>> getServices() async {
+  Future<Either<Failure, ListServicesModel>> getServices(
+      {required String? filter}) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteServices = await serviceRemoteDataSource.getServices();
+        final remoteServices =
+            await serviceRemoteDataSource.getServices(filter: filter);
         return Right(remoteServices);
       } on ServerException catch (e) {
         return Left(ServerFailure(message: e.message));
