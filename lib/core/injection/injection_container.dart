@@ -72,4 +72,6 @@ Future<void> init() async {
 
   sl.registerLazySingleton<ServiceBloc>(
       () => ServiceBloc(getServicesUseCase: sl<GetServicesUseCase>()));
+
+  sl.registerLazySingleton<ServicesSelectedBloc>(() => ServicesSelectedBloc());
 }

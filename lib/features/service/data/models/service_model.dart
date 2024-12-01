@@ -1,7 +1,7 @@
 import 'package:antonella/features/service/domain/entities/entities.dart';
 
 class ServiceModel extends ServiceEntity {
-  ServiceModel(
+  const ServiceModel(
       {required super.id,
       required super.name,
       required super.description,

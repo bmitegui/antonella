@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ServicesInfoWidget extends StatelessWidget {
-  final List<String> servicesSelected;
-  const ServicesInfoWidget({super.key, required this.servicesSelected});
+  const ServicesInfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +15,7 @@ class ServicesInfoWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: state.getDataBySubCategories().entries.map((entry) {
                     return ServicesBySubcategoryWidget(
-                        subCategory: entry.key,
-                        services: entry.value,
-                        servicesSelected: servicesSelected);
+                        subCategory: entry.key, services: entry.value);
                   }).toList())
               : const Center(
                   child: Text('No existen servicios para esta categoría'))

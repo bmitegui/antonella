@@ -1,6 +1,7 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/screens/agenda_screen.dart';
+import 'package:antonella/features/service/presentation/screens/chats_screen.dart';
 import 'package:antonella/features/service/presentation/screens/home_screen.dart';
 import 'package:antonella/features/service/presentation/screens/notifications_screen.dart';
 import 'package:antonella/features/service/presentation/screens/search_screen.dart';
@@ -24,6 +25,7 @@ class _PagesScreenState extends State<PagesScreen> {
     SearchScreen(),
     AgendaScreen(),
     NotificationsScreen(),
+    ChatsScreen(),
     ProfileScreen()
   ];
 

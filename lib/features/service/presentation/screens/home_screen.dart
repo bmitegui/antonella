@@ -1,8 +1,6 @@
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/app_theme.dart';
-import 'package:antonella/features/service/presentation/bloc/bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/bienvenida_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/custom_search_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/bienvenida_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
 import 'package:flutter/material.dart';
 

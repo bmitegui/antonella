@@ -24,11 +24,9 @@ class ServicesFilterWidget extends StatelessWidget {
             return Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: IconServiceWidget(
-                    onTap: () {
-                      context
-                          .read<ServiceBloc>()
-                          .add(GetServicesEvent(filter: entry.key));
-                    },
+                    onTap: () => context
+                        .read<ServiceBloc>()
+                        .add(GetServicesEvent(filter: entry.key)),
                     bottomTitle: entry.key,
                     asset: entry.value,
                     isSelected: (state is ServicesLoaded)

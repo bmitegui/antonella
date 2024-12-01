@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 String formatDateToString(DateTime date) {
   return "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
 }
@@ -37,4 +39,13 @@ String? validateBirthdate(String? value) {
     return 'Fecha faltante';
   }
   return null;
+}
+
+String formatDateTime(DateTime? date) {
+  if (date == null) {
+    return '-';
+  }
+  final DateFormat formatter =
+      DateFormat('EEEE, dd \'de\' MMMM \'del\' yyyy', 'es_ES');
+  return formatter.format(date);
 }

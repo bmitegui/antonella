@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => di.sl<UserBloc>()),
           BlocProvider(create: (context) => di.sl<ServiceBloc>()),
+          BlocProvider(create: (context) => di.sl<ServicesSelectedBloc>()),
         ],
         child: MaterialApp.router(
             locale: const Locale('es', 'EC'),

@@ -1,8 +1,8 @@
 import 'package:antonella/core/theme/app_theme.dart';
-import 'package:antonella/features/service/presentation/widgets/bottom_buttons_search_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/progress_search_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/services_info_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/confirmation_services_page.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/select_date_page.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/select_services_page.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/select_time_page.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -14,31 +14,29 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final PageController _pageController = PageController();
-  late List<String> _servicesSelected;
   int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    _servicesSelected = ['1', '4'];
   }
 
-  // Métodos para navegar entre páginas
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void _nextPage() {
     if (_currentPage < 3) {
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 
   void _previousPage() {
     if (_currentPage > 0) {
       _pageController.previousPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 
@@ -57,92 +55,16 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: PageView(
                       physics: const NeverScrollableScrollPhysics(),
                       controller: _pageController,
-                      onPageChanged: (index) {
-                        setState(() {
-                          _currentPage = index;
-                        });
-                      },
+                      onPageChanged: (index) =>
+                          setState(() => _currentPage = index),
                       children: [
-                    _buildPage1(),
-                    _buildPage2(),
-                    _buildPage3(),
-                    _buildPage4()
+                    SelectServicesPage(nextPage: _nextPage),
+                    SelectDatePage(
+                        nextPage: _nextPage, previousPage: _previousPage),
+                    SelectTimePage(
+                        previousPage: _previousPage, nextPage: _nextPage),
+                    ConfirmationServicesPage(previousPage: _previousPage)
                   ]))
             ])));
-  }
-
-  Widget _buildPage1() {
-    return Center(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-          const ProgressSearchWidget(page: 1),
-          const SizedBox(height: 16),
-          const ServicesFilterWidget(),
-          const SizedBox(height: 16),
-          Expanded(
-              child: SingleChildScrollView(
-                  child:
-                      ServicesInfoWidget(servicesSelected: _servicesSelected))),
-          const SizedBox(height: 16),
-          BottomButtonsSearchScreen(
-              servicesSelected: _servicesSelected,
-              enableChat: true,
-              nextPage: () => _nextPage())
-        ]));
-  }
-
-  Widget _buildPage2() {
-    return Center(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-          const ProgressSearchWidget(page: 2),
-          const SizedBox(height: 16),
-          const Spacer(),
-          const SizedBox(height: 16),
-          BottomButtonsSearchScreen(
-              enableChat: true,
-              servicesSelected: _servicesSelected,
-              previousPage: () => _previousPage(),
-              nextPage: () => _nextPage())
-        ]));
-  }
-
-  Widget _buildPage3() {
-    return Center(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-          const ProgressSearchWidget(page: 3),
-          const SizedBox(height: 16),
-          const Spacer(),
-          const SizedBox(height: 16),
-          BottomButtonsSearchScreen(
-              enableChat: true,
-              servicesSelected: _servicesSelected,
-              previousPage: () => _previousPage(),
-              nextPage: () => _nextPage())
-        ]));
-  }
-
-  Widget _buildPage4() {
-    return Center(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-          const ProgressSearchWidget(page: 4),
-          const SizedBox(height: 16),
-          const Spacer(),
-          const SizedBox(height: 16),
-          BottomButtonsSearchScreen(
-              enableChat: true,
-              servicesSelected: _servicesSelected,
-              previousPage: () => _previousPage())
-        ]));
   }
 }

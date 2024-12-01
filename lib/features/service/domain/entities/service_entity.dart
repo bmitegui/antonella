@@ -1,4 +1,6 @@
-class ServiceEntity {
+import 'package:equatable/equatable.dart';
+
+class ServiceEntity extends Equatable {
   final String id;
   final String name;
   final String description;
@@ -9,7 +11,7 @@ class ServiceEntity {
   final double maxPrice;
   final bool isSelected;
 
-  ServiceEntity(
+  const ServiceEntity(
       {required this.id,
       required this.name,
       required this.description,
@@ -19,4 +21,7 @@ class ServiceEntity {
       required this.minPrice,
       required this.maxPrice,
       required this.isSelected});
+
+  @override
+  List<Object?> get props => [id];
 }

@@ -22,14 +22,12 @@ class UserPhotoWidget extends StatelessWidget {
           bottom: 0,
           right: 0,
           child: GestureDetector(
-              onTap: () async {
-                await showModalBottomSheet<List>(
-                    backgroundColor: Colors.white,
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const UploadUserPhotoWidget();
-                    });
-              },
+              onTap: () async => await showModalBottomSheet<List>(
+                  backgroundColor: Colors.white,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const UploadUserPhotoWidget();
+                  }),
               child: Container(
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
                     BoxShadow(

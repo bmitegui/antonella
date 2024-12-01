@@ -29,6 +29,7 @@ class CustomBottomNavigatorBarWidget extends StatelessWidget {
                   GButton(icon: Icons.search, text: 'Buscar'),
                   GButton(icon: Icons.calendar_month, text: 'Agenda'),
                   GButton(icon: Icons.notifications_rounded, text: 'Alertas'),
+                  GButton(icon: Icons.chat, text: 'Chats'),
                   GButton(icon: Icons.settings_rounded, text: 'Ajustes')
                 ])));
   }
