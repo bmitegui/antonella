@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
   Future<ListServicesModel> getServices({required String? filter});
+  Future<List<ServiceFormModel>> getListServiceForm({required String category});
 }
 
 class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
@@ -47,28 +48,105 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
       throw const ServerException();
     }
   }
+
+  @override
+  Future<List<ServiceFormModel>> getListServiceForm(
+      {required String category}) async {
+    try {
+      final listServiceFormsData = category == 'Maquillaje'
+          ? makeupServices
+          : category == 'Cabello'
+              ? hairServiceForm
+              : category == 'Uñas'
+                  ? nailsServices
+                  : spaServices;
+
+      return listServiceFormsData['ListServiceForms']
+          .map<ServiceFormModel>((serviceFormData) {
+        return ServiceFormModel.fromJson(serviceFormData);
+      }).toList();
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
 }
 
-final Map<String, dynamic> hours =
+final Map<String, dynamic> hairServiceForm = {
+  'ListServiceForms': [
+    {'id': '1', 'title': 'Fotos de su cabello', 'type': 'uploadPhotos'},
+    {
+      'id': '2',
+      'title': 'Seleccione el tipo de cabello',
+      'type': 'selectPhotos',
+      'urlPhotos': {
+        'Liso':
+            'https://img.freepik.com/fotos-premium/mujer-modelo-detras-hermoso-cabello-largo-liso-tenido_769803-2816.jpg',
+        'Ondulado':
+            'https://st3.depositphotos.com/1750160/18836/i/450/depositphotos_188363186-stock-photo-girl-with-long-curly-hair.jpg',
+        'Rizado':
+            'https://i.pinimg.com/236x/c6/b2/90/c6b290295d4a730042aa1b4bf43cd3fa.jpg'
+      }
+    },
+    {
+      'id': '3',
+      'title': 'Seleccione el largo de su cabello',
+      'type': 'selectPhotos',
+      'urlPhotos': {
+        'Corto':
+            'https://i.pinimg.com/564x/bf/f3/3d/bff33d718a416539850e186e4d4eaec5.jpg',
+        'Mediano':
+            'https://st2.depositphotos.com/7990700/48221/i/450/depositphotos_482213548-stock-photo-straight-hair-bleaching-process-look.jpg',
+        'Largo':
+            'https://img.freepik.com/fotos-premium/mujer-modelo-detras-hermoso-cabello-largo-liso-tenido_769803-2816.jpg'
+      }
+    },
+    {
+      'id': '4',
+      'title': '¿Sufres de puntas abiertas o cabello reseco?',
+      'type': 'isSelected'
+    },
+    {
+      'id': '5',
+      'title': '¿Se ha tinturado el cabello antes?',
+      'type': 'isSelected'
+    },
+    {
+      'id': '6',
+      'title': '¿Tiene algún tipo de tratamiento reciente en su cabello?',
+      'type': 'input'
+    },
+    {'id': '7', 'title': 'Observaciones', 'type': 'input'},
+    {'id': '8', 'title': 'Resultados esperados', 'type': 'uploadPhotos'}
+  ]
+};
 
-{
-  'Mañana':[
-    "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM",
+final Map<String, dynamic> hours = {
+  'Mañana': [
+    "09:00 AM",
+    "09:30 AM",
+    "10:00 AM",
+    "10:30 AM",
+    "11:00 AM",
     "11:30 AM"
   ],
-  'Tarde':[
-     "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
-    "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM",
-    "04:30 PM", "05:00 PM", "05:30 PM"
+  'Tarde': [
+    "12:00 PM",
+    "12:30 PM",
+    "01:00 PM",
+    "01:30 PM",
+    "02:00 PM",
+    "02:30 PM",
+    "03:00 PM",
+    "03:30 PM",
+    "04:00 PM",
+    "04:30 PM",
+    "05:00 PM",
+    "05:30 PM"
   ],
-  'Noche':[
-    "06:00 PM", "06:30 PM",
-    "07:00 PM", "07:30 PM", "08:00 PM"
-  ]
-}
-
-
- ;
+  'Noche': ["06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM"]
+};
 
 Map<String, dynamic> allServices = {
   'services': [

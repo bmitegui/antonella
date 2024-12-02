@@ -30,4 +30,22 @@ class ServiceRepositoryImpl implements ServiceRepository {
       return Left(ServerFailure(message: networkConnectionError));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ServiceFormModel>>> getListServiceForm(
+      {required String category}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteListServiceForms = await serviceRemoteDataSource
+            .getListServiceForm(category: category);
+        return Right(remoteListServiceForms);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.message));
+      } catch (e) {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure(message: networkConnectionError));
+    }
+  }
 }

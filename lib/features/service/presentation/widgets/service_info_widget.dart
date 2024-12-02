@@ -1,7 +1,9 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,21 +22,20 @@ class ServiceInfoWidget extends StatelessWidget {
         Padding(
             padding: const EdgeInsets.only(right: 24, bottom: 16),
             child: GestureDetector(
-                onTap: () {
+                onTap: () async {
                   if (state is ServicesSelectedLoaded) {
-                    context.read<ServicesSelectedBloc>().add(state
-                            .listServicesSelected
-                            .contains(serviceEntity)
-                        ? DeleteServiceSelectedEvent(
-                            serviceEntitySelected: serviceEntity,
-                            listServicesSelected: state.listServicesSelected,
-                            dateSelected: state.dateSelected,
-                            timeSelected: state.timeSelected)
-                        : AddServiceSelectedEvent(
-                            serviceEntitySelected: serviceEntity,
-                            listServicesSelected: state.listServicesSelected,
-                            dateSelected: state.dateSelected,
-                            timeSelected: state.timeSelected));
+                    sl<ServiceFormBloc>().add(GetListServiceFormEvent(
+                        category: serviceEntity.category));
+
+                    await showModalBottomSheet<List>(
+                        scrollControlDisabledMaxHeightRatio: 1,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.white,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return FormServiceSelectedWidget(
+                              serviceEntity: serviceEntity);
+                        });
                   }
                 },
                 child: Container(

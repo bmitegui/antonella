@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<UserBloc>()),
           BlocProvider(create: (context) => di.sl<ServiceBloc>()),
           BlocProvider(create: (context) => di.sl<ServicesSelectedBloc>()),
+          BlocProvider(create: (context) => di.sl<ServiceFormBloc>()),
         ],
         child: MaterialApp.router(
             locale: const Locale('es', 'EC'),

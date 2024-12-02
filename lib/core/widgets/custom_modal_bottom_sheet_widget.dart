@@ -34,13 +34,12 @@ class CustomModalBottomSheetWidget extends StatelessWidget {
                         ? themeClass.lightSeventhColor
                         : Colors.transparent)),
             Expanded(
-              child: Text(title,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: themeClass.lightEighthColor,
-                      fontWeight: FontWeight.bold)),
-            ),
+                child: Text(title,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: themeClass.lightEighthColor,
+                        fontWeight: FontWeight.bold))),
             otherAction ??
                 IconButton(
                     onPressed: () => Navigator.pop(context),

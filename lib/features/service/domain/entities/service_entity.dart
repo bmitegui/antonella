@@ -1,3 +1,4 @@
+import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:equatable/equatable.dart';
 
 class ServiceEntity extends Equatable {
@@ -10,6 +11,7 @@ class ServiceEntity extends Equatable {
   final double minPrice;
   final double maxPrice;
   final bool isSelected;
+  final List<ServiceFormEntity>? listServiceFormsEntity;
 
   const ServiceEntity(
       {required this.id,
@@ -20,8 +22,36 @@ class ServiceEntity extends Equatable {
       required this.urlImage,
       required this.minPrice,
       required this.maxPrice,
-      required this.isSelected});
+      required this.isSelected,
+      this.listServiceFormsEntity});
 
   @override
   List<Object?> get props => [id];
+
+  ServiceEntity copyWith({
+    String? id,
+    String? name,
+    String? description,
+    String? category,
+    String? subCategory,
+    String? urlImage,
+    double? minPrice,
+    double? maxPrice,
+    bool? isSelected,
+    List<ServiceFormEntity>? listServiceFormsEntity,
+  }) {
+    return ServiceEntity(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      category: category ?? this.category,
+      subCategory: subCategory ?? this.subCategory,
+      urlImage: urlImage ?? this.urlImage,
+      minPrice: minPrice ?? this.minPrice,
+      maxPrice: maxPrice ?? this.maxPrice,
+      isSelected: isSelected ?? this.isSelected,
+      listServiceFormsEntity:
+          listServiceFormsEntity ?? this.listServiceFormsEntity,
+    );
+  }
 }

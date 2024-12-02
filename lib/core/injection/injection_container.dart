@@ -63,6 +63,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetServicesUseCase>(
       () => GetServicesUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<GetListServiceFormUseCase>(() =>
+      GetListServiceFormUseCase(serviceRepository: sl<ServiceRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -74,4 +77,7 @@ Future<void> init() async {
       () => ServiceBloc(getServicesUseCase: sl<GetServicesUseCase>()));
 
   sl.registerLazySingleton<ServicesSelectedBloc>(() => ServicesSelectedBloc());
+
+  sl.registerLazySingleton<ServiceFormBloc>(() => ServiceFormBloc(
+      getListServiceFormUseCase: sl<GetListServiceFormUseCase>()));
 }

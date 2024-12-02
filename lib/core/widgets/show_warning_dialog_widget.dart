@@ -7,8 +7,7 @@ Future<void> showWarningDialog(
     required String title,
     required String message,
     required Function() onAccept,
-    String textOnAccept = 'Aceptar',
-    bool eliminarOperation = false}) async {
+    String textOnAccept = 'Aceptar'}) async {
   await AwesomeDialog(
     dialogBackgroundColor: Colors.white,
           btnCancel: CustomElevatedButton(
