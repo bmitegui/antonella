@@ -9,7 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ConfirmationServicesPage extends StatelessWidget {
   final Function() previousPage;
-  const ConfirmationServicesPage({super.key, required this.previousPage});
+  final Function() onSend;
+  const ConfirmationServicesPage({super.key, required this.previousPage, required this.onSend});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class ConfirmationServicesPage extends StatelessWidget {
               const SizedBox(height: 8),
               const Expanded(child: ListServicesSelectedWidget()),
               const SizedBox(height: 16),
-              BottomButtonsSearchScreen(previousPage: previousPage)
+              BottomButtonsSearchScreen(previousPage: previousPage, onSend: onSend)
             ]));
       }
       return const SizedBox.shrink();

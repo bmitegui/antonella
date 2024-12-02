@@ -1,7 +1,9 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,7 +67,23 @@ class ListServicesSelectedWidget extends StatelessWidget {
                           Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const CustomIconButton(iconData: Icons.edit),
+                                CustomIconButton(
+                                    iconData: Icons.edit,
+                                    onTap: () async {
+                                      sl<ServiceFormBloc>().add(
+                                          GetListServiceFormEvent(
+                                              serviceEntity: service));
+                                      await showModalBottomSheet<List>(
+                                          scrollControlDisabledMaxHeightRatio:
+                                              1,
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.white,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return FormServiceSelectedWidget(
+                                                serviceEntity: service);
+                                          });
+                                    }),
                                 const SizedBox(height: 12),
                                 CustomIconButton(
                                     color: Colors.red,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? title;
-  final Widget prefixIcon;
+  final Widget? prefixIcon;
   final String hintText;
   final bool obscureText;
   final TextInputType? keyboardType;
@@ -15,12 +15,13 @@ class CustomTextFormField extends StatefulWidget {
   final void Function(String)? onChanged;
   final Widget? suffixIcon;
   final void Function(PointerDownEvent)? onTapOutside;
+  final int? maxLines;
   const CustomTextFormField(
       {super.key,
       this.controller,
       this.title,
       required this.hintText,
-      required this.prefixIcon,
+      this.prefixIcon,
       this.obscureText = false,
       this.keyboardType,
       this.enable = true,
@@ -29,7 +30,8 @@ class CustomTextFormField extends StatefulWidget {
       this.onEditingComplete,
       this.suffixIcon,
       this.onChanged,
-      this.onTapOutside});
+      this.onTapOutside,
+      this.maxLines});
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -56,6 +58,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     .bodyMedium!
                     .copyWith(fontWeight: FontWeight.bold))),
       TextFormField(
+          maxLines: widget.maxLines,
           onChanged: widget.onChanged,
           onEditingComplete: widget.onEditingComplete,
           textInputAction: TextInputAction.done,
@@ -63,7 +66,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           enabled: widget.enable,
           keyboardType: widget.keyboardType,
           controller: widget.controller,
-          onTapOutside: widget.onTapOutside ?? (event) => FocusScope.of(context).unfocus(),
+          onTapOutside: widget.onTapOutside ??
+              (event) => FocusScope.of(context).unfocus(),
           obscureText: _obscureText,
           style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
@@ -84,7 +88,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   .bodyMedium!
                   .copyWith(color: themeClass.lightSixthColor),
               prefixIcon: widget.prefixIcon,
-              contentPadding: const EdgeInsets.only(left: 16),
+              contentPadding: const EdgeInsets.all(16),
               filled: true,
               fillColor: Colors.white,
               border: OutlineInputBorder(

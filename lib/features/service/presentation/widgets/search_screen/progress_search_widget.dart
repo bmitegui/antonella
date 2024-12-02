@@ -9,7 +9,7 @@ class ProgressSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = page == 1
-        ? 'Seleccione el/los sub servicios'
+        ? 'Seleccione los servicios'
         : page == 2
             ? 'Seleccione una fecha'
             : page == 3

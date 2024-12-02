@@ -59,7 +59,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Form(
                       key: _formKey,
                       child: Column(children: [
-                        Image.asset('assets/icon/logo.png', width: 300.rh(context)),
+                        Image.asset('assets/icon/logo.png',
+                            width: 300.rh(context)),
                         const SizedBox(height: 16),
                         Text('Bienvenido de vuelta!',
                             style: Theme.of(context)
@@ -76,6 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             validator: validateEmail),
                         const SizedBox(height: 16),
                         CustomTextFormField(
+                            maxLines: 1,
                             controller: _passwordController,
                             title: 'Contraseña:',
                             hintText: 'Ingrese su contraseña',
@@ -110,8 +112,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         const TermsAndConditionsWidget(),
                         const SizedBox(height: 16),
                         const AuthPromptWidget(),
-                                                const SizedBox(height: 8)
-
+                        const SizedBox(height: 8)
                       ]))))
           : const CircularProgressIndicator();
     })));

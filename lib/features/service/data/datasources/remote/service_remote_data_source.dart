@@ -118,7 +118,7 @@ final Map<String, dynamic> hairServiceForm = {
       'type': 'input'
     },
     {'id': '7', 'title': 'Observaciones', 'type': 'input'},
-    {'id': '8', 'title': 'Resultados esperados', 'type': 'uploadPhotos'}
+    {'id': '8', 'title': 'Resultados esperados', 'type': 'uploadPhotos'},
   ]
 };
 

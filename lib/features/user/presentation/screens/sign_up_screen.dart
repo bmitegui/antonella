@@ -63,7 +63,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Form(
                       key: _formKey,
                       child: Column(children: [
-                        Image.asset('assets/icon/logo.png', width: 300.rh(context)),
+                        Image.asset('assets/icon/logo.png',
+                            width: 300.rh(context)),
                         const SizedBox(height: 16),
                         Text('Crea tu propia cuenta!',
                             style: Theme.of(context)
@@ -93,6 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             validator: validateEmail),
                         const SizedBox(height: 16),
                         CustomTextFormField(
+                            maxLines: 1,
                             controller: _passwordController,
                             title: 'Contraseña:',
                             hintText: 'Ingrese su contraseña',

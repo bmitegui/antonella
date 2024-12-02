@@ -15,24 +15,23 @@ class FormServiceSelectedWidget extends StatelessWidget {
         title: serviceEntity.name,
         body: Expanded(
             child: SingleChildScrollView(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            CustomTitleSeparatorWidget(
-                text: 'Categoría:', description: serviceEntity.category),
-            const SizedBox(height: 8),
-            CustomTitleSeparatorWidget(
-                text: 'Valor aproximado:',
-                description:
-                    '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}'),
-            const SizedBox(height: 8),
-            const CustomTitleSeparatorWidget(text: 'Descripción:'),
-            Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: Text(serviceEntity.description)),
-            const SizedBox(height: 8),
-            const ListServiceFormsWidget(),
-            const SizedBox(height: 16),
-          ]),
-        )));
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+              CustomTitleSeparatorWidget(
+                  text: 'Categoría:', description: serviceEntity.category),
+              const SizedBox(height: 8),
+              CustomTitleSeparatorWidget(
+                  text: 'Valor aproximado:',
+                  description:
+                      '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}'),
+              const SizedBox(height: 8),
+              const CustomTitleSeparatorWidget(text: 'Descripción:'),
+              Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Text(serviceEntity.description)),
+              const SizedBox(height: 8),
+              ListServiceFormsWidget(serviceEntity: serviceEntity)
+            ]))));
   }
 }

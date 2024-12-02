@@ -7,8 +7,8 @@ sealed class ServiceFormEvent {
 final class ServiceFormInitialEvent extends ServiceFormEvent {}
 
 final class GetListServiceFormEvent extends ServiceFormEvent {
-  final String category;
-  GetListServiceFormEvent({required this.category});
+  final ServiceEntity serviceEntity;
+  GetListServiceFormEvent({required this.serviceEntity});
 }
 
 final class UpdateAnswerEvent extends ServiceFormEvent {

@@ -29,7 +29,7 @@ class ServiceFormModel extends ServiceFormEntity {
       title: title ?? this.title,
       type: type ?? this.type,
       urlPhotos: urlPhotos ?? this.urlPhotos,
-      answer: answer ?? this.answer,
+      answer: answer,
     );
   }
 }

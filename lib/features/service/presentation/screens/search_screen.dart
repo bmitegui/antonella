@@ -63,7 +63,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         nextPage: _nextPage, previousPage: _previousPage),
                     SelectTimePage(
                         previousPage: _previousPage, nextPage: _nextPage),
-                    ConfirmationServicesPage(previousPage: _previousPage)
+                    ConfirmationServicesPage(
+                        previousPage: _previousPage,
+                        onSend: () => _pageController.jumpTo(0))
                   ]))
             ])));
   }

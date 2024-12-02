@@ -26,7 +26,6 @@ class ServiceFormBloc extends Bloc<ServiceFormEvent, ServiceFormState> {
       ServiceFormEntity updatedForm =
           (listServiceForms[index] as ServiceFormModel)
               .copyWith(answer: event.answer);
-
       listServiceForms[index] = updatedForm;
       emit(ServiceFormLoaded(listServiceForms: listServiceForms));
     } else {
@@ -38,13 +37,19 @@ class ServiceFormBloc extends Bloc<ServiceFormEvent, ServiceFormState> {
   Future<void> _onGetListServiceFormEventRequest(
       GetListServiceFormEvent event, Emitter<ServiceFormState> emit) async {
     emit(ServiceFormLoading());
-    final failureOrSuccess = await getListServiceFormUseCase(
-        GetListServiceFormParams(category: event.category));
-    failureOrSuccess.fold((failure) async {
-      emit(ServiceFormError(message: _mapFailureToMessage(failure)));
-    }, (listServiceForms) async {
-      emit(ServiceFormLoaded(listServiceForms: listServiceForms));
-    });
+
+    if (event.serviceEntity.listServiceFormsEntity != null) {
+      emit(ServiceFormLoaded(
+          listServiceForms: event.serviceEntity.listServiceFormsEntity!));
+    } else {
+      final failureOrSuccess = await getListServiceFormUseCase(
+          GetListServiceFormParams(category: event.serviceEntity.category));
+      failureOrSuccess.fold((failure) async {
+        emit(ServiceFormError(message: _mapFailureToMessage(failure)));
+      }, (listServiceForms) async {
+        emit(ServiceFormLoaded(listServiceForms: listServiceForms));
+      });
+    }
   }
 
   String _mapFailureToMessage(Failure failure) {

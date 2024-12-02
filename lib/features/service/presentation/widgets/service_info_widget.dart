@@ -16,8 +16,17 @@ class ServiceInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
-      final isSelected = (state is ServicesSelectedLoaded &&
-          state.listServicesSelected.contains(serviceEntity));
+      int index = -1;
+
+      bool isSelected = false;
+      if (state is ServicesSelectedLoaded) {
+        index = state.listServicesSelected
+            .indexWhere((service) => service.id == serviceEntity.id);
+        if (index != -1) {
+          isSelected = true;
+        }
+      }
+
       return Stack(children: [
         Padding(
             padding: const EdgeInsets.only(right: 24, bottom: 16),
@@ -25,7 +34,9 @@ class ServiceInfoWidget extends StatelessWidget {
                 onTap: () async {
                   if (state is ServicesSelectedLoaded) {
                     sl<ServiceFormBloc>().add(GetListServiceFormEvent(
-                        category: serviceEntity.category));
+                        serviceEntity: isSelected
+                            ? state.listServicesSelected[index]
+                            : serviceEntity));
 
                     await showModalBottomSheet<List>(
                         scrollControlDisabledMaxHeightRatio: 1,
@@ -34,7 +45,9 @@ class ServiceInfoWidget extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return FormServiceSelectedWidget(
-                              serviceEntity: serviceEntity);
+                              serviceEntity: isSelected
+                                  ? state.listServicesSelected[index]
+                                  : serviceEntity);
                         });
                   }
                 },

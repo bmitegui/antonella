@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 String formatDateToString(DateTime date) {
@@ -48,4 +50,13 @@ String formatDateTime(DateTime? date) {
   final DateFormat formatter =
       DateFormat('EEEE, dd \'de\' MMMM \'del\' yyyy', 'es_ES');
   return formatter.format(date);
+}
+
+Future<File?> pickImage(ImageSource imageSource) async {
+  final pickedImage =
+      await ImagePicker().pickImage(source: imageSource, imageQuality: 50);
+  if (pickedImage == null) {
+    return null;
+  }
+  return File(pickedImage.path);
 }

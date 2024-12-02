@@ -1,4 +1,6 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/app_theme.dart';
+import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/profile_option_widget.dart';
 import 'package:antonella/features/user/presentation/widgets/user_photo_widget.dart';
@@ -64,9 +66,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ProfileOptionWidget(
                         title: 'Cerrar sesión',
                         iconData: Icons.exit_to_app,
-                        onTap: () => context
-                            .read<UserBloc>()
-                            .add(SignOutEvent(userEntity: state.user)))
+                        onTap: () {
+                          sl<ServicesSelectedBloc>().add(ClearServicesSelectedEvent());
+                          context
+                              .read<UserBloc>()
+                              .add(SignOutEvent(userEntity: state.user));
+                        })
                   ]))
           : LottieBuilder.asset("assets/lottie/loading_screen.json");
     })));

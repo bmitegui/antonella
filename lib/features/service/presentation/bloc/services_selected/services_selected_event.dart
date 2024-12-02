@@ -49,3 +49,5 @@ final class SelectDateTimeEvent extends ServicesSelectedEvent {
       required this.dateSelected,
       required this.timeSelected});
 }
+
+final class ClearServicesSelectedEvent extends ServicesSelectedEvent {}
