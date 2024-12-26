@@ -1,6 +1,7 @@
 import 'package:antonella/core/constant/error_messages.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/network/network.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/models/user_model.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
@@ -22,7 +23,10 @@ class UserRepositoryImpl implements UserRepository {
       required String password,
       required bool rememberMe}) async {
     if (await networkInfo.isConnected) {
+    
       try {
+
+
         final remoteUser = await userRemoteDataSource.signIn(
             account: account, password: password);
         if (rememberMe) {
@@ -34,9 +38,9 @@ class UserRepositoryImpl implements UserRepository {
       } catch (e) {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(ServerFailure(message: networkConnectionError));
-    }
+     } else {
+       return Left(ServerFailure(message: networkConnectionError));
+     }
   }
 
   @override
@@ -45,7 +49,7 @@ class UserRepositoryImpl implements UserRepository {
       required String name,
       required String password,
       required String birthdate}) async {
-    if (await networkInfo.isConnected) {
+     if (await networkInfo.isConnected) {
       try {
         final remoteUser = await userRemoteDataSource.signUp(
             account: account,
@@ -59,9 +63,9 @@ class UserRepositoryImpl implements UserRepository {
       } catch (e) {
         return Left(ServerFailure());
       }
-    } else {
-      return Left(ServerFailure(message: networkConnectionError));
-    }
+     } else {
+       return Left(ServerFailure(message: networkConnectionError));
+     }
   }
 
   @override

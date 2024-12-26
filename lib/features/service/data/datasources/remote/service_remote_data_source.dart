@@ -58,8 +58,8 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
           : category == 'Cabello'
               ? hairServiceForm
               : category == 'Uñas'
-                  ? nailsServices
-                  : spaServices;
+                  ? nailsServiceForm
+                  : spaServiceForm;
 
       return listServiceFormsData['ListServiceForms']
           .map<ServiceFormModel>((serviceFormData) {
@@ -72,6 +72,92 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
     }
   }
 }
+
+final Map<String, dynamic> nailsServiceForm = {
+  'ListServiceForms': [
+    {'id': '1', 'title': 'Fotos de sus uñas actuales', 'type': 'uploadPhotos'},
+    {
+      'id': '4',
+      'title': '¿Tiene alguna condición en las uñas (hongos, debilidad, etc.)?',
+      'type': 'isSelected'
+    },
+    {
+      'id': '5',
+      'title': '¿Tiene alergias a productos como geles o esmaltes?',
+      'type': 'isSelected'
+    },
+    {
+      'id': '6',
+      'title': 'Describa sus preferencias o necesidades especiales',
+      'type': 'input'
+    },
+    {
+      'id': '7',
+      'title': '¿Cuánto tiempo espera que dure el servicio?',
+      'type': 'input'
+    },
+    {
+      'id': '8',
+      'title': 'Suba ejemplos o referencias de diseños que le gusten',
+      'type': 'uploadPhotos'
+    },
+  ]
+};
+
+
+final Map<String, dynamic> spaServiceForm = {
+  'ListServiceForms': [
+    {'id': '1', 'title': 'Fotos de su piel o área a tratar', 'type': 'uploadPhotos'},
+    {
+      'id': '2',
+      'title': 'Seleccione el tipo de tratamiento que desea',
+      'type': 'selectPhotos',
+      'urlPhotos': {
+        'Relajación':
+            'https://i.pinimg.com/736x/7f/e3/1c/7fe31c4f3e43d861f65333fd006a9536.jpg',
+        'Facial':
+            'https://nmbcosmetics.com/wp-content/uploads/2020/09/09-09-20-Beneficios-del-masaje-facial-C-Q10-Crema-de-Masaje-Firming09-09-20-Beneficios-del-masaje-facial-C-Q10-Crema-de-Masaje-Firming.jpg',
+        'Reductivo':
+            'https://cdn0.uncomo.com/es/posts/6/4/6/como_funciona_el_masaje_reductivo_24646_600_square.jpg'
+      }
+    },
+    {
+      'id': '3',
+      'title': 'Seleccione el nivel de intensidad que prefiere',
+      'type': 'selectPhotos',
+      'urlPhotos': {
+        'Suave':
+            'https://img.freepik.com/fotos-premium/escena-spa-relajante-mujer-recibiendo-masaje-suave-iluminacion-flor-cabello-atmosfera-pacifica_621955-52285.jpg',
+        'Moderado':
+            'https://images.squarespace-cdn.com/content/v1/642c1d5a227d62555176db53/1680783484484-M899PF6JEHM28VDGZL6H/Masaje+a+4+manos+-+Luna+Healing+Spa+-+Banos+Ecuador.jpeg',
+        'Intenso':
+            'https://images.squarespace-cdn.com/content/v1/642c1d5a227d62555176db53/1680783472873-V9R5QAZVIEB59IDNDC4N/Masaje+relajante+-+Luna+Healing+Spa+-+Banos+Ecuador.jpeg?format=1000w'
+      }
+    },
+    {
+      'id': '4',
+      'title': '¿Tiene alguna condición médica que debamos considerar?',
+      'type': 'isSelected'
+    },
+    {
+      'id': '5',
+      'title': '¿Ha recibido algún tratamiento similar anteriormente?',
+      'type': 'isSelected'
+    },
+    {
+      'id': '6',
+      'title': '¿Tiene alguna alergia o sensibilidad en la piel?',
+      'type': 'input'
+    },
+    {
+      'id': '7',
+      'title': 'Observaciones adicionales sobre su estado de salud',
+      'type': 'input'
+    },
+    {'id': '8', 'title': 'Resultados esperados o áreas a priorizar', 'type': 'uploadPhotos'},
+  ]
+};
+
 
 final Map<String, dynamic> hairServiceForm = {
   'ListServiceForms': [

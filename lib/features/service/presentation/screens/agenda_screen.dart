@@ -1,5 +1,6 @@
 import 'package:antonella/core/theme/app_theme.dart';
-import 'package:antonella/features/service/presentation/widgets/custom_table_calendar_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/custom_table_calendar_events_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/status_legend_widget.dart';
 import 'package:flutter/material.dart';
 
 class AgendaScreen extends StatefulWidget {
@@ -9,17 +10,48 @@ class AgendaScreen extends StatefulWidget {
   State<AgendaScreen> createState() => _AgendaScreenState();
 }
 
-class _AgendaScreenState extends State<AgendaScreen> {
+class _AgendaScreenState extends State<AgendaScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: themeClass.lightscaffoldBackgroundColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             title: Text('Ver citas',
                 style: Theme.of(context).textTheme.titleMedium),
             actions: [Image.asset('assets/icon/logo.png')]),
-        body: const Padding(
-            padding: EdgeInsets.only(right: 16, left: 16, top: 16),
-            child: Column(children: [CustomTableCalendarWidget()])));
+        body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Column(children: [
+              TabBar(
+                  controller: _tabController,
+                  labelColor: themeClass.lightEighthColor,
+                  tabs: const [
+                    Tab(text: 'Reservadas'),
+                    Tab(text: 'Pendientes')
+                  ]),
+              const SizedBox(height: 16),
+              Expanded(
+                  child: TabBarView(
+                      controller: _tabController,
+                      children: const [
+                    CustomTableCalendarEventsWidget(),
+                    CustomTableCalendarEventsWidget()
+                  ]))
+            ])));
   }
 }

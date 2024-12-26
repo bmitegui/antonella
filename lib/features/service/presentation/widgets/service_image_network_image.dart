@@ -3,18 +3,24 @@ import 'package:flutter/material.dart';
 
 class ServiceImageNetworkImage extends StatelessWidget {
   final String urlImage;
-  const ServiceImageNetworkImage({super.key, required this.urlImage});
+  final double? width;
+  final double? height;
+  const ServiceImageNetworkImage(
+      {super.key,
+      required this.urlImage,
+      this.width,
+      this.height
+     });
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width / 2.2;
-    final height = MediaQuery.of(context).size.height / 5;
     return Center(
         child: Container(
             clipBehavior: Clip.hardEdge,
-            width: width,
-            height: height,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+            width: width ?? MediaQuery.of(context).size.width / 2.2,
+            height: height ?? MediaQuery.of(context).size.height / 5,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8)),
             child: Image.network(
                 filterQuality: FilterQuality.low,
                 fit: BoxFit.fill,

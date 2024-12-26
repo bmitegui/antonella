@@ -5,8 +5,9 @@ class CustomIconButton extends StatelessWidget {
   final IconData iconData;
   final Function()? onTap;
   final Color? color;
+  final double? size;
   const CustomIconButton(
-      {super.key, required this.iconData, this.onTap, this.color});
+      {super.key, required this.iconData, this.onTap, this.color, this.size = 24});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,6 @@ class CustomIconButton extends StatelessWidget {
                       offset: const Offset(0, 2),
                       blurRadius: 1)
                 ]),
-            child: Icon(iconData, color: Colors.white)));
+            child: Icon(iconData, color: Colors.white, size: size)));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/chats_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/services_selected_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,8 +26,15 @@ class BottomButtonsSearchScreen extends StatelessWidget {
             CustomIconButton(iconData: Icons.arrow_back, onTap: previousPage),
           if (previousPage != null) const SizedBox(width: 16),
           if (state.listServicesSelected.isNotEmpty)
-            const CustomIconButton(
-                iconData: Icons.message, color: Colors.green),
+             CustomIconButton(
+                iconData: Icons.message, color: Colors.green, onTap: () async => await showModalBottomSheet<List>(
+                        scrollControlDisabledMaxHeightRatio: 1,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.white,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const ChatsWidget();
+                        })),
           const Spacer(),
           const SizedBox(width: 8),
           if (nextPage != null)

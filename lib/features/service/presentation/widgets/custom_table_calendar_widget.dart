@@ -61,7 +61,7 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
                 return Container(
                     margin: const EdgeInsets.all(6.0),
                     decoration: BoxDecoration(
-                        color: themeClass.lightTertiaryColor,
+                        color: Colors.grey.shade400,
                         shape: BoxShape.circle),
                     child: Center(
                         child: Text(day.day.toString(),

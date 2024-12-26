@@ -21,7 +21,7 @@ class StatusLegend extends StatelessWidget {
       _buildLegendItem(Colors.green, 'Seleccionado'),
       const Spacer(),
       _buildLegendItem(
-          themeClass.lightTertiaryColor, 'Disponibles')
+          Colors.grey.shade400, 'Disponible')
     ]);
   }
 }

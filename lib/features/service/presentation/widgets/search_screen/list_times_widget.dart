@@ -39,7 +39,7 @@ class ListTimesWidget extends StatelessWidget {
                       selectedColor: Colors.green,
                       checkmarkColor: Colors.white,
                       labelStyle: const TextStyle(color: Colors.white),
-                      backgroundColor: themeClass.lightTertiaryColor);
+                      backgroundColor: Colors.grey.shade400);
                 }).toList()),
             const SizedBox(height: 8)
           ]);
