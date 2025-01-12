@@ -1,5 +1,4 @@
 import 'package:antonella/core/injection/injection_container.dart';
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -82,7 +81,7 @@ class ServiceInfoWidget extends StatelessWidget {
                                       .copyWith(
                                           color: isSelected
                                               ? Colors.white
-                                              : themeClass.lightEighthColor))),
+                                              : Colors.amber))),
                           Expanded(
                               child: Padding(
                                   padding:
@@ -108,11 +107,7 @@ class ServiceInfoWidget extends StatelessWidget {
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
-                                          .copyWith(
-                                              color: isSelected
-                                                  ? Colors.white
-                                                  : themeClass
-                                                      .lightPrimaryColor))))
+                                          .copyWith())))
                         ])))),
         if (isSelected)
           const Positioned(

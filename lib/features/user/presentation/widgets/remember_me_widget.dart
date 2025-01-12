@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RememberMeWidget extends StatelessWidget {
   final bool value;
@@ -8,12 +9,9 @@ class RememberMeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return Row(children: [
-      Text('Recuérdame para la próxima vez',
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(fontWeight: FontWeight.bold)),
+      Text(texts.remember_me),
       const Spacer(),
       Switch(value: value, onChanged: onChanged)
     ]);

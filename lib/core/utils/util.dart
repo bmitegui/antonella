@@ -43,15 +43,6 @@ String? validateBirthdate(String? value) {
   return null;
 }
 
-String formatDateTime(DateTime? date) {
-  if (date == null) {
-    return '-';
-  }
-  final DateFormat formatter =
-      DateFormat('EEEE, dd \'de\' MMMM \'del\' yyyy', 'es_ES');
-  return formatter.format(date);
-}
-
 Future<File?> pickImage(ImageSource imageSource) async {
   final pickedImage =
       await ImagePicker().pickImage(source: imageSource, imageQuality: 50);
@@ -60,3 +51,7 @@ Future<File?> pickImage(ImageSource imageSource) async {
   }
   return File(pickedImage.path);
 }
+
+String formatDateTime(DateTime? dateTime) => dateTime == null
+    ? 'dd-MM-yyyy'
+    : DateFormat('dd-MM-yyyy').format(dateTime.toLocal());

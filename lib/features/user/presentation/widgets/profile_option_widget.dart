@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +28,6 @@ class ProfileOptionWidget extends StatelessWidget {
                       .copyWith(fontWeight: FontWeight.bold)))
         ]),
         trailing:
-            Icon(Icons.arrow_forward_ios, color: themeClass.lightEighthColor));
+            Icon(Icons.arrow_forward_ios));
   }
 }

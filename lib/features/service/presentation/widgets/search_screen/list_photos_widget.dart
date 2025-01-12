@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -121,7 +120,7 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Row(children: [
                       Expanded(
-                          child: CustomElevatedButton(
+                          child: FilledButton(
                               onPressed: () async {
                                 final image =
                                     await pickImage(ImageSource.camera);
@@ -143,7 +142,7 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
                               child: const Text('Cámara'))),
                       const SizedBox(width: 8),
                       Expanded(
-                          child: CustomElevatedButton(
+                          child: FilledButton(
                               onPressed: () async {
                                 final image =
                                     await pickImage(ImageSource.gallery);

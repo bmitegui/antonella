@@ -1,5 +1,4 @@
 import 'package:antonella/core/injection/injection_container.dart';
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -57,9 +56,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
-                                        .copyWith(
-                                            color:
-                                                themeClass.lightPrimaryColor)),
+                                        ),
                                 const SizedBox(height: 8),
                                 Text(service.description)
                               ])),

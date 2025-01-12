@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +47,7 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
                     const Icon(Icons.chevron_right, color: Colors.white),
                 titleCentered: true,
                 decoration: BoxDecoration(
-                    color: themeClass.lightTertiaryColor,
+                    // color: themeClass.lightTertiaryColor,
                     borderRadius: BorderRadius.circular(8))),
             locale: 'es_EC',
             availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
@@ -91,7 +90,7 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
             calendarStyle: CalendarStyle(
                 isTodayHighlighted: false,
                 todayDecoration: BoxDecoration(
-                    color: themeClass.lightQuinaryColor,
+                    // color: themeClass.lightQuinaryColor,
                     shape: BoxShape.circle),
                 outsideDaysVisible: false,
                 selectedDecoration: const BoxDecoration(

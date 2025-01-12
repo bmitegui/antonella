@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
 import 'package:flutter/material.dart';
@@ -143,7 +142,7 @@ class _CustomTableCalendarEventsWidgetState
                   const Icon(Icons.chevron_right, color: Colors.white),
               titleCentered: true,
               decoration: BoxDecoration(
-                  color: themeClass.lightTertiaryColor,
+                  // color: themeClass.lightTertiaryColor,
                   borderRadius: BorderRadius.circular(8))),
           availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
           locale: 'es_EC',
@@ -162,9 +161,13 @@ class _CustomTableCalendarEventsWidgetState
             _focusedDay = focusedDay;
           },
           calendarStyle: CalendarStyle(
-              todayTextStyle: TextStyle(color: themeClass.lightTertiaryColor),
+              todayTextStyle: TextStyle(
+                // color: themeClass.lightTertiaryColor
+                ),
               todayDecoration: BoxDecoration(
-                  border: Border.all(color: themeClass.lightTertiaryColor),
+                  border: Border.all(
+                    // color: themeClass.lightTertiaryColor
+                    ),
                   shape: BoxShape.circle),
               selectedDecoration: const BoxDecoration(
                   color: Colors.green, shape: BoxShape.circle),
@@ -236,7 +239,7 @@ class _CustomTableCalendarEventsWidgetState
                 Row(children: [
                   CustomIconButton(
                       iconData: Icons.person,
-                      color: themeClass.lightSixthColor,
+                      // color: themeClass.lightSixthColor,
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(
@@ -247,7 +250,7 @@ class _CustomTableCalendarEventsWidgetState
                 Row(children: [
                   CustomIconButton(
                       iconData: Icons.watch_later,
-                      color: themeClass.lightSixthColor,
+                      // color: themeClass.lightSixthColor,
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(
@@ -258,7 +261,7 @@ class _CustomTableCalendarEventsWidgetState
                 Row(children: [
                   CustomIconButton(
                       iconData: Icons.location_on,
-                      color: themeClass.lightSixthColor,
+                      // color: themeClass.lightSixthColor,
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(

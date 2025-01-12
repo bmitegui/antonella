@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -19,8 +18,8 @@ class ProgressSearchWidget extends StatelessWidget {
       Text(text),
       LinearPercentIndicator(
           percent: page / 4,
-          progressColor: themeClass.lightPrimaryColor,
-          backgroundColor: themeClass.lightPrimaryColor.withOpacity(0.25),
+          // progressColor: themeClass.lightPrimaryColor,
+          // backgroundColor: themeClass.lightPrimaryColor.withOpacity(0.25),
           barRadius: const Radius.circular(8))
     ]);
   }

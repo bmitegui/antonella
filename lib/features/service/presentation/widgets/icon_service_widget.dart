@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +16,8 @@ class IconServiceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomCircularIconButtom(
-        borderColor: isSelected ? themeClass.lightPrimaryColor : null,
-        bottomTitleColor: isSelected ? themeClass.lightPrimaryColor : null,
+        borderColor: isSelected ? Colors.amber : null,
+        bottomTitleColor: isSelected ? Colors.amber : null,
         fontWeight: isSelected ? FontWeight.bold : null,
         bottomTitle: bottomTitle,
         padding: const EdgeInsets.all(8),

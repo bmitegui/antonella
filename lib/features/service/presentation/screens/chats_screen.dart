@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: themeClass.lightscaffoldBackgroundColor,
+            // backgroundColor: themeClass.lightscaffoldBackgroundColor,
             title:
                 Text('Chats', style: Theme.of(context).textTheme.titleMedium),
             actions: [Image.asset('assets/icon/logo.png')]),
@@ -116,7 +115,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
               if (pendingMessages != null)
                 CircleAvatar(
                     radius: 8,
-                    backgroundColor: themeClass.lightTertiaryColor,
+                    // backgroundColor: themeClass.lightTertiaryColor,
                     child: Text(pendingMessages,
                         style: Theme.of(context)
                             .textTheme

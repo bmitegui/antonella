@@ -1,5 +1,4 @@
 import 'package:antonella/core/injection/injection_container.dart';
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/profile_option_widget.dart';
@@ -44,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!
-                            .copyWith(color: themeClass.lightEighthColor)),
+                            .copyWith()),
                     Text(state.user.email,
                         style: Theme.of(context).textTheme.bodyMedium),
                     const SizedBox(height: 16),

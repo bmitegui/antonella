@@ -1,43 +1,40 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TermsAndConditionsWidget extends StatelessWidget {
-  final bool isSignIn;
-  const TermsAndConditionsWidget({super.key, this.isSignIn = true});
+  const TermsAndConditionsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
-            text:
-                'Al ${isSignIn ? 'iniciar sesión' : 'registrarse'} correctamente, acepta nuestros ',
-            style: Theme.of(context).textTheme.bodySmall,
+            text: texts.terms_1,
+            style: textTheme.bodySmall!.copyWith(color: colorScheme.onSurface),
             children: [
               TextSpan(
-                  text: 'Términos y Condiciones',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: themeClass.lightPrimaryColor),
+                  text: texts.terms_2,
+                  style:
+                      textTheme.bodySmall!.copyWith(color: colorScheme.primary),
                   recognizer: TapGestureRecognizer()..onTap = () {}),
               TextSpan(
-                  text: ' y nuestra ',
-                  style: Theme.of(context).textTheme.bodySmall),
+                  text: texts.terms_3,
+                  style: textTheme.bodySmall!
+                      .copyWith(color: colorScheme.onSurface)),
               TextSpan(
-                  text: 'Política de Privacidad',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: themeClass.lightPrimaryColor),
+                  text: texts.terms_4,
+                  style:
+                      textTheme.bodySmall!.copyWith(color: colorScheme.primary),
                   recognizer: TapGestureRecognizer()..onTap = () {}),
               TextSpan(
                   text: '.',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: Colors.black54))
+                  style: textTheme.bodySmall!
+                      .copyWith(color: colorScheme.onSurface))
             ]));
   }
 }

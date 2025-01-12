@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/features/user/presentation/widgets/upload_user_photo_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +9,8 @@ class UserPhotoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: themeClass.lightTertiaryColor)),
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, border: Border.all()),
           child: CircleAvatar(
               radius: 80.rh(context),
               backgroundColor: Colors.white,
@@ -37,7 +35,7 @@ class UserPhotoWidget extends StatelessWidget {
                   ]),
                   child: CircleAvatar(
                       radius: 24.rh(context),
-                      backgroundColor: themeClass.lightTertiaryColor,
+                      // backgroundColor: themeClass.lightTertiaryColor,
                       child: const Icon(Icons.add_a_photo_outlined,
                           color: Colors.white)))))
     ]);

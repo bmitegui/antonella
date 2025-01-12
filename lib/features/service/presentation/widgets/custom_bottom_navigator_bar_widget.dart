@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -12,15 +11,14 @@ class CustomBottomNavigatorBarWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Container(
             decoration: BoxDecoration(
-                color: themeClass.lightPrimaryColor,
                 borderRadius: BorderRadius.circular(16)),
             padding: const EdgeInsets.all(8),
             child: GNav(
                 tabBorderRadius: 8,
-                backgroundColor: themeClass.lightPrimaryColor,
+                // backgroundColor: themeClass.lightPrimaryColor,
                 activeColor: Colors.white,
                 color: Colors.white,
-                tabBackgroundColor: themeClass.lightTertiaryColor,
+                // tabBackgroundColor: themeClass.lightTertiaryColor,
                 gap: 4,
                 padding: const EdgeInsets.all(4),
                 onTabChange: onTabChange,

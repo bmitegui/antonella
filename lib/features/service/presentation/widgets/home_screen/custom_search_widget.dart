@@ -1,4 +1,4 @@
-import 'package:antonella/core/widgets/custom_text_form_field.dart';
+import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -21,7 +21,7 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTextFormField(
+    return CustomTextFormFieldWidget(
         onChanged: (value) {
           setState(() {
             enable = value.trim().isNotEmpty;

@@ -1,0 +1,28 @@
+{
+    "@@locale": "es",
+
+    "welcome": "Bienvenido de vuelta!",
+
+    "start": "Iniciar",
+    "start_title": "Descubre tu mejor versión aquí",
+    "start_body": "Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.",
+
+    "account": "Correo o teléfono",
+    "account_hint": "Ingrese su cuenta",
+    "password": "Contraseña",
+    "password_hint": "Ingrese su contraseña",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "remember_me": "Recuérdame para la próxima vez",
+    "sign_in": "Iniciar sesión",
+    "terms_1": "Al iniciar sesión correctamente, acepta nuestros ",
+    "terms_2": "Términos y Condiciones",
+    "terms_3": " y nuestra ",
+    "terms_4": "Política de Privacidad",
+    "successful_sign_in": "Inicio de sesión exitoso",
+    "sign_up": "Registrarse",
+    "have_account": "¿Tienes una cuenta?",
+    "dont_have_account": "¿No tienes una cuenta?",
+    "name": "Nombre",
+    "name_hint": "Ingrese su nombre",
+    "birthdate": "Fecha de nacimiento"
+}

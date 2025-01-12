@@ -6,10 +6,14 @@ class KeyValueStorageServiceImpl extends KeyValueStorageService {
       aOptions: AndroidOptions(encryptedSharedPreferences: true));
   @override
   Future<T?> getValue<T>(String key) async {
-    String? value = await _storage.read(key: key);
-    if (T == String) {
-      return value as T?;
-    } else {
+    try {
+      String? value = await _storage.read(key: key);
+      if (T == String) {
+        return value as T?;
+      } else {
+        return null;
+      }
+    } catch (e) {
       return null;
     }
   }

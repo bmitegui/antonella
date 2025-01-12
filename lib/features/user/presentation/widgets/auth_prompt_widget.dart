@@ -1,7 +1,7 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthPromptWidget extends StatelessWidget {
   final bool isSignIn;
@@ -9,18 +9,19 @@ class AuthPromptWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
-            text: '¿${isSignIn ? 'No' : 'Ya'} tienes una cuenta? ',
-            style: Theme.of(context).textTheme.bodyMedium,
+            text: '${isSignIn ? texts.dont_have_account : texts.have_account} ',
+            style: textTheme.bodyMedium,
             children: [
               TextSpan(
-                  text: isSignIn ? 'Regístrate' : 'Ingresa aquí',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: themeClass.lightPrimaryColor),
+                  text: isSignIn ? texts.sign_up : texts.sign_in,
+                  style: textTheme.bodyMedium!
+                      .copyWith(color: colorScheme.primary),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => GoRouter.of(context)
                         .go('/${isSignIn ? 'signUp' : 'signIn'}'))

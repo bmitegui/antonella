@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomTitleSeparatorWidget extends StatelessWidget {
@@ -13,11 +12,10 @@ class CustomTitleSeparatorWidget extends StatelessWidget {
     return Row(children: [
       (indexForm!.trim().isEmpty)
           ? Container(
-              decoration: BoxDecoration(color: themeClass.lightPrimaryColor),
+              decoration: BoxDecoration(),
               child: Text(indexForm!,
                   style: Theme.of(context).textTheme.titleMedium))
           : CircleAvatar(
-              backgroundColor: themeClass.lightPrimaryColor,
               child: Text(indexForm!,
                   style: Theme.of(context)
                       .textTheme

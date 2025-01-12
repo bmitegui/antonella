@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatelessWidget {
@@ -16,7 +15,7 @@ class CustomIconButton extends StatelessWidget {
         child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-                color: color ?? themeClass.lightTertiaryColor,
+                // color: color ?? themeClass.lightTertiaryColor,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(

@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -14,8 +14,11 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-        backgroundColor: themeClass.lightPrimaryColor,
+        backgroundColor: const Color(0Xff890032),
         body: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -27,10 +30,9 @@ class _StartScreenState extends State<StartScreen> {
               const SizedBox(height: 64),
               Expanded(
                   child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
+                      decoration: BoxDecoration(
+                          color: colorScheme.surfaceContainer,
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(32),
                               topRight: Radius.circular(32))),
                       child: Padding(
@@ -38,22 +40,19 @@ class _StartScreenState extends State<StartScreen> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Descubre tu mejor versión aquí',
+                                Text(texts.start_title,
                                     textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                            color:
-                                                themeClass.lightEighthColor)),
+                                    style: textTheme.bodyLarge!
+                                        .copyWith(color: colorScheme.primary)),
                                 const SizedBox(height: 16),
-                                const Text(
-                                    'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.',
+                                Text(texts.start_body,
                                     textAlign: TextAlign.center),
                                 const SizedBox(height: 64),
-                                ElevatedButton(
-                                    onPressed: () async => await _seen(),
-                                    child: const Text('Iniciar'))
+                                SizedBox(
+                                    width: double.infinity,
+                                    child: FilledButton(
+                                        onPressed: () async => await _seen(),
+                                        child: Text(texts.start)))
                               ]))))
             ])));
   }

@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/confirmation_services_page.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/select_date_page.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/select_services_page.dart';
@@ -44,7 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: themeClass.lightscaffoldBackgroundColor,
+            // backgroundColor: themeClass.lightscaffoldBackgroundColor,
             title: Text('Agendar cita',
                 style: Theme.of(context).textTheme.titleMedium),
             actions: [Image.asset('assets/icon/logo.png')]),

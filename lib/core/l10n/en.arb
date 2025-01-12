@@ -1,0 +1,28 @@
+{
+    "@@locale": "en",
+
+    "welcome": "Welcome back!",
+    
+    "start": "Start",
+    "start_title": "Discover your best version here",
+    "start_body": "Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.",
+
+    "account": "Email or phone",
+    "account_hint": "Enter your account",
+    "password": "Password",
+    "password_hint": "Enter your password",
+    "forgot_password": "Forgot your password?",
+    "remember_me": "Remember me",
+    "sign_in": "Sign in",
+    "terms_1": "By successfully logging in, you agree to our ",
+    "terms_2": "Terms and Conditions",
+    "terms_3": " and our ",
+    "terms_4": "Privacy Policy",
+    "successful_sign_in": "Successful sign in",
+    "sign_up": "Sign up",
+    "have_account": "Have an account?",
+    "dont_have_account": "Don't have an account",
+    "name": "Name",
+    "name_hint": "Enter your name",
+    "birthdate": "Birthdate"
+}

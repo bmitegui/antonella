@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +38,8 @@ class ListChatsWidget extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: themeClass.lightEighthColor, width: 0.5)),
+            // border: Border.all(color: themeClass.lightEighthColor, width: 0.5)
+            ),
         child: ListTile(
             title: Row(children: [
               ServiceImageNetworkImage(width: 64, height: 64, urlImage: url),
@@ -53,6 +53,8 @@ class ListChatsWidget extends StatelessWidget {
                   ]))
             ]),
             trailing: Icon(Icons.arrow_forward_ios,
-                color: themeClass.lightEighthColor)));
+                // color: themeClass.lightEighthColor
+                )
+                ));
   }
 }

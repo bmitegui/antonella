@@ -1,3 +1,5 @@
+import 'package:antonella/core/bloc/bloc.dart';
+import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/network/network.dart';
 import 'package:antonella/core/services/services.dart';
 import 'package:antonella/features/service/data/datasources/datasources.dart';
@@ -11,16 +13,19 @@ import 'package:antonella/features/user/domain/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/usecases/usecases.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   //! Core
-
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton(() => KeyValueStorageServiceImpl());
 
@@ -80,4 +85,38 @@ Future<void> init() async {
 
   sl.registerLazySingleton<ServiceFormBloc>(() => ServiceFormBloc(
       getListServiceFormUseCase: sl<GetListServiceFormUseCase>()));
+
+  // Theme
+  sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());
+  //Language
+  sl.registerLazySingleton<LanguageBloc>(() => LanguageBloc());
+
+
+    // Initialize Theme
+  bool isDark = false;
+  final prefsIsDark = prefs.getBool('isDark');
+  if (prefsIsDark != null) {
+    isDark = prefsIsDark;
+  } else {
+    final brightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    isDark = brightness == Brightness.dark;
+  }
+  sl<ThemeBloc>().add(ThemeChanged(isDark));
+
+  // Initialize Language
+  String defaultLocale = 'en';
+  final prefsDefaultLocale = prefs.getString('locale');
+  if (prefsDefaultLocale != null) {
+    defaultLocale = prefsDefaultLocale;
+  } else {
+    final locale = WidgetsBinding.instance.platformDispatcher.locale;
+    defaultLocale = locale.languageCode;
+  }
+  Intl.defaultLocale = defaultLocale;
+  Locale locale = Locale(defaultLocale);
+  if (!supportedLocales.contains(locale)) {
+    locale = supportedLocales[0];
+  }
+  sl<LanguageBloc>().add(LanguageChanged(locale));
 }

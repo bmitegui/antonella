@@ -1,4 +1,4 @@
-import 'package:antonella/core/widgets/custom_text_form_field.dart';
+import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -36,9 +36,8 @@ class _InputWidgetState extends State<InputWidget> {
     return BlocBuilder<ServiceFormBloc, ServiceFormState>(
         builder: (context, state) {
       return (state is ServiceFormLoaded)
-          ? CustomTextFormField(
-              controller: _textEditingController,
-              maxLines: 4,
+          ? CustomTextFormFieldWidget(
+              textEditingController: _textEditingController,
               onChanged: (value) {
                 context.read<ServiceFormBloc>().add(UpdateAnswerEvent(
                     id: widget.serviceFormEntity.id,

@@ -1,4 +1,3 @@
-import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class IsSelectWidget extends StatelessWidget {
                           child: value == serviceFormEntity.answer
                               ? ElevatedButton(
                                   onPressed: null, child: Text(value))
-                              : CustomElevatedButton(
+                              : FilledButton(
                                   onPressed: () {
                                     context.read<ServiceFormBloc>().add(
                                         UpdateAnswerEvent(

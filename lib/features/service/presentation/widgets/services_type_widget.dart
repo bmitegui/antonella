@@ -1,8 +1,3 @@
-
-
-
-
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ServicesTypeWidget extends StatelessWidget {
@@ -32,7 +27,7 @@ class ServicesTypeWidget extends StatelessWidget {
                 onSelected: (selected) {
                  
                 },
-                selectedColor: themeClass.lightPrimaryColor,
+                // selectedColor: themeClass.lightPrimaryColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0)));
           }).toList());

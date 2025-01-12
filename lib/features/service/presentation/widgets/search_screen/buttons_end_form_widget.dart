@@ -1,4 +1,3 @@
-import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -22,7 +21,7 @@ class ButtonsEndFormWidget extends StatelessWidget {
         return Row(children: [
           if (serviceEntity.isSelected)
             Expanded(
-                child: CustomElevatedButton(
+                child: FilledButton(
                     onPressed: () async => await showWarningDialog(
                         context: context,
                         title: 'Eliminar servicio',

@@ -1,4 +1,3 @@
-import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ Future<void> showWarningDialog(
     String textOnAccept = 'Aceptar'}) async {
   await AwesomeDialog(
     dialogBackgroundColor: Colors.white,
-          btnCancel: CustomElevatedButton(
+          btnCancel: FilledButton(
               onPressed: () => Navigator.pop(context),
               child: const Text('Cancelar')),
           btnOk: ElevatedButton(

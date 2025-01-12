@@ -1,4 +1,3 @@
-import 'package:antonella/core/theme/app_theme.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/bienvenida_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
@@ -16,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: themeClass.lightscaffoldBackgroundColor,
+            // backgroundColor: themeClass.lightscaffoldBackgroundColor,
             title: const BienvenidaWidget(),
             actions: [Image.asset('assets/icon/logo.png')]),
         body: const SingleChildScrollView(
