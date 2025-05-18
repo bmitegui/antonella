@@ -35,7 +35,7 @@ class UserPhotoWidget extends StatelessWidget {
                   ]),
                   child: CircleAvatar(
                       radius: 24.rh(context),
-                      // backgroundColor: themeClass.lightTertiaryColor,
+                      backgroundColor: const Color(0XFFBD818E),
                       child: const Icon(Icons.add_a_photo_outlined,
                           color: Colors.white)))))
     ]);

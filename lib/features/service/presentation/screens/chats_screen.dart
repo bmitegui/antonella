@@ -14,7 +14,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            // backgroundColor: themeClass.lightscaffoldBackgroundColor,
+            backgroundColor: const Color.fromARGB(255, 254, 254, 254),
             title:
                 Text('Chats', style: Theme.of(context).textTheme.titleMedium),
             actions: [Image.asset('assets/icon/logo.png')]),
@@ -115,7 +115,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
               if (pendingMessages != null)
                 CircleAvatar(
                     radius: 8,
-                    // backgroundColor: themeClass.lightTertiaryColor,
+                    backgroundColor: const Color(0XFFBD818E),
                     child: Text(pendingMessages,
                         style: Theme.of(context)
                             .textTheme

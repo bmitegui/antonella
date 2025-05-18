@@ -27,7 +27,7 @@ class ServicesTypeWidget extends StatelessWidget {
                 onSelected: (selected) {
                  
                 },
-                // selectedColor: themeClass.lightPrimaryColor,
+                selectedColor: const Color(0XFFAF234A),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0)));
           }).toList());

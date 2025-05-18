@@ -15,10 +15,10 @@ class CustomBottomNavigatorBarWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: GNav(
                 tabBorderRadius: 8,
-                // backgroundColor: themeClass.lightPrimaryColor,
+                backgroundColor: const Color(0XFFAF234A),
                 activeColor: Colors.white,
                 color: Colors.white,
-                // tabBackgroundColor: themeClass.lightTertiaryColor,
+                tabBackgroundColor: const Color(0XFFBD818E),
                 gap: 4,
                 padding: const EdgeInsets.all(4),
                 onTabChange: onTabChange,

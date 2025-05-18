@@ -25,8 +25,13 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<UserModel> signIn(
       {required String account, required String password}) async {
     try {
-
-              // return UserModel(id: '', email: account, name: 'name', birthdate: parseStringToDate('2001-05-11'), number: null, cedula: null);
+      return UserModel(
+          id: '',
+          email: account,
+          name: 'name',
+          birthdate: parseStringToDate('2001-05-11'),
+          number: null,
+          cedula: null);
 
       final result = await client.post(Environment.signIn,
           data: {'account': account, 'password': password},

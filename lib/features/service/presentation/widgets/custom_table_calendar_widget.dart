@@ -47,7 +47,7 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
                     const Icon(Icons.chevron_right, color: Colors.white),
                 titleCentered: true,
                 decoration: BoxDecoration(
-                    // color: themeClass.lightTertiaryColor,
+                    color: const Color(0XFFBD818E),
                     borderRadius: BorderRadius.circular(8))),
             locale: 'es_EC',
             availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
@@ -87,10 +87,10 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
             },
             selectedDayPredicate: (day) => isSameDay(state.dateSelected, day),
             calendarFormat: CalendarFormat.month,
-            calendarStyle: CalendarStyle(
+            calendarStyle: const CalendarStyle(
                 isTodayHighlighted: false,
                 todayDecoration: BoxDecoration(
-                    // color: themeClass.lightQuinaryColor,
+                    color: const Color(0XFFF3B4C7),
                     shape: BoxShape.circle),
                 outsideDaysVisible: false,
                 selectedDecoration: const BoxDecoration(

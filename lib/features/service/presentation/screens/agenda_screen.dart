@@ -38,7 +38,7 @@ class _AgendaScreenState extends State<AgendaScreen>
             child: Column(children: [
               TabBar(
                   controller: _tabController,
-                  // labelColor: themeClass.lightEighthColor,
+                  labelColor: const Color(0XFF484850),
                   tabs: const [
                     Tab(text: 'Reservadas'),
                     Tab(text: 'Pendientes')

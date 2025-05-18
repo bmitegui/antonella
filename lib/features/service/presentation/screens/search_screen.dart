@@ -43,7 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            // backgroundColor: themeClass.lightscaffoldBackgroundColor,
+            backgroundColor: const Color.fromARGB(255, 254, 254, 254),
             title: Text('Agendar cita',
                 style: Theme.of(context).textTheme.titleMedium),
             actions: [Image.asset('assets/icon/logo.png')]),

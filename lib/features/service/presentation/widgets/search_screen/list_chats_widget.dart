@@ -38,7 +38,7 @@ class ListChatsWidget extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            // border: Border.all(color: themeClass.lightEighthColor, width: 0.5)
+            border: Border.all(color: const Color(0XFF484850), width: 0.5)
             ),
         child: ListTile(
             title: Row(children: [
@@ -53,7 +53,7 @@ class ListChatsWidget extends StatelessWidget {
                   ]))
             ]),
             trailing: Icon(Icons.arrow_forward_ios,
-                // color: themeClass.lightEighthColor
+                color: const Color(0XFF484850)
                 )
                 ));
   }

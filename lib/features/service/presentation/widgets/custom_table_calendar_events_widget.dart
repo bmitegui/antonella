@@ -142,7 +142,7 @@ class _CustomTableCalendarEventsWidgetState
                   const Icon(Icons.chevron_right, color: Colors.white),
               titleCentered: true,
               decoration: BoxDecoration(
-                  // color: themeClass.lightTertiaryColor,
+                  color: const Color(0XFFBD818E),
                   borderRadius: BorderRadius.circular(8))),
           availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
           locale: 'es_EC',
@@ -161,12 +161,12 @@ class _CustomTableCalendarEventsWidgetState
             _focusedDay = focusedDay;
           },
           calendarStyle: CalendarStyle(
-              todayTextStyle: TextStyle(
-                // color: themeClass.lightTertiaryColor
+              todayTextStyle: const TextStyle(
+                color:  Color(0XFFBD818E)
                 ),
               todayDecoration: BoxDecoration(
                   border: Border.all(
-                    // color: themeClass.lightTertiaryColor
+                    color: const Color(0XFFBD818E)
                     ),
                   shape: BoxShape.circle),
               selectedDecoration: const BoxDecoration(
@@ -237,9 +237,9 @@ class _CustomTableCalendarEventsWidgetState
                         .copyWith(color: event.color)),
                 const SizedBox(height: 8),
                 Row(children: [
-                  CustomIconButton(
+                  const CustomIconButton(
                       iconData: Icons.person,
-                      // color: themeClass.lightSixthColor,
+                      color: const Color(0XFFD3C7CB),
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(
@@ -248,9 +248,9 @@ class _CustomTableCalendarEventsWidgetState
                 ]),
                 const SizedBox(height: 8),
                 Row(children: [
-                  CustomIconButton(
+                  const CustomIconButton(
                       iconData: Icons.watch_later,
-                      // color: themeClass.lightSixthColor,
+                      color: const Color(0XFFD3C7CB),
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(
@@ -261,7 +261,7 @@ class _CustomTableCalendarEventsWidgetState
                 Row(children: [
                   CustomIconButton(
                       iconData: Icons.location_on,
-                      // color: themeClass.lightSixthColor,
+                      color: const Color(0XFFD3C7CB),
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(

@@ -18,8 +18,8 @@ class ProgressSearchWidget extends StatelessWidget {
       Text(text),
       LinearPercentIndicator(
           percent: page / 4,
-          // progressColor: themeClass.lightPrimaryColor,
-          // backgroundColor: themeClass.lightPrimaryColor.withOpacity(0.25),
+          progressColor: const Color(0XFFAF234A),
+          backgroundColor: const Color(0XFFAF234A).withOpacity(0.25),
           barRadius: const Radius.circular(8))
     ]);
   }

@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            // backgroundColor: themeClass.lightscaffoldBackgroundColor,
+            backgroundColor: const Color.fromARGB(255, 254, 254, 254),
             title: const BienvenidaWidget(),
             actions: [Image.asset('assets/icon/logo.png')]),
         body: const SingleChildScrollView(

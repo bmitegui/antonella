@@ -22,16 +22,16 @@ class CustomModalBottomSheetWidget extends StatelessWidget {
               width: 48.rh(context),
               height: 4,
               decoration: BoxDecoration(
-                  // color: themeClass.lightEighthColor,
+                  color: const Color(0XFF484850),
                   borderRadius: BorderRadius.circular(4))),
           const SizedBox(height: 16),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             IconButton(
                 onPressed: closeAction! ? () => Navigator.pop(context) : null,
                 icon: Icon(Icons.close,
-                    // color: closeAction!
-                    //     ? themeClass.lightSeventhColor
-                    //     : Colors.transparent
+                    color: closeAction!
+                        ? const Color(0XFFADADAD)
+                        : Colors.transparent
                         )
                         ),
             Expanded(
@@ -39,7 +39,7 @@ class CustomModalBottomSheetWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        // color: themeClass.lightEighthColor,
+                        color: const Color(0XFF484850),
                         fontWeight: FontWeight.bold))),
             otherAction ??
                 IconButton(
@@ -47,7 +47,7 @@ class CustomModalBottomSheetWidget extends StatelessWidget {
                     icon:
                         Icon(Icons.close, 
                         
-                        // color: themeClass.lightSeventhColor
+                        color: const Color(0XFFADADAD)
                         ))
           ]),
           const SizedBox(height: 16),
