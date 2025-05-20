@@ -56,3 +56,10 @@ android {
 flutter {
     source = "../.."
 }
+
+// Añade esto al final del archivo build.gradle (fuera de android {} y flutter {})
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}

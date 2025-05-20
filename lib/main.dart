@@ -1,6 +1,7 @@
 import 'package:antonella/core/bloc/bloc.dart';
 import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/constant/environment.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/router/router.dart';
 import 'package:antonella/core/theme/theme.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -10,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
