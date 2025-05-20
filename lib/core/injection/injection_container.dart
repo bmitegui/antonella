@@ -16,7 +16,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,8 +29,8 @@ Future<void> init() async {
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton(() => KeyValueStorageServiceImpl());
 
-  sl.registerLazySingleton<InternetConnectionChecker>(
-      () => InternetConnectionChecker());
+  sl.registerLazySingleton<InternetConnection>(
+      () => InternetConnection());
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   Hive.init((await getApplicationDocumentsDirectory()).path);

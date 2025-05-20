@@ -3,6 +3,7 @@ import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/auth_prompt_widget.dart';
 import 'package:antonella/features/user/presentation/widgets/forgot_password_widget.dart';
+import 'package:antonella/features/user/presentation/widgets/prueba_widget.dart';
 import 'package:antonella/features/user/presentation/widgets/remember_me_widget.dart';
 import 'package:antonella/features/user/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +64,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       key: _formKey,
                       child: AutofillGroup(
                         child: Column(children: [
+                          PruebaWidget(),
                           Image.asset('assets/icon/logo.png',
                               height: MediaQuery.of(context).size.height / 4),
                           const SizedBox(height: 16),

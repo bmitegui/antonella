@@ -15,6 +15,6 @@ class ForgotPasswordWidget extends StatelessWidget {
             onPressed: () {},
             child: Text(texts.forgot_password,
                 style: textTheme.bodySmall!
-                    .copyWith(color: colorScheme.primary))));
+                    .copyWith(color: Colors.green))));
   }
 }

@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: const Color.fromARGB(255, 254, 254, 254),
             title: const BienvenidaWidget(),
             actions: [Image.asset('assets/icon/logo.png')]),
-        body: const SingleChildScrollView(
+        body:  SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.all(16),
                 child: Column(children: [
