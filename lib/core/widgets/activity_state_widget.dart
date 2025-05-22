@@ -5,63 +5,33 @@ class ActivityStateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.pinkAccent,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 2.0,
-                  ),
-                )
-              ),
-              const Text('No disponible')
-            ]
-          ),
-          Row(
-            children: [
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.green,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 2.0,
-                  ),
-                )
-              ),
-              const Text('Seleccionado')
-            ]
-          ),
-          Row(
-            children: [
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 2.0,
-                  ),
-                )
-              ),
-              const Text('Disponible')
-            ]
-          )
-        ],
-        )
-    );
+    final n = (MediaQuery.of(context).size.width) / 16;
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      buildLabel(title: 'No disponible', color: Colors.pinkAccent, size: n),
+      buildLabel(title: 'Seleccionado', color: Colors.green, size: n),
+      buildLabel(
+          title: 'Disponible',
+          color: Colors.white,
+          borderColor: Colors.grey,
+          size: n)
+    ]);
+  }
+
+  Widget buildLabel(
+      {required String title,
+      required Color color,
+      Color borderColor = const Color(0xFFFFFFFF),
+      required double size}) {
+    return Row(children: [
+      Container(
+          height: size,
+          width: size,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: color,
+              border: Border.all(color: borderColor, width: 2.0))),
+      const SizedBox(width: 8),
+      Text(title)
+    ]);
   }
 }

@@ -13,10 +13,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ImagesScrollview(imageLinks: [
-      'https://lavandacasaspa.com/wp-content/uploads/2020/09/los-beneficios-de-recibir-un-tratamiento-hidratacion-facial.jpg',
-      'https://lavandacasaspa.com/wp-content/uploads/2020/09/los-beneficios-de-recibir-un-tratamiento-hidratacion-facial.jpg',
-      'https://www.esteticalink.com/wp-content/uploads/2017/04/masaje-pies.jpg'
-    ]));
+        body: Column(children: [
+        
+              ActivityStateWidget()
+            ]));
   }
 }
