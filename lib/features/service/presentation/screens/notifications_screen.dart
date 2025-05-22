@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:antonella/core/widgets/custom_scrollview.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -10,6 +11,8 @@ class NotificationsScreen extends StatefulWidget {
 class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: CustomScrollviewImages(),
+    );
   }
 }
