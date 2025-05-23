@@ -64,7 +64,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       key: _formKey,
                       child: AutofillGroup(
                         child: Column(children: [
-                          PruebaWidget(),
                           Image.asset('assets/icon/logo.png',
                               height: MediaQuery.of(context).size.height / 4),
                           const SizedBox(height: 16),

@@ -42,7 +42,7 @@ class _CustomTableCalendarEventsWidgetState
   DateTime? _selectedDay;
 
   final Map<DateTime, List<Event>> _events = {
-    DateTime(2024, 12, 5): [
+    DateTime(2025, 06, 5): [
       Event(
           proffessional: 'Sabrina Carpenter',
           name: 'Hidratante',
