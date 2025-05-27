@@ -16,7 +16,7 @@ class _AgendaScreenState extends State<AgendaScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -29,7 +29,7 @@ class _AgendaScreenState extends State<AgendaScreen>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            backgroundColor: Color(0xFFF0F0F0),
             title: Text('Ver citas',
                 style: Theme.of(context).textTheme.titleMedium),
             actions: [Image.asset('assets/icon/logo.png')]),

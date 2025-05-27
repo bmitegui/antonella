@@ -20,6 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF0F0F0),
         body: Center(
             child: BlocConsumer<UserBloc, UserState>(
                 listener: (BuildContext context, UserState state) {

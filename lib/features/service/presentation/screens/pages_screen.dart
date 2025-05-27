@@ -21,19 +21,19 @@ class _PagesScreenState extends State<PagesScreen> {
   late int _currentIndex;
 
   final List<Widget> _contentPages = const [
-    HomeScreen(),
-    SearchScreen(),
     AgendaScreen(),
-    NotificationsScreen(),
+    SearchScreen(),
+    HomeScreen(),
     ChatsScreen(),
+    NotificationsScreen(),
     ProfileScreen()
   ];
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 0);
-    _currentIndex = 0;
+    _pageController = PageController(initialPage: 2);
+    _currentIndex = 2;
     _pageController.addListener(_handleTabSelection);
     sl<ServiceBloc>().add(GetServicesEvent(filter: null));
   }
@@ -57,11 +57,12 @@ class _PagesScreenState extends State<PagesScreen> {
             children: _contentPages.map((Widget content) {
               return content;
             }).toList()),
-        bottomNavigationBar:
-            CustomBottomNavigatorBarWidget(onTabChange: (index) {
-          FocusScope.of(context).unfocus();
-          _currentIndex = _currentIndex;
-          _pageController.jumpToPage(index);
-        }));
+        bottomNavigationBar: CustomBottomNavigatorBarWidget(
+            activeIndex: _currentIndex,
+            onTabChange: (index) {
+              FocusScope.of(context).unfocus();
+              _currentIndex = index;
+              _pageController.jumpToPage(index);
+            }));
   }
 }

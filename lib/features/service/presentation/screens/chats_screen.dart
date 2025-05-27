@@ -13,6 +13,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF0F0F0),
         appBar: AppBar(
             backgroundColor: const Color.fromARGB(255, 254, 254, 254),
             title:
