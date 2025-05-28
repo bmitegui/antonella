@@ -4,7 +4,7 @@ class CurvaSuperior extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path_0 = Path();
-    path_0.moveTo(size.width * 0.0005917, size.height * -0.0005571);
+    path_0.moveTo(size.width * 0, size.height * 0);
     path_0.lineTo(size.width * 0.0014417, size.height * 0.9289571);
     path_0.quadraticBezierTo(size.width * 0.0334750, size.height * 0.9282571,
         size.width * 0.0833750, size.height * 0.9284571);
@@ -25,6 +25,7 @@ class CurvaSuperior extends CustomClipper<Path> {
     path_0.quadraticBezierTo(size.width * 0.9572000, size.height * 0.9306571,
         size.width * 1.0005500, size.height * 0.9301571);
     path_0.lineTo(size.width * 0.9998917, size.height * -0.0017143);
+    path_0.close();
     return path_0;
   }
 
