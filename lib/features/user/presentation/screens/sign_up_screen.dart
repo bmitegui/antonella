@@ -42,6 +42,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
+    final screenWidht = MediaQuery.of(context).size.width;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
         body: Center(
             child: BlocConsumer<UserBloc, UserState>(
@@ -61,56 +63,85 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Form(
                       key: _formKey,
                       child: Column(children: [
-                        Image.asset('assets/icon/logo.png',
-                            height: MediaQuery.of(context).size.height / 4),
-                        const SizedBox(height: 16),
-                        CustomTextFormFieldWidget(
-                            textEditingController: _nameController,
-                            title: texts.name,
-                            hintText: texts.name_hint,
-                            prefixIcon: const Icon(Icons.person),
-                            validator: validateName),
-                        const SizedBox(height: 16),
-                        CustomTextFormFieldWidget(
-                            textEditingController: _emailController,
-                            title: texts.account,
-                            hintText: texts.account_hint,
-                            prefixIcon: const Icon(Icons.email),
-                            keyboardType: TextInputType.emailAddress,
-                            validator: validateEmail),
-                        const SizedBox(height: 16),
-                        CustomTextFormFieldWidget(
-                            textEditingController: _passwordController,
-                            title: texts.password,
-                            hintText: texts.password_hint,
-                            prefixIcon: const Icon(Icons.lock),
-                            obscureText: true,
-                            validator: validatePassword),
-                        const SizedBox(height: 16),
-                        CustomPickDateWidget(
-                            title: texts.birthdate,
-                            dateTime: _birthdate,
-                            onSelectDate: (value) =>
-                                setState(() => _birthdate = value)),
-                        const SizedBox(height: 16),
-                        SizedBox(
-                            width: double.infinity,
-                            child: FilledButton(
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    context.read<UserBloc>().add(SignUpEvent(
-                                        name: _nameController.text.trim(),
-                                        birthdate: formatDateTime(_birthdate),
-                                        account: _emailController.text.trim(),
-                                        password:
-                                            _passwordController.text.trim()));
-                                  }
-                                },
-                                child: Text(texts.sign_up))),
-                        const SizedBox(height: 16),
-                        const TermsAndConditionsWidget(),
-                        const SizedBox(height: 16),
-                        const AuthPromptWidget(isSignIn: false)
+                        Text('Crear Cuenta',
+                                style: textTheme.bodyLarge!
+                                    .copyWith(color: Color(0XFFF44565))),
+                        const SizedBox(height: 32),
+                        Center(
+                          child: SizedBox(
+                            width: screenWidht * 0.8,
+                            child: Column(
+                              children: [
+                                CustomTextFormFieldWidget(
+                                textEditingController: _nameController,
+                                title: texts.name,
+                                //hintText: texts.name_hint,
+                                //prefixIcon: const Icon(Icons.person),
+                                validator: validateName),
+                            const SizedBox(height: 16),
+                            CustomTextFormFieldWidget(
+                              //celular
+                                textEditingController: _emailController,
+                                title: 'Celular',
+                                //hintText: texts.account_hint,
+                                //prefixIcon: const Icon(Icons.email),
+                                keyboardType: TextInputType.emailAddress,
+                                validator: validateEmail),
+                            const SizedBox(height: 16),
+                            CustomTextFormFieldWidget(
+                              //correo
+                                textEditingController: _emailController,
+                                title: 'Correo',
+                                //hintText: texts.account_hint,
+                                //prefixIcon: const Icon(Icons.email),
+                                keyboardType: TextInputType.emailAddress,
+                                validator: validateEmail),
+                            const SizedBox(height: 16),
+                            
+                            const SizedBox(height: 16),
+                            CustomPickDateWidget(
+                                title: texts.birthdate,
+                                dateTime: _birthdate,
+                                onSelectDate: (value) =>
+                                    setState(() => _birthdate = value)),
+                            const SizedBox(height: 16),
+                            CustomTextFormFieldWidget(
+                              //genero
+                                textEditingController: _emailController,
+                                title: 'Género',
+                                //hintText: texts.account_hint,
+                                //prefixIcon: const Icon(Icons.email),
+                                suffixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
+                                keyboardType: TextInputType.emailAddress,
+                                validator: validateEmail),
+                            const SizedBox(height: 16),
+                            CustomTextFormFieldWidget(
+                                textEditingController: _passwordController,
+                                title: texts.password,
+                                //hintText: texts.password_hint,
+                                //prefixIcon: const Icon(Icons.lock),
+                                obscureText: true,
+                                validator: validatePassword),
+                            const SizedBox(height: 40),
+                            SizedBox(
+                                width: screenWidht * 0.35,
+                                child: FilledButton(
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        context.read<UserBloc>().add(SignUpEvent(
+                                            name: _nameController.text.trim(),
+                                            birthdate: formatDateTime(_birthdate),
+                                            account: _emailController.text.trim(),
+                                            password:
+                                                _passwordController.text.trim()));
+                                      }
+                                    },
+                                    child: Text('Registrar')))
+                              ],
+                            ),
+                          ),
+                        )
+                        
                       ]))))
           : const CircularProgressIndicator();
     })));

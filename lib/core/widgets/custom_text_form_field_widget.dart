@@ -19,7 +19,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
       this.title,
       this.onTapOutside,
       this.autofillHints,
-      required this.hintText,
+      this.hintText = '',
       this.prefixIcon,
       this.textEditingController,
       this.onChanged,
@@ -66,6 +66,16 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
           controller: widget.textEditingController,
           onEditingComplete: widget.onEditingComplete,
           decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            // border: OutlineInputBorder(
+            //   borderRadius: BorderRadius.circular(20),
+            //   borderSide: BorderSide.none,
+            // ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide.none,
+            ),
               prefixIcon: widget.prefixIcon,
               suffixIcon: widget.obscureText
                   ? GestureDetector(

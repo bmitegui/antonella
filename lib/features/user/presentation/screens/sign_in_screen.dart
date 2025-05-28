@@ -45,6 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
     final texts = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final screenWidht = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Color(0xFFFAE2E1),
         body: Center(
@@ -72,24 +73,40 @@ class _SignInScreenState extends State<SignInScreen> {
                                 style: textTheme.bodyLarge!
                                     .copyWith(color: Color(0XFFF44565))),
                             const SizedBox(height: 32),
-                            CustomTextFormFieldWidget(
-                                autofillHints: const [AutofillHints.email],
-                                textEditingController: _accountController,
-                                title: texts.account,
-                                hintText: texts.account_hint,
-                                prefixIcon: const Icon(Icons.person),
-                                keyboardType: TextInputType.emailAddress,
-                                validator: validateEmail),
-                            const SizedBox(height: 16),
-                            CustomTextFormFieldWidget(
-                                autofillHints: const [AutofillHints.password],
-                                textEditingController: _passwordController,
-                                title: texts.password,
-                                hintText: texts.password_hint,
-                                prefixIcon: const Icon(Icons.lock),
-                                obscureText: true,
-                                validator: validatePassword),
-                            const ForgotPasswordWidget(),
+                            Center(
+                              child: SizedBox(width: screenWidht * 0.8,
+                                child: Column(
+                                  children: [
+                                    CustomTextFormFieldWidget(
+                                      autofillHints: const [AutofillHints.email],
+                                      textEditingController: _accountController,
+                                      //title: texts.account,
+                                      hintText: texts.account,
+                                      //prefixIcon: const Icon(Icons.person),
+                                      keyboardType: TextInputType.emailAddress,
+                                      validator: validateEmail
+                                      ),
+                                      const SizedBox(height: 32),
+                                      CustomTextFormFieldWidget(
+                                        autofillHints: const [AutofillHints.password],
+                                        textEditingController: _passwordController,
+                                        //title: texts.password,
+                                        hintText: texts.password,
+                                        //prefixIcon: const Icon(Icons.lock),
+                                        obscureText: true,
+                                        validator: validatePassword
+                                      ),
+                                      // Row(
+                                      //   children: [
+
+                                      //   ],
+                                      // ),
+                                      const ForgotPasswordWidget(),
+                                  ],
+                                )
+                              ),
+                            ),
+                            
                             const SizedBox(height: 16),
                             RememberMeWidget(
                                 value: _value,
@@ -97,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     setState(() => _value = !_value)),
                             const SizedBox(height: 16),
                             SizedBox(
-                                width: double.infinity,
+                                width: screenWidht * 0.35,
                                 child: FilledButton(
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
@@ -113,7 +130,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     },
                                     child: Text(texts.sign_in))),
                             const SizedBox(height: 16),
-                            const TermsAndConditionsWidget(),
+                            SizedBox(width: screenWidht * 0.8, child: const TermsAndConditionsWidget()),
                             const SizedBox(height: 16),
                             const AuthPromptWidget()
                           ]))))

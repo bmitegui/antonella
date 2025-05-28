@@ -21,7 +21,7 @@ class AuthPromptWidget extends StatelessWidget {
               TextSpan(
                   text: isSignIn ? texts.sign_up : texts.sign_in,
                   style: textTheme.bodyMedium!
-                      .copyWith(color: colorScheme.primary),
+                      .copyWith(color: Color(0XFFF44565)),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => GoRouter.of(context)
                         .go('/${isSignIn ? 'signUp' : 'signIn'}'))
