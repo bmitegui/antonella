@@ -25,7 +25,7 @@ class CustomPickDateWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16),
           child: Text(title,
               style: textTheme.bodyMedium!.copyWith(
-                  color: colorScheme.primary, fontWeight: FontWeight.bold))),
+                  color: Colors.black, fontWeight: FontWeight.bold))),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         TextButton.icon(
             onPressed: () async {

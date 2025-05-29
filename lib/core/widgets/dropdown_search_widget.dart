@@ -22,7 +22,7 @@ class CustomDropdownSearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final texts = AppLocalizations.of(context)!;
+    //final texts = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -31,10 +31,18 @@ class CustomDropdownSearchWidget extends StatelessWidget {
           child: Text(title,
               style: Theme.of(context)
                   .textTheme
-                  .titleSmall!
-                  .copyWith(color: colorScheme.primary))),
+                  .titleMedium!
+                  .copyWith(color: Colors.black))),
       const SizedBox(height: 8),
       DropdownSearch<String>(
+        decoratorProps: DropDownDecoratorProps(decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide.none
+          ))
+          ),
           selectedItem: selectedItem,
           validator: validator,
           onChanged: (value) {
@@ -61,7 +69,7 @@ class CustomDropdownSearchWidget extends StatelessWidget {
               emptyBuilder: (context, searchEntry) => Padding(
                   padding: const EdgeInsets.all(10),
                   child:
-                      Text(texts.no_data_found, textAlign: TextAlign.center)),
+                      Text('No se encontró nada', textAlign: TextAlign.center)),
               showSearchBox: showSearchBox,
               fit: FlexFit.loose))
     ]);
