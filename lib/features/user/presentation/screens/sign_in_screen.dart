@@ -48,9 +48,8 @@ class _SignInScreenState extends State<SignInScreen> {
     final screenWidht = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Color(0xFFFAE2E1),
-        body: Center(
-            child: BlocConsumer<UserBloc, UserState>(
-                listener: (BuildContext context, UserState state) {
+        body: BlocConsumer<UserBloc, UserState>(
+            listener: (BuildContext context, UserState state) {
           if (state is UserAuthenticated) {
             showTopSnackBar(Overlay.of(context),
                 CustomSnackBar.success(message: texts.successful_sign_in));
@@ -70,47 +69,48 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: AutofillGroup(
                               child: Column(children: [
                             Center(
-                              child: SizedBox(width: screenWidht * 0.85,
-                                child: Column(
-                                  children: [
-                                    CustomTextFormFieldWidget(
-                                      autofillHints: const [AutofillHints.email],
-                                      textEditingController: _accountController,
-                                      //title: texts.account,
-                                      hintText: texts.account,
-                                      //prefixIcon: const Icon(Icons.person),
-                                      keyboardType: TextInputType.emailAddress,
-                                      validator: validateEmail
-                                      ),
+                              child: SizedBox(
+                                  width: screenWidht * 0.85,
+                                  child: Column(
+                                    children: [
+                                      CustomTextFormFieldWidget(
+                                          autofillHints: const [
+                                            AutofillHints.email
+                                          ],
+                                          textEditingController:
+                                              _accountController,
+                                          //title: texts.account,
+                                          hintText: texts.account,
+                                          //prefixIcon: const Icon(Icons.person),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          validator: validateEmail),
                                       const SizedBox(height: 32),
                                       CustomTextFormFieldWidget(
-                                        autofillHints: const [AutofillHints.password],
-                                        textEditingController: _passwordController,
-                                        //title: texts.password,
-                                        hintText: texts.password,
-                                        //prefixIcon: const Icon(Icons.lock),
-                                        obscureText: true,
-                                        validator: validatePassword
-                                      ),
+                                          autofillHints: const [
+                                            AutofillHints.password
+                                          ],
+                                          textEditingController:
+                                              _passwordController,
+                                          //title: texts.password,
+                                          hintText: texts.password,
+                                          //prefixIcon: const Icon(Icons.lock),
+                                          obscureText: true,
+                                          validator: validatePassword),
                                       Row(
                                         children: [
                                           RememberMeWidget(
-                                            value: _value,
-                                            onChanged: (value) =>
-                                                setState(() => _value = !_value)
-                                          ),
+                                              value: _value,
+                                              onChanged: (value) => setState(
+                                                  () => _value = !_value)),
                                           SizedBox(width: screenWidht * 0.2),
                                           const ForgotPasswordWidget(),
                                         ],
                                       ),
-                                      
-                                  ],
-                                )
-                              ),
+                                    ],
+                                  )),
                             ),
-                            
                             const SizedBox(height: 32),
-
                             SizedBox(
                                 width: screenWidht * 0.35,
                                 child: FilledButton(
@@ -128,12 +128,14 @@ class _SignInScreenState extends State<SignInScreen> {
                                     },
                                     child: Text(texts.sign_in))),
                             const SizedBox(height: 16),
-                            SizedBox(width: screenWidht * 0.85, child: const TermsAndConditionsWidget()),
+                            SizedBox(
+                                width: screenWidht * 0.85,
+                                child: const TermsAndConditionsWidget()),
                             const SizedBox(height: 16),
                             const AuthPromptWidget()
                           ]))))
                 ]))
               : const CircularProgressIndicator();
-        })));
+        }));
   }
 }
