@@ -31,7 +31,7 @@ class LogoSignInWidget extends StatelessWidget {
         ClipPath(
             clipper: CurvaSuperior(),
             child: Container(
-                height: double.infinity,
+                height: 200,
                 color: Color(0xFFE596A9))),
                 
               ])
