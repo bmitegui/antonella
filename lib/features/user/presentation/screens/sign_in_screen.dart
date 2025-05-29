@@ -69,12 +69,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           key: _formKey,
                           child: AutofillGroup(
                               child: Column(children: [
-                            Text(texts.welcome,
-                                style: textTheme.bodyLarge!
-                                    .copyWith(color: Color(0XFFF44565))),
-                            const SizedBox(height: 32),
                             Center(
-                              child: SizedBox(width: screenWidht * 0.8,
+                              child: SizedBox(width: screenWidht * 0.85,
                                 child: Column(
                                   children: [
                                     CustomTextFormFieldWidget(
@@ -96,23 +92,25 @@ class _SignInScreenState extends State<SignInScreen> {
                                         obscureText: true,
                                         validator: validatePassword
                                       ),
-                                      // Row(
-                                      //   children: [
-
-                                      //   ],
-                                      // ),
-                                      const ForgotPasswordWidget(),
+                                      Row(
+                                        children: [
+                                          RememberMeWidget(
+                                            value: _value,
+                                            onChanged: (value) =>
+                                                setState(() => _value = !_value)
+                                          ),
+                                          SizedBox(width: screenWidht * 0.2),
+                                          const ForgotPasswordWidget(),
+                                        ],
+                                      ),
+                                      
                                   ],
                                 )
                               ),
                             ),
                             
-                            const SizedBox(height: 16),
-                            RememberMeWidget(
-                                value: _value,
-                                onChanged: (value) =>
-                                    setState(() => _value = !_value)),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 32),
+
                             SizedBox(
                                 width: screenWidht * 0.35,
                                 child: FilledButton(
@@ -130,7 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     },
                                     child: Text(texts.sign_in))),
                             const SizedBox(height: 16),
-                            SizedBox(width: screenWidht * 0.8, child: const TermsAndConditionsWidget()),
+                            SizedBox(width: screenWidht * 0.85, child: const TermsAndConditionsWidget()),
                             const SizedBox(height: 16),
                             const AuthPromptWidget()
                           ]))))

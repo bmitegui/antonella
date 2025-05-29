@@ -14,7 +14,7 @@ class TermsAndConditionsWidget extends StatelessWidget {
     return RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
-            text: texts.terms_1,
+            text: 'Al iniciar sesión, acepta nuestros ',
             style: textTheme.bodySmall!.copyWith(color: colorScheme.onSurface),
             children: [
               TextSpan(

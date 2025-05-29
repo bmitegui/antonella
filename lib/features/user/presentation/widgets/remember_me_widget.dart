@@ -9,11 +9,13 @@ class RememberMeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final texts = AppLocalizations.of(context)!;
+    //final texts = AppLocalizations.of(context)!;
+    final textTheme = Theme.of(context).textTheme;
     return Row(children: [
-      Text(texts.remember_me),
-      const Spacer(),
-      Switch(value: value, onChanged: onChanged)
+      Text('Recuérdame', style: textTheme.bodySmall!
+                    .copyWith(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold)),
+      //const Spacer(),
+      //Switch(value: value, onChanged: onChanged)
     ]);
   }
 }
