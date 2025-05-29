@@ -7,6 +7,7 @@ import 'package:antonella/features/user/presentation/widgets/auth_prompt_widget.
 import 'package:antonella/features/user/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -45,6 +46,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      appBar: AppBar(leading: IconButton(onPressed: () => GoRouter.of(context)
+                        .go('/signIn'), icon: Icon(Icons.arrow_back))),
         body: Center(
             child: BlocConsumer<UserBloc, UserState>(
                 listener: (BuildContext context, UserState state) {
