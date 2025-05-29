@@ -102,12 +102,12 @@ class _SignInScreenState extends State<SignInScreen> {
                                           obscureText: true,
                                           validator: validatePassword),
                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           RememberMeWidget(
                                               value: _value,
                                               onChanged: (value) => setState(
                                                   () => _value = !_value)),
-                                          SizedBox(width: screenWidht * 0.2),
                                           const ForgotPasswordWidget(),
                                         ],
                                       ),
