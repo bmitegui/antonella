@@ -13,6 +13,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final void Function(PointerDownEvent)? onTapOutside;
   final void Function()? onEditingComplete;
   final Widget? suffixIcon;
+  final String? errorMessage;
 
   const CustomTextFormFieldWidget(
       {super.key,
@@ -27,6 +28,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
       this.obscureText = false,
       this.validator,
       this.onEditingComplete,
+      this.errorMessage,
       this.suffixIcon});
 
   @override
@@ -46,45 +48,63 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      if (widget.title != null)
-        Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(widget.title!,
-                style: textTheme.bodyMedium!.copyWith(
-                    color: Colors.black, fontWeight: FontWeight.bold))),
-      if (widget.title != null) const SizedBox(height: 8),
-      TextFormField(
-          keyboardType: widget.keyboardType,
-          autofillHints: widget.autofillHints,
-          validator: widget.validator,
-          onChanged: widget.onChanged,
-          obscureText: _obscureText,
-          onTapOutside: (event) => FocusScope.of(context).unfocus(),
-          style: textTheme.bodyMedium!
-              .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
-          controller: widget.textEditingController,
-          onEditingComplete: widget.onEditingComplete,
-          decoration: InputDecoration(
-              hintStyle:
-                  TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-              filled: true,
-              fillColor: Colors.white,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide.none,
-              ),
-              prefixIcon: widget.prefixIcon,
-              suffixIcon: widget.obscureText
-                  ? GestureDetector(
-                      child: Icon(
-                          _obscureText
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Colors.grey),
-                      onTap: () => setState(() => _obscureText = !_obscureText))
-                  : widget.suffixIcon,
-              hintText: widget.hintText))
-    ]);
+    return Container(
+        decoration: widget.errorMessage != null
+            ? BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                color: Color(0xFFF44565))
+            : null,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          if (widget.title != null)
+            Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(widget.title!,
+                    style: textTheme.bodyMedium!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.bold))),
+          if (widget.title != null) const SizedBox(height: 8),
+          TextFormField(
+              keyboardType: widget.keyboardType,
+              autofillHints: widget.autofillHints,
+              validator: widget.validator,
+              onChanged: widget.onChanged,
+              obscureText: _obscureText,
+              onTapOutside: (event) => FocusScope.of(context).unfocus(),
+              style: textTheme.bodyMedium!
+                  .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
+              controller: widget.textEditingController,
+              onEditingComplete: widget.onEditingComplete,
+              decoration: InputDecoration(
+                  hintStyle: TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                  filled: true,
+                  fillColor: Colors.white,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none),
+                  prefixIcon: widget.prefixIcon,
+                  suffixIcon: widget.obscureText
+                      ? GestureDetector(
+                          child: Icon(
+                              _obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.grey),
+                          onTap: () =>
+                              setState(() => _obscureText = !_obscureText))
+                      : widget.suffixIcon,
+                  hintText: widget.hintText)),
+          if (widget.errorMessage != null)
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                alignment: Alignment.center,
+                height: 45,
+                child: Text(widget.errorMessage!,
+                maxLines: 2,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis)))
+        ]));
   }
 }

@@ -1,4 +1,3 @@
-import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/auth_prompt_widget.dart';
@@ -51,9 +50,6 @@ class _SignInScreenState extends State<SignInScreen> {
           if (state is UserAuthenticated) {
             showTopSnackBar(Overlay.of(context),
                 CustomSnackBar.success(message: texts.successful_sign_in));
-          } else if (state is UserError) {
-            showTopSnackBar(Overlay.of(context),
-                CustomSnackBar.error(message: state.message, maxLines: 3));
           }
         }, builder: (context, state) {
           return (state is UserUnauthenticated || state is UserError)
@@ -76,6 +72,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                     width: screenWidht * 0.85,
                                     child: Column(children: [
                                       CustomTextFormFieldWidget(
+                                          errorMessage: (state is UserError)
+                                              ? state.message
+                                              : null,
                                           autofillHints: const [
                                             AutofillHints.telephoneNumber
                                           ],
@@ -85,14 +84,17 @@ class _SignInScreenState extends State<SignInScreen> {
                                           keyboardType: TextInputType.phone),
                                       const SizedBox(height: 32),
                                       CustomTextFormFieldWidget(
-                                          autofillHints: const [
-                                            AutofillHints.password
-                                          ],
-                                          textEditingController:
-                                              _passwordController,
-                                          hintText: texts.password,
-                                          obscureText: true,
-                                          validator: validatePassword),
+                                        errorMessage: (state is UserError)
+                                            ? state.message
+                                            : null,
+                                        autofillHints: const [
+                                          AutofillHints.password
+                                        ],
+                                        textEditingController:
+                                            _passwordController,
+                                        hintText: texts.password,
+                                        obscureText: true,
+                                      ),
                                       Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -116,16 +118,12 @@ class _SignInScreenState extends State<SignInScreen> {
                                             WidgetStateProperty.all(
                                                 Color(0xFFF44565))),
                                     onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        context.read<UserBloc>().add(
-                                            SignInEvent(
-                                                account: _accountController.text
-                                                    .trim(),
-                                                password: _passwordController
-                                                    .text
-                                                    .trim(),
-                                                rememberMe: _value));
-                                      }
+                                      context.read<UserBloc>().add(SignInEvent(
+                                          account:
+                                              _accountController.text.trim(),
+                                          password:
+                                              _passwordController.text.trim(),
+                                          rememberMe: _value));
                                     },
                                     child: Text(texts.sign_in))),
                             const SizedBox(height: 16),
