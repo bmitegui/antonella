@@ -125,7 +125,7 @@ abstract class AppLocalizations {
   /// No description provided for @account.
   ///
   /// In en, this message translates to:
-  /// **'Email or phone'**
+  /// **'Phone number'**
   String get account;
 
   /// No description provided for @account_hint.

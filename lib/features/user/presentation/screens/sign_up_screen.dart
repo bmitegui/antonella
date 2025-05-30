@@ -3,10 +3,10 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_pick_date_widget.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/dropdown_search_widget.dart';
+import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -46,10 +46,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      backgroundColor: Color(0xFFFAE2E1),
         appBar: AppBar(
-            leading: IconButton(
-                onPressed: () => GoRouter.of(context).go('/signIn'),
-                icon: Icon(Icons.arrow_back))),
+          backgroundColor: Color(0xFFFAE2E1),
+          leading: RetrocederLogoWidget(route: '/signIn')),      
         body: Center(
             child: BlocConsumer<UserBloc, UserState>(
                 listener: (BuildContext context, UserState state) {
@@ -118,8 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         initialText: 'Seleccionar género',
                                         options: [
                                           'Masculino',
-                                          'Femenino',
-                                          'Otro'
+                                          'Femenino'
                                         ],
                                         onChange: (value) {
                                           setState(() {
@@ -139,25 +138,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     SizedBox(
                                         width: screenWidht * 0.35,
                                         child: FilledButton(
-                                            onPressed: () {
-                                              if (_formKey.currentState!
-                                                  .validate()) {
-                                                context.read<UserBloc>().add(
-                                                    SignUpEvent(
-                                                        name: _nameController
-                                                            .text
-                                                            .trim(),
-                                                        birthdate:
-                                                            formatDateTime(
-                                                                _birthdate),
-                                                        account:
-                                                            _emailController
-                                                                .text
-                                                                .trim(),
-                                                        password:
-                                                            _passwordController
-                                                                .text
-                                                                .trim()));
+                                          style: ButtonStyle(
+                                            textStyle: WidgetStateProperty.all(
+                                                TextStyle(
+                                                    fontWeight: FontWeight.bold)),
+                                            backgroundColor:
+                                                WidgetStateProperty.all(
+                                                    Color(0xFFF44565))),
+                                          onPressed: () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              context.read<UserBloc>().add(
+                                                  SignUpEvent(
+                                                      name: _nameController
+                                                          .text
+                                                          .trim(),
+                                                      birthdate:
+                                                          formatDateTime(
+                                                              _birthdate),
+                                                      account:
+                                                          _emailController
+                                                              .text
+                                                              .trim(),
+                                                      password:
+                                                          _passwordController
+                                                              .text
+                                                              .trim()));
                                               }
                                             },
                                             child: Text('Registrar')))
