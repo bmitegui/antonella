@@ -1,0 +1,2 @@
+C:/Users/sebas/OneDrive/Desktop/Proyecto IngsotII/antonella/android/app/.cxx/Debug/5u4q3631/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/sebas/OneDrive/Desktop/Proyecto IngsotII/antonella/android/app/.cxx/Debug/5u4q3631/arm64-v8a/CMakeFiles/rebuild_cache.dir

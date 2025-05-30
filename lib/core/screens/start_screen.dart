@@ -43,7 +43,7 @@ class _StartScreenState extends State<StartScreen> {
                   'Explora y agenda fácilmente citas para servicios de belleza, peluqueria y bienestar, adaptados a tu necesidad y estilo',
                   textAlign: TextAlign.center,
                   style: textTheme.titleMedium!
-                      .copyWith(fontWeight: FontWeight.bold))),
+                      .copyWith(fontWeight: FontWeight.bold, fontSize: 18))),
           Positioned(
               bottom: 64,
               left: 128,
@@ -53,7 +53,7 @@ class _StartScreenState extends State<StartScreen> {
                       backgroundColor:
                           WidgetStateProperty.all(Color(0xFFF44565))),
                   onPressed: () async => await _seen(),
-                  child: Text('Iniciar')))
+                  child: Text('Iniciar', style: TextStyle(fontSize: 28))))
         ]));
   }
 
