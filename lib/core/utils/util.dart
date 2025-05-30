@@ -55,3 +55,9 @@ Future<File?> pickImage(ImageSource imageSource) async {
 String formatDateTime(DateTime? dateTime) => dateTime == null
     ? 'dd-MM-yyyy'
     : DateFormat('dd-MM-yyyy').format(dateTime.toLocal());
+
+
+String capitalize(String text) {
+  if (text.isEmpty) return text;
+  return text[0].toUpperCase() + text.substring(1).toLowerCase();
+}

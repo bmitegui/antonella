@@ -43,7 +43,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 style: textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                   color: const Color(0xFFFF4B7D), // rojo
-                  fontSize: 32,
+                  fontSize: 25,
                 ),
               ),
             ],

@@ -51,6 +51,7 @@ class _PagesScreenState extends State<PagesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xFFF0F0F0),
         body: PageView(
             controller: _pageController,
             physics: const NeverScrollableScrollPhysics(),

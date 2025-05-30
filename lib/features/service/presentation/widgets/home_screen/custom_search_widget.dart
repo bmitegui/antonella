@@ -27,7 +27,7 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
             enable = value.trim().isNotEmpty;
           });
         },
-        hintText: '¿Qué buscas?',
+        hintText: '¿Qué estás buscando?',
         prefixIcon: const Icon(Icons.search),
         onTapOutside: (event) {
           setState(() {
