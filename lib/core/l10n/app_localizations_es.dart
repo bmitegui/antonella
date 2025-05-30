@@ -43,7 +43,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get sign_in => 'Iniciar sesión';
 
   @override
-  String get terms_1 => 'Al iniciar sesión correctamente, acepta nuestros ';
+  String get terms_1 => 'Al iniciar sesión, acepta nuestros ';
 
   @override
   String get terms_2 => 'Términos y Condiciones';
@@ -58,7 +58,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get successful_sign_in => 'Inicio de sesión exitoso';
 
   @override
-  String get sign_up => 'Registrarse';
+  String get sign_up => 'Registrate';
 
   @override
   String get have_account => '¿Tienes una cuenta?';

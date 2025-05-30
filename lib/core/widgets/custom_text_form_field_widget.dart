@@ -53,7 +53,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
             padding: const EdgeInsets.only(left: 16),
             child: Text(widget.title!,
                 style: textTheme.bodyMedium!.copyWith(
-                    color: colorScheme.primary, fontWeight: FontWeight.bold))),
+                    color: Colors.black, fontWeight: FontWeight.bold))),
       if (widget.title != null) const SizedBox(height: 8),
       TextFormField(
           keyboardType: widget.keyboardType,

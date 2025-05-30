@@ -61,10 +61,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Column(children: [
                   LogoSignInWidget(),
                   SizedBox(height: 16),
-                  Text('Welcome Back',
-                      style: textTheme.bodyLarge!.copyWith(
-                          color: Color(0XFFF44565),
-                          fontWeight: FontWeight.bold)),
+                  Text(texts.welcome, style:
+                        textTheme.bodyLarge!.copyWith(color: Color(0XFFF44565),fontWeight: FontWeight.bold)),
                   SizedBox(height: 32),
                   Padding(
                       padding: const EdgeInsets.all(16),
