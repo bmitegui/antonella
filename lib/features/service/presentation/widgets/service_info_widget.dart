@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';

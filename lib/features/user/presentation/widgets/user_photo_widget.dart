@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/features/user/presentation/widgets/upload_user_photo_widget.dart';
 import 'package:flutter/material.dart';

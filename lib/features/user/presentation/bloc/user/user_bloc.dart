@@ -59,7 +59,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }, (user) async {
       emit(UserAuthenticated(user: user));
       if (event.rememberMe) {
-        await keyValueStorageService.setKeyValue('account', user.email);
+        await keyValueStorageService.setKeyValue('account', user.phoneNumber);
         await keyValueStorageService.setKeyValue('password', event.password);
       }
     });

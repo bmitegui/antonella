@@ -90,10 +90,10 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
             calendarStyle: const CalendarStyle(
                 isTodayHighlighted: false,
                 todayDecoration: BoxDecoration(
-                    color: const Color(0XFFF3B4C7),
+                    color:  Color(0XFFF3B4C7),
                     shape: BoxShape.circle),
                 outsideDaysVisible: false,
-                selectedDecoration: const BoxDecoration(
+                selectedDecoration:  BoxDecoration(
                     color: Colors.green, shape: BoxShape.circle)),
             onPageChanged: (focusedDay) {
               _focusedDay = focusedDay;

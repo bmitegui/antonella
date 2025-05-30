@@ -7,7 +7,6 @@ class LogoSignInWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final screenHeight = MediaQuery.of(context).size.height;
-    final textTheme = Theme.of(context).textTheme;
     return SizedBox(
       height: MediaQuery.of(context).size.height*0.3,
       child: Stack(children: [

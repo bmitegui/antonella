@@ -239,7 +239,7 @@ class _CustomTableCalendarEventsWidgetState
                 Row(children: [
                   const CustomIconButton(
                       iconData: Icons.person,
-                      color: const Color(0XFFD3C7CB),
+                      color:  Color(0XFFD3C7CB),
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(
@@ -250,7 +250,7 @@ class _CustomTableCalendarEventsWidgetState
                 Row(children: [
                   const CustomIconButton(
                       iconData: Icons.watch_later,
-                      color: const Color(0XFFD3C7CB),
+                      color:  Color(0XFFD3C7CB),
                       size: 16),
                   const SizedBox(width: 8),
                   Expanded(

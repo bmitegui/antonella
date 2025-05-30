@@ -45,7 +45,6 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       if (widget.title != null)
@@ -62,20 +61,19 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
           onChanged: widget.onChanged,
           obscureText: _obscureText,
           onTapOutside: (event) => FocusScope.of(context).unfocus(),
-          style: textTheme.bodyMedium,
+          style: textTheme.bodyMedium!
+              .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
           controller: widget.textEditingController,
           onEditingComplete: widget.onEditingComplete,
           decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            // border: OutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(20),
-            //   borderSide: BorderSide.none,
-            // ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide.none,
-            ),
+              hintStyle:
+                  TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+              filled: true,
+              fillColor: Colors.white,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide.none,
+              ),
               prefixIcon: widget.prefixIcon,
               suffixIcon: widget.obscureText
                   ? GestureDetector(
@@ -83,7 +81,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                           _obscureText
                               ? Icons.visibility_off
                               : Icons.visibility,
-                          color: colorScheme.onSurfaceVariant),
+                          color: Colors.grey),
                       onTap: () => setState(() => _obscureText = !_obscureText))
                   : widget.suffixIcon,
               hintText: widget.hintText))

@@ -60,9 +60,10 @@ class _SignInScreenState extends State<SignInScreen> {
               ? SingleChildScrollView(
                   child: Column(children: [
                   LogoSignInWidget(),
-                  SizedBox(height: 16),
-                  Text(texts.welcome, style:
-                        textTheme.bodyLarge!.copyWith(color: Color(0XFFF44565),fontWeight: FontWeight.bold)),
+                  Text(texts.welcome,
+                      style: textTheme.bodyLarge!.copyWith(
+                          color: Color(0XFFF44565),
+                          fontWeight: FontWeight.bold)),
                   SizedBox(height: 32),
                   Padding(
                       padding: const EdgeInsets.all(16),
@@ -107,6 +108,13 @@ class _SignInScreenState extends State<SignInScreen> {
                             SizedBox(
                                 width: screenWidht * 0.35,
                                 child: FilledButton(
+                                    style: ButtonStyle(
+                                        textStyle: WidgetStateProperty.all(
+                                            TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        backgroundColor:
+                                            WidgetStateProperty.all(
+                                                Color(0xFFF44565))),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
                                         context.read<UserBloc>().add(

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
