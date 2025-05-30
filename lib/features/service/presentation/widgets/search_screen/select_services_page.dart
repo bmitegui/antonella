@@ -1,4 +1,5 @@
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/bottom_buttons_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/progress_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
@@ -18,6 +19,7 @@ class SelectServicesPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                CustomSearchWidget(),
             const ProgressSearchWidget(page: 1),
             const SizedBox(height: 16),
             const ServicesFilterWidget(),

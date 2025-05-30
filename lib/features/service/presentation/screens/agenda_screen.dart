@@ -1,5 +1,4 @@
 import 'package:antonella/features/service/presentation/widgets/custom_table_calendar_events_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/search_screen/status_legend_widget.dart';
 import 'package:flutter/material.dart';
 
 class AgendaScreen extends StatefulWidget {

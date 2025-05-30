@@ -1,5 +1,4 @@
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/core/widgets/curva_superior.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/auth_prompt_widget.dart';
@@ -43,7 +42,6 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
-    final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final screenWidht = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -63,8 +61,10 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Column(children: [
                   LogoSignInWidget(),
                   SizedBox(height: 16),
-                  Text('Welcome Back', style:
-                        textTheme.bodyLarge!.copyWith(color: Color(0XFFF44565),fontWeight: FontWeight.bold)),
+                  Text('Welcome Back',
+                      style: textTheme.bodyLarge!.copyWith(
+                          color: Color(0XFFF44565),
+                          fontWeight: FontWeight.bold)),
                   SizedBox(height: 32),
                   Padding(
                       padding: const EdgeInsets.all(16),
@@ -73,22 +73,17 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: AutofillGroup(
                               child: Column(children: [
                             Center(
-                              child: SizedBox(
-                                  width: screenWidht * 0.85,
-                                  child: Column(
-                                    children: [
+                                child: SizedBox(
+                                    width: screenWidht * 0.85,
+                                    child: Column(children: [
                                       CustomTextFormFieldWidget(
                                           autofillHints: const [
-                                            AutofillHints.email
+                                            AutofillHints.telephoneNumber
                                           ],
                                           textEditingController:
                                               _accountController,
-                                          //title: texts.account,
                                           hintText: texts.account,
-                                          //prefixIcon: const Icon(Icons.person),
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          validator: validateEmail),
+                                          keyboardType: TextInputType.phone),
                                       const SizedBox(height: 32),
                                       CustomTextFormFieldWidget(
                                           autofillHints: const [
@@ -96,24 +91,20 @@ class _SignInScreenState extends State<SignInScreen> {
                                           ],
                                           textEditingController:
                                               _passwordController,
-                                          //title: texts.password,
                                           hintText: texts.password,
-                                          //prefixIcon: const Icon(Icons.lock),
                                           obscureText: true,
                                           validator: validatePassword),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          RememberMeWidget(
-                                              value: _value,
-                                              onChanged: (value) => setState(
-                                                  () => _value = !_value)),
-                                          const ForgotPasswordWidget(),
-                                        ],
-                                      ),
-                                    ],
-                                  )),
-                            ),
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            RememberMeWidget(
+                                                value: _value,
+                                                onChanged: (value) => setState(
+                                                    () => _value = !_value)),
+                                            const ForgotPasswordWidget()
+                                          ])
+                                    ]))),
                             const SizedBox(height: 32),
                             SizedBox(
                                 width: screenWidht * 0.35,
@@ -139,7 +130,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             const AuthPromptWidget()
                           ]))))
                 ]))
-              : const CircularProgressIndicator();
+              : Center(child: const CircularProgressIndicator());
         }));
   }
 }

@@ -42,12 +42,14 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF0F0F0),
+        backgroundColor: Color(0xFFF0F0F0),
         appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 254, 254, 254),
-            title: Text('Agendar cita',
-                style: Theme.of(context).textTheme.titleMedium),
-            actions: [Image.asset('assets/icon/logo.png')]),
+            backgroundColor: Color(0xFFF0F0F0),
+            title: Text('Búsqueda',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
+                    .copyWith(color: Color(0xFFF44565)))),
         body: Padding(
             padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
             child: Column(children: [

@@ -22,7 +22,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
 
   @override
-  String get account => 'Email or phone';
+  String get account => 'Phone number';
 
   @override
   String get account_hint => 'Enter your account';

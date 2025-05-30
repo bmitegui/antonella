@@ -22,7 +22,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
 
   @override
-  String get account => 'Correo o teléfono';
+  String get account => 'Teléfono';
 
   @override
   String get account_hint => 'Ingrese su cuenta';

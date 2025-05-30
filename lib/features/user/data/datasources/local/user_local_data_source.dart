@@ -26,7 +26,7 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
   @override
   Future<void> uploadLocalUser({required UserModel userModel}) async {
     await box.clear();
-    await box.put('UserModel', userModel.toJson());
+    // await box.put('UserModel', userModel.toJson());
   }
 
   @override
