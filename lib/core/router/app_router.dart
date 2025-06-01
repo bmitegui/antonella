@@ -6,6 +6,7 @@ import 'package:antonella/features/service/presentation/screens/pages_screen.dar
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/sign_in_screen.dart';
 import 'package:antonella/features/user/presentation/screens/sign_up_screen.dart';
+import 'package:antonella/features/user/presentation/widgets/recover_forgot_password_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +24,8 @@ final appRouter = GoRouter(
           path: '/signIn', builder: (context, state) => const SignInScreen()),
       GoRoute(
           path: '/signUp', builder: (context, state) => const SignUpScreen()),
-      GoRoute(path: '/pages', builder: (context, state) => const PagesScreen())
+      GoRoute(path: '/pages', builder: (context, state) => const PagesScreen()),
+      GoRoute(path: '/forgotPassword', builder:(context, state) => const RecoverForgotPasswordWidget())
     ],
     redirect: (context, state) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -44,6 +46,8 @@ final appRouter = GoRouter(
           return '/start';
         } else if (isGoingTo == '/signUp') {
           return '/signUp';
+        } else if (isGoingTo == '/forgotPassword') {
+          return '/forgotPassword';
         } else if (isGoingTo != '/signIn') {
           return '/signIn';
         }

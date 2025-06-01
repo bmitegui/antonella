@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 class ForgotPasswordWidget extends StatelessWidget {
   const ForgotPasswordWidget({super.key});
@@ -11,7 +12,7 @@ class ForgotPasswordWidget extends StatelessWidget {
     return Container(
         alignment: Alignment.centerRight,
         child: TextButton(
-            onPressed: () {},
+            onPressed: () => GoRouter.of(context).go('/forgotPassword'),
             child: Text(texts.forgot_password,
                 style: textTheme.bodySmall!
                     .copyWith(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold, decoration: TextDecoration.underline))));

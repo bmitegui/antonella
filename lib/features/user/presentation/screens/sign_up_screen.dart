@@ -80,30 +80,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     CustomTextFormFieldWidget(
                                         textEditingController: _nameController,
                                         title: texts.name,
-                                        //hintText: texts.name_hint,
-                                        //prefixIcon: const Icon(Icons.person),
                                         validator: validateName),
                                     const SizedBox(height: 16),
                                     CustomTextFormFieldWidget(
-                                        //celular
                                         textEditingController: _emailController,
                                         title: 'Celular',
-                                        //hintText: texts.account_hint,
-                                        //prefixIcon: const Icon(Icons.email),
                                         keyboardType:
-                                            TextInputType.emailAddress,
+                                            TextInputType.phone,
                                         validator: validateEmail),
                                     const SizedBox(height: 16),
                                     CustomTextFormFieldWidget(
-                                        //correo
                                         textEditingController: _emailController,
                                         title: 'Correo',
-                                        //hintText: texts.account_hint,
-                                        //prefixIcon: const Icon(Icons.email),
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         validator: validateEmail),
-
                                     const SizedBox(height: 16),
                                     CustomPickDateWidget(
                                         title: texts.birthdate,
