@@ -1,27 +1,26 @@
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class RecoverForgotPasswordWidget extends StatefulWidget {
-  const RecoverForgotPasswordWidget({super.key});
+class ConfirmationWidget extends StatefulWidget {
+  const ConfirmationWidget({super.key});
 
   @override
-  State<RecoverForgotPasswordWidget> createState() => _RecoverForgotPasswordWidgetState();
+  State<ConfirmationWidget> createState() => _ConfirmationWidgetState();
 }
 
-class _RecoverForgotPasswordWidgetState extends State<RecoverForgotPasswordWidget> {
-  late TextEditingController numberController;
+class _ConfirmationWidgetState extends State<ConfirmationWidget> {
+  late TextEditingController codeController;
 
   @override
   void initState() {
     super.initState();
-    numberController = TextEditingController();
+    codeController = TextEditingController();
   }
 
   @override
   void dispose() {
-    numberController.dispose();
+    codeController.dispose();
     super.dispose();
   }
 
@@ -30,7 +29,7 @@ class _RecoverForgotPasswordWidgetState extends State<RecoverForgotPasswordWidge
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(leading: RetrocederLogoWidget(route: '/signIn'), backgroundColor: Color(0xFFFAE2E1)),
+      appBar: AppBar(leading: RetrocederLogoWidget(route: '/forgotPassword'), backgroundColor: Color(0xFFFAE2E1)),
       backgroundColor: Color(0xFFFAE2E1),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -40,19 +39,19 @@ class _RecoverForgotPasswordWidgetState extends State<RecoverForgotPasswordWidge
             child: Column(
               children: [
                 SizedBox(height: 32),
-                Text('¿Olvidaste tu contraseña?',
+                Text('Confirmación',
                   style: textTheme.bodyLarge!.copyWith(color: Color(0XFFF44565),
                               fontWeight: FontWeight.bold)),
                 SizedBox(height: 32),
-                Text('Ingresa tu número celular asociado a tu cuenta',
+                Text('El código ha sido enviado a su número telefónico',
                   style: textTheme.bodyMedium!.copyWith(color: Colors.black,
                               fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center),
-                SizedBox(height: 16),
+                SizedBox(height: 32),
                 CustomTextFormFieldWidget(
-                  textEditingController: numberController,
-                  hintText: 'Celular',
-                  keyboardType: TextInputType.phone,
+                  textEditingController: codeController,
+                  hintText: 'Ingrese Código',
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 32),
                 SizedBox(
@@ -65,7 +64,9 @@ class _RecoverForgotPasswordWidgetState extends State<RecoverForgotPasswordWidge
                           backgroundColor:
                               WidgetStateProperty.all(
                                   Color(0xFFF44565))),
-                      onPressed: () => GoRouter.of(context).go('/confirmation'),
+                      onPressed: () {
+                        print('Enviado');
+                      },
                       child: Text('Enviar'))),
               ],
             ),
