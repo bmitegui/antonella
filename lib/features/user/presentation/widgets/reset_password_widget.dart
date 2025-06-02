@@ -1,6 +1,7 @@
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ResetPasswordWidget extends StatefulWidget {
   const ResetPasswordWidget({super.key});
@@ -10,17 +11,20 @@ class ResetPasswordWidget extends StatefulWidget {
 }
 
 class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
-  late TextEditingController codeController;
+  late TextEditingController passwordController;
+  late TextEditingController repeatPasswordController;
 
   @override
   void initState() {
     super.initState();
-    codeController = TextEditingController();
+    passwordController = TextEditingController();
+    repeatPasswordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    codeController.dispose();
+    passwordController.dispose();
+    repeatPasswordController.dispose();
     super.dispose();
   }
 
@@ -29,7 +33,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(leading: RetrocederLogoWidget(route: '/forgotPassword'), backgroundColor: Color(0xFFFAE2E1)),
+      appBar: AppBar(leading: RetrocederLogoWidget(route: '/confirmation'), backgroundColor: Color(0xFFFAE2E1)),
       backgroundColor: Color(0xFFFAE2E1),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -39,19 +43,27 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
             child: Column(
               children: [
                 SizedBox(height: 32),
-                Text('Confirmación',
+                Text('Restablecer contraseña',
                   style: textTheme.bodyLarge!.copyWith(color: Color(0XFFF44565),
                               fontWeight: FontWeight.bold)),
                 SizedBox(height: 32),
-                Text('El código ha sido enviado a su número telefónico',
+                Text('Escriba su nueva contraseña',
                   style: textTheme.bodyMedium!.copyWith(color: Colors.black,
                               fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center),
                 SizedBox(height: 32),
                 CustomTextFormFieldWidget(
-                  textEditingController: codeController,
-                  hintText: 'Ingrese Código',
-                  keyboardType: TextInputType.number,
+                  title: 'Nueva Contraseña',
+                  textEditingController: passwordController,
+                  hintText: 'Contraseña',
+                  keyboardType: TextInputType.visiblePassword,
+                ),
+                SizedBox(height: 32),
+                CustomTextFormFieldWidget(
+                  title: 'Confirmar Contraseña',
+                  textEditingController: passwordController,
+                  hintText: ' Repetir Contraseña',
+                  keyboardType: TextInputType.visiblePassword,
                 ),
                 SizedBox(height: 32),
                 SizedBox(
@@ -64,10 +76,8 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
                           backgroundColor:
                               WidgetStateProperty.all(
                                   Color(0xFFF44565))),
-                      onPressed: () {
-                        print('Enviado');
-                      },
-                      child: Text('Enviar'))),
+                      onPressed: () => GoRouter.of(context).go('/signIn'),
+                      child: Text('Guardar'))),
               ],
             ),
           ),

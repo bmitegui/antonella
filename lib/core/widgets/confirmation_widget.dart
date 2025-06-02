@@ -1,6 +1,7 @@
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ConfirmationWidget extends StatefulWidget {
   const ConfirmationWidget({super.key});
@@ -64,9 +65,7 @@ class _ConfirmationWidgetState extends State<ConfirmationWidget> {
                           backgroundColor:
                               WidgetStateProperty.all(
                                   Color(0xFFF44565))),
-                      onPressed: () {
-                        print('Enviado');
-                      },
+                      onPressed: () => GoRouter.of(context).go('/resetPassword'),
                       child: Text('Enviar'))),
               ],
             ),
