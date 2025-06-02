@@ -8,16 +8,21 @@ class CustomTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tab(
-      
-        text: text,
-        child: number != null
+        icon: number != null
             ? Row(children: [
                 Text(text),
+                const SizedBox(width: 4),
                 Container(
+                    padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle, color: Color(0xFFF44565)),
-                    child: Text('$number'))
+                    child: Text('$number',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: Colors.white)))
               ])
-            : null);
+            : null,
+        text: number == null ? text : null);
   }
 }

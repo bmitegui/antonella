@@ -1,6 +1,5 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:antonella/core/l10n/app_localizations.dart';
 
 class CustomDropdownSearchWidget extends StatelessWidget {
   final String title;
