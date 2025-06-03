@@ -2,13 +2,13 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/router/app_router_notifier.dart';
 import 'package:antonella/core/screens/loading_screen.dart';
 import 'package:antonella/core/screens/start_screen.dart';
-import 'package:antonella/core/widgets/confirmation_widget.dart';
+import 'package:antonella/features/user/presentation/screens/confirmation_screen.dart';
 import 'package:antonella/features/service/presentation/screens/pages_screen.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/sign_in_screen.dart';
 import 'package:antonella/features/user/presentation/screens/sign_up_screen.dart';
-import 'package:antonella/features/user/presentation/widgets/recover_forgot_password_widget.dart';
-import 'package:antonella/features/user/presentation/widgets/reset_password_widget.dart';
+import 'package:antonella/features/user/presentation/screens/recover_forgot_password_screen.dart';
+import 'package:antonella/features/user/presentation/widgets/reset_password_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,9 +27,9 @@ final appRouter = GoRouter(
       GoRoute(
           path: '/signUp', builder: (context, state) => const SignUpScreen()),
       GoRoute(path: '/pages', builder: (context, state) => const PagesScreen()),
-      GoRoute(path: '/forgotPassword', builder:(context, state) => const RecoverForgotPasswordWidget()),
-      GoRoute(path: '/confirmation', builder: (context, state) => const ConfirmationWidget()),
-      GoRoute(path: '/resetPassword', builder: (context, state) => const ResetPasswordWidget())
+      GoRoute(path: '/forgotPassword', builder:(context, state) => const RecoverForgotPasswordScreen()),
+      GoRoute(path: '/confirmation', builder: (context, state) => const ConfirmationScreen()),
+      GoRoute(path: '/resetPassword', builder: (context, state) => const ResetPasswordScreen())
     ],
     redirect: (context, state) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();

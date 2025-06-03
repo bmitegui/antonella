@@ -4,6 +4,7 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/screens/detail_service_screen.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
 import 'package:flutter/material.dart';
@@ -33,24 +34,25 @@ class ServiceInfoWidget extends StatelessWidget {
             padding: const EdgeInsets.only(right: 24, bottom: 16),
             child: GestureDetector(
                 onTap: () async {
-                  if (state is ServicesSelectedLoaded) {
-                    sl<ServiceFormBloc>().add(GetListServiceFormEvent(
-                        serviceEntity: isSelected
-                            ? state.listServicesSelected[index]
-                            : serviceEntity));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailServiceScreen()));
+                  // if (state is ServicesSelectedLoaded) {
+                  //   sl<ServiceFormBloc>().add(GetListServiceFormEvent(
+                  //       serviceEntity: isSelected
+                  //           ? state.listServicesSelected[index]
+                  //           : serviceEntity));
 
-                    await showModalBottomSheet<List>(
-                        scrollControlDisabledMaxHeightRatio: 1,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.white,
-                        context: context,
-                        builder: (BuildContext context) {
-                          return FormServiceSelectedWidget(
-                              serviceEntity: isSelected
-                                  ? state.listServicesSelected[index]
-                                  : serviceEntity);
-                        });
-                  }
+                  //   await showModalBottomSheet<List>(
+                  //       scrollControlDisabledMaxHeightRatio: 1,
+                  //       isScrollControlled: true,
+                  //       backgroundColor: Colors.white,
+                  //       context: context,
+                  //       builder: (BuildContext context) {
+                  //         return FormServiceSelectedWidget(
+                  //             serviceEntity: isSelected
+                  //                 ? state.listServicesSelected[index]
+                  //                 : serviceEntity);
+                  //       });
+                  // }
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width / 2,

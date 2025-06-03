@@ -49,7 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: Color(0xFFFAE2E1),
         appBar: AppBar(
           backgroundColor: Color(0xFFFAE2E1),
-          leading: RetrocederLogoWidget(route: '/signIn')),      
+          leading: ArrowBack(route: '/signIn', color: Color(0xFFF08DA2))),      
         body: Center(
             child: BlocConsumer<UserBloc, UserState>(
                 listener: (BuildContext context, UserState state) {
