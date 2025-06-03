@@ -1,10 +1,11 @@
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/service/data/models/models.dart';
+import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
-  Future<ListServicesModel> getServices({required String? filter});
-  Future<List<ServiceFormModel>> getListServiceForm({required String category});
+  Future<ListServicesModel> getServices({required ServiceCategory? filter});
+  Future<List<ServiceFormModel>> getListServiceForm({required ServiceCategory category});
 }
 
 class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
@@ -12,7 +13,7 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
   ServiceRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<ListServicesModel> getServices({required String? filter}) async {
+  Future<ListServicesModel> getServices({required ServiceCategory? filter}) async {
     try {
       // final result = await client.post(Environment.signUp,
       //     data: {
@@ -31,13 +32,15 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
       //   throw ServerException(message: result.data['message']);
       // }
 
-      final servicesData = (filter == null || filter == 'Todos')
+      print(filter);
+
+      final servicesData = (filter == null || filter == ServiceCategory.all)
           ? allServices
-          : filter == 'Maquillaje'
+          : filter == ServiceCategory.makeup
               ? makeupServices
-              : filter == 'Cabello'
+              : filter == ServiceCategory.hair
                   ? hairServices
-                  : filter == 'Uñas'
+                  : filter == ServiceCategory.nails
                       ? nailsServices
                       : spaServices;
       servicesData['categorySelected'] = filter ?? 'Todos';
@@ -51,13 +54,13 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
 
   @override
   Future<List<ServiceFormModel>> getListServiceForm(
-      {required String category}) async {
+      {required ServiceCategory category}) async {
     try {
-      final listServiceFormsData = category == 'Maquillaje'
+      final listServiceFormsData = category == ServiceCategory.makeup
           ? makeupServices
-          : category == 'Cabello'
+          : category == ServiceCategory.hair
               ? hairServiceForm
-              : category == 'Uñas'
+              : category == ServiceCategory.nails
                   ? nailsServiceForm
                   : spaServiceForm;
 

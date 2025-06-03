@@ -10,7 +10,8 @@ final class ServiceLoading extends ServiceState {}
 
 final class ServicesLoaded extends ServiceState {
   final ListServicesEntity listServices;
-  ServicesLoaded({required this.listServices});
+  final ServiceCategory serviceCategory;
+  ServicesLoaded({required this.listServices, required this.serviceCategory});
 
   Map<String, List<ServiceEntity>> getDataBySubCategories() {
     Map<String, List<ServiceEntity>> data = {};

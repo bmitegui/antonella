@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:antonella/core/l10n/app_localizations.dart';
+import 'package:antonella/features/service/domain/entities/service_entity.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
@@ -56,8 +59,21 @@ String formatDateTime(DateTime? dateTime) => dateTime == null
     ? 'dd-MM-yyyy'
     : DateFormat('dd-MM-yyyy').format(dateTime.toLocal());
 
-
 String capitalize(String text) {
   if (text.isEmpty) return text;
   return text[0].toUpperCase() + text.substring(1).toLowerCase();
+}
+
+String getCategoryText(
+    {required BuildContext context, required ServiceCategory serviceCategory}) {
+  final texts = AppLocalizations.of(context)!;
+  return (serviceCategory == ServiceCategory.hair)
+      ? texts.hair
+      : (serviceCategory == ServiceCategory.nails)
+          ? texts.nails
+          : (serviceCategory == ServiceCategory.spa)
+              ? texts.spa
+              : (serviceCategory == ServiceCategory.makeup)
+                  ? texts.makeup
+                  : texts.all;
 }

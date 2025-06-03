@@ -18,6 +18,6 @@ class GetListServiceFormUseCase
 }
 
 class GetListServiceFormParams {
-  final String category;
+  final ServiceCategory category;
   GetListServiceFormParams({required this.category});
 }

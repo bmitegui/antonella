@@ -17,7 +17,7 @@ class GetServicesUseCase implements UseCase<void, GetServicesParams> {
 }
 
 class GetServicesParams {
-  final String? filter;
+  final ServiceCategory? filter;
 
   GetServicesParams({required this.filter});
 }

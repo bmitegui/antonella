@@ -3,6 +3,7 @@ import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/network/network.dart';
 import 'package:antonella/features/service/data/datasources/datasources.dart';
 import 'package:antonella/features/service/data/models/models.dart';
+import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/domain/repositories/repositories.dart';
 import 'package:dartz/dartz.dart';
 
@@ -15,7 +16,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
 
   @override
   Future<Either<Failure, ListServicesModel>> getServices(
-      {required String? filter}) async {
+      {required ServiceCategory? filter}) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteServices =
@@ -33,7 +34,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
 
   @override
   Future<Either<Failure, List<ServiceFormModel>>> getListServiceForm(
-      {required String category}) async {
+      {required ServiceCategory category}) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteListServiceForms = await serviceRemoteDataSource

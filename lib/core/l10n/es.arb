@@ -24,5 +24,11 @@
     "dont_have_account": "¿No tienes una cuenta?",
     "name": "Nombre",
     "name_hint": "Ingrese su nombre",
-    "birthdate": "Fecha de nacimiento"
+    "birthdate": "Fecha de nacimiento",
+
+    "all": "Todos",
+    "hair": "Cabello",
+    "nails": "Uñas",
+    "spa": "Spa",
+    "makeup": "Maquillaje"
 }

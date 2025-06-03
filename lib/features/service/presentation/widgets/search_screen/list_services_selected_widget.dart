@@ -33,7 +33,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                Text(service.category,
+                                Text(service.category.name,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!

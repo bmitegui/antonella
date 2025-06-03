@@ -1,11 +1,12 @@
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:equatable/equatable.dart';
 
+enum ServiceCategory {all, makeup, hair, nails, spa}
 class ServiceEntity extends Equatable {
   final String id;
   final String name;
   final String description;
-  final String category;
+  final ServiceCategory category;
   final String subCategory;
   final String urlImage;
   final double minPrice;
@@ -32,7 +33,7 @@ class ServiceEntity extends Equatable {
     String? id,
     String? name,
     String? description,
-    String? category,
+    ServiceCategory? category,
     String? subCategory,
     String? urlImage,
     double? minPrice,

@@ -19,7 +19,7 @@ class FormServiceSelectedWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
               CustomTitleSeparatorWidget(
-                  text: 'Categoría:', description: serviceEntity.category),
+                  text: 'Categoría:', description: serviceEntity.category.name),
               const SizedBox(height: 8),
               CustomTitleSeparatorWidget(
                   text: 'Valor aproximado:',

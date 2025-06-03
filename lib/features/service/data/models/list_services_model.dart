@@ -2,7 +2,7 @@ import 'package:antonella/features/service/data/models/models.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 
 class ListServicesModel extends ListServicesEntity {
-  ListServicesModel({required super.services, required super.categorySelected});
+  ListServicesModel({required super.services});
 
   factory ListServicesModel.fromJson(Map<String, dynamic> json) {
     List<ServiceEntity> services = [];
@@ -13,7 +13,6 @@ class ListServicesModel extends ListServicesEntity {
       }).toList();
     }
 
-    return ListServicesModel(
-        services: services, categorySelected: json['categorySelected']);
+    return ListServicesModel(services: services);
   }
 }

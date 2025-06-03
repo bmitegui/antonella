@@ -16,15 +16,19 @@ class BienvenidaWidget extends StatelessWidget {
                   textAlign: TextAlign.start,
                   text: TextSpan(
                       text: 'Bienvenid@, ',
-                      style:
-                          Theme.of(context).textTheme.titleMedium!.copyWith(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontWeight: FontWeight.bold),
                       children: [
                         TextSpan(
                             text: capitalize(state.user.name),
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium!
-                                .copyWith(color: Color(0xFFF44565)))
+                                .titleLarge!
+                                .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFF44565)))
                       ])))
           : const SizedBox.shrink();
     });

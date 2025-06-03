@@ -1,3 +1,4 @@
+import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/bottom_buttons_search_widget.dart';
@@ -19,7 +20,7 @@ class SelectServicesPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CustomSearchWidget(),
+            CustomSearchWidget(),
             const ProgressSearchWidget(page: 1),
             const SizedBox(height: 16),
             const ServicesFilterWidget(),
@@ -28,7 +29,7 @@ class SelectServicesPage extends StatelessWidget {
                 child: RefreshIndicator(
                     onRefresh: () async => context
                         .read<ServiceBloc>()
-                        .add(GetServicesEvent(filter: null)),
+                        .add(GetServicesEvent(filter: ServiceCategory.all)),
                     child: const SingleChildScrollView(
                         child: ServicesInfoWidget()))),
             const SizedBox(height: 16),
