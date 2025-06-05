@@ -6,7 +6,7 @@ import 'package:antonella/features/service/presentation/screens/chats_screen.dar
 import 'package:antonella/features/service/presentation/screens/home_screen.dart';
 import 'package:antonella/features/service/presentation/screens/notifications_screen.dart';
 import 'package:antonella/features/service/presentation/screens/search_screen.dart';
-import 'package:antonella/features/service/presentation/widgets/custom_bottom_navigator_bar_widget.dart';
+import 'package:antonella/core/widgets/custom_bottom_navigator_bar.dart';
 import 'package:antonella/features/user/presentation/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +59,7 @@ class _PagesScreenState extends State<PagesScreen> {
             children: _contentPages.map((Widget content) {
               return content;
             }).toList()),
-        bottomNavigationBar: CustomBottomNavigatorBarWidget(
+        bottomNavigationBar: CustomBottomNavigatorBar(
             activeIndex: _currentIndex,
             onTabChange: (index) {
               FocusScope.of(context).unfocus();

@@ -1,4 +1,4 @@
-import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/service_image_network.dart';
 import 'package:flutter/material.dart';
 
 class ListChatsWidget extends StatelessWidget {
@@ -42,7 +42,7 @@ class ListChatsWidget extends StatelessWidget {
             ),
         child: ListTile(
             title: Row(children: [
-              ServiceImageNetworkImage(width: 64, height: 64, urlImage: url),
+              ServiceImageNetwork(width: 64, height: 64, urlImage: url),
               const SizedBox(width: 16),
               Expanded(
                   child: Column(

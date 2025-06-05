@@ -23,7 +23,7 @@ class CustomCircularIconButtom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final effectiveborderColor = borderColor ?? Colors.grey.shade300;
-    final effectivebottomTitleColor = bottomTitleColor ?? Colors.black54;
+    final effectivebottomTitleColor = bottomTitleColor ?? Colors.grey;
 
     return Column(children: [
       GestureDetector(

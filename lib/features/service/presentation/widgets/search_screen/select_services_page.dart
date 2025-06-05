@@ -14,27 +14,20 @@ class SelectServicesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ServiceBloc, ServiceState>(builder: (context, state) {
-      return Center(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-            CustomSearchWidget(),
-            const ProgressSearchWidget(page: 1),
-            const SizedBox(height: 16),
-            const ServicesFilterWidget(),
-            const SizedBox(height: 16),
-            Expanded(
-                child: RefreshIndicator(
-                    onRefresh: () async => context
-                        .read<ServiceBloc>()
-                        .add(GetServicesEvent(filter: ServiceCategory.all)),
-                    child: const SingleChildScrollView(
-                        child: ServicesInfoWidget()))),
-            const SizedBox(height: 16),
-            BottomButtonsSearchScreen(nextPage: nextPage)
-          ]));
-    });
+    return Center(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+          CustomSearchWidget(),
+          const SizedBox(height: 16),
+          const ProgressSearchWidget(page: 1),
+          const SizedBox(height: 16),
+          const ServicesFilterWidget(),
+          const SizedBox(height: 16),
+          Expanded(child: ServicesInfoWidget()),
+          const SizedBox(height: 16),
+          BottomButtonsSearchScreen(nextPage: nextPage)
+        ]));
   }
 }

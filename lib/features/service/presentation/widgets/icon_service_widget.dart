@@ -1,4 +1,5 @@
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
+import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:flutter/material.dart';
 
 class IconServiceWidget extends StatelessWidget {
@@ -18,13 +19,13 @@ class IconServiceWidget extends StatelessWidget {
     return CustomCircularIconButtom(
         borderColor: isSelected ? Color(0xFFF44565) : null,
         bottomTitleColor: isSelected ? Color(0xFFF44565) : null,
-        fontWeight: isSelected ? FontWeight.bold : null,
+        fontWeight: FontWeight.bold,
         bottomTitle: bottomTitle,
-        padding:  EdgeInsets.zero,
+        padding: EdgeInsets.zero,
         icon: CircleAvatar(
             radius: 24,
-            foregroundImage: AssetImage(asset),
-            backgroundColor: Colors.white),
+            backgroundColor: Colors.white,
+            child: CustomLocalSvgImage(assetPath: asset)),
         onTap: onTap);
   }
 }

@@ -1,12 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/screens/detail_service_screen.dart';
-import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/service_image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,10 +29,13 @@ class ServiceInfoWidget extends StatelessWidget {
 
       return Stack(children: [
         Padding(
-            padding: const EdgeInsets.only(right: 24, bottom: 16),
+            padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
                 onTap: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailServiceScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DetailServiceScreen()));
                   // if (state is ServicesSelectedLoaded) {
                   //   sl<ServiceFormBloc>().add(GetListServiceFormEvent(
                   //       serviceEntity: isSelected
@@ -59,19 +60,14 @@ class ServiceInfoWidget extends StatelessWidget {
                     height: MediaQuery.of(context).size.height / 2.7,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: isSelected ? Colors.green : Colors.grey.shade50,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              offset: const Offset(0, 2),
-                              blurRadius: 1)
-                        ]),
+                        color: isSelected
+                            ? Color(0xFFF44565)
+                            : Colors.transparent),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 8),
-                          ServiceImageNetworkImage(
-                              urlImage: serviceEntity.urlImage),
+                          ServiceImageNetwork(urlImage: serviceEntity.urlImage),
                           const SizedBox(height: 8),
                           Padding(
                               padding:
@@ -85,21 +81,20 @@ class ServiceInfoWidget extends StatelessWidget {
                                       .copyWith(
                                           color: isSelected
                                               ? Colors.white
-                                              : Colors.amber))),
-                          Expanded(
-                              child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 8),
-                                  child: Text(serviceEntity.description,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: isSelected
-                                                  ? Colors.white70
-                                                  : Colors.black54)))),
+                                              : null))),
+                          Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Text(serviceEntity.description,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: isSelected
+                                              ? Colors.white70
+                                              : Colors.grey))),
                           const SizedBox(height: 8),
                           Align(
                               alignment: Alignment.centerRight,
@@ -110,8 +105,8 @@ class ServiceInfoWidget extends StatelessWidget {
                                       '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium!
-                                          .copyWith())))
+                                          .titleSmall!
+                                          .copyWith(color: Color(0xFFF44565)))))
                         ])))),
         if (isSelected)
           const Positioned(

@@ -10,19 +10,27 @@ class ProgressSearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = page == 1
-        ? 'Seleccione los servicios'
+        ? 'Seleccione un sub-servicio'
         : page == 2
             ? 'Seleccione una fecha'
             : page == 3
                 ? 'Seleccione un horario'
                 : 'Confirme su cita';
-    return Column(children: [
-      Text(text),
-      LinearPercentIndicator(
-          percent: page / 4,
-          progressColor: const Color(0XFFAF234A),
-          backgroundColor: const Color(0XFFAF234A).withOpacity(0.25),
-          barRadius: const Radius.circular(8))
-    ]);
+    return page == 1
+        ? Align(
+            alignment: Alignment.center,
+            child: Text(text,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.grey)))
+        : Column(children: [
+            Text(text),
+            LinearPercentIndicator(
+                percent: page / 4,
+                progressColor: const Color(0XFFAF234A),
+                backgroundColor: const Color(0XFFAF234A).withOpacity(0.25),
+                barRadius: const Radius.circular(8))
+          ]);
   }
 }

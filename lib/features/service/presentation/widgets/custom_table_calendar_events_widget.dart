@@ -1,5 +1,5 @@
 import 'package:antonella/core/widgets/custom_icon_button.dart';
-import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/service_image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -220,7 +220,7 @@ class _CustomTableCalendarEventsWidgetState
                         .titleSmall!
                         .copyWith(color: event.color)),
                 const SizedBox(height: 8),
-                ServiceImageNetworkImage(
+                ServiceImageNetwork(
                     urlImage: event.urlImage,
                     width: MediaQuery.of(context).size.width / 3.2,
                     height: MediaQuery.of(context).size.height / 7),
