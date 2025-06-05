@@ -8,11 +8,12 @@ abstract class UserRepository {
     required String password,
     required bool rememberMe,
   });
-  Future<Either<Failure, UserModel>> signUp({
-    required String account,
-    required String name,
-    required String password,
-    required String birthdate,
-  });
+  Future<Either<Failure, UserModel>> signUp(
+      {required String account,
+      required String name,
+      required String password,
+      required String birthdate,
+      required String genero,
+      required String phoneNumber});
   Future<Either<Failure, void>> signOut();
 }

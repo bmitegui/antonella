@@ -14,6 +14,8 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final void Function()? onEditingComplete;
   final Widget? suffixIcon;
   final String? errorMessage;
+  final void Function()? onTap;
+  final bool readOnly;
 
   const CustomTextFormFieldWidget(
       {super.key,
@@ -29,7 +31,9 @@ class CustomTextFormFieldWidget extends StatefulWidget {
       this.validator,
       this.onEditingComplete,
       this.errorMessage,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.onTap,
+      this.readOnly = false});
 
   @override
   State<CustomTextFormFieldWidget> createState() =>
@@ -63,6 +67,8 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                         color: Colors.black, fontWeight: FontWeight.bold))),
           if (widget.title != null) const SizedBox(height: 8),
           TextFormField(
+              readOnly: widget.readOnly,
+              onTap: widget.onTap,
               keyboardType: widget.keyboardType,
               autofillHints: widget.autofillHints,
               validator: widget.validator,
@@ -99,7 +105,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                 alignment: Alignment.center,
                 height: 45,
                 child: Text(widget.errorMessage!,
-                maxLines: 2,
+                    maxLines: 2,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,

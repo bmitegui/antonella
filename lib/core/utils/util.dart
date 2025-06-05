@@ -56,8 +56,8 @@ Future<File?> pickImage(ImageSource imageSource) async {
 }
 
 String formatDateTime(DateTime? dateTime) => dateTime == null
-    ? 'dd-MM-yyyy'
-    : DateFormat('dd-MM-yyyy').format(dateTime.toLocal());
+    ? 'yyyy-MM-dd'
+    : DateFormat('yyyy-MM-dd').format(dateTime.toLocal());
 
 String capitalize(String text) {
   if (text.isEmpty) return text;
@@ -76,4 +76,13 @@ String getCategoryText(
               : (serviceCategory == ServiceCategory.makeup)
                   ? texts.makeup
                   : texts.all;
+}
+
+Future<DateTime?> selectDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1950),
+      lastDate: DateTime(2100));
+  return picked;
 }

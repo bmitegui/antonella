@@ -1,12 +1,12 @@
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/core/widgets/custom_pick_date_widget.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/dropdown_search_widget.dart';
 import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -22,7 +22,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
-  DateTime? _birthdate;
+  late TextEditingController _phoneController;
+  late TextEditingController _birthdateController;
+
   String? genero;
   @override
   void initState() {
@@ -30,13 +32,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    _phoneController = TextEditingController();
+    _birthdateController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _nameController.clear();
-    _emailController.clear();
-    _passwordController.clear();
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -46,10 +51,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: Color(0xFFFAE2E1),
+        backgroundColor: Color(0xFFFAE2E1),
         appBar: AppBar(
-          backgroundColor: Color(0xFFFAE2E1),
-          leading: ArrowBack(route: '/signIn', color: Color(0xFFF08DA2))),      
+            backgroundColor: Color(0xFFFAE2E1),
+            leading: ArrowBack(route: '/signIn', color: Color(0xFFF08DA2))),
         body: Center(
             child: BlocConsumer<UserBloc, UserState>(
                 listener: (BuildContext context, UserState state) {
@@ -73,95 +78,114 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     .copyWith(color: Color(0XFFF44565))),
                             const SizedBox(height: 32),
                             Center(
-                              child: SizedBox(
-                                width: screenWidht * 0.8,
-                                child: Column(
-                                  children: [
-                                    CustomTextFormFieldWidget(
-                                        textEditingController: _nameController,
-                                        title: texts.name,
-                                        validator: validateName),
-                                    const SizedBox(height: 16),
-                                    CustomTextFormFieldWidget(
-                                        textEditingController: _emailController,
-                                        title: 'Celular',
-                                        keyboardType:
-                                            TextInputType.phone,
-                                        validator: validateEmail),
-                                    const SizedBox(height: 16),
-                                    CustomTextFormFieldWidget(
-                                        textEditingController: _emailController,
-                                        title: 'Correo',
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        validator: validateEmail),
-                                    const SizedBox(height: 16),
-                                    CustomPickDateWidget(
-                                        title: texts.birthdate,
-                                        dateTime: _birthdate,
-                                        onSelectDate: (value) =>
-                                            setState(() => _birthdate = value)),
-                                    const SizedBox(height: 16),
-                                    CustomDropdownSearchWidget(
-                                        title: 'Género',
-                                        showSearchBox: false,
-                                        selectedItem: genero,
-                                        initialText: 'Seleccionar género',
-                                        options: [
-                                          'Masculino',
-                                          'Femenino'
-                                        ],
-                                        onChange: (value) {
-                                          setState(() {
-                                            genero = value;
-                                          });
-                                        }),
-                                    const SizedBox(height: 16),
-                                    CustomTextFormFieldWidget(
-                                        textEditingController:
-                                            _passwordController,
-                                        title: texts.password,
-                                        //hintText: texts.password_hint,
-                                        //prefixIcon: const Icon(Icons.lock),
-                                        obscureText: true,
-                                        validator: validatePassword),
-                                    const SizedBox(height: 40),
-                                    SizedBox(
-                                        width: screenWidht * 0.35,
-                                        child: FilledButton(
-                                          style: ButtonStyle(
-                                            textStyle: WidgetStateProperty.all(
-                                                TextStyle(
-                                                    fontWeight: FontWeight.bold)),
-                                            backgroundColor:
-                                                WidgetStateProperty.all(
-                                                    Color(0xFFF44565))),
-                                          onPressed: () {
-                                            if (_formKey.currentState!
-                                                .validate()) {
-                                              context.read<UserBloc>().add(
-                                                  SignUpEvent(
-                                                      name: _nameController
-                                                          .text
-                                                          .trim(),
-                                                      birthdate:
-                                                          formatDateTime(
-                                                              _birthdate),
-                                                      account:
-                                                          _emailController
+                                child: SizedBox(
+                                    width: screenWidht * 0.8,
+                                    child: Column(children: [
+                                      CustomTextFormFieldWidget(
+                                          textEditingController:
+                                              _nameController,
+                                          title: texts.name),
+                                      const SizedBox(height: 16),
+                                      CustomTextFormFieldWidget(
+                                          textEditingController:
+                                              _phoneController,
+                                          title: 'Celular',
+                                          keyboardType: TextInputType.phone),
+                                      const SizedBox(height: 16),
+                                      CustomTextFormFieldWidget(
+                                          textEditingController:
+                                              _emailController,
+                                          title: 'Correo',
+                                          keyboardType:
+                                              TextInputType.emailAddress),
+                                      const SizedBox(height: 16),
+                                      CustomTextFormFieldWidget(
+                                          readOnly: true,
+                                          onTap: () async {
+                                            final DateTime? dateTime =
+                                                await selectDate(context);
+                                            if (dateTime != null) {
+                                              setState(() {
+                                                _birthdateController =
+                                                    TextEditingController(
+                                                        text: formatDateTime(
+                                                            dateTime));
+                                              });
+                                            }
+                                          },
+                                          textEditingController:
+                                              _birthdateController,
+                                          title: texts.birthdate,
+                                          suffixIcon: Icon(Icons.date_range,
+                                              color: Colors.grey)),
+                                      const SizedBox(height: 16),
+                                      CustomDropdownSearchWidget(
+                                          title: 'Género',
+                                          showSearchBox: false,
+                                          selectedItem: genero,
+                                          initialText: 'Seleccionar género',
+                                          options: ['Masculino', 'Femenino'],
+                                          onChange: (value) {
+                                            setState(() {
+                                              genero = value;
+                                            });
+                                          }),
+                                      const SizedBox(height: 16),
+                                      CustomTextFormFieldWidget(
+                                          textEditingController:
+                                              _passwordController,
+                                          title: texts.password,
+                                          obscureText: true),
+                                      const SizedBox(height: 40),
+                                      SizedBox(
+                                          width: screenWidht * 0.35,
+                                          child: FilledButton(
+                                              style: ButtonStyle(
+                                                  textStyle:
+                                                      WidgetStateProperty.all(
+                                                          TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                  backgroundColor:
+                                                      WidgetStateProperty.all(
+                                                          Color(0xFFF44565))),
+                                              onPressed: () {
+                                                if (_nameController
+                                                        .text.isNotEmpty &&
+                                                    _emailController
+                                                        .text.isNotEmpty &&
+                                                    _phoneController
+                                                        .text.isNotEmpty &&
+                                                    _birthdateController
+                                                        .text.isNotEmpty &&
+                                                    genero != null &&
+                                                    _passwordController
+                                                        .text.isNotEmpty) {
+                                                  context.read<UserBloc>().add(
+                                                      SignUpEvent(
+                                                          phoneNumber:
+                                                              _phoneController
+                                                                  .text,
+                                                          genero: genero!,
+                                                          name: _nameController
                                                               .text
                                                               .trim(),
-                                                      password:
-                                                          _passwordController
-                                                              .text
-                                                              .trim()));
-                                              }
-                                            },
-                                            child: Text('Registrar')))
-                                  ],
-                                ),
-                              ),
-                            )
+                                                          birthdate:
+                                                              _birthdateController
+                                                                  .text,
+                                                          account:
+                                                              _emailController
+                                                                  .text
+                                                                  .trim(),
+                                                          password:
+                                                              _passwordController
+                                                                  .text
+                                                                  .trim()));
+                                                }
+                                              },
+                                              child: Text('Registrar')))
+                                    ])))
                           ]))))
               : const CircularProgressIndicator();
         })));
