@@ -1,7 +1,6 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
-import 'package:antonella/features/user/presentation/widgets/profile_option_widget.dart';
 import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,16 +21,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFFF0F0F0),
-          title: Text('Ajustes',
-              textAlign: TextAlign.left,
-              style: textTheme.titleLarge!.copyWith(
-                  fontWeight: FontWeight.bold, color: const Color(0xFFFF4B7D))),
-        ),
+            backgroundColor: Color(0xFFF0F0F0),
+            title: Text('Ajustes',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
+                    .copyWith(color: Color(0xFFF44565)))),
         backgroundColor: Color(0xFFF0F0F0),
-        body: Center(
-            child: BlocConsumer<UserBloc, UserState>(
-                listener: (BuildContext context, UserState state) {
+        body: BlocConsumer<UserBloc, UserState>(
+            listener: (BuildContext context, UserState state) {
           if (state is UserUnauthenticated) {
             showTopSnackBar(Overlay.of(context),
                 const CustomSnackBar.success(message: 'Cierre exitoso'));
@@ -43,142 +41,116 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return (state is UserAuthenticated)
               ? Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                      const EdgeInsets.only(right: 16, left: 16, bottom: 32),
                   child: SingleChildScrollView(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                        SizedBox(height: 16),
                         Center(child: const SettingsPhotowidget()),
                         const SizedBox(height: 8),
                         Center(
-                          child: Text(state.user.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith()),
-                        ),
+                            child: Text(state.user.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith())),
                         Center(
                             child: Text(state.user.email,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
-                                    .copyWith(
-                                      color: Colors.grey,
-                                    ))),
+                                    .copyWith(color: Colors.grey))),
+                        const SizedBox(height: 16),
                         // Sección: Cuenta
                         SizedBox(
-                          child: Text('Cuenta',
-                              textAlign: TextAlign.left,
-                              style: textTheme.titleLarge!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF333333))),
-                        ),
-                        const SizedBox(height: 12),
+                            child: Text('Cuenta',
+                                textAlign: TextAlign.left,
+                                style: textTheme.titleMedium!
+                                    .copyWith(color: Colors.grey))),
+                        const SizedBox(height: 8),
                         Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(children: [
                               ListTile(
-                                leading: const Icon(Icons.lock_outline),
-                                title: const Text('Cambiar Contraseña'),
-                                onTap: () {},
-                              ),
+                                  leading: const Icon(Icons.lock_outline),
+                                  title: Text('Cambiar Contraseña'),
+                                  onTap: () {}),
                               const Divider(height: 1),
                               ListTile(
-                                leading: const Icon(Icons.edit_outlined),
-                                title: const Text('Editar Perfil'),
-                                onTap: () {},
-                              ),
+                                  leading: const Icon(Icons.edit),
+                                  title: const Text('Editar Perfil'),
+                                  onTap: () {}),
                               const Divider(height: 1),
                               ListTile(
-                                leading: const Icon(Icons.logout),
-                                title: const Text('Cerrar Sesión'),
-                                onTap: () {
-                                  sl<ServicesSelectedBloc>()
-                                      .add(ClearServicesSelectedEvent());
-                                  context.read<UserBloc>().add(
-                                      SignOutEvent(userEntity: state.user));
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
+                                  leading: const Icon(Icons.logout),
+                                  title: const Text('Cerrar Sesión'),
+                                  onTap: () {
+                                    sl<ServicesSelectedBloc>()
+                                        .add(ClearServicesSelectedEvent());
+                                    context.read<UserBloc>().add(
+                                        SignOutEvent(userEntity: state.user));
+                                  })
+                            ])),
 
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 16),
 
                         // Sección: Preferencias
                         Text('Preferencias',
                             textAlign: TextAlign.left,
-                            style: textTheme.titleLarge!.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFF333333))),
-                        const SizedBox(height: 12),
+                            style: textTheme.titleMedium!
+                                .copyWith(color: Colors.grey)),
+                        const SizedBox(height: 8),
                         Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(children: [
                               ListTile(
-                                leading: const Text('ESP',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                title: const Text('Cambiar Idioma'),
-                                onTap: () {},
-                              ),
+                                  leading: Text('ESP',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium),
+                                  title: const Text('Cambiar Idioma'),
+                                  onTap: () {}),
                               const Divider(height: 1),
                               ListTile(
-                                leading: const Icon(Icons.dark_mode_outlined),
-                                title: const Text('Modo Oscuro'),
-                                onTap: () {},
-                              ),
+                                  leading: const Icon(Icons.dark_mode),
+                                  title: const Text('Modo Oscuro'),
+                                  onTap: () {}),
                               const Divider(height: 1),
                               ListTile(
-                                leading: const Icon(Icons.notifications_none),
-                                title: const Text('Notificaciones'),
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                        ),
+                                  leading: const Icon(Icons.notifications),
+                                  title: const Text('Notificaciones'),
+                                  onTap: () {})
+                            ])),
 
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 16),
 
                         // Sección: Soporte y Legales
                         Text('Soporte y Legales',
                             textAlign: TextAlign.left,
-                            style: textTheme.titleLarge!.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFF333333))),
-                        const SizedBox(height: 12),
+                            style: textTheme.titleMedium!
+                                .copyWith(color: Colors.grey)),
+                        const SizedBox(height: 8),
                         Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            children: [
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(children: [
                               ListTile(
-                                leading: const Icon(Icons.policy_outlined),
-                                title: const Text('Políticas de Privacidad'),
-                                onTap: () {},
-                              ),
+                                  leading: const Icon(Icons.policy),
+                                  title: const Text('Políticas de Privacidad'),
+                                  onTap: () {}),
                               const Divider(height: 1),
                               ListTile(
-                                leading: const Icon(Icons.build_outlined),
-                                title: const Text('Soporte Técnico'),
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                        ),
+                                  leading: const Icon(Icons.build),
+                                  title: const Text('Soporte Técnico'),
+                                  onTap: () {})
+                            ]))
                       ])))
               : LottieBuilder.asset("assets/lottie/loading_screen.json");
-        })));
+        }));
   }
 }
