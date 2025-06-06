@@ -22,7 +22,6 @@ class UserRepositoryImpl implements UserRepository {
       required String password,
       required bool rememberMe}) async {
     if (await networkInfo.isConnected) {
-    
       try {
         final remoteUser = await userRemoteDataSource.signIn(
             account: account, password: password);
@@ -35,9 +34,9 @@ class UserRepositoryImpl implements UserRepository {
       } catch (e) {
         return Left(ServerFailure());
       }
-     } else {
-       return Left(ServerFailure(message: networkConnectionError));
-     }
+    } else {
+      return Left(ServerFailure(message: networkConnectionError));
+    }
   }
 
   @override
@@ -45,8 +44,10 @@ class UserRepositoryImpl implements UserRepository {
       {required String account,
       required String name,
       required String password,
-      required String birthdate, required String phoneNumber, required String genero}) async {
-     if (await networkInfo.isConnected) {
+      required String birthdate,
+      required String phoneNumber,
+      required String genero}) async {
+    if (await networkInfo.isConnected) {
       try {
         final remoteUser = await userRemoteDataSource.signUp(
             account: account,
@@ -62,9 +63,9 @@ class UserRepositoryImpl implements UserRepository {
       } catch (e) {
         return Left(ServerFailure());
       }
-     } else {
-       return Left(ServerFailure(message: networkConnectionError));
-     }
+    } else {
+      return Left(ServerFailure(message: networkConnectionError));
+    }
   }
 
   @override
@@ -74,6 +75,22 @@ class UserRepositoryImpl implements UserRepository {
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> passwordCode({required String email}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final code = await userRemoteDataSource.passwordCode(email: email);
+        return Right(code);
+      } on ServerException catch (e) {
+;        return Left(ServerFailure(message: e.message));
+      } catch (e) {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure(message: networkConnectionError));
     }
   }
 }

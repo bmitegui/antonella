@@ -29,8 +29,7 @@ Future<void> init() async {
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton(() => KeyValueStorageServiceImpl());
 
-  sl.registerLazySingleton<InternetConnection>(
-      () => InternetConnection());
+  sl.registerLazySingleton<InternetConnection>(() => InternetConnection());
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   Hive.init((await getApplicationDocumentsDirectory()).path);
@@ -71,6 +70,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetListServiceFormUseCase>(() =>
       GetListServiceFormUseCase(serviceRepository: sl<ServiceRepository>()));
 
+   sl.registerLazySingleton<PasswordCodeUseCase>(() =>
+      PasswordCodeUseCase(userRepository: sl<UserRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -85,14 +87,16 @@ Future<void> init() async {
 
   sl.registerLazySingleton<ServiceFormBloc>(() => ServiceFormBloc(
       getListServiceFormUseCase: sl<GetListServiceFormUseCase>()));
+  
+  sl.registerLazySingleton<PasswordBloc>(() => PasswordBloc(
+      passwordCodeUseCase: sl<PasswordCodeUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());
   //Language
   sl.registerLazySingleton<LanguageBloc>(() => LanguageBloc());
 
-
-    // Initialize Theme
+  // Initialize Theme
   bool isDark = false;
   final prefsIsDark = prefs.getBool('isDark');
   if (prefsIsDark != null) {

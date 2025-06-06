@@ -15,6 +15,7 @@ abstract class UserRemoteDataSource {
       required String birthdate,
       required String phoneNumber,
       required String genero});
+  Future<String> passwordCode({required String email});
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -70,6 +71,28 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       final status = result.data['status'];
       if (status == 'success') {
         return UserModel.fromJson(result.data['data']);
+      } else {
+        throw ServerException(message: result.data['message']);
+      }
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw const ServerException();
+    }
+  }
+
+  @override
+  Future<String> passwordCode({required String email}) async {
+    try {
+      final url = '${Environment.passwordCode}?email=$email';
+
+      final result = await client.post(url,
+          options: Options(
+              contentType: Headers.jsonContentType,
+              validateStatus: (status) => status != null && status < 500));
+      final status = result.data['status'];
+      if (status == 'success') {
+        return result.data['data']['code'];
       } else {
         throw ServerException(message: result.data['message']);
       }

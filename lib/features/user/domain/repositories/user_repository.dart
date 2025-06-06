@@ -16,4 +16,5 @@ abstract class UserRepository {
       required String genero,
       required String phoneNumber});
   Future<Either<Failure, void>> signOut();
+  Future<Either<Failure, String>> passwordCode({required String email});
 }

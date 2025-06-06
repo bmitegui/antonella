@@ -9,4 +9,5 @@ class Environment {
       dotenv.env['apiUrl'] ?? 'No está configurado el apiUrl';
   static String signIn = '$apiUrl${dotenv.env['signIn']}';
   static String signUp = '$apiUrl${dotenv.env['signUp']}';
+  static String passwordCode = '$apiUrl${dotenv.env['passwordCode']}';
 }
