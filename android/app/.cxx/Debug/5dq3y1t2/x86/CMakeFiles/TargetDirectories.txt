@@ -1,0 +1,2 @@
+C:/Users/sebas/OneDrive/Desktop/Antonella/antonella/android/app/.cxx/Debug/5dq3y1t2/x86/CMakeFiles/edit_cache.dir
+C:/Users/sebas/OneDrive/Desktop/Antonella/antonella/android/app/.cxx/Debug/5dq3y1t2/x86/CMakeFiles/rebuild_cache.dir
