@@ -45,14 +45,16 @@ class UserRepositoryImpl implements UserRepository {
       {required String account,
       required String name,
       required String password,
-      required String birthdate}) async {
+      required String birthdate, required String phoneNumber, required String genero}) async {
      if (await networkInfo.isConnected) {
       try {
         final remoteUser = await userRemoteDataSource.signUp(
             account: account,
             name: name,
             password: password,
-            birthdate: birthdate);
+            birthdate: birthdate,
+            phoneNumber: phoneNumber,
+            genero: genero);
         await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
         return Right(remoteUser);
       } on ServerException catch (e) {

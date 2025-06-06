@@ -51,7 +51,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     .titleMedium!
                     .copyWith(color: Color(0xFFF44565)))),
         body: Padding(
-            padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+            padding: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
             child: Column(children: [
               Expanded(
                   child: PageView(

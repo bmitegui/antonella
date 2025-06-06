@@ -11,7 +11,9 @@ final class SignInEvent extends UserEvent {
   final String password;
   final bool rememberMe;
   SignInEvent(
-      {required this.account, required this.password, required this.rememberMe});
+      {required this.account,
+      required this.password,
+      required this.rememberMe});
 }
 
 final class SignOutEvent extends UserEvent {
@@ -24,12 +26,16 @@ final class SignUpEvent extends UserEvent {
   final String name;
   final String password;
   final String birthdate;
+  final String genero;
+  final String phoneNumber;
 
   SignUpEvent(
       {required this.account,
       required this.name,
       required this.password,
-      required this.birthdate});
+      required this.birthdate,
+      required this.genero,
+      required this.phoneNumber});
 }
 
 final class CheckAuthenticationEvent extends UserEvent {}

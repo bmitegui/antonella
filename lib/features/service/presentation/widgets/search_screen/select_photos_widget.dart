@@ -2,7 +2,7 @@
 
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/service_image_network_image.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/service_image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,7 +49,7 @@ class SelectPhotosWidget extends StatelessWidget {
                                               offset: const Offset(0, 2),
                                               blurRadius: 1)
                                         ]),
-                                    child: ServiceImageNetworkImage(
+                                    child: ServiceImageNetwork(
                                         urlImage: entry.value)),
                                 const SizedBox(height: 8),
                                 Text(entry.key)

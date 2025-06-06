@@ -85,6 +85,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       SignUpEvent event, Emitter<UserState> emit) async {
     emit(UserLoading());
     final failureOrUser = await signUpUseCase(SignUpParams(
+      phoneNumber: event.phoneNumber,
+      genero: event.genero,
         account: event.account,
         name: event.name,
         password: event.password,

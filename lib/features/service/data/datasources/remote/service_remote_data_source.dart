@@ -5,7 +5,8 @@ import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
   Future<ListServicesModel> getServices({required ServiceCategory? filter});
-  Future<List<ServiceFormModel>> getListServiceForm({required ServiceCategory category});
+  Future<List<ServiceFormModel>> getListServiceForm(
+      {required ServiceCategory category});
 }
 
 class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
@@ -13,7 +14,8 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
   ServiceRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<ListServicesModel> getServices({required ServiceCategory? filter}) async {
+  Future<ListServicesModel> getServices(
+      {required ServiceCategory? filter}) async {
     try {
       // final result = await client.post(Environment.signUp,
       //     data: {
@@ -31,8 +33,6 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
       // } else {
       //   throw ServerException(message: result.data['message']);
       // }
-
-      print(filter);
 
       final servicesData = (filter == null || filter == ServiceCategory.all)
           ? allServices
@@ -107,10 +107,13 @@ final Map<String, dynamic> nailsServiceForm = {
   ]
 };
 
-
 final Map<String, dynamic> spaServiceForm = {
   'ListServiceForms': [
-    {'id': '1', 'title': 'Fotos de su piel o área a tratar', 'type': 'uploadPhotos'},
+    {
+      'id': '1',
+      'title': 'Fotos de su piel o área a tratar',
+      'type': 'uploadPhotos'
+    },
     {
       'id': '2',
       'title': 'Seleccione el tipo de tratamiento que desea',
@@ -157,10 +160,13 @@ final Map<String, dynamic> spaServiceForm = {
       'title': 'Observaciones adicionales sobre su estado de salud',
       'type': 'input'
     },
-    {'id': '8', 'title': 'Resultados esperados o áreas a priorizar', 'type': 'uploadPhotos'},
+    {
+      'id': '8',
+      'title': 'Resultados esperados o áreas a priorizar',
+      'type': 'uploadPhotos'
+    },
   ]
 };
-
 
 final Map<String, dynamic> hairServiceForm = {
   'ListServiceForms': [

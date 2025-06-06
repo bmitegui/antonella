@@ -1,10 +1,10 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 
-class CustomBottomNavigatorBarWidget extends StatelessWidget {
+class CustomBottomNavigatorBar extends StatelessWidget {
   final int activeIndex;
   final Function(int) onTabChange;
-  const CustomBottomNavigatorBarWidget(
+  const CustomBottomNavigatorBar(
       {super.key, required this.activeIndex, required this.onTabChange});
 
   @override

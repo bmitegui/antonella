@@ -8,12 +8,13 @@ abstract class UserRemoteDataSource {
     required String account,
     required String password,
   });
-  Future<UserModel> signUp({
-    required String account,
-    required String name,
-    required String password,
-    required String birthdate,
-  });
+  Future<UserModel> signUp(
+      {required String account,
+      required String name,
+      required String password,
+      required String birthdate,
+      required String phoneNumber,
+      required String genero});
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -49,15 +50,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       {required String account,
       required String name,
       required String password,
-      required String birthdate}) async {
+      required String birthdate,
+      required String phoneNumber,
+      required String genero}) async {
     try {
+      final data = {
+        'email': account,
+        'name': name,
+        'password': password,
+        'birthdate': birthdate,
+        'gender': genero.toUpperCase(),
+        'phone_number': phoneNumber
+      };
       final result = await client.post(Environment.signUp,
-          data: {
-            'account': account,
-            'name': name,
-            'password': password,
-            'birthdate': birthdate
-          },
+          data: data,
           options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));

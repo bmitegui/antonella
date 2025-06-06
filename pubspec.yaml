@@ -37,6 +37,8 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   circle_nav_bar: ^2.2.0
   dropdown_search: ^6.0.2
+  cached_network_image: ^3.4.1
+  flutter_svg: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -55,4 +57,5 @@ flutter:
   - assets/icon/
   - assets/lottie/
   - assets/img/
+  - assets/svg/
 

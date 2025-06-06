@@ -2,7 +2,7 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/service/service_bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/category_service.dart';
+import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_grid_view.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
@@ -76,8 +76,9 @@ class ServicesTabSection extends StatelessWidget {
         ServicesFilterWidget(),
         const SizedBox(height: 16),
         (state is ServicesLoaded)
-            ? CategoryService(title: category)
+            ? CustomTitle(title: category)
             : SizedBox.shrink(),
+        const SizedBox(height: 16),
         (state is ServicesLoaded)
             ? Expanded(
                 child: CustomGridView(listPromotions: filteredPromotions))

@@ -29,7 +29,7 @@ class CustomPickDateWidget extends StatelessWidget {
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         TextButton.icon(
             onPressed: () async {
-              final dateTime = await _selectDate(context);
+              final dateTime = await selectDate(context);
               if (dateTime != null) {
                 onSelectDate(dateTime);
               }
@@ -62,7 +62,7 @@ class CustomPickDateWidget extends StatelessWidget {
     return DateFormat('HH:mm:ss a').format(dt);
   }
 
-  Future<DateTime?> _selectDate(BuildContext context) async {
+  Future<DateTime?> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
