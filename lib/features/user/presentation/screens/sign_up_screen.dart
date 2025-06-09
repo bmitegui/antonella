@@ -20,6 +20,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
+  late TextEditingController _lastnameController;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late TextEditingController _phoneController;
@@ -30,6 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     _nameController = TextEditingController();
+    _lastnameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _phoneController = TextEditingController();
@@ -88,6 +90,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       const SizedBox(height: 16),
                                       CustomTextFormFieldWidget(
                                           textEditingController:
+                                              _lastnameController,
+                                          title: texts.lastName),
+                                      const SizedBox(height: 16),
+                                      CustomTextFormFieldWidget(
+                                          textEditingController:
+                                              _lastnameController,
+                                          title: 'Cédula',
+                                          keyboardType: TextInputType.number),
+                                      const SizedBox(height: 16),
+                                      CustomTextFormFieldWidget(
+                                          textEditingController:
                                               _phoneController,
                                           title: 'Celular',
                                           keyboardType: TextInputType.phone),
@@ -124,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           showSearchBox: false,
                                           selectedItem: genero,
                                           initialText: 'Seleccionar género',
-                                          options: ['Masculino', 'Femenino'],
+                                          options: ['Masculino', 'Femenino', 'Otros'],
                                           onChange: (value) {
                                             setState(() {
                                               genero = value;

@@ -22,7 +22,8 @@
     "sign_up": "Sign up",
     "have_account": "Have an account?",
     "dont_have_account": "Don't have an account",
-    "name": "Name",
+    "name": "Names",
+    "lastName": "Surnames",
     "name_hint": "Enter your name",
     "birthdate": "Birthdate",
 
