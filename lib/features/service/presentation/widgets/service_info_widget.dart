@@ -36,24 +36,7 @@ class ServiceInfoWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => DetailServiceScreen(serviceEntity: serviceEntity)));
-                  // if (state is ServicesSelectedLoaded) {
-                  //   sl<ServiceFormBloc>().add(GetListServiceFormEvent(
-                  //       serviceEntity: isSelected
-                  //           ? state.listServicesSelected[index]
-                  //           : serviceEntity));
-
-                  //   await showModalBottomSheet<List>(
-                  //       scrollControlDisabledMaxHeightRatio: 1,
-                  //       isScrollControlled: true,
-                  //       backgroundColor: Colors.white,
-                  //       context: context,
-                  //       builder: (BuildContext context) {
-                  //         return FormServiceSelectedWidget(
-                  //             serviceEntity: isSelected
-                  //                 ? state.listServicesSelected[index]
-                  //                 : serviceEntity);
-                  //       });
-                  // }
+                 
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width / 2,
