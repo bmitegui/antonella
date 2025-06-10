@@ -35,7 +35,7 @@ class ServiceInfoWidget extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const DetailServiceScreen()));
+                          builder: (context) => DetailServiceScreen(serviceEntity: serviceEntity)));
                   // if (state is ServicesSelectedLoaded) {
                   //   sl<ServiceFormBloc>().add(GetListServiceFormEvent(
                   //       serviceEntity: isSelected

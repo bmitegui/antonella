@@ -3,7 +3,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImagesScrollview extends StatelessWidget {
   final List<String> imageLinks;
-  final PageController controller = PageController(viewportFraction: 0.8, keepPage: true);
+  final PageController controller = PageController(viewportFraction: 1, keepPage: true);
 
   ImagesScrollview({super.key, required this.imageLinks});
 
