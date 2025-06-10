@@ -67,7 +67,7 @@ class ServiceInfoWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 8),
-                          ServiceImageNetwork(urlImage: serviceEntity.urlImage),
+                          ServiceImageNetwork(urlImage: serviceEntity.urlImages[0]),
                           const SizedBox(height: 8),
                           Padding(
                               padding:

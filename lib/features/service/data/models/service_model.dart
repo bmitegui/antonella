@@ -7,9 +7,11 @@ class ServiceModel extends ServiceEntity {
       required super.description,
       required super.category,
       required super.subCategory,
-      required super.urlImage,
+      required super.urlImages,
       required super.minPrice,
       required super.maxPrice,
+      required super.rating,
+      required super.duration,
       required super.isSelected});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -19,9 +21,11 @@ class ServiceModel extends ServiceEntity {
         description: json['description'] ?? '',
         category: stringToServiceCategory(json['category']),
         subCategory: json['subCategory'] ?? '',
-        urlImage: json['urlImage'] ?? '',
+        urlImages: json['urlImages'] ?? '',
         minPrice: json['minPrice'] ?? 0.0,
         maxPrice: json['maxPrice'] ?? 0.0,
+        duration: json['duration'] ?? '0',
+        rating: json['rating'] ?? '0',
         isSelected: false);
   }
 }
