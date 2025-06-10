@@ -1,5 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
-import 'package:antonella/core/widgets/custom_cached_network_image.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/images_scrollview.dart';
 import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
@@ -56,7 +56,12 @@ class DetailServiceScreen extends StatelessWidget {
                       Text(serviceEntity.subCategory,
                           style: Theme.of(context).textTheme.titleMedium),
                       SizedBox(height: 8),
-                      LabelDetailServiceWidget(),
+                      LabelDetailServiceWidget(
+                          category: getCategoryText(
+                              context: context,
+                              serviceCategory: serviceEntity.category),
+                          rating: serviceEntity.rating,
+                          duration: serviceEntity.duration),
                       SizedBox(height: 8),
                       Text(serviceEntity.description,
                           style: Theme.of(context)
