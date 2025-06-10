@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/images_scrollview.dart';
 import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
@@ -39,7 +40,11 @@ class _DetailServiceWidgetState extends State<DetailServiceScreen> {
                 SizedBox(height: 16),
                 Text(widget.serviceEntity.subCategory),
                 SizedBox(height: 16),
-                LabelDetailServiceWidget(),
+                LabelDetailServiceWidget(
+                  category: getCategoryText(context: context, serviceCategory: widget.serviceEntity.category), 
+                  rating: '4.0[45]', 
+                  duration: '45 min'
+                ),
                 SizedBox(height: 16),
                 Text(widget.serviceEntity.description),
                 SizedBox(height: 16),
