@@ -18,7 +18,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get start_title => 'Discover your best version here';
 
   @override
-  String get start_body => 'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
+  String get start_body =>
+      'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
 
   @override
   String get account => 'Phone number';
@@ -66,7 +67,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dont_have_account => 'Don\'t have an account';
 
   @override
-  String get name => 'Name';
+  String get name => 'Names';
+
+  @override
+  String get lastName => 'Surnames';
 
   @override
   String get name_hint => 'Enter your name';

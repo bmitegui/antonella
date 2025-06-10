@@ -18,7 +18,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get start_title => 'Descubre tu mejor versión aquí';
 
   @override
-  String get start_body => 'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
+  String get start_body =>
+      'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
 
   @override
   String get account => 'Teléfono';
@@ -57,7 +58,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get successful_sign_in => 'Inicio de sesión exitoso';
 
   @override
-  String get sign_up => 'Registrate';
+  String get sign_up => 'Regístrate';
 
   @override
   String get have_account => '¿Tienes una cuenta?';
@@ -66,7 +67,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dont_have_account => '¿No tienes una cuenta?';
 
   @override
-  String get name => 'Nombre';
+  String get name => 'Nombres';
+
+  @override
+  String get lastName => 'Apellidos';
 
   @override
   String get name_hint => 'Ingrese su nombre';

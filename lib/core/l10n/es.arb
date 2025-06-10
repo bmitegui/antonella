@@ -19,10 +19,11 @@
     "terms_3": " y nuestra ",
     "terms_4": "Política de Privacidad",
     "successful_sign_in": "Inicio de sesión exitoso",
-    "sign_up": "Registrate",
+    "sign_up": "Regístrate",
     "have_account": "¿Tienes una cuenta?",
     "dont_have_account": "¿No tienes una cuenta?",
-    "name": "Nombre",
+    "name": "Nombres",
+    "lastName": "Apellidos",
     "name_hint": "Ingrese su nombre",
     "birthdate": "Fecha de nacimiento",
 
