@@ -1,0 +1,2 @@
+C:/Users/Brian/Documents/Brian/Flutter projects/antonella/android/app/.cxx/RelWithDebInfo/4dp1g2q5/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Brian/Documents/Brian/Flutter projects/antonella/android/app/.cxx/RelWithDebInfo/4dp1g2q5/arm64-v8a/CMakeFiles/rebuild_cache.dir

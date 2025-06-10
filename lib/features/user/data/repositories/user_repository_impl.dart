@@ -79,13 +79,31 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, String>> passwordCode({required String email}) async {
+  Future<Either<Failure, List<String>>> passwordCode(
+      {required String email}) async {
     if (await networkInfo.isConnected) {
       try {
-        final code = await userRemoteDataSource.passwordCode(email: email);
-        return Right(code);
+        final lista = await userRemoteDataSource.passwordCode(email: email);
+        return Right(lista);
       } on ServerException catch (e) {
-;        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(message: e.message));
+      } catch (e) {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure(message: networkConnectionError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> passwordReset(
+      {required String id, required String password}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        await userRemoteDataSource.passwordReset(id: id, password: password);
+        return Right(null);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.message));
       } catch (e) {
         return Left(ServerFailure());
       }

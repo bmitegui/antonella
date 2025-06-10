@@ -70,8 +70,11 @@ Future<void> init() async {
   sl.registerLazySingleton<GetListServiceFormUseCase>(() =>
       GetListServiceFormUseCase(serviceRepository: sl<ServiceRepository>()));
 
-   sl.registerLazySingleton<PasswordCodeUseCase>(() =>
-      PasswordCodeUseCase(userRepository: sl<UserRepository>()));
+  sl.registerLazySingleton<PasswordCodeUseCase>(
+      () => PasswordCodeUseCase(userRepository: sl<UserRepository>()));
+
+  sl.registerLazySingleton<PasswordResetUseCase>(
+      () => PasswordResetUseCase(userRepository: sl<UserRepository>()));
 
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
@@ -87,9 +90,10 @@ Future<void> init() async {
 
   sl.registerLazySingleton<ServiceFormBloc>(() => ServiceFormBloc(
       getListServiceFormUseCase: sl<GetListServiceFormUseCase>()));
-  
+
   sl.registerLazySingleton<PasswordBloc>(() => PasswordBloc(
-      passwordCodeUseCase: sl<PasswordCodeUseCase>()));
+      passwordCodeUseCase: sl<PasswordCodeUseCase>(),
+      passwordResetUseCase: sl<PasswordResetUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

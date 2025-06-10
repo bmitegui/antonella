@@ -1,12 +1,9 @@
-import 'package:antonella/features/service/domain/entities/entities.dart';
-import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/bottom_buttons_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/progress_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_info_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectServicesPage extends StatelessWidget {
   final Function() nextPage;
