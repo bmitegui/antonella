@@ -39,59 +39,68 @@ class DetailServiceScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium)),
           backgroundColor: Color(0xFFF0F0F0),
           body: SingleChildScrollView(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-            ImagesScrollview(imageLinks: serviceEntity.urlImages),
-            Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(serviceEntity.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(color: Color(0xFFF44565))),
-                      SizedBox(height: 8),
-                      Text(serviceEntity.subCategory,
-                          style: Theme.of(context).textTheme.titleMedium),
-                      SizedBox(height: 8),
-                      LabelDetailServiceWidget(
-                          category: getCategoryText(
-                              context: context,
-                              serviceCategory: serviceEntity.category),
-                          rating: serviceEntity.rating,
-                          duration: serviceEntity.duration),
-                      SizedBox(height: 8),
-                      Text(serviceEntity.description,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: Colors.grey)),
-                      SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                ImagesScrollview(imageLinks: serviceEntity.urlImages),
+                Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Calificaciones y Opiniones',
+                          Text(serviceEntity.name,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
                                   .copyWith(color: Color(0xFFF44565))),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.arrow_forward,
-                                  color: Color(0xFFF44565)))
-                        ]
-                      ),
-                      CommentContainer(
-                          imageUrl:
-                              'https://imagenes.elpais.com/resizer/v2/AWNTN6VH5NFBPJYRX7DS6QAAMM.jpg?auth=1426161ce83c0dc66a4185ca80b7f19eeff59f2e1ea63dd2a803a2e8a4417824&width=980&height=980&smart=true',
-                          rating: serviceEntity.rating,
-                          date: '14/02/2025',
-                          comment:
-                              'Excelente servicio. Por supuesto que volvería a hacer este tratamiento, súper relajante.')
-                    ]))
-          ])),
+                          SizedBox(height: 8),
+                          Text(serviceEntity.subCategory,
+                              style: Theme.of(context).textTheme.titleMedium),
+                          SizedBox(height: 8),
+                          LabelDetailServiceWidget(
+                              category: getCategoryText(
+                                  context: context,
+                                  serviceCategory: serviceEntity.category),
+                              rating: serviceEntity.rating,
+                              duration: serviceEntity.duration),
+                          SizedBox(height: 8),
+                          Text(serviceEntity.description,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: Colors.grey)),
+                          SizedBox(height: 16),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Calificaciones y Opiniones',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(color: Color(0xFFF44565))),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(Icons.arrow_forward,
+                                        color: Color(0xFFF44565)))
+                              ]),
+                          CommentContainer(
+                              imageUrl:
+                                  'https://imagenes.elpais.com/resizer/v2/AWNTN6VH5NFBPJYRX7DS6QAAMM.jpg?auth=1426161ce83c0dc66a4185ca80b7f19eeff59f2e1ea63dd2a803a2e8a4417824&width=980&height=980&smart=true',
+                              rating: serviceEntity.rating,
+                              date: '14/02/2025',
+                              comment:
+                                  'Excelente servicio. Por supuesto que volvería a hacer este tratamiento, súper relajante.'),
+                          const SizedBox(height: 8),
+                          CommentContainer(
+                              imageUrl:
+                                  'https://imagenes.elpais.com/resizer/v2/AWNTN6VH5NFBPJYRX7DS6QAAMM.jpg?auth=1426161ce83c0dc66a4185ca80b7f19eeff59f2e1ea63dd2a803a2e8a4417824&width=980&height=980&smart=true',
+                              rating: serviceEntity.rating,
+                              date: '14/02/2025',
+                              comment:
+                                  'Volveria sin dudarlo, excelentes instalaciones.')
+                        ]))
+              ])),
           bottomNavigationBar: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: const BoxDecoration(
