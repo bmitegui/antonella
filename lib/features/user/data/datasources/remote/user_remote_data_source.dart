@@ -15,7 +15,8 @@ abstract class UserRemoteDataSource {
       required String birthdate,
       required String phoneNumber,
       required String genero});
-  Future<String> passwordCode({required String email});
+  Future<List<String>> passwordCode({required String email});
+  Future<void> passwordReset({required String id, required String password});
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -82,17 +83,43 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }
 
   @override
-  Future<String> passwordCode({required String email}) async {
+  Future<List<String>> passwordCode({required String email}) async {
     try {
       final url = '${Environment.passwordCode}?email=$email';
+      print('entra:$url');
 
       final result = await client.post(url,
           options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));
+      print(result.data);
       final status = result.data['status'];
       if (status == 'success') {
-        return result.data['data']['code'];
+        return [result.data['data']['code'], result.data['data']['user_id']];
+      } else {
+        throw ServerException(message: result.data['message']);
+      }
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      print(e);
+      throw const ServerException();
+    }
+  }
+
+  @override
+  Future<void> passwordReset(
+      {required String id, required String password}) async {
+    try {
+      final result = await client.put(Environment.signUp,
+          data: {'id': id, 'password': password},
+          options: Options(
+              contentType: Headers.jsonContentType,
+              validateStatus: (status) => status != null && status < 500));
+      print(result.data);
+      final status = result.data['status'];
+      if (status == 'success') {
+        return;
       } else {
         throw ServerException(message: result.data['message']);
       }

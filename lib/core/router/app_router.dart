@@ -8,7 +8,7 @@ import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/sign_in_screen.dart';
 import 'package:antonella/features/user/presentation/screens/sign_up_screen.dart';
 import 'package:antonella/features/user/presentation/screens/recover_forgot_password_screen.dart';
-import 'package:antonella/features/user/presentation/widgets/reset_password_screen.dart';
+import 'package:antonella/features/user/presentation/screens/reset_password_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

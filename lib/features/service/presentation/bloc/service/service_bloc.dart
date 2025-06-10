@@ -23,7 +23,7 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
       emit(ServicesError(message: _mapFailureToMessage(failure)));
     }, (listServices) async {
       emit(ServicesLoaded(
-          listServices: listServices, serviceCategory: event.filter!));
+          listServices: listServices, serviceCategory: event.filter));
     });
   }
 

@@ -10,3 +10,9 @@ final class PasswordCodeEvent extends PasswordEvent {
   final String email;
   PasswordCodeEvent({required this.email});
 }
+
+final class PasswordResetEvent extends PasswordEvent {
+  final String id;
+  final String password;
+  PasswordResetEvent({required this.id, required this.password});
+}
