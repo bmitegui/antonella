@@ -8,10 +8,12 @@ class ServiceEntity extends Equatable {
   final String description;
   final ServiceCategory category;
   final String subCategory;
-  final String urlImage;
+  final List<String> urlImages;
   final double minPrice;
   final double maxPrice;
   final bool isSelected;
+  final String duration;
+  final String rating;
   final List<ServiceFormEntity>? listServiceFormsEntity;
 
   const ServiceEntity(
@@ -20,10 +22,12 @@ class ServiceEntity extends Equatable {
       required this.description,
       required this.category,
       required this.subCategory,
-      required this.urlImage,
+      required this.urlImages,
       required this.minPrice,
       required this.maxPrice,
       required this.isSelected,
+      required this.rating,
+      required this.duration,
       this.listServiceFormsEntity});
 
   @override
@@ -35,10 +39,12 @@ class ServiceEntity extends Equatable {
     String? description,
     ServiceCategory? category,
     String? subCategory,
-    String? urlImage,
+    List<String>? urlImages,
     double? minPrice,
     double? maxPrice,
     bool? isSelected,
+    String? duration,
+    String? rating,
     List<ServiceFormEntity>? listServiceFormsEntity,
   }) {
     return ServiceEntity(
@@ -47,10 +53,12 @@ class ServiceEntity extends Equatable {
       description: description ?? this.description,
       category: category ?? this.category,
       subCategory: subCategory ?? this.subCategory,
-      urlImage: urlImage ?? this.urlImage,
+      urlImages: urlImages ?? this.urlImages,
       minPrice: minPrice ?? this.minPrice,
       maxPrice: maxPrice ?? this.maxPrice,
       isSelected: isSelected ?? this.isSelected,
+      duration: duration ?? this.duration,
+      rating: rating ?? this.rating,
       listServiceFormsEntity:
           listServiceFormsEntity ?? this.listServiceFormsEntity,
     );

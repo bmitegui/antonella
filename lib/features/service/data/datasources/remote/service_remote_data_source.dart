@@ -252,8 +252,9 @@ Map<String, dynamic> allServices = {
           'Tratamiento diseñado para restaurar la humedad y suavidad natural de la piel, dejándola radiante y saludable.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://lavandacasaspa.com/wp-content/uploads/2020/09/los-beneficios-de-recibir-un-tratamiento-hidratacion-facial.jpg',
+      'urlImages':
+      ['https://lavandacasaspa.com/wp-content/uploads/2020/09/los-beneficios-de-recibir-un-tratamiento-hidratacion-facial.jpg']
+          ,
       'minPrice': 50.0,
       'maxPrice': 80.0
     },
@@ -264,8 +265,8 @@ Map<String, dynamic> allServices = {
           'Reduce líneas finas y arrugas, proporcionando firmeza y una apariencia rejuvenecida.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://maison-spa.com/wp-content/uploads/2024/05/STOCK-PHOTOS-1-1-9.png',
+      'urlImages':
+          ['https://maison-spa.com/wp-content/uploads/2024/05/STOCK-PHOTOS-1-1-9.png'],
       'minPrice': 60.0,
       'maxPrice': 100.0
     },
@@ -276,8 +277,8 @@ Map<String, dynamic> allServices = {
           'Limpieza profunda que elimina impurezas, ideal para pieles grasas o con tendencia al acné.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://applications-media.feverup.com/image/upload/f_auto,w_550,h_550/fever2/plan/photo/dae35b46-4f7a-11e8-9000-067dfd978c4d.jpg',
+      'urlImages':
+          ['https://applications-media.feverup.com/image/upload/f_auto,w_550,h_550/fever2/plan/photo/dae35b46-4f7a-11e8-9000-067dfd978c4d.jpg'],
       'minPrice': 55.0,
       'maxPrice': 85.0
     },
@@ -288,8 +289,8 @@ Map<String, dynamic> allServices = {
           'Ayuda a mejorar la elasticidad y firmeza de la piel, dándole un aspecto más tonificado.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://aurumwellbeing.com/wp-content/uploads/2022/05/Masaje-facial-reafirmante-lifting.jpg',
+      'urlImages':
+          ['https://aurumwellbeing.com/wp-content/uploads/2022/05/Masaje-facial-reafirmante-lifting.jpg'],
       'minPrice': 65.0,
       'maxPrice': 90.0
     },
@@ -300,8 +301,8 @@ Map<String, dynamic> allServices = {
           'Reduce manchas e iguala el tono de la piel, devolviendo su luminosidad natural.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://lh4.googleusercontent.com/proxy/UgjcLEvPXROO0j8ZZJ_p9tS_8mBbt3Ijjp6A0qpm_OG4-AIL6wVESiZZSmcd2gFQ2FhX-6zjkQSgXmU2SyRnX8KJ4fho_0uGZhsCrjR3MgKpZDEs7Az3M9El-MlnybLa-1nJRv9cVmACqFWn',
+      'urlImages':
+          ['https://lh4.googleusercontent.com/proxy/UgjcLEvPXROO0j8ZZJ_p9tS_8mBbt3Ijjp6A0qpm_OG4-AIL6wVESiZZSmcd2gFQ2FhX-6zjkQSgXmU2SyRnX8KJ4fho_0uGZhsCrjR3MgKpZDEs7Az3M9El-MlnybLa-1nJRv9cVmACqFWn'],
       'minPrice': 70.0,
       'maxPrice': 95.0
     },
@@ -312,8 +313,8 @@ Map<String, dynamic> allServices = {
           'Masaje integral para liberar tensión muscular y promover una relajación total.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://alzentro.com/wp-content/uploads/2019/01/As%C3%AD-te-ayudar%C3%A1n-los-masajes-relajantes-de-cuerpo-entero-1080x675.jpg',
+      'urlImages':
+          ['https://alzentro.com/wp-content/uploads/2019/01/As%C3%AD-te-ayudar%C3%A1n-los-masajes-relajantes-de-cuerpo-entero-1080x675.jpg'],
       'minPrice': 100.0,
       'maxPrice': 150.0
     },
@@ -324,8 +325,8 @@ Map<String, dynamic> allServices = {
           'Masaje especializado para aliviar el cansancio y revitalizar los pies.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://www.esteticalink.com/wp-content/uploads/2017/04/masaje-pies.jpg',
+      'urlImages':
+          ['https://www.esteticalink.com/wp-content/uploads/2017/04/masaje-pies.jpg'],
       'minPrice': 30.0,
       'maxPrice': 50.0
     },
@@ -336,8 +337,8 @@ Map<String, dynamic> allServices = {
           'Relaja los músculos tensos del cuello y la espalda, ideal para quienes trabajan muchas horas sentados.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://terapiasderelajacionmedellin.com/wp-content/uploads/2023/02/MASAJE-DE-CUELLO-Y-ESPALDA.jpeg',
+      'urlImages':
+          ['https://terapiasderelajacionmedellin.com/wp-content/uploads/2023/02/MASAJE-DE-CUELLO-Y-ESPALDA.jpeg'],
       'minPrice': 40.0,
       'maxPrice': 70.0
     },
@@ -348,8 +349,8 @@ Map<String, dynamic> allServices = {
           'Utiliza piedras calientes para aliviar tensiones y mejorar la circulación sanguínea.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://36580daefdd0e4c6740b-4fe617358557d0f7b1aac6516479e176.ssl.cf1.rackcdn.com/products/26356.30575.jpg',
+      'urlImages':
+          ['https://36580daefdd0e4c6740b-4fe617358557d0f7b1aac6516479e176.ssl.cf1.rackcdn.com/products/26356.30575.jpg'],
       'minPrice': 80.0,
       'maxPrice': 120.0
     },
@@ -360,8 +361,8 @@ Map<String, dynamic> allServices = {
           'Combina masajes suaves con aceites esenciales para una experiencia sensorial relajante.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://www.mylottush.com/cdn/shop/articles/masaje_2bf887b0-a435-4959-90f2-03ad3e3311d0_1500x.jpg?v=1691023195',
+      'urlImages':
+          ['https://www.mylottush.com/cdn/shop/articles/masaje_2bf887b0-a435-4959-90f2-03ad3e3311d0_1500x.jpg?v=1691023195'],
       'minPrice': 60.0,
       'maxPrice': 90.0
     },
@@ -372,8 +373,8 @@ Map<String, dynamic> allServices = {
           'Elimina células muertas para dejar la piel suave, luminosa y renovada.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_F4WdMj8xG9oMC7jyRGzpZELvwp6r4wPVAA&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_F4WdMj8xG9oMC7jyRGzpZELvwp6r4wPVAA&s'],
       'minPrice': 70.0,
       'maxPrice': 110.0
     },
@@ -384,8 +385,8 @@ Map<String, dynamic> allServices = {
           'Hidrata profundamente y detoxifica la piel, utilizando ingredientes naturales.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1fjY8d02EmENLC_kp825mI__lGY9PLGdxtA&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1fjY8d02EmENLC_kp825mI__lGY9PLGdxtA&s'],
       'minPrice': 75.0,
       'maxPrice': 115.0
     },
@@ -396,8 +397,8 @@ Map<String, dynamic> allServices = {
           'Mejora la apariencia de la piel con técnicas para reducir la celulitis.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmscnIoLD-hzdlWHhdqENTpoHN1Qcql0KqLw&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmscnIoLD-hzdlWHhdqENTpoHN1Qcql0KqLw&s'],
       'minPrice': 85.0,
       'maxPrice': 130.0
     },
@@ -408,8 +409,8 @@ Map<String, dynamic> allServices = {
           'Ayuda a moldear la figura mediante técnicas de masaje focalizadas.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGZqXHttk3UPvezH7Imd6xm8D_pbswaK9p9w&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGZqXHttk3UPvezH7Imd6xm8D_pbswaK9p9w&s'],
       'minPrice': 90.0,
       'maxPrice': 140.0
     },
@@ -420,8 +421,8 @@ Map<String, dynamic> allServices = {
           'Mantén tu cabello sano eliminando puntas abiertas sin sacrificar el largo.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://imagenes.elpais.com/resizer/v2/CZKQQ4VB7NIEVH7LOHB3N4NRRI.jpg?auth=69135426f9fa4930e1c38426ca5d79b198f3b38d8077dc6efd8502117ad05e22&width=1960&height=1103&smart=true',
+      'urlImages':
+          ['https://imagenes.elpais.com/resizer/v2/CZKQQ4VB7NIEVH7LOHB3N4NRRI.jpg?auth=69135426f9fa4930e1c38426ca5d79b198f3b38d8077dc6efd8502117ad05e22&width=1960&height=1103&smart=true'],
       'minPrice': 10.0,
       'maxPrice': 20.0
     },
@@ -432,8 +433,8 @@ Map<String, dynamic> allServices = {
           'Da volumen y movimiento a tu cabello con un corte dinámico y estilizado.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://prixz.com/salud/wp-content/uploads/2021/05/abello-le-queda-un-corte-en-capas-1.jpg',
+      'urlImages':
+          ['https://prixz.com/salud/wp-content/uploads/2021/05/abello-le-queda-un-corte-en-capas-1.jpg'],
       'minPrice': 15.0,
       'maxPrice': 25.0
     },
@@ -444,8 +445,8 @@ Map<String, dynamic> allServices = {
           'Personaliza tu look con un corte único que se adapte a tu personalidad.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://www.garnier.es/-/media/project/loreal/brand-sites/garnier/emea/es/posts/678-corte-pelo-mariposa.jpg?rev=44bccafb6987483d8a291ff91e1ecf62&h=488&w=678&la=es-ES&hash=6ED6033224C673A0830E85AC30E60D73',
+      'urlImages':
+          ['https://www.garnier.es/-/media/project/loreal/brand-sites/garnier/emea/es/posts/678-corte-pelo-mariposa.jpg?rev=44bccafb6987483d8a291ff91e1ecf62&h=488&w=678&la=es-ES&hash=6ED6033224C673A0830E85AC30E60D73'],
       'minPrice': 20.0,
       'maxPrice': 30.0
     },
@@ -456,8 +457,8 @@ Map<String, dynamic> allServices = {
           'Ideal para un acabado rápido y preciso, perfecto para estilos más cortos.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://img.freepik.com/fotos-premium/maquina-corte-pelo-hombres-cabello-hombres-ayuda-tijeras_158388-589.jpg?w=360',
+      'urlImages':
+          ['https://img.freepik.com/fotos-premium/maquina-corte-pelo-hombres-cabello-hombres-ayuda-tijeras_158388-589.jpg?w=360'],
       'minPrice': 8.0,
       'maxPrice': 15.0
     },
@@ -468,8 +469,8 @@ Map<String, dynamic> allServices = {
           'Agrega un toque moderno y juvenil con un flequillo que realza tu rostro.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://i.pinimg.com/1200x/4c/b9/f3/4cb9f393773d2103528ac9dcbd81d340.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/1200x/4c/b9/f3/4cb9f393773d2103528ac9dcbd81d340.jpg'],
       'minPrice': 12.0,
       'maxPrice': 18.0
     },
@@ -480,8 +481,8 @@ Map<String, dynamic> allServices = {
           'Dale forma y definición a tu barba con un corte profesional y cuidado.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://i.pinimg.com/236x/80/2b/1d/802b1d0ec61e803d9b521816a906f0dc.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/236x/80/2b/1d/802b1d0ec61e803d9b521816a906f0dc.jpg'],
       'minPrice': 10.0,
       'maxPrice': 20.0
     },
@@ -492,8 +493,8 @@ Map<String, dynamic> allServices = {
           'Cambia el color de tu cabello completamente con tonos vibrantes o naturales.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://tahecosmetics.com/trends/wp-content/uploads/2021/12/tipos-tintes.jpeg',
+      'urlImages':
+          ['https://tahecosmetics.com/trends/wp-content/uploads/2021/12/tipos-tintes.jpeg'],
       'minPrice': 30.0,
       'maxPrice': 50.0
     },
@@ -504,8 +505,8 @@ Map<String, dynamic> allServices = {
           'Agrega luminosidad y dimensión a tu cabello con mechas bien definidas.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://www.okchicas.com/wp-content/uploads/2021/04/Formas-llevar-mechas-platinadas-10.jpg',
+      'urlImages':
+          ['https://www.okchicas.com/wp-content/uploads/2021/04/Formas-llevar-mechas-platinadas-10.jpg'],
       'minPrice': 35.0,
       'maxPrice': 60.0
     },
@@ -516,8 +517,8 @@ Map<String, dynamic> allServices = {
           'Un degradado natural que ilumina tu cabello de forma sutil y elegante.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://www.wella.com/professional/m/trendshub/Balayage_hair_article/wellaproblogbalayageguideimage6_d.jpg',
+      'urlImages':
+          ['https://www.wella.com/professional/m/trendshub/Balayage_hair_article/wellaproblogbalayageguideimage6_d.jpg'],
       'minPrice': 50.0,
       'maxPrice': 100.0
     },
@@ -528,8 +529,8 @@ Map<String, dynamic> allServices = {
           'Soluciona problemas de color no deseados para lograr un tono perfecto.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://rogelaineimagen.com/wp-content/uploads/2018/05/Foto-como-vino-la-1-vez.jpg',
+      'urlImages':
+          ['https://rogelaineimagen.com/wp-content/uploads/2018/05/Foto-como-vino-la-1-vez.jpg'],
       'minPrice': 40.0,
       'maxPrice': 80.0
     },
@@ -540,8 +541,8 @@ Map<String, dynamic> allServices = {
           'Luce reflejos suaves y naturales que imitan el efecto del sol en tu cabello.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://content.clara.es/medio/2022/09/06/shadowroot-balayage_d98be8af_1080x1351.jpg',
+      'urlImages':
+          ['https://content.clara.es/medio/2022/09/06/shadowroot-balayage_d98be8af_1080x1351.jpg'],
       'minPrice': 45.0,
       'maxPrice': 90.0
     },
@@ -552,8 +553,8 @@ Map<String, dynamic> allServices = {
           'Aclara tu cabello para lograr el tono deseado o como preparación para tintes.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://st4allthings4p4ci.blob.core.windows.net/allthingshair/allthingshair/wp-content/uploads/sites/13/2023/05/43767/como-decolorar-el-cabello-377x566.jpg',
+      'urlImages':
+          ['https://st4allthings4p4ci.blob.core.windows.net/allthingshair/allthingshair/wp-content/uploads/sites/13/2023/05/43767/como-decolorar-el-cabello-377x566.jpg'],
       'minPrice': 25.0,
       'maxPrice': 50.0
     },
@@ -564,8 +565,8 @@ Map<String, dynamic> allServices = {
           'Agrega longitud y volumen de manera natural con extensiones personalizadas.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLbnn0DosBqAM92NvqfErLoFwlukywxeDBMw&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLbnn0DosBqAM92NvqfErLoFwlukywxeDBMw&s'],
       'minPrice': 100.0,
       'maxPrice': 200.0
     },
@@ -576,8 +577,8 @@ Map<String, dynamic> allServices = {
           'Obtén un cambio de look instantáneo con pelucas ajustadas a la perfección.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2ompfYd_SlUezKf95FoHE-n6THwxerceGA&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2ompfYd_SlUezKf95FoHE-n6THwxerceGA&s'],
       'minPrice': 50.0,
       'maxPrice': 150.0
     },
@@ -588,8 +589,8 @@ Map<String, dynamic> allServices = {
           'Mejora la densidad de tu cabello con postizos que se integran naturalmente.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://pelucasypostizosvalencia.com/wp-content/uploads/2019/07/extensiones-clip-baratas-para-el-cabello.jpg',
+      'urlImages':
+          ['https://pelucasypostizosvalencia.com/wp-content/uploads/2019/07/extensiones-clip-baratas-para-el-cabello.jpg'],
       'minPrice': 30.0,
       'maxPrice': 70.0
     },
@@ -600,8 +601,8 @@ Map<String, dynamic> allServices = {
           'Retira tus extensiones de manera segura sin dañar tu cabello natural.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://sevilla.abc.es/estilo/bulevarsur/wp-content/uploads/sites/14/2020/04/como-quitar-extensiones-cabello-casa.jpg',
+      'urlImages':
+          ['https://sevilla.abc.es/estilo/bulevarsur/wp-content/uploads/sites/14/2020/04/como-quitar-extensiones-cabello-casa.jpg'],
       'minPrice': 15.0,
       'maxPrice': 30.0
     },
@@ -612,8 +613,8 @@ Map<String, dynamic> allServices = {
           'Cuida y embellece tus manos con un tratamiento básico que incluye limado y esmalte.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://semilac.pl/media/webp_image/catalog/product/cache/73595e8c109d812957f8a30f638a0cef/s/t/stylizacja_210_jpg.webp',
+      'urlImages':
+          ['https://semilac.pl/media/webp_image/catalog/product/cache/73595e8c109d812957f8a30f638a0cef/s/t/stylizacja_210_jpg.webp'],
       'minPrice': 10.0,
       'maxPrice': 15.0
     },
@@ -624,8 +625,8 @@ Map<String, dynamic> allServices = {
           'Disfruta de una experiencia relajante con exfoliación, masaje y esmalte de alta calidad.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFfQVCRvyjIkT3988_To9Wg03bNwNYFGMEaw&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFfQVCRvyjIkT3988_To9Wg03bNwNYFGMEaw&s'],
       'minPrice': 20.0,
       'maxPrice': 30.0
     },
@@ -636,8 +637,8 @@ Map<String, dynamic> allServices = {
           'Luce elegante y sofisticada con la icónica técnica de diseño francés.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4YHVZcndQdYHZGuKCXcl7s5u0LDYPywXDvg&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4YHVZcndQdYHZGuKCXcl7s5u0LDYPywXDvg&s'],
       'minPrice': 15.0,
       'maxPrice': 25.0
     },
@@ -648,8 +649,8 @@ Map<String, dynamic> allServices = {
           'Obtén un acabado brillante y duradero con esmalte de larga duración.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://i.pinimg.com/originals/4a/a6/e7/4aa6e7e4738a67c46066fdb7ce25069f.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/originals/4a/a6/e7/4aa6e7e4738a67c46066fdb7ce25069f.jpg'],
       'minPrice': 18.0,
       'maxPrice': 28.0
     },
@@ -659,8 +660,8 @@ Map<String, dynamic> allServices = {
       'description': 'Personaliza tus uñas con diseños artísticos y creativos.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://i.pinimg.com/736x/06/23/59/06235959496a3d3adddcc24a993ea10e.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/06/23/59/06235959496a3d3adddcc24a993ea10e.jpg'],
       'minPrice': 25.0,
       'maxPrice': 40.0
     },
@@ -671,8 +672,8 @@ Map<String, dynamic> allServices = {
           'Dale un toque único a tus uñas con decoraciones encapsuladas bajo una capa de gel.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://i.pinimg.com/736x/71/d4/e7/71d4e762a361f50719aaf37e97637d91.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/71/d4/e7/71d4e762a361f50719aaf37e97637d91.jpg'],
       'minPrice': 30.0,
       'maxPrice': 50.0
     },
@@ -683,8 +684,8 @@ Map<String, dynamic> allServices = {
           'Consiente tus pies con un tratamiento básico que incluye limpieza, limado y esmalte.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://www.veronicacanas.com/cdn/shop/products/PEDICURE_95d0e7f4-4fb6-4b25-a44d-5a2652c29a7d.jpg?v=1620620258',
+      'urlImages':
+          ['https://www.veronicacanas.com/cdn/shop/products/PEDICURE_95d0e7f4-4fb6-4b25-a44d-5a2652c29a7d.jpg?v=1620620258'],
       'minPrice': 15.0,
       'maxPrice': 20.0
     },
@@ -695,8 +696,8 @@ Map<String, dynamic> allServices = {
           'Relájate con un tratamiento completo que incluye exfoliación, masaje y cuidado de tus pies.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlMsetiPX3zM5u4qXt0WsYpvsyj22QxnPQmQ&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlMsetiPX3zM5u4qXt0WsYpvsyj22QxnPQmQ&s'],
       'minPrice': 25.0,
       'maxPrice': 35.0
     },
@@ -707,8 +708,8 @@ Map<String, dynamic> allServices = {
           'Disfruta de un acabado brillante y duradero con esmalte en gel.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://i.pinimg.com/474x/06/d2/80/06d280620ca4e74055aba916e872b725.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/474x/06/d2/80/06d280620ca4e74055aba916e872b725.jpg'],
       'minPrice': 20.0,
       'maxPrice': 30.0
     },
@@ -719,8 +720,8 @@ Map<String, dynamic> allServices = {
           'Refuerza y embellece tus uñas de los pies con acrílico duradero.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://i.pinimg.com/736x/6c/ca/3e/6cca3e59dbaead505db5ab9cd3cb43b8.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/6c/ca/3e/6cca3e59dbaead505db5ab9cd3cb43b8.jpg'],
       'minPrice': 30.0,
       'maxPrice': 45.0
     },
@@ -731,8 +732,8 @@ Map<String, dynamic> allServices = {
           'Luce pies perfectos y listos para cualquier ocasión especial.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://i.pinimg.com/originals/ea/03/c1/ea03c1111bcfeab10bd0b86a02567afc.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/originals/ea/03/c1/ea03c1111bcfeab10bd0b86a02567afc.jpg'],
       'minPrice': 20.0,
       'maxPrice': 35.0
     },
@@ -742,8 +743,8 @@ Map<String, dynamic> allServices = {
       'description': 'Obtén uñas fuertes y elegantes con un acabado clásico.',
       'category': 'Uñas',
       'subCategory': 'Uñas acrílicas',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsz7MgYTssp69TqmR8rUEaEPcQlTZayb1ZNQ&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsz7MgYTssp69TqmR8rUEaEPcQlTZayb1ZNQ&s'],
       'minPrice': 40.0,
       'maxPrice': 55.0
     },
@@ -754,8 +755,8 @@ Map<String, dynamic> allServices = {
           'Personaliza tus uñas acrílicas con diseños únicos y llamativos.',
       'category': 'Uñas',
       'subCategory': 'Uñas acrílicas',
-      'urlImage':
-          'https://i.pinimg.com/originals/4c/e2/51/4ce251e7228db7640ad94f78ee0493e5.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/originals/4c/e2/51/4ce251e7228db7640ad94f78ee0493e5.jpg'],
       'minPrice': 50.0,
       'maxPrice': 70.0
     },
@@ -766,8 +767,8 @@ Map<String, dynamic> allServices = {
           'Combina elegancia y durabilidad con uñas acrílicas en estilo francés.',
       'category': 'Uñas',
       'subCategory': 'Uñas acrílicas',
-      'urlImage':
-          'https://i.pinimg.com/736x/cb/bf/bd/cbbfbdce98a73ef69addd77ba516878e.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/cb/bf/bd/cbbfbdce98a73ef69addd77ba516878e.jpg'],
       'minPrice': 45.0,
       'maxPrice': 60.0
     },
@@ -794,8 +795,8 @@ Map<String, dynamic> spaServices = {
           'Tratamiento diseñado para restaurar la humedad y suavidad natural de la piel, dejándola radiante y saludable.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://lavandacasaspa.com/wp-content/uploads/2020/09/los-beneficios-de-recibir-un-tratamiento-hidratacion-facial.jpg',
+      'urlImages':
+          ['https://lavandacasaspa.com/wp-content/uploads/2020/09/los-beneficios-de-recibir-un-tratamiento-hidratacion-facial.jpg'],
       'minPrice': 50.0,
       'maxPrice': 80.0
     },
@@ -806,8 +807,8 @@ Map<String, dynamic> spaServices = {
           'Reduce líneas finas y arrugas, proporcionando firmeza y una apariencia rejuvenecida.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://maison-spa.com/wp-content/uploads/2024/05/STOCK-PHOTOS-1-1-9.png',
+      'urlImages':
+          ['https://maison-spa.com/wp-content/uploads/2024/05/STOCK-PHOTOS-1-1-9.png'],
       'minPrice': 60.0,
       'maxPrice': 100.0
     },
@@ -818,8 +819,8 @@ Map<String, dynamic> spaServices = {
           'Limpieza profunda que elimina impurezas, ideal para pieles grasas o con tendencia al acné.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://applications-media.feverup.com/image/upload/f_auto,w_550,h_550/fever2/plan/photo/dae35b46-4f7a-11e8-9000-067dfd978c4d.jpg',
+      'urlImages':
+          ['https://applications-media.feverup.com/image/upload/f_auto,w_550,h_550/fever2/plan/photo/dae35b46-4f7a-11e8-9000-067dfd978c4d.jpg'],
       'minPrice': 55.0,
       'maxPrice': 85.0
     },
@@ -830,8 +831,8 @@ Map<String, dynamic> spaServices = {
           'Ayuda a mejorar la elasticidad y firmeza de la piel, dándole un aspecto más tonificado.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://aurumwellbeing.com/wp-content/uploads/2022/05/Masaje-facial-reafirmante-lifting.jpg',
+      'urlImages':
+          ['https://aurumwellbeing.com/wp-content/uploads/2022/05/Masaje-facial-reafirmante-lifting.jpg'],
       'minPrice': 65.0,
       'maxPrice': 90.0
     },
@@ -842,8 +843,8 @@ Map<String, dynamic> spaServices = {
           'Reduce manchas e iguala el tono de la piel, devolviendo su luminosidad natural.',
       'category': 'Spa',
       'subCategory': 'Tratamientos faciales',
-      'urlImage':
-          'https://lh4.googleusercontent.com/proxy/UgjcLEvPXROO0j8ZZJ_p9tS_8mBbt3Ijjp6A0qpm_OG4-AIL6wVESiZZSmcd2gFQ2FhX-6zjkQSgXmU2SyRnX8KJ4fho_0uGZhsCrjR3MgKpZDEs7Az3M9El-MlnybLa-1nJRv9cVmACqFWn',
+      'urlImages':
+         [ 'https://lh4.googleusercontent.com/proxy/UgjcLEvPXROO0j8ZZJ_p9tS_8mBbt3Ijjp6A0qpm_OG4-AIL6wVESiZZSmcd2gFQ2FhX-6zjkQSgXmU2SyRnX8KJ4fho_0uGZhsCrjR3MgKpZDEs7Az3M9El-MlnybLa-1nJRv9cVmACqFWn'],
       'minPrice': 70.0,
       'maxPrice': 95.0
     },
@@ -854,8 +855,8 @@ Map<String, dynamic> spaServices = {
           'Masaje integral para liberar tensión muscular y promover una relajación total.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://alzentro.com/wp-content/uploads/2019/01/As%C3%AD-te-ayudar%C3%A1n-los-masajes-relajantes-de-cuerpo-entero-1080x675.jpg',
+      'urlImages':
+          ['https://alzentro.com/wp-content/uploads/2019/01/As%C3%AD-te-ayudar%C3%A1n-los-masajes-relajantes-de-cuerpo-entero-1080x675.jpg'],
       'minPrice': 100.0,
       'maxPrice': 150.0
     },
@@ -866,8 +867,8 @@ Map<String, dynamic> spaServices = {
           'Masaje especializado para aliviar el cansancio y revitalizar los pies.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://www.esteticalink.com/wp-content/uploads/2017/04/masaje-pies.jpg',
+      'urlImages':
+          ['https://www.esteticalink.com/wp-content/uploads/2017/04/masaje-pies.jpg'],
       'minPrice': 30.0,
       'maxPrice': 50.0
     },
@@ -878,8 +879,8 @@ Map<String, dynamic> spaServices = {
           'Relaja los músculos tensos del cuello y la espalda, ideal para quienes trabajan muchas horas sentados.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://terapiasderelajacionmedellin.com/wp-content/uploads/2023/02/MASAJE-DE-CUELLO-Y-ESPALDA.jpeg',
+      'urlImages':
+          ['https://terapiasderelajacionmedellin.com/wp-content/uploads/2023/02/MASAJE-DE-CUELLO-Y-ESPALDA.jpeg'],
       'minPrice': 40.0,
       'maxPrice': 70.0
     },
@@ -890,8 +891,8 @@ Map<String, dynamic> spaServices = {
           'Utiliza piedras calientes para aliviar tensiones y mejorar la circulación sanguínea.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://36580daefdd0e4c6740b-4fe617358557d0f7b1aac6516479e176.ssl.cf1.rackcdn.com/products/26356.30575.jpg',
+      'urlImages':
+          ['https://36580daefdd0e4c6740b-4fe617358557d0f7b1aac6516479e176.ssl.cf1.rackcdn.com/products/26356.30575.jpg'],
       'minPrice': 80.0,
       'maxPrice': 120.0
     },
@@ -902,8 +903,8 @@ Map<String, dynamic> spaServices = {
           'Combina masajes suaves con aceites esenciales para una experiencia sensorial relajante.',
       'category': 'Spa',
       'subCategory': 'Masajes relajantes',
-      'urlImage':
-          'https://www.mylottush.com/cdn/shop/articles/masaje_2bf887b0-a435-4959-90f2-03ad3e3311d0_1500x.jpg?v=1691023195',
+      'urlImages':
+          ['https://www.mylottush.com/cdn/shop/articles/masaje_2bf887b0-a435-4959-90f2-03ad3e3311d0_1500x.jpg?v=1691023195'],
       'minPrice': 60.0,
       'maxPrice': 90.0
     },
@@ -914,8 +915,8 @@ Map<String, dynamic> spaServices = {
           'Elimina células muertas para dejar la piel suave, luminosa y renovada.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_F4WdMj8xG9oMC7jyRGzpZELvwp6r4wPVAA&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_F4WdMj8xG9oMC7jyRGzpZELvwp6r4wPVAA&s'],
       'minPrice': 70.0,
       'maxPrice': 110.0
     },
@@ -926,8 +927,8 @@ Map<String, dynamic> spaServices = {
           'Hidrata profundamente y detoxifica la piel, utilizando ingredientes naturales.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1fjY8d02EmENLC_kp825mI__lGY9PLGdxtA&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1fjY8d02EmENLC_kp825mI__lGY9PLGdxtA&s'],
       'minPrice': 75.0,
       'maxPrice': 115.0
     },
@@ -938,8 +939,8 @@ Map<String, dynamic> spaServices = {
           'Mejora la apariencia de la piel con técnicas para reducir la celulitis.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmscnIoLD-hzdlWHhdqENTpoHN1Qcql0KqLw&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmscnIoLD-hzdlWHhdqENTpoHN1Qcql0KqLw&s'],
       'minPrice': 85.0,
       'maxPrice': 130.0
     },
@@ -950,8 +951,8 @@ Map<String, dynamic> spaServices = {
           'Ayuda a moldear la figura mediante técnicas de masaje focalizadas.',
       'category': 'Spa',
       'subCategory': 'Tratamientos corporales',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGZqXHttk3UPvezH7Imd6xm8D_pbswaK9p9w&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGZqXHttk3UPvezH7Imd6xm8D_pbswaK9p9w&s'],
       'minPrice': 90.0,
       'maxPrice': 140.0
     },
@@ -972,8 +973,8 @@ Map<String, dynamic> hairServices = {
           'Mantén tu cabello sano eliminando puntas abiertas sin sacrificar el largo.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://imagenes.elpais.com/resizer/v2/CZKQQ4VB7NIEVH7LOHB3N4NRRI.jpg?auth=69135426f9fa4930e1c38426ca5d79b198f3b38d8077dc6efd8502117ad05e22&width=1960&height=1103&smart=true',
+      'urlImages':
+          ['https://imagenes.elpais.com/resizer/v2/CZKQQ4VB7NIEVH7LOHB3N4NRRI.jpg?auth=69135426f9fa4930e1c38426ca5d79b198f3b38d8077dc6efd8502117ad05e22&width=1960&height=1103&smart=true'],
       'minPrice': 10.0,
       'maxPrice': 20.0
     },
@@ -984,8 +985,8 @@ Map<String, dynamic> hairServices = {
           'Da volumen y movimiento a tu cabello con un corte dinámico y estilizado.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://prixz.com/salud/wp-content/uploads/2021/05/abello-le-queda-un-corte-en-capas-1.jpg',
+      'urlImages':
+          ['https://prixz.com/salud/wp-content/uploads/2021/05/abello-le-queda-un-corte-en-capas-1.jpg'],
       'minPrice': 15.0,
       'maxPrice': 25.0
     },
@@ -996,8 +997,8 @@ Map<String, dynamic> hairServices = {
           'Personaliza tu look con un corte único que se adapte a tu personalidad.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://www.garnier.es/-/media/project/loreal/brand-sites/garnier/emea/es/posts/678-corte-pelo-mariposa.jpg?rev=44bccafb6987483d8a291ff91e1ecf62&h=488&w=678&la=es-ES&hash=6ED6033224C673A0830E85AC30E60D73',
+      'urlImages':
+          ['https://www.garnier.es/-/media/project/loreal/brand-sites/garnier/emea/es/posts/678-corte-pelo-mariposa.jpg?rev=44bccafb6987483d8a291ff91e1ecf62&h=488&w=678&la=es-ES&hash=6ED6033224C673A0830E85AC30E60D73'],
       'minPrice': 20.0,
       'maxPrice': 30.0
     },
@@ -1008,8 +1009,8 @@ Map<String, dynamic> hairServices = {
           'Ideal para un acabado rápido y preciso, perfecto para estilos más cortos.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://img.freepik.com/fotos-premium/maquina-corte-pelo-hombres-cabello-hombres-ayuda-tijeras_158388-589.jpg?w=360',
+      'urlImages':
+          ['https://img.freepik.com/fotos-premium/maquina-corte-pelo-hombres-cabello-hombres-ayuda-tijeras_158388-589.jpg?w=360'],
       'minPrice': 8.0,
       'maxPrice': 15.0
     },
@@ -1020,8 +1021,8 @@ Map<String, dynamic> hairServices = {
           'Agrega un toque moderno y juvenil con un flequillo que realza tu rostro.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://i.pinimg.com/1200x/4c/b9/f3/4cb9f393773d2103528ac9dcbd81d340.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/1200x/4c/b9/f3/4cb9f393773d2103528ac9dcbd81d340.jpg'],
       'minPrice': 12.0,
       'maxPrice': 18.0
     },
@@ -1032,8 +1033,8 @@ Map<String, dynamic> hairServices = {
           'Dale forma y definición a tu barba con un corte profesional y cuidado.',
       'category': 'Cabello',
       'subCategory': 'Corte de cabello',
-      'urlImage':
-          'https://i.pinimg.com/236x/80/2b/1d/802b1d0ec61e803d9b521816a906f0dc.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/236x/80/2b/1d/802b1d0ec61e803d9b521816a906f0dc.jpg'],
       'minPrice': 10.0,
       'maxPrice': 20.0
     },
@@ -1044,8 +1045,8 @@ Map<String, dynamic> hairServices = {
           'Cambia el color de tu cabello completamente con tonos vibrantes o naturales.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://tahecosmetics.com/trends/wp-content/uploads/2021/12/tipos-tintes.jpeg',
+      'urlImages':
+          ['https://tahecosmetics.com/trends/wp-content/uploads/2021/12/tipos-tintes.jpeg'],
       'minPrice': 30.0,
       'maxPrice': 50.0
     },
@@ -1056,8 +1057,8 @@ Map<String, dynamic> hairServices = {
           'Agrega luminosidad y dimensión a tu cabello con mechas bien definidas.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://www.okchicas.com/wp-content/uploads/2021/04/Formas-llevar-mechas-platinadas-10.jpg',
+      'urlImages':
+          ['https://www.okchicas.com/wp-content/uploads/2021/04/Formas-llevar-mechas-platinadas-10.jpg'],
       'minPrice': 35.0,
       'maxPrice': 60.0
     },
@@ -1068,8 +1069,8 @@ Map<String, dynamic> hairServices = {
           'Un degradado natural que ilumina tu cabello de forma sutil y elegante.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://www.wella.com/professional/m/trendshub/Balayage_hair_article/wellaproblogbalayageguideimage6_d.jpg',
+      'urlImages':
+          ['https://www.wella.com/professional/m/trendshub/Balayage_hair_article/wellaproblogbalayageguideimage6_d.jpg'],
       'minPrice': 50.0,
       'maxPrice': 100.0
     },
@@ -1080,8 +1081,8 @@ Map<String, dynamic> hairServices = {
           'Soluciona problemas de color no deseados para lograr un tono perfecto.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://rogelaineimagen.com/wp-content/uploads/2018/05/Foto-como-vino-la-1-vez.jpg',
+      'urlImages':
+          ['https://rogelaineimagen.com/wp-content/uploads/2018/05/Foto-como-vino-la-1-vez.jpg'],
       'minPrice': 40.0,
       'maxPrice': 80.0
     },
@@ -1092,8 +1093,8 @@ Map<String, dynamic> hairServices = {
           'Luce reflejos suaves y naturales que imitan el efecto del sol en tu cabello.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://content.clara.es/medio/2022/09/06/shadowroot-balayage_d98be8af_1080x1351.jpg',
+      'urlImages':
+          ['https://content.clara.es/medio/2022/09/06/shadowroot-balayage_d98be8af_1080x1351.jpg'],
       'minPrice': 45.0,
       'maxPrice': 90.0
     },
@@ -1104,8 +1105,8 @@ Map<String, dynamic> hairServices = {
           'Aclara tu cabello para lograr el tono deseado o como preparación para tintes.',
       'category': 'Cabello',
       'subCategory': 'Tinturado',
-      'urlImage':
-          'https://st4allthings4p4ci.blob.core.windows.net/allthingshair/allthingshair/wp-content/uploads/sites/13/2023/05/43767/como-decolorar-el-cabello-377x566.jpg',
+      'urlImages':
+          ['https://st4allthings4p4ci.blob.core.windows.net/allthingshair/allthingshair/wp-content/uploads/sites/13/2023/05/43767/como-decolorar-el-cabello-377x566.jpg'],
       'minPrice': 25.0,
       'maxPrice': 50.0
     },
@@ -1116,8 +1117,8 @@ Map<String, dynamic> hairServices = {
           'Agrega longitud y volumen de manera natural con extensiones personalizadas.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLbnn0DosBqAM92NvqfErLoFwlukywxeDBMw&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLbnn0DosBqAM92NvqfErLoFwlukywxeDBMw&s'],
       'minPrice': 100.0,
       'maxPrice': 200.0
     },
@@ -1128,8 +1129,8 @@ Map<String, dynamic> hairServices = {
           'Obtén un cambio de look instantáneo con pelucas ajustadas a la perfección.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2ompfYd_SlUezKf95FoHE-n6THwxerceGA&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA2ompfYd_SlUezKf95FoHE-n6THwxerceGA&s'],
       'minPrice': 50.0,
       'maxPrice': 150.0
     },
@@ -1140,8 +1141,8 @@ Map<String, dynamic> hairServices = {
           'Mejora la densidad de tu cabello con postizos que se integran naturalmente.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://pelucasypostizosvalencia.com/wp-content/uploads/2019/07/extensiones-clip-baratas-para-el-cabello.jpg',
+      'urlImages':
+          ['https://pelucasypostizosvalencia.com/wp-content/uploads/2019/07/extensiones-clip-baratas-para-el-cabello.jpg'],
       'minPrice': 30.0,
       'maxPrice': 70.0
     },
@@ -1152,8 +1153,8 @@ Map<String, dynamic> hairServices = {
           'Retira tus extensiones de manera segura sin dañar tu cabello natural.',
       'category': 'Cabello',
       'subCategory': 'Extensiones y postizos',
-      'urlImage':
-          'https://sevilla.abc.es/estilo/bulevarsur/wp-content/uploads/sites/14/2020/04/como-quitar-extensiones-cabello-casa.jpg',
+      'urlImages':
+          ['https://sevilla.abc.es/estilo/bulevarsur/wp-content/uploads/sites/14/2020/04/como-quitar-extensiones-cabello-casa.jpg'],
       'minPrice': 15.0,
       'maxPrice': 30.0
     }
@@ -1169,8 +1170,8 @@ Map<String, dynamic> nailsServices = {
           'Cuida y embellece tus manos con un tratamiento básico que incluye limado y esmalte.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://semilac.pl/media/webp_image/catalog/product/cache/73595e8c109d812957f8a30f638a0cef/s/t/stylizacja_210_jpg.webp',
+      'urlImages':
+          ['https://semilac.pl/media/webp_image/catalog/product/cache/73595e8c109d812957f8a30f638a0cef/s/t/stylizacja_210_jpg.webp'],
       'minPrice': 10.0,
       'maxPrice': 15.0
     },
@@ -1181,8 +1182,8 @@ Map<String, dynamic> nailsServices = {
           'Disfruta de una experiencia relajante con exfoliación, masaje y esmalte de alta calidad.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFfQVCRvyjIkT3988_To9Wg03bNwNYFGMEaw&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFfQVCRvyjIkT3988_To9Wg03bNwNYFGMEaw&s'],
       'minPrice': 20.0,
       'maxPrice': 30.0
     },
@@ -1193,8 +1194,8 @@ Map<String, dynamic> nailsServices = {
           'Luce elegante y sofisticada con la icónica técnica de diseño francés.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4YHVZcndQdYHZGuKCXcl7s5u0LDYPywXDvg&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4YHVZcndQdYHZGuKCXcl7s5u0LDYPywXDvg&s'],
       'minPrice': 15.0,
       'maxPrice': 25.0
     },
@@ -1205,8 +1206,8 @@ Map<String, dynamic> nailsServices = {
           'Obtén un acabado brillante y duradero con esmalte de larga duración.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://i.pinimg.com/originals/4a/a6/e7/4aa6e7e4738a67c46066fdb7ce25069f.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/originals/4a/a6/e7/4aa6e7e4738a67c46066fdb7ce25069f.jpg'],
       'minPrice': 18.0,
       'maxPrice': 28.0
     },
@@ -1216,8 +1217,8 @@ Map<String, dynamic> nailsServices = {
       'description': 'Personaliza tus uñas con diseños artísticos y creativos.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://i.pinimg.com/736x/06/23/59/06235959496a3d3adddcc24a993ea10e.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/06/23/59/06235959496a3d3adddcc24a993ea10e.jpg'],
       'minPrice': 25.0,
       'maxPrice': 40.0
     },
@@ -1228,8 +1229,8 @@ Map<String, dynamic> nailsServices = {
           'Dale un toque único a tus uñas con decoraciones encapsuladas bajo una capa de gel.',
       'category': 'Uñas',
       'subCategory': 'Manicure',
-      'urlImage':
-          'https://i.pinimg.com/736x/71/d4/e7/71d4e762a361f50719aaf37e97637d91.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/71/d4/e7/71d4e762a361f50719aaf37e97637d91.jpg'],
       'minPrice': 30.0,
       'maxPrice': 50.0
     },
@@ -1240,8 +1241,8 @@ Map<String, dynamic> nailsServices = {
           'Consiente tus pies con un tratamiento básico que incluye limpieza, limado y esmalte.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://www.veronicacanas.com/cdn/shop/products/PEDICURE_95d0e7f4-4fb6-4b25-a44d-5a2652c29a7d.jpg?v=1620620258',
+      'urlImages':
+          ['https://www.veronicacanas.com/cdn/shop/products/PEDICURE_95d0e7f4-4fb6-4b25-a44d-5a2652c29a7d.jpg?v=1620620258'],
       'minPrice': 15.0,
       'maxPrice': 20.0
     },
@@ -1252,8 +1253,8 @@ Map<String, dynamic> nailsServices = {
           'Relájate con un tratamiento completo que incluye exfoliación, masaje y cuidado de tus pies.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlMsetiPX3zM5u4qXt0WsYpvsyj22QxnPQmQ&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlMsetiPX3zM5u4qXt0WsYpvsyj22QxnPQmQ&s'],
       'minPrice': 25.0,
       'maxPrice': 35.0
     },
@@ -1264,8 +1265,8 @@ Map<String, dynamic> nailsServices = {
           'Disfruta de un acabado brillante y duradero con esmalte en gel.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://i.pinimg.com/474x/06/d2/80/06d280620ca4e74055aba916e872b725.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/474x/06/d2/80/06d280620ca4e74055aba916e872b725.jpg'],
       'minPrice': 20.0,
       'maxPrice': 30.0
     },
@@ -1276,8 +1277,8 @@ Map<String, dynamic> nailsServices = {
           'Refuerza y embellece tus uñas de los pies con acrílico duradero.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://i.pinimg.com/736x/6c/ca/3e/6cca3e59dbaead505db5ab9cd3cb43b8.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/6c/ca/3e/6cca3e59dbaead505db5ab9cd3cb43b8.jpg'],
       'minPrice': 30.0,
       'maxPrice': 45.0
     },
@@ -1288,8 +1289,8 @@ Map<String, dynamic> nailsServices = {
           'Luce pies perfectos y listos para cualquier ocasión especial.',
       'category': 'Uñas',
       'subCategory': 'Pedicure',
-      'urlImage':
-          'https://i.pinimg.com/originals/ea/03/c1/ea03c1111bcfeab10bd0b86a02567afc.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/originals/ea/03/c1/ea03c1111bcfeab10bd0b86a02567afc.jpg'],
       'minPrice': 20.0,
       'maxPrice': 35.0
     },
@@ -1299,8 +1300,8 @@ Map<String, dynamic> nailsServices = {
       'description': 'Obtén uñas fuertes y elegantes con un acabado clásico.',
       'category': 'Uñas',
       'subCategory': 'Uñas acrílicas',
-      'urlImage':
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsz7MgYTssp69TqmR8rUEaEPcQlTZayb1ZNQ&s',
+      'urlImages':
+          ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsz7MgYTssp69TqmR8rUEaEPcQlTZayb1ZNQ&s'],
       'minPrice': 40.0,
       'maxPrice': 55.0
     },
@@ -1311,8 +1312,8 @@ Map<String, dynamic> nailsServices = {
           'Personaliza tus uñas acrílicas con diseños únicos y llamativos.',
       'category': 'Uñas',
       'subCategory': 'Uñas acrílicas',
-      'urlImage':
-          'https://i.pinimg.com/originals/4c/e2/51/4ce251e7228db7640ad94f78ee0493e5.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/originals/4c/e2/51/4ce251e7228db7640ad94f78ee0493e5.jpg'],
       'minPrice': 50.0,
       'maxPrice': 70.0
     },
@@ -1323,8 +1324,8 @@ Map<String, dynamic> nailsServices = {
           'Combina elegancia y durabilidad con uñas acrílicas en estilo francés.',
       'category': 'Uñas',
       'subCategory': 'Uñas acrílicas',
-      'urlImage':
-          'https://i.pinimg.com/736x/cb/bf/bd/cbbfbdce98a73ef69addd77ba516878e.jpg',
+      'urlImages':
+          ['https://i.pinimg.com/736x/cb/bf/bd/cbbfbdce98a73ef69addd77ba516878e.jpg'],
       'minPrice': 45.0,
       'maxPrice': 60.0
     },

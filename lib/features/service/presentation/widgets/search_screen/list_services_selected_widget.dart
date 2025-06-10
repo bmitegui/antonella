@@ -27,7 +27,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
                             const EdgeInsets.only(left: 8, top: 8, bottom: 8),
                         child: Row(children: [
                           CircleAvatar(
-                              foregroundImage: NetworkImage(service.urlImage)),
+                              foregroundImage: NetworkImage(service.urlImages[0])),
                           const SizedBox(width: 8),
                           Expanded(
                               child: Column(

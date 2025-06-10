@@ -86,13 +86,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<List<String>> passwordCode({required String email}) async {
     try {
       final url = '${Environment.passwordCode}?email=$email';
-      print('entra:$url');
-
       final result = await client.post(url,
           options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));
-      print(result.data);
       final status = result.data['status'];
       if (status == 'success') {
         return [result.data['data']['code'], result.data['data']['user_id']];
@@ -102,7 +99,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     } on ServerException {
       rethrow;
     } catch (e) {
-      print(e);
       throw const ServerException();
     }
   }
@@ -116,7 +112,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
           options: Options(
               contentType: Headers.jsonContentType,
               validateStatus: (status) => status != null && status < 500));
-      print(result.data);
       final status = result.data['status'];
       if (status == 'success') {
         return;
