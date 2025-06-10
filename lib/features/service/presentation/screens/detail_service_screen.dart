@@ -111,10 +111,8 @@ class DetailServiceScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
+                        '\$${serviceEntity.minPrice} - \$${serviceEntity.maxPrice}',
+                        style: Theme.of(context).textTheme.titleMedium),
                     ElevatedButton(
                         onPressed: () async {
                           if (state is ServicesSelectedLoaded) {
@@ -142,7 +140,11 @@ class DetailServiceScreen extends StatelessWidget {
                                 horizontal: 24, vertical: 12),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
-                        child: const Text('Agregar Servicio'))
+                        child: Text('Agregar Servicio',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: Colors.white)))
                   ])));
     });
   }

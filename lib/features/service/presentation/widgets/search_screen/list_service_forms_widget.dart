@@ -1,3 +1,4 @@
+import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/core/widgets/custom_title_separator_widget.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -44,8 +45,8 @@ class ListServiceFormsWidget extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Column(children: [
-          CustomTitleSeparatorWidget(
-              text: serviceFormEntity.title, indexForm: indexForm),
+          CustomTitle(title: serviceFormEntity.title, index: indexForm),
+       
           const SizedBox(height: 16),
           (serviceFormEntity.type == 'uploadPhotos')
               ? ListPhotosWidget(serviceFormEntity: serviceFormEntity)
