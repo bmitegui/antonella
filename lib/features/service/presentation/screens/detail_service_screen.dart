@@ -42,8 +42,8 @@ class _DetailServiceWidgetState extends State<DetailServiceScreen> {
                 SizedBox(height: 16),
                 LabelDetailServiceWidget(
                   category: getCategoryText(context: context, serviceCategory: widget.serviceEntity.category), 
-                  rating: '4.0[45]', 
-                  duration: '45 min'
+                  rating: widget.serviceEntity.rating, 
+                  duration: widget.serviceEntity.duration
                 ),
                 SizedBox(height: 16),
                 Text(widget.serviceEntity.description),
