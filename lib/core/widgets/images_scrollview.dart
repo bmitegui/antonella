@@ -1,3 +1,5 @@
+import 'package:antonella/core/widgets/custom_cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -21,7 +23,7 @@ class ImagesScrollview extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(48),
                         bottomRight: Radius.circular(48)),
-                    child: Image.network(imageLinks[index], fit: BoxFit.cover));
+                    child: CustomCachedNetworkImage(imageUrl: imageLinks[index]));
               })),
       const SizedBox(height: 8),
       SmoothPageIndicator(

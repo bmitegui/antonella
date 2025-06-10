@@ -39,7 +39,7 @@ class DetailServiceScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium)),
           backgroundColor: Color(0xFFF0F0F0),
           body: SingleChildScrollView(
-              child: Column(children: [
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
             ImagesScrollview(imageLinks: serviceEntity.urlImages),
             Padding(
                 padding:
@@ -81,7 +81,7 @@ class DetailServiceScreen extends StatelessWidget {
                               onPressed: () {},
                               icon: Icon(Icons.arrow_forward,
                                   color: Color(0xFFF44565)))
-                        ],
+                        ]
                       ),
                       CommentContainer(
                           imageUrl:
@@ -89,8 +89,7 @@ class DetailServiceScreen extends StatelessWidget {
                           rating: serviceEntity.rating,
                           date: '14/02/2025',
                           comment:
-                              'Excelente servicio. Por supuesto que volvería a hacer este tratamiento, súper relajante.'),
-                      const SizedBox(height: 100)
+                              'Excelente servicio. Por supuesto que volvería a hacer este tratamiento, súper relajante.')
                     ]))
           ])),
           bottomNavigationBar: Container(

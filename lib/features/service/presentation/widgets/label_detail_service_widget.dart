@@ -9,10 +9,10 @@ class LabelDetailServiceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final n = (MediaQuery.of(context).size.width) / 16;
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       buildLabelIcon(title: category, icon: Icons.local_offer, colorIcon: Colors.pink, sizeIcon: n),
-      buildLabelIcon(title: rating, icon: Icons.star, colorIcon: Colors.amber, sizeIcon: n),
-      buildLabelIcon(title: duration, icon: Icons.schedule_sharp, colorIcon: Colors.grey, sizeIcon: n)
+      buildLabelIcon(title: '$rating [45]', icon: Icons.star, colorIcon: Colors.amber, sizeIcon: n),
+      buildLabelIcon(title: '$duration min', icon: Icons.access_time_filled, colorIcon: Colors.grey, sizeIcon: n)
     ]);
   }
 

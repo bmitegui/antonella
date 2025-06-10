@@ -21,7 +21,7 @@ class CommentContainer extends StatelessWidget {
             decoration: BoxDecoration(shape: BoxShape.circle),
             clipBehavior: Clip.hardEdge,
             child: CustomCachedNetworkImage(imageUrl: imageUrl)),
-        title: Row(children: [
+        title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text('Juliana Andrea Daza'),
           Column(children: [
             Row(children: [
@@ -39,6 +39,6 @@ class CommentContainer extends StatelessWidget {
             ])
           ])
         ]),
-        subtitle: Text(comment, style: TextStyle(fontSize: 14)));
+        subtitle: Text(comment));
   }
 }
