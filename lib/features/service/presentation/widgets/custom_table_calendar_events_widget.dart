@@ -1,6 +1,7 @@
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/service_image_network.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Event {
@@ -68,7 +69,7 @@ class _CustomTableCalendarEventsWidgetState
           address: 'Av. Calle principal, Calle numero #',
           hours: '11:00-12:00')
     ],
-    DateTime(2024, 12, 10): [
+    DateTime(2025, 06, 10): [
       Event(
           proffessional: 'Taylor Swift',
           name: 'Corte de puntas',
@@ -132,18 +133,20 @@ class _CustomTableCalendarEventsWidgetState
       TableCalendar(
           headerStyle: HeaderStyle(
               headerMargin: const EdgeInsets.only(bottom: 8),
-              leftChevronPadding: const EdgeInsets.symmetric(vertical: 8),
-              rightChevronPadding: const EdgeInsets.symmetric(vertical: 8),
+              leftChevronPadding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+              rightChevronPadding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
               headerPadding: EdgeInsets.zero,
-              titleTextStyle: const TextStyle(color: Colors.white),
+              titleTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               leftChevronIcon:
-                  const Icon(Icons.chevron_left, color: Colors.white),
+                  const Icon(Icons.chevron_left, color: Colors.black, size: 32),
               rightChevronIcon:
-                  const Icon(Icons.chevron_right, color: Colors.white),
+                  const Icon(Icons.chevron_right, color: Colors.black, size: 32),
               titleCentered: true,
-              decoration: BoxDecoration(
-                  color: const Color(0XFFBD818E),
-                  borderRadius: BorderRadius.circular(8))),
+              titleTextFormatter: (date, locale) {
+                return DateFormat('MMMM yyyy', locale).format(date).toUpperCase();
+              },
+          ),
+          
           availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
           locale: 'es_EC',
           firstDay: DateTime.utc(2023),
@@ -193,7 +196,7 @@ class _CustomTableCalendarEventsWidgetState
       Expanded(
           child: _selectedDay == null
               ? const Center(
-                  child: Text('Selecciona un día para ver los eventos'),
+                  child: Text('Selecciona un horario para ver sus citas'),
                 )
               : ListView.builder(
                   itemCount: _getEventsForDay(_selectedDay!).length,
