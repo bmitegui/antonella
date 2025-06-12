@@ -5,7 +5,7 @@ import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/service_form/service_form_bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/services_selected/services_selected_bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/comment_container.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/service_comments_list.dart';
 import 'package:antonella/features/service/presentation/widgets/label_detail_service_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
 import 'package:flutter/material.dart';
@@ -84,21 +84,7 @@ class DetailServiceScreen extends StatelessWidget {
                                     icon: Icon(Icons.arrow_forward,
                                         color: Color(0xFFF44565)))
                               ]),
-                          CommentContainer(
-                              imageUrl:
-                                  'https://imagenes.elpais.com/resizer/v2/AWNTN6VH5NFBPJYRX7DS6QAAMM.jpg?auth=1426161ce83c0dc66a4185ca80b7f19eeff59f2e1ea63dd2a803a2e8a4417824&width=980&height=980&smart=true',
-                              rating: serviceEntity.rating,
-                              date: '14/02/2025',
-                              comment:
-                                  'Excelente servicio. Por supuesto que volvería a hacer este tratamiento, súper relajante.'),
-                          const SizedBox(height: 8),
-                          CommentContainer(
-                              imageUrl:
-                                  'https://imagenes.elpais.com/resizer/v2/AWNTN6VH5NFBPJYRX7DS6QAAMM.jpg?auth=1426161ce83c0dc66a4185ca80b7f19eeff59f2e1ea63dd2a803a2e8a4417824&width=980&height=980&smart=true',
-                              rating: serviceEntity.rating,
-                              date: '14/02/2025',
-                              comment:
-                                  'Volveria sin dudarlo, excelentes instalaciones.')
+                          ServiceCommentsList()
                         ]))
               ])),
           bottomNavigationBar: Container(

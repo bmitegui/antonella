@@ -82,7 +82,9 @@ class ServicesTabSection extends StatelessWidget {
         (state is ServicesLoaded)
             ? Expanded(
                 child: CustomGridView(listPromotions: filteredPromotions))
-            : CircularProgressIndicator()
+            : (state is ServicesError)
+                ? Text(state.message)
+                : CircularProgressIndicator()
       ]);
     });
   }

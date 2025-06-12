@@ -56,6 +56,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         rememberMe: event.rememberMe));
     failureOrUser.fold((failure) {
       emit(UserError(message: _mapFailureToMessage(failure)));
+      if (event.checkAuthentication) {
+        emit(UserUnauthenticated());
+      }
     }, (user) async {
       emit(UserAuthenticated(user: user));
       if (event.rememberMe) {
@@ -77,7 +80,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         password.trim().isEmpty) {
       add(SignOutEvent(userEntity: null));
     } else {
-      add(SignInEvent(account: account, password: password, rememberMe: true));
+      add(SignInEvent(
+          account: account,
+          password: password,
+          rememberMe: true,
+          checkAuthentication: true));
     }
   }
 
@@ -85,8 +92,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       SignUpEvent event, Emitter<UserState> emit) async {
     emit(UserLoading());
     final failureOrUser = await signUpUseCase(SignUpParams(
-      phoneNumber: event.phoneNumber,
-      genero: event.genero,
+        phoneNumber: event.phoneNumber,
+        genero: event.genero,
         account: event.account,
         name: event.name,
         password: event.password,

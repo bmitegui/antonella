@@ -8,11 +8,10 @@ class ListServicesModel extends ListServicesEntity {
     List<ServiceEntity> services = [];
 
     if (json['services'] != null) {
-      services = json['services'].map<ServiceModel>((serviceData) {
+      services = (json['services'] as List).map<ServiceModel>((serviceData) {
         return ServiceModel.fromJson(serviceData);
       }).toList();
     }
-
     return ListServicesModel(services: services);
   }
 }

@@ -1,5 +1,5 @@
-// ignore_for_file: deprecated_member_use
-
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -31,12 +31,11 @@ class ServiceInfoWidget extends StatelessWidget {
         Padding(
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
-                onTap: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DetailServiceScreen(serviceEntity: serviceEntity)));
-                 
+                onTap: () {
+                  sl<CommentBloc>().add(
+                      GetServiceCommentsEvent(serviceId: serviceEntity.id));
+                  navigateWithSlideTransition(context,
+                      DetailServiceScreen(serviceEntity: serviceEntity));
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width / 2,
@@ -50,7 +49,8 @@ class ServiceInfoWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 8),
-                          ServiceImageNetwork(urlImage: serviceEntity.urlImages[0]),
+                          ServiceImageNetwork(
+                              urlImage: serviceEntity.urlImages[0]),
                           const SizedBox(height: 8),
                           Padding(
                               padding:

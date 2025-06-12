@@ -13,7 +13,7 @@ class ServiceEntity extends Equatable {
   final double maxPrice;
   final bool isSelected;
   final String duration;
-  final String rating;
+  final double rating;
   final List<ServiceFormEntity>? listServiceFormsEntity;
 
   const ServiceEntity(
@@ -44,7 +44,7 @@ class ServiceEntity extends Equatable {
     double? maxPrice,
     bool? isSelected,
     String? duration,
-    String? rating,
+    double? rating,
     List<ServiceFormEntity>? listServiceFormsEntity,
   }) {
     return ServiceEntity(

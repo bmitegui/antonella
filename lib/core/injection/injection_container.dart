@@ -76,6 +76,9 @@ Future<void> init() async {
   sl.registerLazySingleton<PasswordResetUseCase>(
       () => PasswordResetUseCase(userRepository: sl<UserRepository>()));
 
+  sl.registerLazySingleton<GetServiceCommentsUseCase>(() =>
+      GetServiceCommentsUseCase(serviceRepository: sl<ServiceRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -94,6 +97,9 @@ Future<void> init() async {
   sl.registerLazySingleton<PasswordBloc>(() => PasswordBloc(
       passwordCodeUseCase: sl<PasswordCodeUseCase>(),
       passwordResetUseCase: sl<PasswordResetUseCase>()));
+
+  sl.registerLazySingleton<CommentBloc>(
+      () => CommentBloc(getCommentsUseCase: sl<GetServiceCommentsUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

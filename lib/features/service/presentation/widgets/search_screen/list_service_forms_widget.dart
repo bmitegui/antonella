@@ -1,5 +1,4 @@
 import 'package:antonella/core/widgets/custom_title.dart';
-import 'package:antonella/core/widgets/custom_title_separator_widget.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/buttons_end_form_widget.dart';

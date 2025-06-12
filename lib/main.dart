@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<ServicesSelectedBloc>()),
           BlocProvider(create: (context) => di.sl<ServiceFormBloc>()),
           BlocProvider(create: (context) => di.sl<PasswordBloc>()),
+          BlocProvider(create: (context) => di.sl<CommentBloc>()),
         ],
         child: BlocBuilder<ThemeBloc, bool>(builder: (context, stateTheme) {
           return BlocBuilder<LanguageBloc, Locale>(
@@ -57,7 +58,9 @@ class MyApp extends StatelessWidget {
                 routeInformationProvider: appRouter.routeInformationProvider,
                 debugShowCheckedModeBanner: false,
                 title: appName,
-                theme: stateTheme ? theme.lightMediumContrast() : theme.lightMediumContrast());
+                theme: stateTheme
+                    ? theme.lightMediumContrast()
+                    : theme.lightMediumContrast());
           });
         }));
   }

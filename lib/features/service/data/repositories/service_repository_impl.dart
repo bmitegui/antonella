@@ -49,4 +49,22 @@ class ServiceRepositoryImpl implements ServiceRepository {
       return Left(ServerFailure(message: networkConnectionError));
     }
   }
+
+  @override
+  Future<Either<Failure, List<CommentModel>>> getServiceComments(
+      {required String serviceId}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteServiceComments = await serviceRemoteDataSource
+            .getServiceComments(serviceId: serviceId);
+        return Right(remoteServiceComments);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(message: e.message));
+      } catch (e) {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure(message: networkConnectionError));
+    }
+  }
 }

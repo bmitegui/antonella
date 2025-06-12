@@ -10,10 +10,12 @@ final class SignInEvent extends UserEvent {
   final String account;
   final String password;
   final bool rememberMe;
+  final bool checkAuthentication;
   SignInEvent(
       {required this.account,
       required this.password,
-      required this.rememberMe});
+      required this.rememberMe,
+      this.checkAuthentication = false});
 }
 
 final class SignOutEvent extends UserEvent {

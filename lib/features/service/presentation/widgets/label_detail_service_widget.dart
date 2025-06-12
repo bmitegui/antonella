@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LabelDetailServiceWidget extends StatelessWidget {
   final String category;
-  final String rating;
+  final double rating;
   final String duration;
   const LabelDetailServiceWidget({super.key, required this.category, required this.rating, required this.duration});
 
