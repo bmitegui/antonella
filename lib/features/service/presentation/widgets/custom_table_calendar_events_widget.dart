@@ -143,8 +143,14 @@ class _CustomTableCalendarEventsWidgetState
                   const Icon(Icons.chevron_right, color: Colors.black, size: 32),
               titleCentered: true,
               titleTextFormatter: (date, locale) {
-                return DateFormat('MMMM yyyy', locale).format(date).toUpperCase();
+                final width = MediaQuery.of(context).size.width;
+                final isSmallScreen = width < 360;
+
+                return DateFormat(isSmallScreen ? 'MMM yyyy' : 'MMMM yyyy', locale)
+                    .format(date)
+                    .toUpperCase();
               },
+              
           ),
           
           availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
