@@ -19,7 +19,7 @@ class ServiceCommentsList extends StatelessWidget {
                   .toList())
           : (state is CommentsError)
               ? Text(state.message)
-              : CircularProgressIndicator();
+              : Center(child: CircularProgressIndicator());
     });
   }
 }

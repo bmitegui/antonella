@@ -1,3 +1,4 @@
+import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -13,23 +14,24 @@ class IsSelectWidget extends StatelessWidget {
         builder: (context, state) {
       return (state is ServiceFormLoaded)
           ? Row(
-              children: ['No', '', 'Si']
-                  .map((value) => (value.isEmpty)
-                      ? const SizedBox(width: 8)
-                      : Expanded(
-                          child: value == serviceFormEntity.answer
-                              ? ElevatedButton(
-                                  onPressed: null, child: Text(value))
-                              : FilledButton(
-                                  onPressed: () {
-                                    context.read<ServiceFormBloc>().add(
-                                        UpdateAnswerEvent(
-                                            id: serviceFormEntity.id,
-                                            answer: value,
-                                            listServiceForms:
-                                                state.listServiceForms));
-                                  },
-                                  child: Text(value))))
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: ['', 'Sí', 'No', '']
+                  .map((value) => value.isEmpty
+                      ? SizedBox()
+                      : CustomElevatedButton(
+                          backgroundColor: value != serviceFormEntity.answer
+                              ? Color(0xFFFAE2E1)
+                              : Color(0xFFF44565),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 12),
+                          onPressed: () {
+                            context.read<ServiceFormBloc>().add(
+                                UpdateAnswerEvent(
+                                    id: serviceFormEntity.id,
+                                    answer: value,
+                                    listServiceForms: state.listServiceForms));
+                          },
+                          text: value))
                   .toList())
           : (state is ServiceFormError)
               ? Center(child: Text(state.message))

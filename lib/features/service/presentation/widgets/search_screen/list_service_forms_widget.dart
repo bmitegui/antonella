@@ -27,7 +27,6 @@ class ListServiceFormsWidget extends StatelessWidget {
                         indexForm: (index + 1).toString());
                   }).toList() +
                   [
-                    const Divider(),
                     ButtonsEndFormWidget(
                         listServiceForms: state.listServiceForms,
                         serviceEntity: serviceEntity)
@@ -45,7 +44,6 @@ class ListServiceFormsWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 16),
         child: Column(children: [
           CustomTitle(title: serviceFormEntity.title, index: indexForm),
-       
           const SizedBox(height: 16),
           (serviceFormEntity.type == 'uploadPhotos')
               ? ListPhotosWidget(serviceFormEntity: serviceFormEntity)

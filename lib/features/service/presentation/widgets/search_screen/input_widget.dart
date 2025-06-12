@@ -37,6 +37,8 @@ class _InputWidgetState extends State<InputWidget> {
         builder: (context, state) {
       return (state is ServiceFormLoaded)
           ? CustomTextFormFieldWidget(
+              maxLines: 5,
+              fillColor: Color(0xFFFAE2E1),
               textEditingController: _textEditingController,
               onChanged: (value) {
                 context.read<ServiceFormBloc>().add(UpdateAnswerEvent(

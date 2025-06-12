@@ -16,6 +16,8 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final String? errorMessage;
   final void Function()? onTap;
   final bool readOnly;
+  final Color fillColor;
+  final int maxLines;
 
   const CustomTextFormFieldWidget(
       {super.key,
@@ -33,7 +35,9 @@ class CustomTextFormFieldWidget extends StatefulWidget {
       this.errorMessage,
       this.suffixIcon,
       this.onTap,
-      this.readOnly = false});
+      this.readOnly = false,
+      this.fillColor = Colors.white,
+      this.maxLines = 1});
 
   @override
   State<CustomTextFormFieldWidget> createState() =>
@@ -67,6 +71,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                         color: Colors.black, fontWeight: FontWeight.bold))),
           if (widget.title != null) const SizedBox(height: 8),
           TextFormField(
+              maxLines: widget.maxLines,
               readOnly: widget.readOnly,
               onTap: widget.onTap,
               keyboardType: widget.keyboardType,
@@ -83,7 +88,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                   hintStyle: TextStyle(
                       color: Colors.grey, fontWeight: FontWeight.bold),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: widget.fillColor,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide.none),

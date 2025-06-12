@@ -9,12 +9,18 @@ class ServiceFormModel extends ServiceFormEntity {
       required super.answer});
 
   factory ServiceFormModel.fromJson(Map<String, dynamic> json) {
+    final type = json['type'] ?? '';
+    final urlPhotos = json['urlPhotos'];
     return ServiceFormModel(
         id: json['id'] ?? '',
         title: json['title'] ?? '',
-        type: json['type'] ?? '',
-        urlPhotos: json['urlPhotos'],
-        answer: null);
+        type: type,
+        urlPhotos: urlPhotos,
+        answer: type == 'selectPhotos'
+            ? (urlPhotos as Map<String, String>).keys.toList()[0]
+            : type == 'isSelected'
+                ? 'Sí'
+                : null);
   }
 
   ServiceFormModel copyWith({

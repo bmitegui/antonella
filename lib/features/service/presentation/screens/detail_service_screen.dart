@@ -1,5 +1,6 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/images_scrollview.dart';
 import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
@@ -42,7 +43,7 @@ class DetailServiceScreen extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                ImagesScrollview(imageLinks: serviceEntity.urlImages),
+                ImagesScrollview(images: serviceEntity.urlImages),
                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 16),
@@ -99,7 +100,7 @@ class DetailServiceScreen extends StatelessWidget {
                     Text(
                         '\$${serviceEntity.minPrice} - \$${serviceEntity.maxPrice}',
                         style: Theme.of(context).textTheme.titleMedium),
-                    ElevatedButton(
+                    CustomElevatedButton(
                         onPressed: () async {
                           if (state is ServicesSelectedLoaded) {
                             sl<ServiceFormBloc>().add(GetListServiceFormEvent(
@@ -120,17 +121,7 @@ class DetailServiceScreen extends StatelessWidget {
                                 });
                           }
                         },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.pink,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20))),
-                        child: Text('Agregar Servicio',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(color: Colors.white)))
+                        text: 'Agregar Servicio')
                   ])));
     });
   }
