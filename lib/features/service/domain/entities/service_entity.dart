@@ -14,6 +14,8 @@ class ServiceEntity extends Equatable {
   final List<String> images;
   final List<QuestionEntity> questions;
   final double rating;
+  final double minPrice;
+  final double maxPrice;
 
   const ServiceEntity(
       {required this.id,
@@ -25,34 +27,38 @@ class ServiceEntity extends Equatable {
       required this.prices,
       required this.images,
       required this.questions,
-      required this.rating});
+      required this.rating,
+      required this.minPrice,
+      required this.maxPrice});
 
   @override
   List<Object?> get props => [id];
 
-  ServiceEntity copyWith({
-    String? id,
-    String? name,
-    String? description,
-    ServiceType? type,
-    String? subtype,
-    String? duration,
-    List<PriceEntity>? prices,
-    List<String>? images,
-    List<QuestionEntity>? questions,
-    double? rating,
-  }) {
+  ServiceEntity copyWith(
+      {String? id,
+      String? name,
+      String? description,
+      ServiceType? type,
+      String? subtype,
+      String? duration,
+      List<PriceEntity>? prices,
+      List<String>? images,
+      List<QuestionEntity>? questions,
+      double? rating,
+      double? minPrice,
+      double? maxPrice}) {
     return ServiceEntity(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      type: type ?? this.type,
-      subtype: subtype ?? this.subtype,
-      duration: duration ?? this.duration,
-      prices: prices ?? this.prices,
-      images: images ?? this.images,
-      questions: questions ?? this.questions,
-      rating: rating ?? this.rating,
-    );
+        id: id ?? this.id,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        type: type ?? this.type,
+        subtype: subtype ?? this.subtype,
+        duration: duration ?? this.duration,
+        prices: prices ?? this.prices,
+        images: images ?? this.images,
+        questions: questions ?? this.questions,
+        rating: rating ?? this.rating,
+        minPrice: minPrice ?? this.minPrice,
+        maxPrice: maxPrice ?? this.maxPrice);
   }
 }

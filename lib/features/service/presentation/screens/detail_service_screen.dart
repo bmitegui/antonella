@@ -96,7 +96,8 @@ class DetailServiceScreen extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('TODO',
+                    Text(
+                        '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
                         style: Theme.of(context).textTheme.titleMedium),
                     CustomElevatedButton(
                         onPressed: () async {

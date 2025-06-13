@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -23,12 +24,14 @@ class FormServiceSelectedWidget extends StatelessWidget {
                           children: [
                     CustomTitle(
                         title: 'Categoría:',
-                        description: state.service.type.name),
+                        description: getCategoryText(
+                            context: context,
+                            serviceCategory: state.service.type)),
                     const SizedBox(height: 8),
                     CustomTitle(
                         title: 'Valor aproximado:',
                         description:
-                            '\$serviceEntity.minPrice - serviceEntity.maxPrice'),
+                            '\$${state.service.minPrice} - ${state.service.maxPrice}'),
                     const SizedBox(height: 8),
                     ListServiceFormsWidget()
                   ]))))

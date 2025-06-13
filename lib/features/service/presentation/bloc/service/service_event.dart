@@ -6,4 +6,7 @@ sealed class ServiceEvent {
 
 final class ServiceInitialEvent extends ServiceEvent {}
 
-final class GetServicesEvent extends ServiceEvent {}
+final class GetServicesEvent extends ServiceEvent {
+  final ServiceType? serviceType;
+  GetServicesEvent({this.serviceType});
+}

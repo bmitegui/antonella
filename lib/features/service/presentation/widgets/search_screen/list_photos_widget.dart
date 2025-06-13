@@ -33,9 +33,9 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final isEmpty = widget.question.answer != null ||
+    final isEmpty = widget.question.answer == null ||
         (widget.question.answer as List).length < 2;
-
+    
     return Column(children: [
       ImagesScrollview(
           height: 150,

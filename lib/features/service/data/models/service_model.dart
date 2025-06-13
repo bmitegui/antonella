@@ -13,7 +13,9 @@ class ServiceModel extends ServiceEntity {
       required super.prices,
       required super.images,
       required super.questions,
-      required super.rating});
+      required super.rating,
+      required super.minPrice,
+      required super.maxPrice});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
     final prices = (json['prices'] as List)
@@ -22,17 +24,31 @@ class ServiceModel extends ServiceEntity {
     final questions = (json['questions'] as List)
         .map((questionData) => QuestionModel.fromJson(questionData))
         .toList();
+    double minOfAll = prices.isNotEmpty
+        ? prices
+            .map((e) => e.minPrice)
+            .fold<double>(prices.first.minPrice, (a, b) => a < b ? a : b)
+        : 0.0;
+
+    double maxOfAll = prices.isNotEmpty
+        ? prices
+            .map((e) => e.maxPrice)
+            .fold<double>(prices.first.maxPrice, (a, b) => a > b ? a : b)
+        : 0.0;
+
     return ServiceModel(
         id: json['id'],
-        name: json['name'],
+        name: capitalize(json['name']),
         description: json['description'],
         type: stringToType(json['type']),
-        subtype: json['subtype'],
+        subtype: capitalize(json['subtype']),
         duration: json['duration'],
         prices: prices,
         images: List<String>.from(json['images']),
         questions: questions,
-        rating: generarDoubleEntre35y50());
+        rating: generarDoubleEntre35y50(),
+        minPrice: minOfAll,
+        maxPrice: maxOfAll);
   }
 }
 

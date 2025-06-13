@@ -74,20 +74,20 @@ class ServiceInfoWidget extends StatelessWidget {
                                             ? Colors.white70
                                             : Colors.grey))),
                         const SizedBox(height: 8),
-                        // Align(
-                        //     alignment: Alignment.centerRight,
-                        //     child: Padding(
-                        //         padding:
-                        //             const EdgeInsets.only(right: 8, bottom: 8),
-                        //         child: Text(
-                        //             '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
-                        //             style: Theme.of(context)
-                        //                 .textTheme
-                        //                 .titleSmall!
-                        //                 .copyWith(
-                        //                     color: isSelected
-                        //                         ? Colors.white
-                        //                         : Color(0xFFF44565)))))
+                        Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
+                                child: Text(
+                                    '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(
+                                            color: isSelected
+                                                ? Colors.white
+                                                : Color(0xFFF44565)))))
                       ]))));
     });
   }

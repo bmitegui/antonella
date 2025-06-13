@@ -21,8 +21,9 @@ class ServicesFilterWidget extends StatelessWidget {
                 child: IconServiceWidget(
                     onTap: () => context
                         .read<ServiceBloc>()
-                        .add(GetServicesEvent()),
-                    bottomTitle: getCategoryText(context: context, serviceCategory: entry) ,
+                        .add(GetServicesEvent(serviceType: entry)),
+                    bottomTitle: getCategoryText(
+                        context: context, serviceCategory: entry),
                     asset: imagesServiceCategory[entry]!,
                     isSelected: (state is ServicesLoaded)
                         ? state.serviceType == entry

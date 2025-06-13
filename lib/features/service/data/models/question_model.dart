@@ -10,13 +10,14 @@ class QuestionModel extends QuestionEntity {
       super.answer});
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
-    return QuestionModel(
+    final questionModel = QuestionModel(
         id: json['id'],
         title: json['title'],
         inputType: stringToInputType(json['input_type']),
-        choiceType: stringTocChoiceType(json['choice_type']),
+        choiceType: stringToChoiceType(json['choice_type']),
         choices: json['choices'],
         answer: null);
+    return questionModel;
   }
 }
 
@@ -32,7 +33,7 @@ String choiceTypeToString(InputType inputType) {
   return inputType.name;
 }
 
-ChoiceType? stringTocChoiceType(String? choiceType) {
+ChoiceType? stringToChoiceType(String? choiceType) {
   return choiceType != null
       ? choiceType == 'IMAGE'
           ? ChoiceType.image

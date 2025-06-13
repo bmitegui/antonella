@@ -22,7 +22,16 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
     failureOrSuccess.fold((failure) async {
       emit(ServicesError(message: _mapFailureToMessage(failure)));
     }, (listServices) async {
-      emit(ServicesLoaded(listServices: listServices));
+      if (event.serviceType != null && event.serviceType != ServiceType.all) {
+        final servicesFilter = listServices.services
+            .where((service) => service.type == event.serviceType)
+            .toList();
+        emit(ServicesLoaded(
+            listServices: listServices.copyWith(services: servicesFilter),
+            serviceType: event.serviceType!));
+      } else {
+        emit(ServicesLoaded(listServices: listServices));
+      }
     });
   }
 

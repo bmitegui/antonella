@@ -15,7 +15,7 @@ class SelectPhotosWidget extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 8),
         scrollDirection: Axis.horizontal,
         child: Row(
-            children: question.choices
+            children: (question.choices as List)
                 .map((choiceData) => Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: GestureDetector(
