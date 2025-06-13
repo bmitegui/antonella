@@ -1,4 +1,5 @@
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/send_request_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,16 +7,17 @@ class BottomButtonsSearchScreen extends StatelessWidget {
   final int currentPage;
   final Function() nextPage;
   final Function() previousPage;
+  final Function() sendRequest;
 
   const BottomButtonsSearchScreen(
       {super.key,
       required this.currentPage,
       required this.nextPage,
-      required this.previousPage});
+      required this.previousPage, required this.sendRequest});
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height / 6.9;
+    final height = MediaQuery.of(context).size.height / 6.3;
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       if (state is ServicesSelectedLoaded) {
@@ -33,8 +35,7 @@ class BottomButtonsSearchScreen extends StatelessWidget {
                       IconButton(
                           onPressed: nextPage,
                           icon: Row(children: [
-                            Text(
-                                'Seleccionados(${state.services.length})',
+                            Text('Seleccionados(${state.services.length})',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -44,61 +45,11 @@ class BottomButtonsSearchScreen extends StatelessWidget {
                           ]))
                     ]));
           } else {
-            return Container();
+            return SendRequestButton(sendRequest: sendRequest);
           }
         } else {
           return const SizedBox.shrink();
         }
-
-        // return Row(children: [
-        //   if (previousPage != null)
-        //     CustomIconButton(iconData: Icons.arrow_back, onTap: previousPage),
-        //   if (previousPage != null) const SizedBox(width: 16),
-        //   if (state.listServicesSelected.isNotEmpty)
-        //      CustomIconButton(
-        //         iconData: Icons.message, color: Colors.green, onTap: () async => await showModalBottomSheet<List>(
-        //                 scrollControlDisabledMaxHeightRatio: 1,
-        //                 isScrollControlled: true,
-        //                 backgroundColor: Colors.white,
-        //                 context: context,
-        //                 builder: (BuildContext context) {
-        //                   return const ChatsWidget();
-        //                 })),
-        //   const Spacer(),
-        //   const SizedBox(width: 8),
-        //   if (nextPage != null)
-        //     TextButton(
-        //         onPressed: state.listServicesSelected.isNotEmpty
-        //             ? () async => await showModalBottomSheet<List>(
-        //                 scrollControlDisabledMaxHeightRatio: 1,
-        //                 isScrollControlled: true,
-        //                 backgroundColor: Colors.white,
-        //                 context: context,
-        //                 builder: (BuildContext context) {
-        //                   return const ServicesSelectedWidget();
-        //                 })
-        //             : null,
-        //         child: Text(
-        //             'Seleccionados: (${state.listServicesSelected.length})',
-        //             style: Theme.of(context).textTheme.bodyMedium)),
-        //   if (nextPage == null)
-        //     SizedBox(
-        //         width: MediaQuery.of(context).size.width / 2,
-        //         child: ElevatedButton(
-        //             onPressed: () {
-        //               sl<ServicesSelectedBloc>()
-        //                   .add(ClearServicesSelectedEvent());
-        //               showTopSnackBar(
-        //                   Overlay.of(context),
-        //                   const CustomSnackBar.success(
-        //                       message: 'Solicitud enviada'));
-        //               onSend!();
-        //             },
-        //             child: const Text('Enviar petición'))),
-        //   if (nextPage != null) const SizedBox(width: 8),
-        //   if (nextPage != null && state.listServicesSelected.isNotEmpty)
-        //     CustomIconButton(iconData: Icons.arrow_forward, onTap: nextPage)
-        // ]);
       }
       return const SizedBox.shrink();
     });

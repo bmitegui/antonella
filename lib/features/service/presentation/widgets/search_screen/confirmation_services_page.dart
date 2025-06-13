@@ -1,5 +1,5 @@
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/core/widgets/custom_title_separator_widget.dart';
+import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/list_services_selected_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/progress_search_widget.dart';
@@ -21,22 +21,22 @@ class ConfirmationServicesPage extends StatelessWidget {
                 children: [
               const ProgressSearchWidget(page: 4),
               const SizedBox(height: 16),
-              CustomTitleSeparatorWidget(
-                  text: 'Fecha solicitada:',
+              CustomTitle(
+                  title: 'Fecha solicitada:',
                   description: formatDateTime(state.dateSelected)),
               const SizedBox(height: 16),
-              CustomTitleSeparatorWidget(
-                  text: 'Horario solicitado:',
+              CustomTitle(
+                  title: 'Horario solicitado:',
                   description: state.timeSelected ?? '-'),
               const SizedBox(height: 16),
-              CustomTitleSeparatorWidget(
-                  text: 'Valor aproximado:',
-                  description: 'state.getSummedPriceRange()'),
+              CustomTitle(
+                  title: 'Valor aproximado:',
+                  description: state.getSummedPriceRange()),
               const SizedBox(height: 16),
-              const CustomTitleSeparatorWidget(text: 'Servicios seleccionados'),
-              const SizedBox(height: 8),
+              CustomTitle(
+                  title: 'Servicios seleccionados (${state.services.length})'),
+              const SizedBox(height: 16),
               const Expanded(child: ListServicesSelectedWidget())
-              // BottomButtonsSearchScreen(previousPage: previousPage, onSend: onSend)
             ]));
       }
       return const SizedBox.shrink();

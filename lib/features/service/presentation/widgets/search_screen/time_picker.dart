@@ -18,7 +18,7 @@ class _TimePickerState extends State<TimePicker> {
         builder: (context, state) {
       if (state is ServicesSelectedLoaded) {
         DateTime hora = (state.timeSelected != null)
-            ? DateFormat("hh:mm a").parse(state.timeSelected!)
+            ? DateFormat("HH:mm").parse(state.timeSelected!)
             : DateTime.now();
         return Container(
             margin: EdgeInsets.symmetric(horizontal: 32),
@@ -43,7 +43,7 @@ class _TimePickerState extends State<TimePicker> {
                 minutesInterval: 1,
                 onTimeChange: (time) {
                   context.read<ServicesSelectedBloc>().add(SelectTimeEvent(
-                      timeSelected: DateFormat('hh:mm a').format(time)));
+                      timeSelected: DateFormat('HH:mm').format(time)));
                 }));
       } else {
         return SizedBox.shrink();

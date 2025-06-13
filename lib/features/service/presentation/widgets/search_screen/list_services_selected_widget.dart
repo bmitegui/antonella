@@ -1,6 +1,10 @@
+import 'package:antonella/core/constant/environment.dart';
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,87 +18,106 @@ class ListServicesSelectedWidget extends StatelessWidget {
       if (state is ServicesSelectedLoaded) {
         return state.services.isNotEmpty
             ? SingleChildScrollView(
+                child: ClipRRect(
+                borderRadius: BorderRadius.circular(32),
                 child: ExpansionPanelList.radio(
                     children: state.services.map((service) {
-                return ExpansionPanelRadio(
-                    backgroundColor: Colors.white,
-                    canTapOnHeader: true,
-                    value: service.id,
-                    headerBuilder: (context, isExpanded) => Padding(
-                        padding:
-                            const EdgeInsets.only(left: 8, top: 8, bottom: 8),
-                        child: Row(children: [
-                          CircleAvatar(
-                              foregroundImage: NetworkImage(service.images[0])),
-                          const SizedBox(width: 8),
-                          Expanded(
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                Text(service.type.name,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(fontWeight: FontWeight.bold)),
-                                Text(service.name,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis)
-                              ]))
-                        ])),
-                    body: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-                        child: Row(children: [
-                          Expanded(
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                Text(
-                                    '\${service.minPrice} - {service.maxPrice}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!),
-                                const SizedBox(height: 8),
-                                Text(service.description)
-                              ])),
-                          const SizedBox(width: 16),
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomIconButton(
-                                    iconData: Icons.edit,
-                                    onTap: () async {
-                                      // sl<ServiceFormBloc>().add(
-                                      //     GetListServiceFormEvent(
-                                      //         serviceEntity: service));
-                                      // await showModalBottomSheet<List>(
-                                      //     scrollControlDisabledMaxHeightRatio:
-                                      //         1,
-                                      //     isScrollControlled: true,
-                                      //     backgroundColor: Colors.white,
-                                      //     context: context,
-                                      //     builder: (BuildContext context) {
-                                      //       return FormServiceSelectedWidget(
-                                      //           serviceEntity: service);
-                                      //     });
-                                    }),
-                                const SizedBox(height: 12),
-                                CustomIconButton(
-                                    color: Colors.red,
-                                    iconData: Icons.delete,
-                                    onTap: () async => await showWarningDialog(
-                                        context: context,
-                                        title: 'Eliminar servicio',
-                                        message:
-                                            '¿Está seguro que desea eliminar el servicio seleccionado?',
-                                        textOnAccept: 'Eliminar',
-                                        onAccept: () => context
-                                            .read<ServicesSelectedBloc>()
-                                            .add(DeleteServiceEvent(
-                                                service: service))))
-                              ])
-                        ])));
-              }).toList()))
+                  return ExpansionPanelRadio(
+                      backgroundColor: Colors.white,
+                      canTapOnHeader: true,
+                      value: service.id,
+                      headerBuilder: (context, isExpanded) => Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 20, bottom: 20, right: 12),
+                          child: Row(children: [
+                            CircleAvatar(
+                                foregroundImage: NetworkImage(
+                                    Environment.apiUrl + service.images[0])),
+                            const SizedBox(width: 20),
+                            Expanded(
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                  Text(
+                                      getCategoryText(
+                                          context: context,
+                                          serviceCategory: service.type),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold)),
+                                  Text(service.name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis)
+                                ]))
+                          ])),
+                      body: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, bottom: 20),
+                          child: Row(children: [
+                            Expanded(
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                  Text(
+                                      '\$${service.minPrice} - ${service.maxPrice}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!),
+                                  const SizedBox(height: 8),
+                                  Text(capitalize(service.description),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(color: Colors.grey))
+                                ])),
+                            const SizedBox(width: 16),
+                            Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.person,
+                                          color: Colors.grey, size: 32)),
+                                  IconButton(
+                                      onPressed: () async {
+                                        sl<ServiceFormBloc>().add(
+                                            SelectServiceEvent(
+                                                service: service));
+                                        await showModalBottomSheet<List>(
+                                            scrollControlDisabledMaxHeightRatio:
+                                                1,
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.white,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return FormServiceSelectedWidget();
+                                            });
+                                      },
+                                      icon: Icon(Icons.edit,
+                                          color: Color(0xFFE596A9), size: 32)),
+                                  IconButton(
+                                      onPressed: () async =>
+                                          await showWarningDialog(
+                                              context: context,
+                                              title: 'Eliminar servicio',
+                                              message:
+                                                  '¿Está seguro que desea eliminar el servicio seleccionado?',
+                                              textOnAccept: 'Eliminar',
+                                              onAccept: () => context
+                                                  .read<ServicesSelectedBloc>()
+                                                  .add(DeleteServiceEvent(
+                                                      service: service))),
+                                      icon: Icon(Icons.delete_outline,
+                                          color: Colors.red, size: 32)),
+                                ])
+                          ])));
+                }).toList()),
+              ))
             : const Center(child: Text('No hay servicios seleccionados'));
       }
       return const SizedBox.shrink();

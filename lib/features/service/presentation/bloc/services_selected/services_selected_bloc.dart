@@ -14,7 +14,6 @@ class ServicesSelectedBloc
     on<SelectDateTimeEvent>(_onSelectDateTimeEventRequest);
     on<ClearServicesSelectedEvent>(_onClearServicesSelectedEventRequest);
   }
-
   Future<void> _onClearServicesSelectedEventRequest(
       ClearServicesSelectedEvent event,
       Emitter<ServicesSelectedState> emit) async {

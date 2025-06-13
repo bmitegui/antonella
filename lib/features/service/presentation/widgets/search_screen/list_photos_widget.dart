@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
@@ -34,8 +35,8 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
   Widget build(BuildContext context) {
     super.build(context);
     final isEmpty = widget.question.answer == null ||
-        (widget.question.answer as List).length < 2;
-    
+        (widget.question.answer as List).isEmpty;
+
     return Column(children: [
       ImagesScrollview(
           height: 150,
@@ -78,12 +79,13 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
         CustomElevatedButton(
             onPressed: () async {
               final image = await pickImage(ImageSource.camera);
-              if (image != null) {
-                List<File>? listImages = widget.question.answer;
+              final imageBase64 = await convertFileToBase64(image);
+              if (imageBase64 != null) {
+                List<String>? listImages = widget.question.answer;
                 if (listImages != null) {
-                  listImages.add(image);
+                  listImages.add(imageBase64.split('base64,').last);
                 } else {
-                  listImages = [image];
+                  listImages = [imageBase64.split('base64,').last];
                 }
                 sl<ServiceFormBloc>().add(AnswerQuestionEvent(
                     questionId: widget.question.id, answer: listImages));
@@ -93,12 +95,13 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
         CustomElevatedButton(
             onPressed: () async {
               final image = await pickImage(ImageSource.gallery);
-              if (image != null) {
-                List<File>? listImages = widget.question.answer;
+              final imageBase64 = await convertFileToBase64(image);
+              if (imageBase64 != null) {
+                List<String>? listImages = widget.question.answer;
                 if (listImages != null) {
-                  listImages.add(image);
+                  listImages.add(imageBase64.split('base64,').last);
                 } else {
-                  listImages = [image];
+                  listImages = [imageBase64.split('base64,').last];
                 }
                 sl<ServiceFormBloc>().add(AnswerQuestionEvent(
                     questionId: widget.question.id, answer: listImages));

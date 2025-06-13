@@ -76,6 +76,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetServiceCommentsUseCase>(() =>
       GetServiceCommentsUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<SendRequestUseCase>(
+      () => SendRequestUseCase(serviceRepository: sl<ServiceRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -96,6 +99,9 @@ Future<void> init() async {
       () => CommentBloc(getCommentsUseCase: sl<GetServiceCommentsUseCase>()));
 
   sl.registerLazySingleton<ServiceFormBloc>(() => ServiceFormBloc());
+
+  sl.registerLazySingleton<SendRequestBloc>(
+      () => SendRequestBloc(getSendRequestsUseCase: sl<SendRequestUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

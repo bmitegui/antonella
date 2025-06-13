@@ -63,7 +63,7 @@ class ServiceInfoWidget extends StatelessWidget {
                                             isSelected ? Colors.white : null))),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(serviceEntity.description,
+                            child: Text(capitalize(serviceEntity.description),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)

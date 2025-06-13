@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
@@ -39,7 +41,11 @@ class ImagesScrollview extends StatelessWidget {
                         : isUrl
                             ? CustomCachedNetworkImage(
                                 imageUrl: Environment.apiUrl + images[index])
-                            : Image.file(images[index]));
+                            : Image.memory(
+                                fit: BoxFit.fitHeight,
+                                alignment: Alignment.center,
+                                base64Decode(
+                                    images[index])));
               })),
       if (!isEmpty) const SizedBox(height: 8),
       if (!isEmpty)

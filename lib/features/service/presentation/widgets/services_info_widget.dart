@@ -16,6 +16,7 @@ class ServicesInfoWidget extends StatelessWidget {
                       .read<ServiceBloc>()
                       .add(GetServicesEvent()),
                   child: SingleChildScrollView(
+                    padding: EdgeInsets.only(bottom: 100),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: state

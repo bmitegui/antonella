@@ -36,7 +36,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserAuthenticated(user: event.userEntity!));
       } else {
         emit(UserUnauthenticated());
-
         await keyValueStorageService.removeKey('account');
         await keyValueStorageService.removeKey('password');
       }

@@ -34,6 +34,12 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
+    void _sendRequest() {
+
+      _pageController.jumpTo(0);
+
+  }
+
   void _previousPage() {
     if (_currentPage > 0) {
       _pageController.previousPage(
@@ -82,7 +88,8 @@ class _SearchScreenState extends State<SearchScreen> {
           BottomButtonsSearchScreen(
               currentPage: _currentPage,
               nextPage: _nextPage,
-              previousPage: _previousPage)
+              previousPage: _previousPage,
+              sendRequest: _sendRequest)
         ]));
   }
 }

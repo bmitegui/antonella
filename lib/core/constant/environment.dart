@@ -11,4 +11,8 @@ class Environment {
   static String signUp = '$apiUrl${dotenv.env['signUp']}';
   static String passwordCode = '$apiUrl${dotenv.env['passwordCode']}';
   static String storeService = '$apiUrl${dotenv.env['store_service']}';
+  static String order = '$apiUrl${dotenv.env['order']}';
+  static String oderServiceItem = '$apiUrl${dotenv.env['oderServiceItem']}';
+  static String answer = '$apiUrl${dotenv.env['answer']}';
+  static String user = '$apiUrl${dotenv.env['user']}';
 }

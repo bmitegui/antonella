@@ -14,7 +14,7 @@ final class ServicesSelectedLoaded extends ServicesSelectedState {
       {required this.services,
       required this.dateSelected,
       required this.timeSelected});
-ServicesSelectedLoaded copyWith({
+  ServicesSelectedLoaded copyWith({
     List<ServiceEntity>? services,
     DateTime? dateSelected,
     String? timeSelected,
@@ -25,18 +25,19 @@ ServicesSelectedLoaded copyWith({
       timeSelected: timeSelected ?? this.timeSelected,
     );
   }
-  // String getSummedPriceRange() {
-  //   if (listServicesSelected.isEmpty) {
-  //     return '-';
-  //   }
 
-  //   double totalMinPrice = listServicesSelected.fold(
-  //       0.0, (sum, service) => sum + service.minPrice);
-  //   double totalMaxPrice = listServicesSelected.fold(
-  //       0.0, (sum, service) => sum + service.maxPrice);
+  String getSummedPriceRange() {
+    if (services.isEmpty) {
+      return '-';
+    }
 
-  //   return '\$${totalMinPrice.toStringAsFixed(2)} - \$${totalMaxPrice.toStringAsFixed(2)}';
-  // }
+    double totalMinPrice =
+        services.fold(0.0, (sum, service) => sum + service.minPrice);
+    double totalMaxPrice =
+        services.fold(0.0, (sum, service) => sum + service.maxPrice);
+
+    return '\$${totalMinPrice.toStringAsFixed(2)} - \$${totalMaxPrice.toStringAsFixed(2)}';
+  }
 }
 
 final class ServicesSelectedError extends ServicesSelectedState {

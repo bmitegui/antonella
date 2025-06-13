@@ -20,8 +20,7 @@ class SelectServicesPage extends StatelessWidget {
           const SizedBox(height: 16),
           const ServicesFilterWidget(),
           const SizedBox(height: 16),
-          Expanded(child: ServicesInfoWidget()),
-          const SizedBox(height: 100)
+          Expanded(child: ServicesInfoWidget())
         ]));
   }
 }

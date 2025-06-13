@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
@@ -5,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image/image.dart' as img;
+import 'package:path_provider/path_provider.dart';
+// ignore: depend_on_referenced_packages
+import 'package:path/path.dart' as path;
 
 double generarDoubleEntre35y50() {
   final random = Random();
@@ -66,9 +72,16 @@ String formatDateTime(DateTime? dateTime) => dateTime == null
     ? 'yyyy-MM-dd'
     : DateFormat('yyyy-MM-dd').format(dateTime.toLocal());
 
+String formatHour(DateTime? dateTime) =>
+    dateTime == null ? 'HH:mm' : DateFormat('HH:mm').format(dateTime.toLocal());
+
 String capitalize(String text) {
   if (text.isEmpty) return text;
-  return text[0].toUpperCase() + text.substring(1).toLowerCase();
+
+  return text.toLowerCase().replaceAllMapped(RegExp(r'(^\s*\w|(?<=\.\s*)\w)'),
+      (match) {
+    return match.group(0)!.toUpperCase();
+  });
 }
 
 String getCategoryText(
@@ -108,4 +121,33 @@ void navigateWithSlideTransition(BuildContext context, Widget page) {
             var offsetAnimation = animation.drive(tween);
             return SlideTransition(position: offsetAnimation, child: child);
           }));
+}
+
+Future<String?> convertFileToBase64(File? file) async {
+  if (file == null) {
+    return null;
+  }
+
+  final img.Image? originalImage = img.decodeImage(await file.readAsBytes());
+
+  if (originalImage == null) return "";
+
+  bool isPortrait = originalImage.height > originalImage.width;
+  final Directory tempDir = await getTemporaryDirectory();
+  final String targetPath = path.join(tempDir.path, "temp.jpg");
+
+  var result = await FlutterImageCompress.compressAndGetFile(
+    file.absolute.path,
+    targetPath,
+    quality: 85,
+    minWidth: isPortrait ? 768 : 1024,
+    minHeight: isPortrait ? 1024 : 768,
+  );
+  if (result == null) return "";
+
+  List<int> imageBytes = await result.readAsBytes();
+  String imagenBase64 = base64Encode(imageBytes);
+  var extFoto = result.path.split("/").last.split(".").last;
+  imagenBase64 = "data:image/$extFoto;base64,$imagenBase64";
+  return imagenBase64;
 }
