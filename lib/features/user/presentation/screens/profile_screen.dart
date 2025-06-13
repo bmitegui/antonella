@@ -1,6 +1,7 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
+import 'package:antonella/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:antonella/features/user/presentation/screens/update_pasword_screen.dart';
 import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ListTile(
                                   leading: const Icon(Icons.edit),
                                   title: const Text('Editar Perfil'),
-                                  onTap: () {}),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context, 
+                                      MaterialPageRoute(builder: (context) => EditProfileScreen()),
+                                    );
+                                  }),
                               const Divider(height: 1),
                               ListTile(
                                   leading: const Icon(Icons.logout),
