@@ -133,8 +133,8 @@ class _CustomTableCalendarEventsWidgetState
       TableCalendar(
           headerStyle: HeaderStyle(
               headerMargin: const EdgeInsets.only(bottom: 8),
-              leftChevronPadding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
-              rightChevronPadding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+              leftChevronPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+              rightChevronPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
               headerPadding: EdgeInsets.zero,
               titleTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               leftChevronIcon:
@@ -143,14 +143,44 @@ class _CustomTableCalendarEventsWidgetState
                   const Icon(Icons.chevron_right, color: Colors.black, size: 32),
               titleCentered: true,
               titleTextFormatter: (date, locale) {
-                final width = MediaQuery.of(context).size.width;
-                final isSmallScreen = width < 360;
-
-                return DateFormat(isSmallScreen ? 'MMM yyyy' : 'MMMM yyyy', locale)
-                    .format(date)
-                    .toUpperCase();
-              },
+                return DateFormat('MMMM yyyy', locale).format(date).toUpperCase();
+              }, 
               
+          ),
+          daysOfWeekHeight: 48,
+          daysOfWeekStyle: DaysOfWeekStyle(
+            dowTextFormatter: (date, locale) {
+              final day = DateFormat.E(locale).format(date);
+              switch (day.toLowerCase()) {
+                case 'lun':
+                  return 'L';
+                case 'mar':
+                  return 'M';
+                case 'mié':
+                  return 'MI';
+                case 'jue':
+                  return 'J';
+                case 'vie':
+                  return 'V';
+                case 'sáb':
+                  return 'S';
+                case 'dom':
+                default:
+                  return 'D';
+              }
+            },
+            weekdayStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            weekendStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            decoration: BoxDecoration(
+              color: Color(0xFFF4A6B5),
+            ),
+            
           ),
           
           availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
