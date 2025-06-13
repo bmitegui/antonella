@@ -24,7 +24,7 @@ class DetailServiceScreen extends StatelessWidget {
 
       bool isSelected = false;
       if (state is ServicesSelectedLoaded) {
-        index = state.listServicesSelected
+        index = state.services
             .indexWhere((service) => service.id == serviceEntity.id);
         if (index != -1) {
           isSelected = true;
@@ -43,7 +43,7 @@ class DetailServiceScreen extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                ImagesScrollview(images: serviceEntity.urlImages),
+                ImagesScrollview(images: serviceEntity.images),
                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 16),
@@ -56,13 +56,13 @@ class DetailServiceScreen extends StatelessWidget {
                                   .titleMedium!
                                   .copyWith(color: Color(0xFFF44565))),
                           SizedBox(height: 8),
-                          Text(serviceEntity.subCategory,
+                          Text(serviceEntity.subtype,
                               style: Theme.of(context).textTheme.titleMedium),
                           SizedBox(height: 8),
                           LabelDetailServiceWidget(
                               category: getCategoryText(
                                   context: context,
-                                  serviceCategory: serviceEntity.category),
+                                  serviceCategory: serviceEntity.type),
                               rating: serviceEntity.rating,
                               duration: serviceEntity.duration),
                           SizedBox(height: 8),
@@ -91,33 +91,28 @@ class DetailServiceScreen extends StatelessWidget {
           bottomNavigationBar: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: const BoxDecoration(
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
-              ),
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)]),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                        '\$${serviceEntity.minPrice} - \$${serviceEntity.maxPrice}',
+                    Text('TODO',
                         style: Theme.of(context).textTheme.titleMedium),
                     CustomElevatedButton(
                         onPressed: () async {
                           if (state is ServicesSelectedLoaded) {
-                            sl<ServiceFormBloc>().add(GetListServiceFormEvent(
-                                serviceEntity: isSelected
-                                    ? state.listServicesSelected[index]
-                                    : serviceEntity));
-
+                            final serviceSelected = isSelected
+                                ? state.services[index]
+                                : serviceEntity;
+                            sl<ServiceFormBloc>().add(
+                                SelectServiceEvent(service: serviceSelected));
                             await showModalBottomSheet<List>(
                                 scrollControlDisabledMaxHeightRatio: 1,
                                 isScrollControlled: true,
                                 backgroundColor: Colors.white,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return FormServiceSelectedWidget(
-                                      serviceEntity: isSelected
-                                          ? state.listServicesSelected[index]
-                                          : serviceEntity);
+                                  return FormServiceSelectedWidget();
                                 });
                           }
                         },

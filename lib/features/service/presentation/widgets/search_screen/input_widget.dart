@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InputWidget extends StatefulWidget {
-  final ServiceFormEntity serviceFormEntity;
-
-  const InputWidget({super.key, required this.serviceFormEntity});
+  final QuestionEntity question;
+  const InputWidget({super.key, required this.question});
 
   @override
   State<InputWidget> createState() => _InputWidgetState();
@@ -19,9 +18,9 @@ class _InputWidgetState extends State<InputWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.serviceFormEntity.answer != null) {
+    if (widget.question.answer != null) {
       _textEditingController =
-          TextEditingController(text: widget.serviceFormEntity.answer);
+          TextEditingController(text: widget.question.answer);
     }
   }
 
@@ -41,10 +40,9 @@ class _InputWidgetState extends State<InputWidget> {
               fillColor: Color(0xFFFAE2E1),
               textEditingController: _textEditingController,
               onChanged: (value) {
-                context.read<ServiceFormBloc>().add(UpdateAnswerEvent(
-                    id: widget.serviceFormEntity.id,
-                    answer: (value.trim().isEmpty) ? null : value,
-                    listServiceForms: state.listServiceForms));
+                context.read<ServiceFormBloc>().add(AnswerQuestionEvent(
+                    questionId: widget.question.id,
+                    answer: (value.trim().isEmpty) ? null : value));
               },
               hintText: '')
           : (state is ServiceFormError)

@@ -1,3 +1,5 @@
+import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/features/service/data/models/models.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 
 class ServiceModel extends ServiceEntity {
@@ -5,41 +7,41 @@ class ServiceModel extends ServiceEntity {
       {required super.id,
       required super.name,
       required super.description,
-      required super.category,
-      required super.subCategory,
-      required super.urlImages,
-      required super.minPrice,
-      required super.maxPrice,
-      required super.rating,
+      required super.type,
+      required super.subtype,
       required super.duration,
-      required super.isSelected});
+      required super.prices,
+      required super.images,
+      required super.questions,
+      required super.rating});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
+    final prices = (json['prices'] as List)
+        .map((priceData) => PriceModel.fromJson(priceData))
+        .toList();
+    final questions = (json['questions'] as List)
+        .map((questionData) => QuestionModel.fromJson(questionData))
+        .toList();
     return ServiceModel(
-        id: json['id'] ?? '',
-        name: json['name'] ?? '',
-        description: json['description'] ?? '',
-        category: stringToServiceCategory(json['category']),
-        subCategory: json['subCategory'] ?? '',
-        urlImages: json['urlImages'] ?? '',
-        minPrice: json['minPrice'] ?? 0.0,
-        maxPrice: json['maxPrice'] ?? 0.0,
-        duration: json['duration'] ?? '0',
-        rating: json['rating'] ?? '0',
-        isSelected: false);
+        id: json['id'],
+        name: json['name'],
+        description: json['description'],
+        type: stringToType(json['type']),
+        subtype: json['subtype'],
+        duration: json['duration'],
+        prices: prices,
+        images: List<String>.from(json['images']),
+        questions: questions,
+        rating: generarDoubleEntre35y50());
   }
 }
 
-String serviceCategoryToString(ServiceCategory serviceCategory) {
-  return serviceCategory.name;
-}
-
-ServiceCategory stringToServiceCategory(String serviceCategory) {
-  return serviceCategory == 'spa'
-      ? ServiceCategory.spa
-      : serviceCategory == 'nails'
-          ? ServiceCategory.nails
-          : serviceCategory == 'hair'
-              ? ServiceCategory.hair
-              : ServiceCategory.spa;
+ServiceType stringToType(String type) {
+  return type == 'SPA'
+      ? ServiceType.spa
+      : type == 'UÑAS'
+          ? ServiceType.nails
+          : type == 'CABELLO'
+              ? ServiceType.hair
+              : ServiceType.spa;
 }

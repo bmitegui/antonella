@@ -1,4 +1,3 @@
-import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/services_by_subcategory_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ class ServicesInfoWidget extends StatelessWidget {
               ? RefreshIndicator(
                   onRefresh: () async => context
                       .read<ServiceBloc>()
-                      .add(GetServicesEvent(filter: ServiceCategory.all)),
+                      .add(GetServicesEvent()),
                   child: SingleChildScrollView(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

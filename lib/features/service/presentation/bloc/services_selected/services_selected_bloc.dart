@@ -7,9 +7,9 @@ class ServicesSelectedBloc
     extends Bloc<ServicesSelectedEvent, ServicesSelectedState> {
   ServicesSelectedBloc()
       : super(ServicesSelectedLoaded(
-            listServicesSelected: [], dateSelected: null, timeSelected: null)) {
-    on<AddServiceSelectedEvent>(_onAddServiceSelectedEventRequest);
-    on<DeleteServiceSelectedEvent>(_onDeleteServiceSelectedEventRequest);
+            services: [], dateSelected: null, timeSelected: null)) {
+    on<AddServiceEvent>(_onAddServiceEventRequest);
+    on<DeleteServiceEvent>(_onDeleteServiceEventRequest);
     on<SelectTimeEvent>(_onSelectTimeEventRequest);
     on<SelectDateTimeEvent>(_onSelectDateTimeEventRequest);
     on<ClearServicesSelectedEvent>(_onClearServicesSelectedEventRequest);
@@ -20,55 +20,55 @@ class ServicesSelectedBloc
       Emitter<ServicesSelectedState> emit) async {
     emit(ServicesSelectedLoading());
     emit(ServicesSelectedLoaded(
-        listServicesSelected: [], dateSelected: null, timeSelected: null));
+        services: [], dateSelected: null, timeSelected: null));
   }
 
   Future<void> _onSelectDateTimeEventRequest(
       SelectDateTimeEvent event, Emitter<ServicesSelectedState> emit) async {
-    emit(ServicesSelectedLoading());
-    emit(ServicesSelectedLoaded(
-        listServicesSelected: event.listServicesSelected,
-        dateSelected: event.dateSelected,
-        timeSelected: event.timeSelected));
-  }
-
-  Future<void> _onAddServiceSelectedEventRequest(AddServiceSelectedEvent event,
-      Emitter<ServicesSelectedState> emit) async {
-    emit(ServicesSelectedLoading());
-    final updatedList = List<ServiceEntity>.from(event.listServicesSelected);
-    final index = updatedList
-        .indexWhere((service) => service.id == event.serviceEntitySelected.id);
-    if (index != -1) {
-      updatedList[index] =
-          event.serviceEntitySelected.copyWith(isSelected: true);
-    } else {
-      updatedList.add(event.serviceEntitySelected.copyWith(isSelected: true));
+    final currentState = state;
+    if (currentState is ServicesSelectedLoaded) {
+      emit(ServicesSelectedLoading());
+      emit(currentState.copyWith(dateSelected: event.dateSelected));
     }
-    emit(ServicesSelectedLoaded(
-      listServicesSelected: updatedList,
-      dateSelected: event.dateSelected,
-      timeSelected: event.timeSelected,
-    ));
   }
 
-  Future<void> _onDeleteServiceSelectedEventRequest(
-      DeleteServiceSelectedEvent event,
-      Emitter<ServicesSelectedState> emit) async {
-    emit(ServicesSelectedLoading());
-    final updatedList = List<ServiceEntity>.from(event.listServicesSelected)
-      ..remove(event.serviceEntitySelected);
-    emit(ServicesSelectedLoaded(
-        listServicesSelected: updatedList,
-        dateSelected: event.dateSelected,
-        timeSelected: event.timeSelected));
+  Future<void> _onAddServiceEventRequest(
+    AddServiceEvent event,
+    Emitter<ServicesSelectedState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is ServicesSelectedLoaded) {
+      final services = List<ServiceEntity>.from(currentState.services);
+      final index = services.indexWhere((s) => s.id == event.service.id);
+
+      if (index != -1) {
+        services[index] = event.service;
+      } else {
+        services.add(event.service);
+      }
+
+      emit(ServicesSelectedLoading());
+      emit(currentState.copyWith(services: services));
+    }
+  }
+
+  Future<void> _onDeleteServiceEventRequest(
+      DeleteServiceEvent event, Emitter<ServicesSelectedState> emit) async {
+    final currentState = state;
+    if (currentState is ServicesSelectedLoaded) {
+      final services = currentState.services;
+      services.removeWhere((service) => service.id == event.service.id);
+      emit(ServicesSelectedLoading());
+      emit(currentState.copyWith(services: services));
+    }
   }
 
   Future<void> _onSelectTimeEventRequest(
       SelectTimeEvent event, Emitter<ServicesSelectedState> emit) async {
-        print('se ejecutaaaaaa ${event.timeSelected}');
-    emit(ServicesSelectedLoaded(
-        listServicesSelected: event.listServicesSelected,
-        dateSelected: event.dateSelected,
-        timeSelected: event.timeSelected));
+    final currentState = state;
+    if (currentState is ServicesSelectedLoaded) {
+      emit(ServicesSelectedLoading());
+      emit(currentState.copyWith(timeSelected: event.timeSelected));
+    }
   }
 }

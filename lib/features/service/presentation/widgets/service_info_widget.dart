@@ -1,3 +1,4 @@
+import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
@@ -19,7 +20,7 @@ class ServiceInfoWidget extends StatelessWidget {
 
       bool isSelected = false;
       if (state is ServicesSelectedLoaded) {
-        index = state.listServicesSelected
+        index = state.services
             .indexWhere((service) => service.id == serviceEntity.id);
         if (index != -1) {
           isSelected = true;
@@ -46,7 +47,8 @@ class ServiceInfoWidget extends StatelessWidget {
                       children: [
                         const SizedBox(height: 8),
                         ServiceImageNetwork(
-                            urlImage: serviceEntity.urlImages[0]),
+                            urlImage:
+                                Environment.apiUrl + serviceEntity.images[0]),
                         const SizedBox(height: 8),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -72,20 +74,20 @@ class ServiceInfoWidget extends StatelessWidget {
                                             ? Colors.white70
                                             : Colors.grey))),
                         const SizedBox(height: 8),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 8, bottom: 8),
-                                child: Text(
-                                    '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall!
-                                        .copyWith(
-                                            color: isSelected
-                                                ? Colors.white
-                                                : Color(0xFFF44565)))))
+                        // Align(
+                        //     alignment: Alignment.centerRight,
+                        //     child: Padding(
+                        //         padding:
+                        //             const EdgeInsets.only(right: 8, bottom: 8),
+                        //         child: Text(
+                        //             '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
+                        //             style: Theme.of(context)
+                        //                 .textTheme
+                        //                 .titleSmall!
+                        //                 .copyWith(
+                        //                     color: isSelected
+                        //                         ? Colors.white
+                        //                         : Color(0xFFF44565)))))
                       ]))));
     });
   }

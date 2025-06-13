@@ -27,12 +27,9 @@ class ListTimesWidget extends StatelessWidget {
                       selected: state.timeSelected == hour,
                       onSelected: (selected) {
                         if (selected) {
-                          context.read<ServicesSelectedBloc>().add(
-                              SelectTimeEvent(
-                                  listServicesSelected:
-                                      state.listServicesSelected,
-                                  dateSelected: state.dateSelected,
-                                  timeSelected: hour));
+                          context
+                              .read<ServicesSelectedBloc>()
+                              .add(SelectTimeEvent(timeSelected: hour));
                         }
                       },
                       selectedColor: Colors.green,

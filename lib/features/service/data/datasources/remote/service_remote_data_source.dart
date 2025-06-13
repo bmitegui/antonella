@@ -1,12 +1,10 @@
+import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/service/data/models/models.dart';
-import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
-  Future<ListServicesModel> getServices({required ServiceCategory? filter});
-  Future<List<ServiceFormModel>> getListServiceForm(
-      {required ServiceCategory category});
+  Future<ListServicesModel> getServices();
   Future<List<CommentModel>> getServiceComments({required String serviceId});
 }
 
@@ -15,47 +13,22 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
   ServiceRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<ListServicesModel> getServices(
-      {required ServiceCategory? filter}) async {
+  Future<ListServicesModel> getServices() async {
     try {
-      final servicesData = (filter == null || filter == ServiceCategory.all)
-          ? allServices
-          : filter == ServiceCategory.makeup
-              ? makeupServices
-              : filter == ServiceCategory.hair
-                  ? hairServices
-                  : filter == ServiceCategory.nails
-                      ? nailsServices
-                      : spaServices;
-      servicesData['categorySelected'] = filter ?? 'Todos';
-      return ListServicesModel.fromJson(servicesData);
+      final result = await client.get(Environment.storeService,
+          options: Options(
+              contentType: Headers.jsonContentType,
+              validateStatus: (status) => status != null && status < 500));
+      final status = result.data['status'];
+      if (status == 'success') {
+        return ListServicesModel.fromJson(result.data);
+      } else {
+        throw ServerException(message: result.data['message']);
+      }
     } on ServerException {
       rethrow;
     } catch (e) {
       throw const ServerException();
-    }
-  }
-
-  @override
-  Future<List<ServiceFormModel>> getListServiceForm(
-      {required ServiceCategory category}) async {
-    try {
-      final listServiceFormsData = category == ServiceCategory.makeup
-          ? makeupServices
-          : category == ServiceCategory.hair
-              ? hairServiceForm
-              : category == ServiceCategory.nails
-                  ? nailsServiceForm
-                  : spaServiceForm;
-
-      return listServiceFormsData['ListServiceForms']
-          .map<ServiceFormModel>((serviceFormData) {
-        return ServiceFormModel.fromJson(serviceFormData);
-      }).toList();
-    } on ServerException {
-      rethrow;
-    } catch (e) {
-      throw ServerException(message: e.toString());
     }
   }
 

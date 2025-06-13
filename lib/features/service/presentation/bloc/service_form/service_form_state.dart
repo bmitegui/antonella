@@ -9,8 +9,8 @@ final class ServiceFormInitial extends ServiceFormState {}
 final class ServiceFormLoading extends ServiceFormState {}
 
 final class ServiceFormLoaded extends ServiceFormState {
-  final List<ServiceFormEntity> listServiceForms;
-  ServiceFormLoaded({required this.listServiceForms});
+  final ServiceEntity service;
+  ServiceFormLoaded({required this.service});
 }
 
 final class ServiceFormError extends ServiceFormState {

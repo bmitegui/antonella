@@ -6,7 +6,4 @@ sealed class ServiceEvent {
 
 final class ServiceInitialEvent extends ServiceEvent {}
 
-final class GetServicesEvent extends ServiceEvent {
-  final ServiceCategory filter;
-  GetServicesEvent({required this.filter});
-}
+final class GetServicesEvent extends ServiceEvent {}

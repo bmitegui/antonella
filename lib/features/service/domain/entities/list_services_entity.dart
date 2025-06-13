@@ -2,6 +2,6 @@ import 'package:antonella/features/service/domain/entities/entities.dart';
 
 class ListServicesEntity {
   final List<ServiceEntity> services;
-
-  ListServicesEntity({required this.services});
+  final Map<String, Set> types;
+  ListServicesEntity({required this.services, required this.types});
 }

@@ -1,8 +1,6 @@
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,10 +12,10 @@ class ListServicesSelectedWidget extends StatelessWidget {
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       if (state is ServicesSelectedLoaded) {
-        return state.listServicesSelected.isNotEmpty
+        return state.services.isNotEmpty
             ? SingleChildScrollView(
                 child: ExpansionPanelList.radio(
-                    children: state.listServicesSelected.map((service) {
+                    children: state.services.map((service) {
                 return ExpansionPanelRadio(
                     backgroundColor: Colors.white,
                     canTapOnHeader: true,
@@ -27,13 +25,13 @@ class ListServicesSelectedWidget extends StatelessWidget {
                             const EdgeInsets.only(left: 8, top: 8, bottom: 8),
                         child: Row(children: [
                           CircleAvatar(
-                              foregroundImage: NetworkImage(service.urlImages[0])),
+                              foregroundImage: NetworkImage(service.images[0])),
                           const SizedBox(width: 8),
                           Expanded(
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                Text(service.category.name,
+                                Text(service.type.name,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
@@ -52,11 +50,10 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                 Text(
-                                    '\$${service.minPrice} - ${service.maxPrice}',
+                                    '\${service.minPrice} - {service.maxPrice}',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyMedium!
-                                        ),
+                                        .bodyMedium!),
                                 const SizedBox(height: 8),
                                 Text(service.description)
                               ])),
@@ -67,19 +64,19 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                 CustomIconButton(
                                     iconData: Icons.edit,
                                     onTap: () async {
-                                      sl<ServiceFormBloc>().add(
-                                          GetListServiceFormEvent(
-                                              serviceEntity: service));
-                                      await showModalBottomSheet<List>(
-                                          scrollControlDisabledMaxHeightRatio:
-                                              1,
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.white,
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return FormServiceSelectedWidget(
-                                                serviceEntity: service);
-                                          });
+                                      // sl<ServiceFormBloc>().add(
+                                      //     GetListServiceFormEvent(
+                                      //         serviceEntity: service));
+                                      // await showModalBottomSheet<List>(
+                                      //     scrollControlDisabledMaxHeightRatio:
+                                      //         1,
+                                      //     isScrollControlled: true,
+                                      //     backgroundColor: Colors.white,
+                                      //     context: context,
+                                      //     builder: (BuildContext context) {
+                                      //       return FormServiceSelectedWidget(
+                                      //           serviceEntity: service);
+                                      //     });
                                     }),
                                 const SizedBox(height: 12),
                                 CustomIconButton(
@@ -93,14 +90,8 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                         textOnAccept: 'Eliminar',
                                         onAccept: () => context
                                             .read<ServicesSelectedBloc>()
-                                            .add(DeleteServiceSelectedEvent(
-                                                serviceEntitySelected: service,
-                                                listServicesSelected:
-                                                    state.listServicesSelected,
-                                                dateSelected:
-                                                    state.dateSelected,
-                                                timeSelected:
-                                                    state.timeSelected))))
+                                            .add(DeleteServiceEvent(
+                                                service: service))))
                               ])
                         ])));
               }).toList()))

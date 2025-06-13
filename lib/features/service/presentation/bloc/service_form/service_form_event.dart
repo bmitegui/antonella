@@ -6,15 +6,13 @@ sealed class ServiceFormEvent {
 
 final class ServiceFormInitialEvent extends ServiceFormEvent {}
 
-final class GetListServiceFormEvent extends ServiceFormEvent {
-  final ServiceEntity serviceEntity;
-  GetListServiceFormEvent({required this.serviceEntity});
+final class AnswerQuestionEvent extends ServiceFormEvent {
+  final String questionId;
+  final dynamic answer;
+  AnswerQuestionEvent({required this.questionId, required this.answer});
 }
 
-final class UpdateAnswerEvent extends ServiceFormEvent {
-  final List<ServiceFormEntity> listServiceForms;
-  final String id;
-  final dynamic answer;
-  UpdateAnswerEvent(
-      {required this.id, required this.answer, required this.listServiceForms});
+final class SelectServiceEvent extends ServiceFormEvent {
+  final ServiceEntity service;
+  SelectServiceEvent({required this.service});
 }

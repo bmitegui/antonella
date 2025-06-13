@@ -19,7 +19,7 @@ class BottomButtonsSearchScreen extends StatelessWidget {
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       if (state is ServicesSelectedLoaded) {
-        if (state.listServicesSelected.isNotEmpty) {
+        if (state.services.isNotEmpty) {
           if (currentPage < 3) {
             return Container(
                 width: double.infinity,
@@ -34,7 +34,7 @@ class BottomButtonsSearchScreen extends StatelessWidget {
                           onPressed: nextPage,
                           icon: Row(children: [
                             Text(
-                                'Seleccionados(${state.listServicesSelected.length})',
+                                'Seleccionados(${state.services.length})',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

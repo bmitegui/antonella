@@ -6,48 +6,24 @@ sealed class ServicesSelectedEvent {
 
 final class ServicesSelectedInitialEvent extends ServicesSelectedEvent {}
 
-final class AddServiceSelectedEvent extends ServicesSelectedEvent {
-  final ServiceEntity serviceEntitySelected;
-  final List<ServiceEntity> listServicesSelected;
-  final DateTime? dateSelected;
-  final String? timeSelected;
-  AddServiceSelectedEvent(
-      {required this.serviceEntitySelected,
-      required this.listServicesSelected,
-      required this.dateSelected,
-      required this.timeSelected});
+final class AddServiceEvent extends ServicesSelectedEvent {
+  final ServiceEntity service;
+  AddServiceEvent({required this.service});
 }
 
-final class DeleteServiceSelectedEvent extends ServicesSelectedEvent {
-  final ServiceEntity serviceEntitySelected;
-  final List<ServiceEntity> listServicesSelected;
-  final DateTime? dateSelected;
-  final String? timeSelected;
-  DeleteServiceSelectedEvent(
-      {required this.serviceEntitySelected,
-      required this.listServicesSelected,
-      required this.dateSelected,
-      required this.timeSelected});
+final class DeleteServiceEvent extends ServicesSelectedEvent {
+  final ServiceEntity service;
+  DeleteServiceEvent({required this.service});
 }
 
 final class SelectTimeEvent extends ServicesSelectedEvent {
-  final List<ServiceEntity> listServicesSelected;
-  final DateTime? dateSelected;
   final String? timeSelected;
-  SelectTimeEvent(
-      {required this.listServicesSelected,
-      required this.dateSelected,
-      required this.timeSelected});
+  SelectTimeEvent({required this.timeSelected});
 }
 
 final class SelectDateTimeEvent extends ServicesSelectedEvent {
-  final List<ServiceEntity> listServicesSelected;
   final DateTime? dateSelected;
-  final String? timeSelected;
-  SelectDateTimeEvent(
-      {required this.listServicesSelected,
-      required this.dateSelected,
-      required this.timeSelected});
+  SelectDateTimeEvent({required this.dateSelected});
 }
 
 final class ClearServicesSelectedEvent extends ServicesSelectedEvent {}

@@ -9,9 +9,9 @@ const appName = 'Antonella';
 const supportedLocales = [Locale('en'), Locale('es')];
 
 final imagesServiceCategory = {
-  ServiceCategory.all: 'assets/svg/all.svg',
-  ServiceCategory.makeup: 'assets/svg/makeup.svg',
-  ServiceCategory.spa: 'assets/svg/spa.svg',
-  ServiceCategory.nails: 'assets/svg/nails.svg',
-  ServiceCategory.hair: 'assets/svg/hair.svg',
+  ServiceType.all: 'assets/svg/all.svg',
+  ServiceType.makeup: 'assets/svg/makeup.svg',
+  ServiceType.spa: 'assets/svg/spa.svg',
+  ServiceType.nails: 'assets/svg/nails.svg',
+  ServiceType.hair: 'assets/svg/hair.svg',
 };

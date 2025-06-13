@@ -16,14 +16,14 @@ final listPromotions = [
       description: 'description',
       imageUrl:
           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p1.jpg?alt=media&token=fc26e7a3-415d-4cfa-bb09-270546e09b88',
-      categories: [ServiceCategory.hair, ServiceCategory.nails]),
+      categories: [ServiceType.hair, ServiceType.nails]),
   PromotionEntity(
       id: 'id',
       name: 'name',
       description: 'description',
       imageUrl:
           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p2.jpg?alt=media&token=0e551465-1d6e-4885-8e97-68bd987ee9ea',
-      categories: [ServiceCategory.spa]),
+      categories: [ServiceType.spa]),
   PromotionEntity(
       id: 'id',
       name: 'name',
@@ -31,10 +31,10 @@ final listPromotions = [
           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p3.jpg?alt=media&token=86f4d4b9-6883-4298-8cf7-ec27e052bc4e',
       description: 'description',
       categories: [
-        ServiceCategory.hair,
-        ServiceCategory.nails,
-        ServiceCategory.spa,
-        ServiceCategory.makeup
+        ServiceType.hair,
+        ServiceType.nails,
+        ServiceType.spa,
+        ServiceType.makeup
       ]),
   PromotionEntity(
       id: 'id',
@@ -42,14 +42,14 @@ final listPromotions = [
       imageUrl:
           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p4.jpg?alt=media&token=ab842ea5-3455-4a31-a35c-e0d97898b0c5',
       description: 'description',
-      categories: [ServiceCategory.hair]),
+      categories: [ServiceType.hair]),
   PromotionEntity(
       id: 'id',
       name: 'name',
       imageUrl:
           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p5.jpg?alt=media&token=815d6272-c9ac-49e2-ade7-b98ae734a565',
       description: 'description',
-      categories: [ServiceCategory.nails])
+      categories: [ServiceType.nails])
 ];
 
 class ServicesTabSection extends StatelessWidget {
@@ -59,16 +59,16 @@ class ServicesTabSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ServiceBloc, ServiceState>(builder: (context, state) {
       final List<PromotionEntity> filteredPromotions = (state is ServicesLoaded)
-          ? (state.serviceCategory == ServiceCategory.all
+          ? (state.serviceType == ServiceType.all
               ? listPromotions
               : listPromotions
                   .where((promotion) =>
-                      promotion.categories.contains(state.serviceCategory))
+                      promotion.categories.contains(state.serviceType))
                   .toList())
           : [];
       final category = (state is ServicesLoaded)
           ? getCategoryText(
-              context: context, serviceCategory: state.serviceCategory)
+              context: context, serviceCategory: state.serviceType)
           : '';
       return Column(children: [
         CustomSearchWidget(),

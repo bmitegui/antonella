@@ -1,3 +1,4 @@
+import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,8 @@ class ImagesScrollview extends StatelessWidget {
                     child: isSVG
                         ? CustomLocalSvgImage(assetPath: images[index])
                         : isUrl
-                            ? CustomCachedNetworkImage(imageUrl: images[index])
+                            ? CustomCachedNetworkImage(
+                                imageUrl: Environment.apiUrl + images[index])
                             : Image.file(images[index]));
               })),
       if (!isEmpty) const SizedBox(height: 8),

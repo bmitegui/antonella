@@ -79,9 +79,7 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
                       availableDay.month == selectedDay.month &&
                       availableDay.day == selectedDay.day)) {
                 context.read<ServicesSelectedBloc>().add(SelectDateTimeEvent(
-                    listServicesSelected: state.listServicesSelected,
-                    dateSelected: selectedDay,
-                    timeSelected: state.timeSelected));
+                    dateSelected: selectedDay));
                 _focusedDay = focusedDay;
               }
             },

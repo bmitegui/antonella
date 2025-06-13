@@ -1,34 +1,31 @@
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:equatable/equatable.dart';
 
-enum ServiceCategory {all, makeup, hair, nails, spa}
+enum ServiceType { all, makeup, hair, nails, spa }
+
 class ServiceEntity extends Equatable {
   final String id;
   final String name;
   final String description;
-  final ServiceCategory category;
-  final String subCategory;
-  final List<String> urlImages;
-  final double minPrice;
-  final double maxPrice;
-  final bool isSelected;
+  final ServiceType type;
+  final String subtype;
   final String duration;
+  final List<PriceEntity> prices;
+  final List<String> images;
+  final List<QuestionEntity> questions;
   final double rating;
-  final List<ServiceFormEntity>? listServiceFormsEntity;
 
   const ServiceEntity(
       {required this.id,
       required this.name,
       required this.description,
-      required this.category,
-      required this.subCategory,
-      required this.urlImages,
-      required this.minPrice,
-      required this.maxPrice,
-      required this.isSelected,
-      required this.rating,
+      required this.type,
+      required this.subtype,
       required this.duration,
-      this.listServiceFormsEntity});
+      required this.prices,
+      required this.images,
+      required this.questions,
+      required this.rating});
 
   @override
   List<Object?> get props => [id];
@@ -37,30 +34,25 @@ class ServiceEntity extends Equatable {
     String? id,
     String? name,
     String? description,
-    ServiceCategory? category,
-    String? subCategory,
-    List<String>? urlImages,
-    double? minPrice,
-    double? maxPrice,
-    bool? isSelected,
+    ServiceType? type,
+    String? subtype,
     String? duration,
+    List<PriceEntity>? prices,
+    List<String>? images,
+    List<QuestionEntity>? questions,
     double? rating,
-    List<ServiceFormEntity>? listServiceFormsEntity,
   }) {
     return ServiceEntity(
       id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
-      category: category ?? this.category,
-      subCategory: subCategory ?? this.subCategory,
-      urlImages: urlImages ?? this.urlImages,
-      minPrice: minPrice ?? this.minPrice,
-      maxPrice: maxPrice ?? this.maxPrice,
-      isSelected: isSelected ?? this.isSelected,
+      type: type ?? this.type,
+      subtype: subtype ?? this.subtype,
       duration: duration ?? this.duration,
+      prices: prices ?? this.prices,
+      images: images ?? this.images,
+      questions: questions ?? this.questions,
       rating: rating ?? this.rating,
-      listServiceFormsEntity:
-          listServiceFormsEntity ?? this.listServiceFormsEntity,
     );
   }
 }

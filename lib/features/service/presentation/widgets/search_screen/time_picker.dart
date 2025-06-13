@@ -42,10 +42,7 @@ class _TimePickerState extends State<TimePicker> {
                 spacing: 16,
                 minutesInterval: 1,
                 onTimeChange: (time) {
-                  print('se ejecuta');
                   context.read<ServicesSelectedBloc>().add(SelectTimeEvent(
-                      listServicesSelected: state.listServicesSelected,
-                      dateSelected: state.dateSelected,
                       timeSelected: DateFormat('hh:mm a').format(time)));
                 }));
       } else {

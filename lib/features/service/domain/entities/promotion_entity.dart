@@ -6,7 +6,7 @@ class PromotionEntity extends Equatable {
   final String name;
   final String description;
   final String imageUrl;
-  final List<ServiceCategory> categories;
+  final List<ServiceType> categories;
 
   const PromotionEntity(
       {required this.id,

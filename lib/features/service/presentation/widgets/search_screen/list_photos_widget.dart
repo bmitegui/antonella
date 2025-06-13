@@ -4,14 +4,13 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/images_scrollview.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
-import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/bloc/service_form/service_form_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ListPhotosWidget extends StatefulWidget {
-  final ServiceFormEntity serviceFormEntity;
-  const ListPhotosWidget({super.key, required this.serviceFormEntity});
+  final QuestionEntity question;
+  const ListPhotosWidget({super.key, required this.question});
 
   @override
   State<ListPhotosWidget> createState() => _ListPhotosWidgetState();
@@ -34,92 +33,79 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final isEmpty = widget.question.answer != null ||
+        (widget.question.answer as List).length < 2;
 
-    return BlocBuilder<ServiceFormBloc, ServiceFormState>(
-        builder: (context, state) {
-    final isEmpty = (state is ServiceFormLoaded)?(widget.serviceFormEntity.answer == null ||
-                          widget.serviceFormEntity.answer.length == 0):false ;
-      return (state is ServiceFormLoaded)
-          ? Column(children: [
-              ImagesScrollview(
-                  height: 150,
-                  isSVG: isEmpty,
-                  isUrl: false,
-                  images: isEmpty
-                      ? ['assets/svg/upload_photo.svg']
-                      : widget.serviceFormEntity.answer),
-              // if (widget.serviceFormEntity.answer != null)
-              //   IconButton(
-              //       icon: const Icon(Icons.delete,
-              //           color: Colors.red),
-              //       onPressed: () async {
-              //         await showWarningDialog(
-              //             context: context,
-              //             title: 'Eliminar imagen',
-              //             textOnAccept: 'Eliminar',
-              //             message:
-              //                 '¿Está seguro que desea eliminar la imagen?',
-              //             onAccept: () async {
-              //               List<File>? listImages =
-              //                   widget.serviceFormEntity.answer;
+    return Column(children: [
+      ImagesScrollview(
+          height: 150,
+          isSVG: isEmpty,
+          isUrl: false,
+          images: isEmpty
+              ? ['assets/svg/upload_photo.svg']
+              : widget.question.answer),
+      // if (widget.serviceFormEntity.answer != null)
+      //   IconButton(
+      //       icon: const Icon(Icons.delete,
+      //           color: Colors.red),
+      //       onPressed: () async {
+      //         await showWarningDialog(
+      //             context: context,
+      //             title: 'Eliminar imagen',
+      //             textOnAccept: 'Eliminar',
+      //             message:
+      //                 '¿Está seguro que desea eliminar la imagen?',
+      //             onAccept: () async {
+      //               List<File>? listImages =
+      //                   widget.serviceFormEntity.answer;
 
-              //               listImages!.removeAt(index);
+      //               listImages!.removeAt(index);
 
-              //               if (listImages.isEmpty) {
-              //                 listImages = null;
-              //               }
-              //               sl<ServiceFormBloc>().add(
-              //                   UpdateAnswerEvent(
-              //                       id: widget
-              //                           .serviceFormEntity.id,
-              //                       answer: listImages,
-              //                       listServiceForms:
-              //                           state.listServiceForms));
-              //             });
-              //       }),
-              const SizedBox(height: 16),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                CustomElevatedButton(
-                    onPressed: () async {
-                      final image = await pickImage(ImageSource.camera);
-                      if (image != null) {
-                        List<File>? listImages =
-                            widget.serviceFormEntity.answer;
-                        if (listImages != null) {
-                          listImages.add(image);
-                        } else {
-                          listImages = [image];
-                        }
-                        sl<ServiceFormBloc>().add(UpdateAnswerEvent(
-                            id: widget.serviceFormEntity.id,
-                            answer: listImages,
-                            listServiceForms: state.listServiceForms));
-                      }
-                    },
-                    text: 'Cámara'),
-                CustomElevatedButton(
-                    onPressed: () async {
-                      final image = await pickImage(ImageSource.gallery);
-                      if (image != null) {
-                        List<File>? listImages =
-                            widget.serviceFormEntity.answer;
-                        if (listImages != null) {
-                          listImages.add(image);
-                        } else {
-                          listImages = [image];
-                        }
-                        sl<ServiceFormBloc>().add(UpdateAnswerEvent(
-                            id: widget.serviceFormEntity.id,
-                            answer: listImages,
-                            listServiceForms: state.listServiceForms));
-                      }
-                    },
-                    text: 'Galería')
-              ])
-            ])
-          : (state is ServiceFormError)
-              ? Center(child: Text(state.message))
-              : const Center(child: CircularProgressIndicator());
-    });
+      //               if (listImages.isEmpty) {
+      //                 listImages = null;
+      //               }
+      //               sl<ServiceFormBloc>().add(
+      //                   UpdateAnswerEvent(
+      //                       id: widget
+      //                           .serviceFormEntity.id,
+      //                       answer: listImages,
+      //                       listServiceForms:
+      //                           state.listServiceForms));
+      //             });
+      //       }),
+      const SizedBox(height: 16),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        CustomElevatedButton(
+            onPressed: () async {
+              final image = await pickImage(ImageSource.camera);
+              if (image != null) {
+                List<File>? listImages = widget.question.answer;
+                if (listImages != null) {
+                  listImages.add(image);
+                } else {
+                  listImages = [image];
+                }
+                sl<ServiceFormBloc>().add(AnswerQuestionEvent(
+                    questionId: widget.question.id, answer: listImages));
+              }
+            },
+            text: 'Cámara'),
+        CustomElevatedButton(
+            onPressed: () async {
+              final image = await pickImage(ImageSource.gallery);
+              if (image != null) {
+                List<File>? listImages = widget.question.answer;
+                if (listImages != null) {
+                  listImages.add(image);
+                } else {
+                  listImages = [image];
+                }
+                sl<ServiceFormBloc>().add(AnswerQuestionEvent(
+                    questionId: widget.question.id, answer: listImages));
+              }
+            },
+            text: 'Galería')
+      ])
+    ]);
   }
 }

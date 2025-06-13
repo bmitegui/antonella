@@ -10,8 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListServiceFormsWidget extends StatelessWidget {
-  final ServiceEntity serviceEntity;
-  const ListServiceFormsWidget({super.key, required this.serviceEntity});
+  const ListServiceFormsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,40 +18,34 @@ class ListServiceFormsWidget extends StatelessWidget {
         builder: (context, state) {
       return (state is ServiceFormLoaded)
           ? Column(
-              children: state.listServiceForms.asMap().entries.map((entry) {
+              children: state.service.questions.asMap().entries.map((entry) {
                     final index = entry.key;
-                    final serviceFormEntity = entry.value;
+                    final question = entry.value;
                     return buildFormByType(
-                        serviceFormEntity: serviceFormEntity,
-                        indexForm: (index + 1).toString());
+                        question: question, indexForm: (index + 1).toString());
                   }).toList() +
-                  [
-                    ButtonsEndFormWidget(
-                        listServiceForms: state.listServiceForms,
-                        serviceEntity: serviceEntity)
-                  ])
-          : (state is ServiceFormError)
-              ? Center(child: Text(state.message))
-              : const Center(child: CircularProgressIndicator());
+                  [ButtonsEndFormWidget()])
+          : CircularProgressIndicator();
     });
   }
 
   Widget buildFormByType(
-      {required ServiceFormEntity serviceFormEntity,
-      required String indexForm}) {
+      {required QuestionEntity question, required String indexForm}) {
     return Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Column(children: [
-          CustomTitle(title: serviceFormEntity.title, index: indexForm),
+          CustomTitle(title: question.title, index: indexForm),
           const SizedBox(height: 16),
-          (serviceFormEntity.type == 'uploadPhotos')
-              ? ListPhotosWidget(serviceFormEntity: serviceFormEntity)
-              : (serviceFormEntity.type == 'selectPhotos')
-                  ? SelectPhotosWidget(serviceFormEntity: serviceFormEntity)
-                  : (serviceFormEntity.type == 'isSelected')
-                      ? IsSelectWidget(serviceFormEntity: serviceFormEntity)
-                      : (serviceFormEntity.type == 'input')
-                          ? InputWidget(serviceFormEntity: serviceFormEntity)
+          (question.inputType == InputType.image)
+              ? ListPhotosWidget(question: question)
+              : (question.inputType == InputType.choice &&
+                      question.choiceType == ChoiceType.image)
+                  ? SelectPhotosWidget(question: question)
+                  : (question.inputType == InputType.choice &&
+                          question.choiceType == ChoiceType.image)
+                      ? IsSelectWidget(question: question)
+                      : (question.inputType == InputType.text)
+                          ? InputWidget(question: question)
                           : const SizedBox.shrink()
         ]));
   }

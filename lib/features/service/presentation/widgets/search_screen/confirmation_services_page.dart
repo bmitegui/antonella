@@ -31,7 +31,7 @@ class ConfirmationServicesPage extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTitleSeparatorWidget(
                   text: 'Valor aproximado:',
-                  description: state.getSummedPriceRange()),
+                  description: 'state.getSummedPriceRange()'),
               const SizedBox(height: 16),
               const CustomTitleSeparatorWidget(text: 'Servicios seleccionados'),
               const SizedBox(height: 8),

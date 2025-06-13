@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class IsSelectWidget extends StatelessWidget {
-  final ServiceFormEntity serviceFormEntity;
-  const IsSelectWidget({super.key, required this.serviceFormEntity});
+  final QuestionEntity question;
+  const IsSelectWidget({super.key, required this.question});
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +15,19 @@ class IsSelectWidget extends StatelessWidget {
       return (state is ServiceFormLoaded)
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: ['', 'Sí', 'No', '']
+              children: question.answer
                   .map((value) => value.isEmpty
                       ? SizedBox()
                       : CustomElevatedButton(
-                          backgroundColor: value != serviceFormEntity.answer
+                          backgroundColor: value != question.answer
                               ? Color(0xFFFAE2E1)
                               : Color(0xFFF44565),
                           padding: EdgeInsets.symmetric(
                               horizontal: 40, vertical: 12),
                           onPressed: () {
                             context.read<ServiceFormBloc>().add(
-                                UpdateAnswerEvent(
-                                    id: serviceFormEntity.id,
-                                    answer: value,
-                                    listServiceForms: state.listServiceForms));
+                                AnswerQuestionEvent(
+                                    questionId: question.id, answer: value));
                           },
                           text: value))
                   .toList())

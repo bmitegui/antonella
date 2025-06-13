@@ -15,17 +15,17 @@ class ServicesFilterWidget extends StatelessWidget {
       return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-              children: ServiceCategory.values.map((entry) {
+              children: ServiceType.values.map((entry) {
             return Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: IconServiceWidget(
                     onTap: () => context
                         .read<ServiceBloc>()
-                        .add(GetServicesEvent(filter: entry)),
+                        .add(GetServicesEvent()),
                     bottomTitle: getCategoryText(context: context, serviceCategory: entry) ,
                     asset: imagesServiceCategory[entry]!,
                     isSelected: (state is ServicesLoaded)
-                        ? state.serviceCategory == entry
+                        ? state.serviceType == entry
                         : false));
           }).toList()));
     });

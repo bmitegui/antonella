@@ -4,6 +4,13 @@ import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'dart:math';
+
+double generarDoubleEntre35y50() {
+  final random = Random();
+  final value = 3.5 + random.nextDouble() * (5.0 - 3.5);
+  return double.parse(value.toStringAsFixed(2));
+}
 
 String formatDateToString(DateTime date) {
   return "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
@@ -65,15 +72,15 @@ String capitalize(String text) {
 }
 
 String getCategoryText(
-    {required BuildContext context, required ServiceCategory serviceCategory}) {
+    {required BuildContext context, required ServiceType serviceCategory}) {
   final texts = AppLocalizations.of(context)!;
-  return (serviceCategory == ServiceCategory.hair)
+  return (serviceCategory == ServiceType.hair)
       ? texts.hair
-      : (serviceCategory == ServiceCategory.nails)
+      : (serviceCategory == ServiceType.nails)
           ? texts.nails
-          : (serviceCategory == ServiceCategory.spa)
+          : (serviceCategory == ServiceType.spa)
               ? texts.spa
-              : (serviceCategory == ServiceCategory.makeup)
+              : (serviceCategory == ServiceType.makeup)
                   ? texts.makeup
                   : texts.all;
 }

@@ -10,16 +10,17 @@ final class ServiceLoading extends ServiceState {}
 
 final class ServicesLoaded extends ServiceState {
   final ListServicesEntity listServices;
-  final ServiceCategory serviceCategory;
-  ServicesLoaded({required this.listServices, required this.serviceCategory});
+  final ServiceType serviceType;
+  ServicesLoaded(
+      {required this.listServices, this.serviceType = ServiceType.all});
 
   Map<String, List<ServiceEntity>> getDataBySubCategories() {
     Map<String, List<ServiceEntity>> data = {};
     for (var service in listServices.services) {
-      if (!data.containsKey(service.subCategory)) {
-        data[service.subCategory] = [service];
+      if (!data.containsKey(service.subtype)) {
+        data[service.subtype] = [service];
       } else {
-        data[service.subCategory]!.add(service);
+        data[service.subtype]!.add(service);
       }
     }
     return data;
