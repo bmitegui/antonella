@@ -71,6 +71,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                         color: Colors.black, fontWeight: FontWeight.bold))),
           if (widget.title != null) const SizedBox(height: 8),
           TextFormField(
+            
               maxLines: widget.maxLines,
               readOnly: widget.readOnly,
               onTap: widget.onTap,

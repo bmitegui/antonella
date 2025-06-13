@@ -59,5 +59,5 @@ ServiceType stringToType(String type) {
           ? ServiceType.nails
           : type == 'CABELLO'
               ? ServiceType.hair
-              : ServiceType.spa;
+              : ServiceType.makeup;
 }

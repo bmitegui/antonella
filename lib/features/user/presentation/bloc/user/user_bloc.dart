@@ -91,6 +91,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       SignUpEvent event, Emitter<UserState> emit) async {
     emit(UserLoading());
     final failureOrUser = await signUpUseCase(SignUpParams(
+        dni: event.dni,
         phoneNumber: event.phoneNumber,
         genero: event.genero,
         account: event.account,
@@ -99,6 +100,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         birthdate: event.birthdate));
     failureOrUser.fold((failure) {
       emit(UserError(message: _mapFailureToMessage(failure)));
+      emit(UserUnauthenticated());
     }, (user) async {
       emit(UserAuthenticated(user: user));
     });

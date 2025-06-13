@@ -1,7 +1,6 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/core/widgets/custom_icon_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
@@ -26,6 +25,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
                       backgroundColor: Colors.white,
                       canTapOnHeader: true,
                       value: service.id,
+                      
                       headerBuilder: (context, isExpanded) => Padding(
                           padding: const EdgeInsets.only(
                               left: 20, top: 20, bottom: 20, right: 12),

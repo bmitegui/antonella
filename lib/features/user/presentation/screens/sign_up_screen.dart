@@ -19,7 +19,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
-  late TextEditingController _lastnameController;
+  late TextEditingController _dniController;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late TextEditingController _phoneController;
@@ -30,7 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     _nameController = TextEditingController();
-    _lastnameController = TextEditingController();
+    _dniController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _phoneController = TextEditingController();
@@ -64,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const CustomSnackBar.success(message: 'Registro exitoso'));
           } else if (state is UserError) {
             showTopSnackBar(Overlay.of(context),
-                CustomSnackBar.error(message: state.message, maxLines: 3));
+                CustomSnackBar.error(message: state.message, maxLines: 5));
           }
         }, builder: (context, state) {
           return (state is UserUnauthenticated || state is UserError)
@@ -88,13 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           title: texts.name),
                                       const SizedBox(height: 16),
                                       CustomTextFormFieldWidget(
-                                          textEditingController:
-                                              _lastnameController,
-                                          title: texts.lastName),
-                                      const SizedBox(height: 16),
-                                      CustomTextFormFieldWidget(
-                                          textEditingController:
-                                              _lastnameController,
+                                          textEditingController: _dniController,
                                           title: 'Cédula',
                                           keyboardType: TextInputType.number),
                                       const SizedBox(height: 16),
@@ -136,7 +130,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           showSearchBox: false,
                                           selectedItem: genero,
                                           initialText: 'Seleccionar género',
-                                          options: ['Masculino', 'Femenino', 'Otros'],
+                                          options: [
+                                            'Masculino',
+                                            'Femenino',
+                                            'Otro'
+                                          ],
                                           onChange: (value) {
                                             setState(() {
                                               genero = value;
@@ -163,38 +161,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                       WidgetStateProperty.all(
                                                           Color(0xFFF44565))),
                                               onPressed: () {
-                                                if (_nameController
-                                                        .text.isNotEmpty &&
-                                                    _emailController
-                                                        .text.isNotEmpty &&
-                                                    _phoneController
-                                                        .text.isNotEmpty &&
-                                                    _birthdateController
-                                                        .text.isNotEmpty &&
-                                                    genero != null &&
-                                                    _passwordController
-                                                        .text.isNotEmpty) {
-                                                  context.read<UserBloc>().add(
-                                                      SignUpEvent(
-                                                          phoneNumber:
-                                                              _phoneController
-                                                                  .text,
-                                                          genero: genero!,
-                                                          name: _nameController
-                                                              .text
-                                                              .trim(),
-                                                          birthdate:
-                                                              _birthdateController
-                                                                  .text,
-                                                          account:
-                                                              _emailController
-                                                                  .text
-                                                                  .trim(),
-                                                          password:
-                                                              _passwordController
-                                                                  .text
-                                                                  .trim()));
-                                                }
+                                                context.read<UserBloc>().add(
+                                                    SignUpEvent(
+                                                        dni:
+                                                            _dniController.text,
+                                                        phoneNumber:
+                                                            _phoneController
+                                                                .text,
+                                                        genero: genero,
+                                                        name: _nameController
+                                                            .text
+                                                            .trim(),
+                                                        birthdate:
+                                                            _birthdateController
+                                                                .text,
+                                                        account:
+                                                            _emailController
+                                                                .text
+                                                                .trim(),
+                                                        password:
+                                                            _passwordController
+                                                                .text
+                                                                .trim()));
                                               },
                                               child: Text('Registrar')))
                                     ])))

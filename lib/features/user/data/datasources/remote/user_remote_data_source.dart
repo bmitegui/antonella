@@ -10,11 +10,12 @@ abstract class UserRemoteDataSource {
   });
   Future<UserModel> signUp(
       {required String account,
+      required String dni,
       required String name,
       required String password,
       required String birthdate,
       required String phoneNumber,
-      required String genero});
+      required String? genero});
   Future<List<String>> passwordCode({required String email});
   Future<void> passwordReset({required String id, required String password});
 }
@@ -50,18 +51,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<UserModel> signUp(
       {required String account,
+      required String dni,
       required String name,
       required String password,
       required String birthdate,
       required String phoneNumber,
-      required String genero}) async {
+      required String? genero}) async {
     try {
       final data = {
         'email': account,
+        'dni': dni,
         'name': name,
         'password': password,
         'birthdate': birthdate,
-        'gender': genero.toUpperCase(),
+        'gender': genero?.toUpperCase(),
         'phone_number': phoneNumber
       };
       final result = await client.post(Environment.signUp,

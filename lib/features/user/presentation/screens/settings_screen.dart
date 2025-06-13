@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/edit_profile_screen.dart';
@@ -10,14 +11,14 @@ import 'package:lottie/lottie.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -43,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return (state is UserAuthenticated)
               ? Padding(
                   padding:
-                      const EdgeInsets.only(right: 16, left: 16, bottom: 32),
+                      const EdgeInsets.only(right: 16, left: 16, bottom: 100),
                   child: SingleChildScrollView(
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,22 +79,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ListTile(
                                   leading: const Icon(Icons.lock_outline),
                                   title: Text('Cambiar Contraseña'),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context, 
-                                      MaterialPageRoute(builder: (context) => UpdatePaswordScreen()),
-                                    );
-                                  }),
+                                  onTap: () => navigateWithSlideTransition(
+                                      context, UpdatePaswordScreen())),
                               const Divider(height: 1),
                               ListTile(
                                   leading: const Icon(Icons.edit),
                                   title: const Text('Editar Perfil'),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context, 
-                                      MaterialPageRoute(builder: (context) => EditProfileScreen()),
-                                    );
-                                  }),
+                                  onTap: () => navigateWithSlideTransition(
+                                      context, EditProfileScreen())),
                               const Divider(height: 1),
                               ListTile(
                                   leading: const Icon(Icons.logout),

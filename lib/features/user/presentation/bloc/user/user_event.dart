@@ -28,8 +28,9 @@ final class SignUpEvent extends UserEvent {
   final String name;
   final String password;
   final String birthdate;
-  final String genero;
+  final String? genero;
   final String phoneNumber;
+  final String dni;
 
   SignUpEvent(
       {required this.account,
@@ -37,6 +38,7 @@ final class SignUpEvent extends UserEvent {
       required this.password,
       required this.birthdate,
       required this.genero,
+      required this.dni,
       required this.phoneNumber});
 }
 

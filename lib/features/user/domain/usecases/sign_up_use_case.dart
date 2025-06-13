@@ -12,6 +12,7 @@ class SignUpUseCase implements UseCase<UserEntity, SignUpParams> {
   Future<Either<Failure, UserEntity>> call(SignUpParams signUpParams) async {
     return await userRepository.signUp(
         account: signUpParams.account,
+        dni: signUpParams.dni,
         name: signUpParams.name,
         password: signUpParams.password,
         birthdate: signUpParams.birthdate,
@@ -22,14 +23,16 @@ class SignUpUseCase implements UseCase<UserEntity, SignUpParams> {
 
 class SignUpParams {
   final String account;
+  final String dni;
   final String name;
   final String password;
   final String birthdate;
-  final String genero;
+  final String? genero;
   final String phoneNumber;
 
   SignUpParams(
       {required this.account,
+      required this.dni,
       required this.name,
       required this.password,
       required this.birthdate,

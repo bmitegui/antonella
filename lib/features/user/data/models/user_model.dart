@@ -4,6 +4,7 @@ import 'package:antonella/features/user/domain/entities/entities.dart';
 class UserModel extends UserEntity {
   UserModel(
       {required super.id,
+      required super.dni,
       required super.phoneNumber,
       required super.email,
       required super.name,
@@ -14,6 +15,7 @@ class UserModel extends UserEntity {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
         id: json['id'],
+        dni: json['dni'],
         phoneNumber: json['phone_number'],
         email: json['email'],
         name: json['name'],

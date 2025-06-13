@@ -10,10 +10,11 @@ abstract class UserRepository {
   });
   Future<Either<Failure, UserModel>> signUp(
       {required String account,
+      required String dni,
       required String name,
       required String password,
       required String birthdate,
-      required String genero,
+      required String? genero,
       required String phoneNumber});
   Future<Either<Failure, void>> signOut();
   Future<Either<Failure, List<String>>> passwordCode({required String email});

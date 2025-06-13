@@ -42,15 +42,17 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, UserModel>> signUp(
       {required String account,
+      required String dni,
       required String name,
       required String password,
       required String birthdate,
       required String phoneNumber,
-      required String genero}) async {
+      required String? genero}) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteUser = await userRemoteDataSource.signUp(
             account: account,
+            dni: dni,
             name: name,
             password: password,
             birthdate: birthdate,
