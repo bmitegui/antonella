@@ -1,13 +1,11 @@
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/search_screen/bottom_buttons_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/progress_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_info_widget.dart';
 import 'package:flutter/material.dart';
 
 class SelectServicesPage extends StatelessWidget {
-  final Function() nextPage;
-  const SelectServicesPage({super.key, required this.nextPage});
+  const SelectServicesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +21,6 @@ class SelectServicesPage extends StatelessWidget {
           const ServicesFilterWidget(),
           const SizedBox(height: 16),
           Expanded(child: ServicesInfoWidget()),
-          const SizedBox(height: 16),
-          BottomButtonsSearchScreen(nextPage: nextPage)
         ]));
   }
 }

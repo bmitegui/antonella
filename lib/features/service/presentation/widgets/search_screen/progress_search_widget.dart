@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -14,7 +12,7 @@ class ProgressSearchWidget extends StatelessWidget {
         : page == 2
             ? 'Seleccione una fecha'
             : page == 3
-                ? 'Seleccione un horario'
+                ? 'Seleccione una hora'
                 : 'Confirme su cita';
     return page == 1
         ? Align(
@@ -26,10 +24,12 @@ class ProgressSearchWidget extends StatelessWidget {
                     .copyWith(color: Colors.grey)))
         : Column(children: [
             Text(text),
+            const SizedBox(height: 4),
             LinearPercentIndicator(
+                lineHeight: 8,
                 percent: page / 4,
-                progressColor: const Color(0XFFAF234A),
-                backgroundColor: const Color(0XFFAF234A).withOpacity(0.25),
+                progressColor: const Color(0xFFF44565),
+                backgroundColor: Colors.grey.shade400,
                 barRadius: const Radius.circular(8))
           ]);
   }

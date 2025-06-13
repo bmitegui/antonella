@@ -1,16 +1,13 @@
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_title_separator_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/search_screen/bottom_buttons_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/list_services_selected_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/progress_search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ConfirmationServicesPage extends StatelessWidget {
-  final Function() previousPage;
-  final Function() onSend;
-  const ConfirmationServicesPage({super.key, required this.previousPage, required this.onSend});
+  const ConfirmationServicesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +35,8 @@ class ConfirmationServicesPage extends StatelessWidget {
               const SizedBox(height: 16),
               const CustomTitleSeparatorWidget(text: 'Servicios seleccionados'),
               const SizedBox(height: 8),
-              const Expanded(child: ListServicesSelectedWidget()),
-              const SizedBox(height: 16),
-              BottomButtonsSearchScreen(previousPage: previousPage, onSend: onSend)
+              const Expanded(child: ListServicesSelectedWidget())
+              // BottomButtonsSearchScreen(previousPage: previousPage, onSend: onSend)
             ]));
       }
       return const SizedBox.shrink();

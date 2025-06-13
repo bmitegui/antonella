@@ -85,6 +85,8 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
               controller: widget.textEditingController,
               onEditingComplete: widget.onEditingComplete,
               decoration: InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   hintStyle: TextStyle(
                       color: Colors.grey, fontWeight: FontWeight.bold),
                   filled: true,

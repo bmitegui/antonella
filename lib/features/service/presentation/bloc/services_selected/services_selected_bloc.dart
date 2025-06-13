@@ -65,7 +65,7 @@ class ServicesSelectedBloc
 
   Future<void> _onSelectTimeEventRequest(
       SelectTimeEvent event, Emitter<ServicesSelectedState> emit) async {
-    emit(ServicesSelectedLoading());
+        print('se ejecutaaaaaa ${event.timeSelected}');
     emit(ServicesSelectedLoaded(
         listServicesSelected: event.listServicesSelected,
         dateSelected: event.dateSelected,

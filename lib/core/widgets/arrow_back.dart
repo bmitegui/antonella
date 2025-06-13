@@ -4,25 +4,36 @@ import 'package:go_router/go_router.dart';
 class ArrowBack extends StatelessWidget {
   final String? route;
   final Color? color;
+  final Function()? onBack;
   const ArrowBack(
-      {super.key, this.route, this.color = const Color(0xFFF44565)});
+      {super.key,
+      this.route,
+      this.color = const Color(0xFFF44565),
+      this.onBack});
 
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: CurvaLogo(),
-      child: Container(
-        width: 500,
-        height: 200,
-        color: color,
-        child: Center(
-            child: IconButton(
-                onPressed: () => route == null
-                    ? Navigator.pop(context)
-                    : GoRouter.of(context).go(route!),
-                icon: Icon(Icons.arrow_back, color: Colors.white, size: 30))),
-      ),
-    );
+        clipper: CurvaLogo(),
+        child: Container(
+            width: 500,
+            height: 200,
+            color: color,
+            child: Center(
+                child: IconButton(
+                    onPressed: () {
+                      if (route == null) {
+                        if (onBack != null) {
+                          onBack!();
+                        } else {
+                          Navigator.pop(context);
+                        }
+                      } else {
+                        GoRouter.of(context).go(route!);
+                      }
+                    },
+                    icon: Icon(Icons.arrow_back,
+                        color: Colors.white, size: 30)))));
   }
 }
 

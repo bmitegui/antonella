@@ -1,6 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/screens/detail_service_screen.dart';
@@ -27,80 +26,67 @@ class ServiceInfoWidget extends StatelessWidget {
         }
       }
 
-      return Stack(children: [
-        Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: GestureDetector(
-                onTap: () {
-                  sl<CommentBloc>().add(
-                      GetServiceCommentsEvent(serviceId: serviceEntity.id));
-                  navigateWithSlideTransition(context,
-                      DetailServiceScreen(serviceEntity: serviceEntity));
-                },
-                child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    height: MediaQuery.of(context).size.height / 2.7,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: isSelected
-                            ? Color(0xFFF44565)
-                            : Colors.transparent),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 8),
-                          ServiceImageNetwork(
-                              urlImage: serviceEntity.urlImages[0]),
-                          const SizedBox(height: 8),
-                          Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Text(serviceEntity.name,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
-                                      .copyWith(
-                                          color: isSelected
-                                              ? Colors.white
-                                              : null))),
-                          Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Text(serviceEntity.description,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                          color: isSelected
-                                              ? Colors.white70
-                                              : Colors.grey))),
-                          const SizedBox(height: 8),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 8, bottom: 8),
-                                  child: Text(
-                                      '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!
-                                          .copyWith(color: Color(0xFFF44565)))))
-                        ])))),
-        if (isSelected)
-          const Positioned(
-              top: 16,
-              right: 40,
-              child: CustomCircularIconButtom(
-                  padding: EdgeInsets.all(4),
-                  borderColor: Colors.transparent,
-                  icon: Icon(Icons.check, color: Colors.white),
-                  color: Colors.green))
-      ]);
+      return Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: GestureDetector(
+              onTap: () {
+                sl<CommentBloc>()
+                    .add(GetServiceCommentsEvent(serviceId: serviceEntity.id));
+                navigateWithSlideTransition(
+                    context, DetailServiceScreen(serviceEntity: serviceEntity));
+              },
+              child: Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color:
+                          isSelected ? Color(0xFFF44565) : Colors.transparent),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        ServiceImageNetwork(
+                            urlImage: serviceEntity.urlImages[0]),
+                        const SizedBox(height: 8),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(serviceEntity.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(
+                                        color:
+                                            isSelected ? Colors.white : null))),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(serviceEntity.description,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        color: isSelected
+                                            ? Colors.white70
+                                            : Colors.grey))),
+                        const SizedBox(height: 8),
+                        Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8, bottom: 8),
+                                child: Text(
+                                    '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(
+                                            color: isSelected
+                                                ? Colors.white
+                                                : Color(0xFFF44565)))))
+                      ]))));
     });
   }
 }

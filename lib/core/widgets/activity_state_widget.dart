@@ -5,11 +5,22 @@ class ActivityStateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final n = (MediaQuery.of(context).size.width) / 16;
+    final n = (MediaQuery.of(context).size.width) / 20;
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      buildLabel(title: 'No disponible', color: Colors.pinkAccent, size: n),
-      buildLabel(title: 'Seleccionado', color: Colors.green, size: n),
       buildLabel(
+          context: context,
+          title: 'No disponible',
+          color: Color(0xFFF44565),
+          size: n),
+      const SizedBox(width: 8),
+      buildLabel(
+          context: context,
+          title: 'Seleccionado',
+          color: Colors.green,
+          size: n),
+      const SizedBox(width: 8),
+      buildLabel(
+          context: context,
           title: 'Disponible',
           color: Colors.white,
           borderColor: Colors.grey,
@@ -18,9 +29,10 @@ class ActivityStateWidget extends StatelessWidget {
   }
 
   Widget buildLabel(
-      {required String title,
+      {required BuildContext context,
+      required String title,
       required Color color,
-      Color borderColor = const Color(0xFFFFFFFF),
+      Color borderColor = Colors.transparent,
       required double size}) {
     return Row(children: [
       Container(
@@ -29,9 +41,13 @@ class ActivityStateWidget extends StatelessWidget {
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: color,
-              border: Border.all(color: borderColor, width: 2.0))),
+              border: Border.all(color: borderColor, width: 1))),
       const SizedBox(width: 8),
-      Text(title)
+      Text(title,
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall!
+              .copyWith(color: Colors.black))
     ]);
   }
 }

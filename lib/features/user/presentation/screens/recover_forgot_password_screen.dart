@@ -1,5 +1,5 @@
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
-import 'package:antonella/core/widgets/retroceder_logo_widget.dart';
+import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/features/user/presentation/bloc/password/password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

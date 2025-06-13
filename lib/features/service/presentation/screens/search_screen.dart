@@ -1,3 +1,5 @@
+import 'package:antonella/core/widgets/arrow_back.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/bottom_buttons_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/confirmation_services_page.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/select_date_page.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/select_services_page.dart';
@@ -41,34 +43,46 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final title = _currentPage == 0
+        ? 'Búsqueda'
+        : _currentPage == 1
+            ? 'Agenda'
+            : _currentPage == 2
+                ? 'Agenda'
+                : 'Confirmación';
     return Scaffold(
         backgroundColor: Color(0xFFF0F0F0),
         appBar: AppBar(
+            leading:
+                _currentPage != 0 ? ArrowBack(onBack: _previousPage) : null,
             backgroundColor: Color(0xFFF0F0F0),
-            title: Text('Búsqueda',
+            title: Text(title,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!
                     .copyWith(color: Color(0xFFF44565)))),
-        body: Padding(
-            padding: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
-            child: Column(children: [
-              Expanded(
-                  child: PageView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: _pageController,
-                      onPageChanged: (index) =>
-                          setState(() => _currentPage = index),
-                      children: [
-                    SelectServicesPage(nextPage: _nextPage),
-                    SelectDatePage(
-                        nextPage: _nextPage, previousPage: _previousPage),
-                    SelectTimePage(
-                        previousPage: _previousPage, nextPage: _nextPage),
-                    ConfirmationServicesPage(
-                        previousPage: _previousPage,
-                        onSend: () => _pageController.jumpTo(0))
-                  ]))
-            ])));
+        body: Column(children: [
+          Expanded(
+              child: Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: Column(children: [
+                    Expanded(
+                        child: PageView(
+                            physics: const NeverScrollableScrollPhysics(),
+                            controller: _pageController,
+                            onPageChanged: (index) =>
+                                setState(() => _currentPage = index),
+                            children: [
+                          SelectServicesPage(),
+                          SelectDatePage(),
+                          SelectTimePage(),
+                          ConfirmationServicesPage()
+                        ]))
+                  ]))),
+          BottomButtonsSearchScreen(
+              currentPage: _currentPage,
+              nextPage: _nextPage,
+              previousPage: _previousPage)
+        ]));
   }
 }

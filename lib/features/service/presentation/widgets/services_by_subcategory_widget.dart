@@ -15,6 +15,7 @@ class ServicesBySubcategoryWidget extends StatelessWidget {
       CustomTitle(title: subCategory),
       const SizedBox(height: 8),
       SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: 16),
           scrollDirection: Axis.horizontal,
           child: Row(
               children: services.map((service) {
