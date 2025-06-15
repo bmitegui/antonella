@@ -1,4 +1,5 @@
 import 'package:antonella/features/service/presentation/widgets/custom_table_calendar_events_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/service_to_confirm_widget.dart';
 import 'package:flutter/material.dart';
 
 class AgendaScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _AgendaScreenState extends State<AgendaScreen>
 
   @override
   Widget build(BuildContext context) {
+    final int number = 2;
     return Scaffold(
       backgroundColor: Color(0xFFF0F0F0),
       appBar: AppBar(
@@ -42,18 +44,30 @@ class _AgendaScreenState extends State<AgendaScreen>
               TabBar(
                 controller: _tabController,
                 labelColor: const Color(0XFF484850),
-                tabs: const [
-                  Tab(text: 'Agendados'),
-                  Tab(text: 'Por Confirmar')
+                tabs: [
+                  const Tab(text: 'Agendados'),
+                  Tab(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Por Confirmar'),
+                        SizedBox(width: 4),
+                        if (number > 9)
+                          logoCantidad(number, 30)
+                        else if (number > 0)
+                          logoCantidad(number, 20)
+                      ],
+                    ),
+                  ),
                 ]
               ),
               const SizedBox(height: 16),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: const [
-                    CustomTableCalendarEventsWidget(),
-                    CustomTableCalendarEventsWidget()
+                  children: [
+                    const CustomTableCalendarEventsWidget(),
+                    number > 0 ? ServiceToConfirmWidget(quantity: number) : const Center(child: Text('No hay citas por confirmar'))
                   ]
                 )
               )
@@ -61,32 +75,17 @@ class _AgendaScreenState extends State<AgendaScreen>
           ),
         ),
       );
-    // return Scaffold(
-    //     appBar: AppBar(
-    //         backgroundColor: Color(0xFFF0F0F0),
-    //         title: Text('Ver citas',
-    //             style: Theme.of(context).textTheme.titleMedium),
-    //         actions: [Image.asset('assets/icon/logo.png')]),
-    //     body: Padding(
-    //         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-    //         child: Column(children: [
-
-              
-    //           TabBar(
-    //               controller: _tabController,
-    //               labelColor: const Color(0XFF484850),
-    //               tabs: const [
-    //                 Tab(text: 'Reservadas'),
-    //                 Tab(text: 'Pendientes')
-    //               ]),
-    //           const SizedBox(height: 16),
-    //           Expanded(
-    //               child: TabBarView(
-    //                   controller: _tabController,
-    //                   children: const [
-    //                 CustomTableCalendarEventsWidget(),
-    //                 CustomTableCalendarEventsWidget()
-    //               ]))
-    //         ])));
   }
+}
+
+Widget logoCantidad(int number, double width) {
+  return Container(
+    width: width,
+    padding: EdgeInsets.only(left: 6),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: Color(0xFFF44565)
+    ),
+    child: Text(number.toString(), style: TextStyle(color: Colors.white)),
+  );
 }
