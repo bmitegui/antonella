@@ -42,13 +42,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
           }
         }, builder: (context, state) {
           return (state is UserAuthenticated)
-              ? Padding(
+              ? SingleChildScrollView(
                   padding:
                       const EdgeInsets.only(right: 16, left: 16, bottom: 100),
-                  child: SingleChildScrollView(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Center(child: const SettingsPhotowidget()),
                         const SizedBox(height: 8),
                         Center(
@@ -64,7 +63,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     .titleMedium!
                                     .copyWith(color: Colors.grey))),
                         const SizedBox(height: 16),
-                        // Sección: Cuenta
                         SizedBox(
                             child: Text('Cuenta',
                                 textAlign: TextAlign.left,
@@ -98,10 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         SignOutEvent(userEntity: state.user));
                                   })
                             ])),
-
                         const SizedBox(height: 16),
-
-                        // Sección: Preferencias
                         Text('Preferencias',
                             textAlign: TextAlign.left,
                             style: textTheme.titleMedium!
@@ -130,10 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   title: const Text('Notificaciones'),
                                   onTap: () {})
                             ])),
-
                         const SizedBox(height: 16),
-
-                        // Sección: Soporte y Legales
                         Text('Soporte y Legales',
                             textAlign: TextAlign.left,
                             style: textTheme.titleMedium!
@@ -154,7 +146,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   title: const Text('Soporte Técnico'),
                                   onTap: () {})
                             ]))
-                      ])))
+                      ]))
               : LottieBuilder.asset("assets/lottie/loading_screen.json");
         }));
   }

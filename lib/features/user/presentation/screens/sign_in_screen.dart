@@ -28,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
     super.initState();
     _accountController = TextEditingController();
     _passwordController = TextEditingController();
-    _value = false;
+    _value = true;
   }
 
   @override
@@ -52,8 +52,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomSnackBar.success(message: texts.successful_sign_in));
           }
         }, builder: (context, state) {
-          return (state is UserUnauthenticated || state is UserError)
-              ? SingleChildScrollView(
+          return (state is UserLoading)
+              ? Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
                   child: Column(children: [
                   LogoSignInWidget(),
                   Text(texts.welcome,
@@ -133,8 +134,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             const SizedBox(height: 16),
                             const AuthPromptWidget()
                           ]))))
-                ]))
-              : Center(child: const CircularProgressIndicator());
+                ]));
         }));
   }
 }
