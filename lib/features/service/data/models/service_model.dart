@@ -39,7 +39,7 @@ class ServiceModel extends ServiceEntity {
     return ServiceModel(
         id: json['id'],
         name: capitalize(json['name']),
-        description: json['description'],
+        description: capitalize(json['description']),
         type: stringToType(json['type']),
         subtype: capitalize(json['subtype']),
         duration: json['duration'],

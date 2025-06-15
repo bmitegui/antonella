@@ -1,3 +1,5 @@
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,11 +21,14 @@ class AuthPromptWidget extends StatelessWidget {
             children: [
               TextSpan(
                   text: isSignIn ? texts.sign_up : texts.sign_in,
-                  style: textTheme.bodyMedium!
-                      .copyWith(color: Color(0XFFF44565)),
+                  style:
+                      textTheme.bodyMedium!.copyWith(color: Color(0XFFF44565)),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => GoRouter.of(context)
-                        .go('/${isSignIn ? 'signUp' : 'signIn'}'))
+                    ..onTap = () {
+                      sl<UserBloc>().add(ResetUserEvent());
+                      GoRouter.of(context)
+                          .go('/${isSignIn ? 'signUp' : 'signIn'}');
+                    })
             ]));
   }
 }

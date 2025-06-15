@@ -18,7 +18,7 @@ class UserModel extends UserEntity {
         dni: json['dni'],
         phoneNumber: json['phone_number'],
         email: json['email'],
-        name: json['name'],
+        name: capitalize(json['name']),
         gender: stringToGender(json['gender']),
         birthdate: parseStringToDate(json['birthdate']),
         createdDate: parseStringToDate(json['created_date']));

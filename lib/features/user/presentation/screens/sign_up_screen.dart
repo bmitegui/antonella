@@ -67,8 +67,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 CustomSnackBar.error(message: state.message, maxLines: 5));
           }
         }, builder: (context, state) {
-          return (state is UserUnauthenticated || state is UserError)
-              ? SingleChildScrollView(
+          return (state is UserLoading)
+              ? const CircularProgressIndicator()
+              : SingleChildScrollView(
                   child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Form(
@@ -186,8 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                               },
                                               child: Text('Registrar')))
                                     ])))
-                          ]))))
-              : const CircularProgressIndicator();
+                          ]))));
         })));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 
 class QuestionModel extends QuestionEntity {
@@ -12,7 +13,7 @@ class QuestionModel extends QuestionEntity {
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     final questionModel = QuestionModel(
         id: json['id'],
-        title: json['title'],
+        title: capitalize(json['title']),
         inputType: stringToInputType(json['input_type']),
         choiceType: stringToChoiceType(json['choice_type']),
         choices: json['choices'],

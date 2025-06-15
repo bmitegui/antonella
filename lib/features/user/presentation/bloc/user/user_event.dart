@@ -43,3 +43,5 @@ final class SignUpEvent extends UserEvent {
 }
 
 final class CheckAuthenticationEvent extends UserEvent {}
+
+final class ResetUserEvent extends UserEvent {}

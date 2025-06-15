@@ -25,7 +25,6 @@ class ListServicesSelectedWidget extends StatelessWidget {
                       backgroundColor: Colors.white,
                       canTapOnHeader: true,
                       value: service.id,
-                      
                       headerBuilder: (context, isExpanded) => Padding(
                           padding: const EdgeInsets.only(
                               left: 20, top: 20, bottom: 20, right: 12),
@@ -68,7 +67,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                           .textTheme
                                           .bodyMedium!),
                                   const SizedBox(height: 8),
-                                  Text(capitalize(service.description),
+                                  Text(service.description,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
@@ -113,7 +112,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                                   .add(DeleteServiceEvent(
                                                       service: service))),
                                       icon: Icon(Icons.delete_outline,
-                                          color: Colors.red, size: 32)),
+                                          color: Colors.red, size: 32))
                                 ])
                           ])));
                 }).toList()),
