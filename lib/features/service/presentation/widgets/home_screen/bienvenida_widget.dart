@@ -22,7 +22,7 @@ class BienvenidaWidget extends StatelessWidget {
                           .copyWith(fontWeight: FontWeight.bold),
                       children: [
                         TextSpan(
-                            text: capitalize(state.user.name),
+                            text: state.user.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
