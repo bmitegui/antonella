@@ -1,3 +1,4 @@
+import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/domain/entities/entities.dart';
 
@@ -10,9 +11,12 @@ class UserModel extends UserEntity {
       required super.name,
       required super.gender,
       required super.birthdate,
-      required super.createdDate});
+      required super.createdDate,
+      required super.rol,
+      required super.photoUrl});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
+    final rol = json["categories"] != null ? Rol.empleado : Rol.cliente;
     return UserModel(
         id: json['id'],
         dni: json['dni'],
@@ -21,7 +25,11 @@ class UserModel extends UserEntity {
         name: capitalize(json['name']),
         gender: stringToGender(json['gender']),
         birthdate: parseStringToDate(json['birthdate']),
-        createdDate: parseStringToDate(json['created_date']));
+        createdDate: parseStringToDate(
+          json['created_date'],
+        ),
+        rol: rol,
+        photoUrl: json['photo']);
   }
 }
 

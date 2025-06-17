@@ -117,7 +117,7 @@ class _CustomTableCalendarEventsWidgetState
               'https://i.pinimg.com/236x/80/2b/1d/802b1d0ec61e803d9b521816a906f0dc.jpg',
           minPrice: 50.0,
           maxPrice: 80.0,
-          color: Colors.pinkAccent,
+          color: const Color.fromARGB(255, 125, 119, 121),
           address: 'Av. Calle principal, Calle numero #',
           hours: '09:00-10:00')
     ],
@@ -129,118 +129,121 @@ class _CustomTableCalendarEventsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      TableCalendar(
-          headerStyle: HeaderStyle(
-              headerMargin: const EdgeInsets.only(bottom: 8),
-              leftChevronPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-              rightChevronPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-              headerPadding: EdgeInsets.zero,
-              titleTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              leftChevronIcon:
-                  const Icon(Icons.chevron_left, color: Colors.black, size: 32),
-              rightChevronIcon:
-                  const Icon(Icons.chevron_right, color: Colors.black, size: 32),
-              titleCentered: true,
-              titleTextFormatter: (date, locale) {
-                return DateFormat('MMMM yyyy', locale).format(date).toUpperCase();
-              }, 
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(children: [
+        TableCalendar(
+            headerStyle: HeaderStyle(
+                headerMargin: const EdgeInsets.only(bottom: 8),
+                leftChevronPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                rightChevronPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                headerPadding: EdgeInsets.zero,
+                titleTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                leftChevronIcon:
+                    const Icon(Icons.chevron_left, color: Colors.black, size: 32),
+                rightChevronIcon:
+                    const Icon(Icons.chevron_right, color: Colors.black, size: 32),
+                titleCentered: true,
+                titleTextFormatter: (date, locale) {
+                  return DateFormat('MMMM yyyy', locale).format(date).toUpperCase();
+                }, 
+                
+            ),
+            daysOfWeekHeight: 48,
+            daysOfWeekStyle: DaysOfWeekStyle(
+              dowTextFormatter: (date, locale) {
+                final day = DateFormat.E(locale).format(date);
+                switch (day.toLowerCase()) {
+                  case 'lun':
+                    return 'L';
+                  case 'mar':
+                    return 'M';
+                  case 'mié':
+                    return 'MI';
+                  case 'jue':
+                    return 'J';
+                  case 'vie':
+                    return 'V';
+                  case 'sáb':
+                    return 'S';
+                  case 'dom':
+                  default:
+                    return 'D';
+                }
+              },
+              weekdayStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+              weekendStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+              decoration: BoxDecoration(
+                color: Color(0xFFF4A6B5),
+              ),
               
-          ),
-          daysOfWeekHeight: 48,
-          daysOfWeekStyle: DaysOfWeekStyle(
-            dowTextFormatter: (date, locale) {
-              final day = DateFormat.E(locale).format(date);
-              switch (day.toLowerCase()) {
-                case 'lun':
-                  return 'L';
-                case 'mar':
-                  return 'M';
-                case 'mié':
-                  return 'MI';
-                case 'jue':
-                  return 'J';
-                case 'vie':
-                  return 'V';
-                case 'sáb':
-                  return 'S';
-                case 'dom':
-                default:
-                  return 'D';
-              }
-            },
-            weekdayStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-            weekendStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-            decoration: BoxDecoration(
-              color: Color(0xFFF4A6B5),
             ),
             
-          ),
-          
-          availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
-          locale: 'es_EC',
-          firstDay: DateTime.utc(2023),
-          lastDay: DateTime.utc(2099),
-          focusedDay: _focusedDay,
-          calendarFormat: CalendarFormat.month,
-          selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-          onDaySelected: (selectedDay, focusedDay) {
-            setState(() {
-              _selectedDay = selectedDay;
+            availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
+            locale: 'es_EC',
+            firstDay: DateTime.utc(2023),
+            lastDay: DateTime.utc(2099),
+            focusedDay: _focusedDay,
+            calendarFormat: CalendarFormat.month,
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay;
+              });
+            },
+            onPageChanged: (focusedDay) {
               _focusedDay = focusedDay;
-            });
-          },
-          onPageChanged: (focusedDay) {
-            _focusedDay = focusedDay;
-          },
-          calendarStyle: CalendarStyle(
-              todayTextStyle: const TextStyle(
-                color:  Color(0XFFBD818E)
-                ),
-              todayDecoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0XFFBD818E)
-                    ),
-                  shape: BoxShape.circle),
-              selectedDecoration: const BoxDecoration(
-                  color: Colors.green, shape: BoxShape.circle),
-              markerDecoration: const BoxDecoration(
-                  color: Colors.red, shape: BoxShape.circle)),
-          eventLoader: _getEventsForDay,
-          calendarBuilders:
-              CalendarBuilders(markerBuilder: (context, date, events) {
-            if (events.isEmpty) return const SizedBox.shrink();
-            return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: events
-                    .map((event) => Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 1.5),
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                            color: (event as Event).color,
-                            shape: BoxShape.circle)))
-                    .toList());
-          })),
-      const SizedBox(height: 16),
-      Expanded(
-          child: _selectedDay == null
-              ? const Center(
-                  child: Text('Selecciona un horario para ver sus citas'),
-                )
-              : ListView.builder(
-                  itemCount: _getEventsForDay(_selectedDay!).length,
-                  itemBuilder: (context, index) {
-                    final event = _getEventsForDay(_selectedDay!)[index];
-                    return buildEventInfo(event: event);
-                  }))
-    ]);
+            },
+            calendarStyle: CalendarStyle(
+                todayTextStyle: const TextStyle(
+                  color:  Color(0XFFBD818E)
+                  ),
+                todayDecoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color(0XFFBD818E)
+                      ),
+                    shape: BoxShape.circle),
+                selectedDecoration: const BoxDecoration(
+                    color: Colors.green, shape: BoxShape.circle),
+                markerDecoration: const BoxDecoration(
+                    color: Colors.red, shape: BoxShape.circle)),
+            eventLoader: _getEventsForDay,
+            calendarBuilders:
+                CalendarBuilders(markerBuilder: (context, date, events) {
+              if (events.isEmpty) return const SizedBox.shrink();
+              return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: events
+                      .map((event) => Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 1.5),
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                              color: (event as Event).color,
+                              shape: BoxShape.circle)))
+                      .toList());
+            })),
+        const SizedBox(height: 16),
+        Expanded(
+            child: _selectedDay == null
+                ? const Center(
+                    child: Text('Selecciona un horario para ver sus citas'),
+                  )
+                : ListView.builder(
+                    itemCount: _getEventsForDay(_selectedDay!).length,
+                    itemBuilder: (context, index) {
+                      final event = _getEventsForDay(_selectedDay!)[index];
+                      return buildEventInfo(event: event);
+                    }))
+      ]),
+    );
   }
 
   Widget buildEventInfo({required Event event}) {

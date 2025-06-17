@@ -1,3 +1,4 @@
+import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/bienvenida_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/home_tab_bar.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/products_tab_section.dart';
@@ -29,11 +30,8 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color(0xFFF0F0F0),
-        appBar: AppBar(
-            backgroundColor: Color(0xFFF0F0F0),
-            title: const BienvenidaWidget()),
+    return CustomScaffold(
+        title: BienvenidaWidget(),
         body: Column(children: [
           HomeTabBar(controller: _tabController),
           const SizedBox(height: 16),
