@@ -15,7 +15,7 @@ class IsSelectWidget extends StatelessWidget {
       return (state is ServiceFormLoaded)
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: question.answer
+              children: (question.choices as List)
                   .map((value) => value.isEmpty
                       ? SizedBox()
                       : CustomElevatedButton(

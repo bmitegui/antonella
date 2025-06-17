@@ -1,91 +1,76 @@
-import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
-import 'package:antonella/features/service/domain/entities/service_entity.dart';
-import 'package:antonella/features/service/presentation/bloc/service/service_bloc.dart';
-import 'package:antonella/core/widgets/custom_title.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/custom_grid_view.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
+import 'package:antonella/core/widgets/arrow_back.dart';
+import 'package:antonella/core/widgets/custom_scaffold.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/bottom_buttons_search_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/confirmation_services_page.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/select_date_page.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/select_services_page.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/select_time_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-final listPromotions = [
-  PromotionEntity(
-      id: 'id',
-      name: 'name',
-      description: 'description',
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p1.jpg?alt=media&token=fc26e7a3-415d-4cfa-bb09-270546e09b88',
-      categories: [ServiceType.hair, ServiceType.nails]),
-  PromotionEntity(
-      id: 'id',
-      name: 'name',
-      description: 'description',
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p2.jpg?alt=media&token=0e551465-1d6e-4885-8e97-68bd987ee9ea',
-      categories: [ServiceType.spa]),
-  PromotionEntity(
-      id: 'id',
-      name: 'name',
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p3.jpg?alt=media&token=86f4d4b9-6883-4298-8cf7-ec27e052bc4e',
-      description: 'description',
-      categories: [
-        ServiceType.hair,
-        ServiceType.nails,
-        ServiceType.spa,
-        ServiceType.makeup
-      ]),
-  PromotionEntity(
-      id: 'id',
-      name: 'name',
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p4.jpg?alt=media&token=ab842ea5-3455-4a31-a35c-e0d97898b0c5',
-      description: 'description',
-      categories: [ServiceType.hair]),
-  PromotionEntity(
-      id: 'id',
-      name: 'name',
-      imageUrl:
-          'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p5.jpg?alt=media&token=815d6272-c9ac-49e2-ade7-b98ae734a565',
-      description: 'description',
-      categories: [ServiceType.nails])
-];
-
-class ServicesTabSection extends StatelessWidget {
+class ServicesTabSection extends StatefulWidget {
   const ServicesTabSection({super.key});
 
   @override
+  State<ServicesTabSection> createState() => _ServicesTabSectionState();
+}
+
+class _ServicesTabSectionState extends State<ServicesTabSection> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _nextPage() {
+    if (_currentPage < 3) {
+      _pageController.nextPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  void _sendRequest() {
+    _pageController.jumpTo(0);
+  }
+
+  void _previousPage() {
+    if (_currentPage > 0) {
+      _pageController.previousPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ServiceBloc, ServiceState>(builder: (context, state) {
-      final List<PromotionEntity> filteredPromotions = (state is ServicesLoaded)
-          ? (state.serviceType == ServiceType.all
-              ? listPromotions
-              : listPromotions
-                  .where((promotion) =>
-                      promotion.categories.contains(state.serviceType))
-                  .toList())
-          : [];
-      final category = (state is ServicesLoaded)
-          ? getCategoryText(
-              context: context, serviceCategory: state.serviceType)
-          : '';
-      return Column(children: [
-        CustomSearchWidget(),
-        const SizedBox(height: 16),
-        ServicesFilterWidget(),
-        const SizedBox(height: 16),
-        (state is ServicesLoaded)
-            ? CustomTitle(title: category)
-            : SizedBox.shrink(),
-        const SizedBox(height: 16),
-        (state is ServicesLoaded)
-            ? Expanded(
-                child: CustomGridView(listPromotions: filteredPromotions))
-            : (state is ServicesError)
-                ? Text(state.message)
-                : CircularProgressIndicator()
-      ]);
-    });
+    return CustomScaffold(
+        leading: _currentPage != 0 ? ArrowBack(onBack: _previousPage) : null,
+        body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Expanded(
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: PageView(
+                      clipBehavior: Clip.antiAlias,
+                      physics: const NeverScrollableScrollPhysics(),
+                      controller: _pageController,
+                      onPageChanged: (index) =>
+                          setState(() => _currentPage = index),
+                      children: [
+                        SelectServicesPage(),
+                        SelectDatePage(),
+                        SelectTimePage(),
+                        ConfirmationServicesPage()
+                      ]))),
+          BottomButtonsSearchScreen(
+              currentPage: _currentPage,
+              nextPage: _nextPage,
+              previousPage: _previousPage,
+              sendRequest: _sendRequest)
+        ]));
   }
 }

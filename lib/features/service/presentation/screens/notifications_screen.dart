@@ -1,3 +1,4 @@
+import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -10,6 +11,6 @@ class NotificationsScreen extends StatefulWidget {
 class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return CustomScaffold(text: 'Notificaciones', child: Column());
   }
 }

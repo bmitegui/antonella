@@ -1,5 +1,5 @@
 import 'package:antonella/core/theme/responsive_size.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
+import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -12,45 +12,30 @@ class ChatsScreen extends StatefulWidget {
 class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF0F0F0),
-        appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 254, 254, 254),
-            title:
-                Text('Chats', style: Theme.of(context).textTheme.titleMedium),
-            actions: [Image.asset('assets/icon/logo.png')]),
-        body: Padding(
-            padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
-            child: Column(children: [
-              const CustomSearchWidget(),
-              const SizedBox(height: 16),
-              Expanded(
-                child: SingleChildScrollView(
-                    child: Column(children: [
-                  infoChat(
-                      context: context,
-                      url:
-                          'https://b2472105.smushcdn.com/2472105/wp-content/uploads/2022/11/10-Poses-para-foto-de-Perfil-Profesional-Mujer-04-2022-1-819x1024.jpg?lossy=1&strip=1&webp=1',
-                      title: 'Sofía Hernández',
-                      subtitle: 'Te envío los datos de facturación',
-                      pendingMessages: '4'),
-                  infoChat(
-                      context: context,
-                      url:
-                          'https://ntvb.tmsimg.com/assets/assets/720474_v9_bc.jpg',
-                      title: 'Sabrina Carpenter',
-                      subtitle: 'Hola?? Hay alguien??!!',
-                      check: true),
-                  infoChat(
-                      context: context,
-                      url:
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRrJqk6q56_yFxyf124738UZSAaFKT_AqF3Q&s',
-                      title: 'Taylor Swift',
-                      subtitle: 'Claro. Con eso esta todo.',
-                      check: true)
-                ])),
-              )
-            ])));
+    return CustomScaffold(
+        text: 'Chats',
+        child: Column(children: [
+          infoChat(
+              context: context,
+              url:
+                  'https://b2472105.smushcdn.com/2472105/wp-content/uploads/2022/11/10-Poses-para-foto-de-Perfil-Profesional-Mujer-04-2022-1-819x1024.jpg?lossy=1&strip=1&webp=1',
+              title: 'Sofía Hernández',
+              subtitle: 'Te envío los datos de facturación',
+              pendingMessages: '4'),
+          infoChat(
+              context: context,
+              url: 'https://ntvb.tmsimg.com/assets/assets/720474_v9_bc.jpg',
+              title: 'Sabrina Carpenter',
+              subtitle: 'Hola?? Hay alguien??!!',
+              check: true),
+          infoChat(
+              context: context,
+              url:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRrJqk6q56_yFxyf124738UZSAaFKT_AqF3Q&s',
+              title: 'Taylor Swift',
+              subtitle: 'Claro. Con eso esta todo.',
+              check: true)
+        ]));
   }
 
   Widget infoChat(
@@ -96,15 +81,13 @@ class _ChatsScreenState extends State<ChatsScreen> {
                         .textTheme
                         .bodyMedium!
                         .copyWith(fontWeight: FontWeight.bold)),
-                Row(
-                  children: [
-                    if (check) Icon(Icons.check, size: 16, color: Colors.green),
-                    Expanded(
-                        child: Text(subtitle,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            overflow: TextOverflow.ellipsis)),
-                  ],
-                )
+                Row(children: [
+                  if (check) Icon(Icons.check, size: 16, color: Colors.green),
+                  Expanded(
+                      child: Text(subtitle,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          overflow: TextOverflow.ellipsis))
+                ])
               ]))
         ]),
         trailing: Column(

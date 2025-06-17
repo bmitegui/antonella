@@ -1,4 +1,3 @@
-import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,14 +17,13 @@ class BienvenidaWidget extends StatelessWidget {
                       text: 'Bienvenid@, ',
                       style: Theme.of(context)
                           .textTheme
-                          .titleLarge!
-                          .copyWith(fontWeight: FontWeight.bold),
+                          .titleMedium,
                       children: [
                         TextSpan(
                             text: state.user.name,
                             style: Theme.of(context)
                                 .textTheme
-                                .titleLarge!
+                                .titleMedium!
                                 .copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xFFF44565)))

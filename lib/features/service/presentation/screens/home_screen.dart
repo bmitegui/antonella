@@ -34,18 +34,16 @@ class _HomeScreenState extends State<HomeScreen>
         appBar: AppBar(
             backgroundColor: Color(0xFFF0F0F0),
             title: const BienvenidaWidget()),
-        body: Padding(
-            padding: EdgeInsets.only(bottom: 16, right: 16, left: 16),
-            child: Column(children: [
-              HomeTabBar(controller: _tabController),
-              const SizedBox(height: 16),
-              Expanded(
-                  child: TabBarView(
-                      controller: _tabController,
-                      children: const [
-                    ServicesTabSection(),
-                    ProductsTabSection()
-                  ]))
-            ])));
+        body: Column(children: [
+          HomeTabBar(controller: _tabController),
+          const SizedBox(height: 16),
+          Expanded(
+              child: TabBarView(
+                  controller: _tabController,
+                  children: const [
+                ServicesTabSection(),
+                ProductsTabSection()
+              ]))
+        ]));
   }
 }

@@ -62,8 +62,8 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                    fontSize: 16
+                  )
                 );
               },
               dowBuilder: (context, day) {

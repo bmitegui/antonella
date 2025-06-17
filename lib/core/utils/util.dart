@@ -70,10 +70,10 @@ Future<File?> pickImage(ImageSource imageSource) async {
 
 String formatDateTime(DateTime? dateTime) => dateTime == null
     ? 'yyyy-MM-dd'
-    : DateFormat('yyyy-MM-dd').format(dateTime.toLocal());
+    : DateFormat('yyyy-MM-dd').format(dateTime);
 
 String formatHour(DateTime? dateTime) =>
-    dateTime == null ? 'HH:mm' : DateFormat('HH:mm').format(dateTime.toLocal());
+    dateTime == null ? 'HH:mm' : DateFormat('HH:mm').format(dateTime);
 
 String capitalize(String text) {
   if (text.isEmpty) return text;

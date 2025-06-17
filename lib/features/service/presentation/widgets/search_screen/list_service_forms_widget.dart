@@ -42,7 +42,7 @@ class ListServiceFormsWidget extends StatelessWidget {
                       question.choiceType == ChoiceType.image)
                   ? SelectPhotosWidget(question: question)
                   : (question.inputType == InputType.choice &&
-                          question.choiceType == ChoiceType.image)
+                          question.choiceType == ChoiceType.text)
                       ? IsSelectWidget(question: question)
                       : (question.inputType == InputType.text)
                           ? InputWidget(question: question)
