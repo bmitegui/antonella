@@ -9,7 +9,7 @@ class CustomTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tab(
         icon: number != null
-            ? Row(children: [
+            ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Text(text),
                 const SizedBox(width: 4),
                 Container(

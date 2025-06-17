@@ -6,17 +6,21 @@ class CustomLocalSvgImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
+  final Color? color;
 
   const CustomLocalSvgImage(
       {super.key,
       required this.assetPath,
       this.width,
       this.height,
-      this.fit = BoxFit.contain});
+      this.fit = BoxFit.contain,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(assetPath,
+        // ignore: deprecated_member_use
+        color: color,
         width: width,
         height: height,
         fit: fit,

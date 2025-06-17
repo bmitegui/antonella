@@ -46,12 +46,3 @@ class _AgendaScreenState extends State<AgendaScreen>
         ]));
   }
 }
-
-Widget logoCantidad(int number, double width) {
-  return Container(
-    width: width,
-    padding: EdgeInsets.only(left: 6),
-    decoration: BoxDecoration(shape: BoxShape.circle, color: Color(0xFFF44565)),
-    child: Text(number.toString(), style: TextStyle(color: Colors.white)),
-  );
-}

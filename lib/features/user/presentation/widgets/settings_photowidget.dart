@@ -1,4 +1,3 @@
-// ignore_for_file: deprecated_member_use
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
@@ -18,16 +17,15 @@ class SettingsPhotowidget extends StatelessWidget {
             decoration:
                 BoxDecoration(shape: BoxShape.circle, border: Border.all()),
             child: CircleAvatar(
-              radius: 80.rh(context),
-              backgroundColor: Colors.white,
-              foregroundImage:
-                  (state is UserAuthenticated && state.user.photoUrl != null)
-                      ? CachedNetworkImageProvider(
-                          Environment.apiUrl + state.user.photoUrl!)
-                      : null,
-              backgroundImage:
-                  const AssetImage('assets/img/placeholder_women.png'),
-            )),
+                radius: 80.rh(context),
+                backgroundColor: Colors.white,
+                foregroundImage:
+                    (state is UserAuthenticated && state.user.photoUrl != null)
+                        ? CachedNetworkImageProvider(
+                            Environment.apiUrl + state.user.photoUrl!)
+                        : null,
+                backgroundImage:
+                    const AssetImage('assets/img/placeholder_women.png'))),
         /*Positioned(
           bottom: 0,
           right: 0,

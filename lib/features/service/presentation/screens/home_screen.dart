@@ -38,10 +38,7 @@ class _HomeScreenState extends State<HomeScreen>
           Expanded(
               child: TabBarView(
                   controller: _tabController,
-                  children: const [
-                ServicesTabSection(),
-                ProductsTabSection()
-              ]))
+                  children: const [ServicesTabSection(), ProductsTabSection()]))
         ]));
   }
 }

@@ -3,6 +3,7 @@ import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/screens/agenda_screen.dart';
 import 'package:antonella/features/service/presentation/screens/chats_screen.dart';
 import 'package:antonella/features/service/presentation/screens/home_screen.dart';
+import 'package:antonella/features/service/presentation/screens/home_screen_empleado.dart';
 import 'package:antonella/features/service/presentation/screens/notifications_screen.dart';
 import 'package:antonella/features/service/presentation/screens/search_screen.dart';
 import 'package:antonella/core/widgets/custom_bottom_navigator_bar.dart';
@@ -35,7 +36,7 @@ class _PagesScreenState extends State<PagesScreen> {
   final List<Widget> _contentPagesEmpleado = const [
     AgendaScreen(),
     SearchScreen(),
-    HomeScreen(),
+    HomeScreenEmpleado(),
     NotificationsScreen(),
     SettingsScreen()
   ];

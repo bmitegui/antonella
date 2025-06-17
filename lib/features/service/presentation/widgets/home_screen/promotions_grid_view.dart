@@ -2,9 +2,9 @@ import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:flutter/material.dart';
 
-class CustomGridView extends StatelessWidget {
+class PromotionsGridView extends StatelessWidget {
   final List<PromotionEntity> listPromotions;
-  const CustomGridView({super.key, required this.listPromotions});
+  const PromotionsGridView({super.key, required this.listPromotions});
 
   @override
   Widget build(BuildContext context) {

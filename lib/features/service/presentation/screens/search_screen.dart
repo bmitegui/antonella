@@ -3,7 +3,7 @@ import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/service/service_bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/custom_grid_view.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/promotions_grid_view.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
 import 'package:flutter/material.dart';
@@ -79,24 +79,24 @@ class _SearchScreenState extends State<SearchScreen> {
                   context: context, serviceCategory: state.serviceType)
               : '';
           return Padding(
-            padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
-            child: Column(children: [
-              CustomSearchWidget(),
-              const SizedBox(height: 16),
-              ServicesFilterWidget(),
-              const SizedBox(height: 16),
-              (state is ServicesLoaded)
-                  ? CustomTitle(title: category)
-                  : SizedBox.shrink(),
-              const SizedBox(height: 16),
-              (state is ServicesLoaded)
-                  ? Expanded(
-                      child: CustomGridView(listPromotions: filteredPromotions))
-                  : (state is ServicesError)
-                      ? Text(state.message)
-                      : CircularProgressIndicator()
-            ]),
-          );
+              padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
+              child: Column(children: [
+                CustomSearchWidget(),
+                const SizedBox(height: 16),
+                ServicesFilterWidget(),
+                const SizedBox(height: 16),
+                (state is ServicesLoaded)
+                    ? CustomTitle(title: category)
+                    : SizedBox.shrink(),
+                const SizedBox(height: 16),
+                (state is ServicesLoaded)
+                    ? Expanded(
+                        child: PromotionsGridView(
+                            listPromotions: filteredPromotions))
+                    : (state is ServicesError)
+                        ? Text(state.message)
+                        : CircularProgressIndicator()
+              ]));
         }));
   }
 }
