@@ -54,7 +54,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
       required String day,
       required String start,
       required String employeeId,
-      required ServiceEntity service}) async {
+      required List<ServiceEntity> services}) async {
     if (await networkInfo.isConnected) {
       try {
         await serviceRemoteDataSource.sendRequest(
@@ -62,7 +62,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
             day: day,
             start: start,
             employeeId: employeeId,
-            service: service);
+            services: services);
         return Right(null);
       } on ServerException catch (e) {
         return Left(ServerFailure(message: e.message));

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:antonella/core/l10n/app_localizations.dart';
+import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -68,9 +69,8 @@ Future<File?> pickImage(ImageSource imageSource) async {
   return File(pickedImage.path);
 }
 
-String formatDateTime(DateTime? dateTime) => dateTime == null
-    ? 'yyyy-MM-dd'
-    : DateFormat('yyyy-MM-dd').format(dateTime);
+String formatDateTime(DateTime? dateTime) =>
+    dateTime == null ? 'yyyy-MM-dd' : DateFormat('yyyy-MM-dd').format(dateTime);
 
 String formatHour(DateTime? dateTime) =>
     dateTime == null ? 'HH:mm' : DateFormat('HH:mm').format(dateTime);
@@ -150,4 +150,18 @@ Future<String?> convertFileToBase64(File? file) async {
   var extFoto = result.path.split("/").last.split(".").last;
   imagenBase64 = "data:image/$extFoto;base64,$imagenBase64";
   return imagenBase64;
+}
+
+ServiceType stringToType(String type) {
+  return type == 'SPA'
+      ? ServiceType.spa
+      : type == 'UÑAS'
+          ? ServiceType.nails
+          : type == 'CABELLO'
+              ? ServiceType.hair
+              : ServiceType.makeup;
+}
+
+ProductType stringToProductType(String type) {
+  return type == 'SHAMPOO' ? ProductType.shampoo : ProductType.crema;
 }

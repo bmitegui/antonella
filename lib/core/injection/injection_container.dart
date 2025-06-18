@@ -2,9 +2,14 @@ import 'package:antonella/core/bloc/bloc.dart';
 import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/network/network.dart';
 import 'package:antonella/core/services/services.dart';
+import 'package:antonella/features/product/data/datasources/remote/products_remote_datasource.dart';
+import 'package:antonella/features/product/data/repositories/products_repository_impl.dart';
+import 'package:antonella/features/product/domain/usecases/usecases.dart';
+import 'package:antonella/features/product/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/data/datasources/datasources.dart';
 import 'package:antonella/features/service/data/repositories/repositories.dart';
 import 'package:antonella/features/service/domain/repositories/repositories.dart';
+import 'package:antonella/features/product/domain/repositories/repositories.dart';
 import 'package:antonella/features/service/domain/usecases/usecases.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
@@ -42,9 +47,10 @@ Future<void> init() async {
       () => UserRemoteDataSourceImpl(client: sl<Dio>()));
   sl.registerLazySingleton<UserLocalDataSource>(() => UserLocalDataSourceImpl(
       box: sl<Box<dynamic>>(instanceName: 'UserModel')));
-
   sl.registerLazySingleton<ServiceRemoteDataSource>(
       () => ServiceRemoteDataSourceImpl(client: sl<Dio>()));
+  sl.registerLazySingleton<ProductsRemoteDataSource>(
+      () => ProductsRemoteDataSourceImpl(client: sl<Dio>()));
 
   //! Repository
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
@@ -55,6 +61,10 @@ Future<void> init() async {
   sl.registerLazySingleton<ServiceRepository>(() => ServiceRepositoryImpl(
       networkInfo: sl<NetworkInfo>(),
       serviceRemoteDataSource: sl<ServiceRemoteDataSource>()));
+
+  sl.registerLazySingleton<ProductsRepository>(() => ProductsRepositoryImpl(
+      networkInfo: sl<NetworkInfo>(),
+      productsRemoteDataSource: sl<ProductsRemoteDataSource>()));
 
   //! Use cases
   sl.registerLazySingleton<SignUpUseCase>(
@@ -79,6 +89,9 @@ Future<void> init() async {
   sl.registerLazySingleton<SendRequestUseCase>(
       () => SendRequestUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<GetProductsUseCase>(
+      () => GetProductsUseCase(productsRepository: sl<ProductsRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -102,6 +115,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<SendRequestBloc>(
       () => SendRequestBloc(getSendRequestsUseCase: sl<SendRequestUseCase>()));
+
+  sl.registerLazySingleton<ProductsBloc>(
+      () => ProductsBloc(getProductsUseCase: sl<GetProductsUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

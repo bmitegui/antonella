@@ -2,7 +2,9 @@ import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/container_product.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 //import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
+import 'package:antonella/features/product/presentation/bloc/products/products_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsTabSection extends StatelessWidget {
   const ProductsTabSection({super.key});
@@ -41,5 +43,12 @@ class ProductsTabSection extends StatelessWidget {
         )
       ]
     );
+    // return BlocBuilder<ProductsBloc, ProductsState>(builder: (context, state) {
+    //   return (state is ProductsLoaded)
+    //       ? Text(state.products[0].nombre)
+    //       : (state is ProductsError)
+    //           ? Text(state.message)
+    //           : Center(child: CircularProgressIndicator());
+    // });
   }
 }

@@ -13,7 +13,7 @@ abstract class ServiceRemoteDataSource {
       required String day,
       required String start,
       required String employeeId,
-      required ServiceEntity service});
+      required List<ServiceEntity> services});
 }
 
 class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
@@ -63,21 +63,24 @@ class ServiceRemoteDataSourceImpl implements ServiceRemoteDataSource {
       required String day,
       required String start,
       required String employeeId,
-      required ServiceEntity service}) async {
+      required List<ServiceEntity> services}) async {
     try {
       final orderId = await createOrder(clientId: clientId);
-      final serviceItemId = await createCita(
-          orderId: orderId,
-          day: day,
-          start: start,
-          employeeId: employeeId,
-          serviceId: service.id);
-      service.questions
-          .map((question) async => await answer(
-              clientId: clientId,
-              question: question,
-              serviceItemId: serviceItemId))
-          .toList();
+
+      for (ServiceEntity service in services) {
+        final serviceItemId = await createCita(
+            orderId: orderId,
+            day: day,
+            start: start,
+            employeeId: employeeId,
+            serviceId: service.id);
+        service.questions
+            .map((question) async => await answer(
+                clientId: clientId,
+                question: question,
+                serviceItemId: serviceItemId))
+            .toList();
+      }
     } on ServerException {
       rethrow;
     } catch (e) {

@@ -15,4 +15,5 @@ class Environment {
   static String oderServiceItem = '$apiUrl${dotenv.env['oderServiceItem']}';
   static String answer = '$apiUrl${dotenv.env['answer']}';
   static String user = '$apiUrl${dotenv.env['user']}';
+  static String product = '$apiUrl${dotenv.env['product']}';
 }

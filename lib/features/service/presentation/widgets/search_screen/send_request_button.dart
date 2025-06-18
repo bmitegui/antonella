@@ -69,8 +69,8 @@ class SendRequestButton extends StatelessWidget {
                                             stateServiceSelected.timeSelected!,
                                         employeeId:
                                             '9da5e6d5-1e01-4273-82b1-63adcb3e77d4',
-                                        service:
-                                            stateServiceSelected.services[0]));
+                                        services:
+                                            stateServiceSelected.services));
                               },
                               text: 'Enviar Petición')
                         ]));

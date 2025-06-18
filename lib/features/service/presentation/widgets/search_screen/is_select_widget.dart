@@ -13,8 +13,10 @@ class IsSelectWidget extends StatelessWidget {
     return BlocBuilder<ServiceFormBloc, ServiceFormState>(
         builder: (context, state) {
       return (state is ServiceFormLoaded)
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ? Wrap(
+            runSpacing: 8,
+            spacing: 16,
+            alignment: WrapAlignment.center,
               children: (question.choices as List)
                   .map((value) => value.isEmpty
                       ? SizedBox()

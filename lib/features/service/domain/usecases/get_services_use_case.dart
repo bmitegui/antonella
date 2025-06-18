@@ -10,7 +10,7 @@ class GetServicesUseCase implements UseCase<void, NoParams> {
 
   @override
   Future<Either<Failure, ListServicesEntity>> call(
-      NoParams getServicesParams) async {
+      NoParams noParams) async {
     return await serviceRepository.getServices();
   }
 }
