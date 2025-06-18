@@ -5,7 +5,7 @@ import 'package:antonella/features/service/domain/repositories/service_repositor
 import 'package:dartz/dartz.dart';
 
 class GetServiceCommentsUseCase
-    implements UseCase<void, GetServiceCommentsParams> {
+    implements UseCase<List<CommentEntity>, GetServiceCommentsParams> {
   final ServiceRepository serviceRepository;
   GetServiceCommentsUseCase({required this.serviceRepository});
 

@@ -51,13 +51,3 @@ class ServiceModel extends ServiceEntity {
         maxPrice: maxOfAll);
   }
 }
-
-ServiceType stringToType(String type) {
-  return type == 'SPA'
-      ? ServiceType.spa
-      : type == 'UÑAS'
-          ? ServiceType.nails
-          : type == 'CABELLO'
-              ? ServiceType.hair
-              : ServiceType.makeup;
-}
