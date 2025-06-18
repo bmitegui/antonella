@@ -1,25 +1,16 @@
 import 'package:antonella/features/service/presentation/widgets/banner_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/services_group.dart';
 import 'package:flutter/material.dart';
 
-class ServiceToConfirmWidget extends StatefulWidget {
-  final int quantity;
-  const ServiceToConfirmWidget({super.key, required this.quantity});
+class InfoServiceToConfirm extends StatelessWidget {
+  const InfoServiceToConfirm({super.key});
 
-  @override
-  State<ServiceToConfirmWidget> createState() => _ServiceToConfirmWidgetState();
-}
-
-class _ServiceToConfirmWidgetState extends State<ServiceToConfirmWidget> {
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      itemCount: widget.quantity,
-      itemBuilder: (BuildContext context, int value) {
-        return Container(
+  return Container(
           padding: EdgeInsets.only(right: 16, left: 16, bottom: 16),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(style: BorderStyle.solid, color: Colors.white),
             color: Colors.white
           ),
@@ -28,10 +19,10 @@ class _ServiceToConfirmWidgetState extends State<ServiceToConfirmWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BannerWidget(),
-                  Text('Cabellos - Varios'),
+                  BannerWidget(child: ServicesGroup()),
+                  Text('Cabellos - Varios', style: Theme.of(context).textTheme.titleMedium),
                   Icon(Icons.arrow_forward_ios)
-                ],
+                ]
               ),
               SizedBox(height: 10),
               Row(
@@ -40,7 +31,7 @@ class _ServiceToConfirmWidgetState extends State<ServiceToConfirmWidget> {
                   Icon(Icons.calendar_month),
                   SizedBox(width: 20),
                   Text('15/05/2025 - 9:00 am')
-                ],
+                ]
               ),
               Divider(),
               Row(
@@ -49,7 +40,7 @@ class _ServiceToConfirmWidgetState extends State<ServiceToConfirmWidget> {
                   Icon(Icons.person),
                   SizedBox(width: 20),
                   Text('Mite Guillen Brian Andrei')
-                ],
+                ]
               ),
               SizedBox(height: 10),
               Row(
@@ -58,13 +49,9 @@ class _ServiceToConfirmWidgetState extends State<ServiceToConfirmWidget> {
                   Icon(Icons.email),
                   SizedBox(width: 20),
                   Text('1234@email.com')
-                ],
-              ),
-            ],
+                ]
+              )
+            ]
           )
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) => SizedBox(height: 16)  
-    );
-  }
+        );  }
 }

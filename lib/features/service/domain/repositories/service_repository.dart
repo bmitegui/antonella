@@ -12,5 +12,5 @@ abstract class ServiceRepository {
       required String day,
       required String start,
       required String employeeId,
-      required ServiceEntity service});
+      required List<ServiceEntity> services});
 }

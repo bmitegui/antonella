@@ -17,6 +17,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
       if (state is ServicesSelectedLoaded) {
         return state.services.isNotEmpty
             ? SingleChildScrollView(
+              padding: EdgeInsets.only(bottom: 16),
                 child: ClipRRect(
                 borderRadius: BorderRadius.circular(32),
                 child: ExpansionPanelList.radio(

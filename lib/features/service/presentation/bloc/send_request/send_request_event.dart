@@ -11,12 +11,12 @@ final class EnviarPeticionEvent extends SendRequestEvent {
   final String day;
   final String start;
   final String employeeId;
-  final ServiceEntity service;
+  final List<ServiceEntity> services;
 
   EnviarPeticionEvent(
       {required this.clientId,
       required this.day,
       required this.start,
       required this.employeeId,
-      required this.service});
+      required this.services});
 }

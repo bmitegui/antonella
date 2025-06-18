@@ -23,7 +23,7 @@ class SendRequestBloc extends Bloc<SendRequestEvent, SendRequestState> {
         day: event.day,
         start: event.start,
         employeeId: event.employeeId,
-        service: event.service));
+        services: event.services));
     failureOrSuccess.fold((failure) async {
       emit(SendRequestError(message: _mapFailureToMessage(failure)));
     }, (data) async {
