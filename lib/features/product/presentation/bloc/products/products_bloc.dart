@@ -3,6 +3,7 @@ import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/usecases/usecase.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/product/domain/usecases/get_products_use_case.dart';
+import 'package:antonella/features/product/presentation/list_products_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'products_event.dart';
 part 'products_state.dart';
@@ -21,7 +22,16 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     failureOrSuccess.fold((failure) async {
       emit(ProductsError(message: _mapFailureToMessage(failure)));
     }, (listProducts) async {
-      emit(ProductsLoaded(products: listProducts));
+      if (event.productType != null && event.productType != ProductType.all) {
+        final productFilter = listProducts.products
+            .where((product) => product.type == event.productType)
+            .toList();
+        emit(ProductsLoaded(
+            listProducts: listProducts.copyWith(products: productFilter),
+            productType: event.productType!));
+      } else {
+        emit(ProductsLoaded(listProducts: listProducts));
+      }
     });
   }
 

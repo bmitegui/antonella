@@ -6,4 +6,7 @@ sealed class ProductsEvent {
 
 final class ProductsInitialEvent extends ProductsEvent {}
 
-final class GetProductsEvent extends ProductsEvent {}
+final class GetProductsEvent extends ProductsEvent {
+  final ProductType? productType;
+  GetProductsEvent({this.productType});
+}

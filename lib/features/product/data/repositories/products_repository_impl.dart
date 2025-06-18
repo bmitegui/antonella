@@ -2,6 +2,7 @@ import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/network/network.dart';
 import 'package:antonella/features/product/data/datasources/remote/products_remote_datasource.dart';
+import 'package:antonella/features/product/data/models/lis_product_model.dart';
 import 'package:antonella/features/product/data/models/product_model.dart';
 import 'package:antonella/features/product/domain/repositories/products_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -14,7 +15,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
       {required this.networkInfo, required this.productsRemoteDataSource});
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getProducts() async {
+  Future<Either<Failure, ListProductsModel>> getProducts() async {
     if (await networkInfo.isConnected) {
       try {
         final listProducts = await productsRemoteDataSource.getProducts();

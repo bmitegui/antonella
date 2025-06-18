@@ -1,7 +1,7 @@
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:equatable/equatable.dart';
 
-enum ProductType { shampoo, crema }
+enum ProductType { all, shampoo, crema }
 
 class ProductEntity extends Equatable {
   final String id;
