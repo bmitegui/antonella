@@ -11,16 +11,18 @@ class ServicesBySubcategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       CustomTitle(title: subCategory),
       const SizedBox(height: 8),
       SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: 16),
-          scrollDirection: Axis.horizontal,
-          child: Row(
-              children: services.map((service) {
-            return ServiceInfoWidget(serviceEntity: service);
-          }).toList()))
+        padding: EdgeInsets.only(bottom: 16),
+        scrollDirection: Axis.horizontal,
+        child: Row(
+            children: services.map((service) {
+          return ServiceInfoWidget(serviceEntity: service);
+        }).toList()))
+      
     ]);
   }
 }

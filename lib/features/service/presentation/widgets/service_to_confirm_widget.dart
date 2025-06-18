@@ -64,7 +64,6 @@ class _ServiceToConfirmWidgetState extends State<ServiceToConfirmWidget> {
           )
         );
       },
-      separatorBuilder: (BuildContext context, int index) => SizedBox(height: 16)  
-    );
+      separatorBuilder: (BuildContext context, int index) => SizedBox(height: 16));
   }
 }
