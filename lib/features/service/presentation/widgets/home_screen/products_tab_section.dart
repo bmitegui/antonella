@@ -1,12 +1,7 @@
-import 'package:antonella/core/widgets/custom_title.dart';
-import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/product/presentation/products_info_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/container_product.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 //import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
-import 'package:antonella/features/product/presentation/bloc/products/products_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsTabSection extends StatelessWidget {
   const ProductsTabSection({super.key});

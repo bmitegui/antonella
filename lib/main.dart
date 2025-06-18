@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'features/product/presentation/bloc/products/products_bloc.dart';
+import 'features/product/presentation/bloc/bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<ServiceFormBloc>()),
           BlocProvider(create: (context) => di.sl<SendRequestBloc>()),
           BlocProvider(create: (context) => di.sl<ProductsBloc>()),
+          BlocProvider(create: (context) => di.sl<ProductsSelectedBloc>()),
         ],
         child: BlocBuilder<ThemeBloc, bool>(builder: (context, stateTheme) {
           return BlocBuilder<LanguageBloc, Locale>(

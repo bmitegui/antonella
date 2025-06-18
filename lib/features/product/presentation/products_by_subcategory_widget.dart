@@ -1,7 +1,6 @@
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/product/presentation/product_info_widget.dart';
-import 'package:antonella/features/product/presentation/products_info_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductsBySubcategoryWidget extends StatelessWidget {
