@@ -1,6 +1,6 @@
 import 'package:antonella/features/product/presentation/products_info_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
-//import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductsTabSection extends StatelessWidget {
@@ -8,41 +8,19 @@ class ProductsTabSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomSearchWidget(),
-        //const SizedBox(height: 16),
-        //ServicesFilterWidget(),
-        const SizedBox(height: 16),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: ProductsInfoWidget()
-          // Column(
-          //   children: [
-          //     CustomTitle(title: 'Todos'),
-          //     const SizedBox(height: 16),
-          //     SingleChildScrollView(
-          //       scrollDirection: Axis.horizontal,
-          //       child: Padding(
-          //         padding: const EdgeInsets.only(right: 16),
-          //         child: Row(
-          //           children: [
-          //             ContainerProduct(productEntity: productEntity)
-          //           ],
-          //         ),
-          //       )
-          //     )
-          //   ],
-          // ), 
-        )
-      ]
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            CustomSearchWidget(),
+            const SizedBox(height: 16),
+            //ServicesFilterWidget(),
+            const SizedBox(height: 16),
+            ProductsInfoWidget()
+          ]
+        ),
+      )
     );
-    // return BlocBuilder<ProductsBloc, ProductsState>(builder: (context, state) {
-    //   return (state is ProductsLoaded)
-    //       ? Text(state.products[0].nombre)
-    //       : (state is ProductsError)
-    //           ? Text(state.message)
-    //           : Center(child: CircularProgressIndicator());
-    // });
   }
 }

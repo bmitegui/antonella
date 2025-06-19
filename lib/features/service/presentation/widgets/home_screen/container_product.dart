@@ -1,6 +1,6 @@
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
-import 'package:antonella/features/product/presentation/bloc/detail_product_screen.dart';
+import 'package:antonella/features/product/presentation/detail_product_screen.dart';
 import 'package:flutter/material.dart';
 
 class ContainerProduct extends StatelessWidget {

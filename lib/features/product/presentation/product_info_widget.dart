@@ -1,7 +1,7 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
-import 'package:antonella/features/product/presentation/bloc/detail_product_screen.dart';
+import 'package:antonella/features/product/presentation/detail_product_screen.dart';
 import 'package:antonella/features/product/presentation/bloc/products_selected/products_selected_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/service_image_network.dart';
 import 'package:flutter/material.dart';
