@@ -1,5 +1,8 @@
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/presentation/widgets/shimmer_history_labels.dart';
 import 'package:antonella/features/user/presentation/bloc/employee_info/employee_info_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,7 +37,15 @@ class HistoryLabels extends StatelessWidget {
                     label: Text(label),
                     selected: selectedLabel == label,
                     onSelected: (selected) {
-                      onSelected(label);
+                      final userState = sl<UserBloc>().state;
+                      if (userState is UserAuthenticated) {
+                        final dates = obtenerRangoFechas(label.toUpperCase());
+                        sl<EmployeeInfoBloc>().add(GetEmployeeInfoEvent(
+                            employeeId: userState.user.id,
+                            startDate: dates['startDate']!,
+                            endDate: dates['endDate']!));
+                        onSelected(label);
+                      }
                     });
               }).toList())
           : ShimmerHistoryLabels();
