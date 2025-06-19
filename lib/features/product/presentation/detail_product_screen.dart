@@ -27,7 +27,7 @@ class DetailProductScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                  '\$ 3.55',
+                  '\$ ${productEntity.price}',
                   style: Theme.of(context).textTheme.titleMedium),
               SizedBox(width:8),
               QuantitySelectionWidget(stock: stock),
@@ -44,13 +44,13 @@ class DetailProductScreen extends StatelessWidget {
           children: [
             ImagesScrollview(images: productEntity.images),
             SizedBox(height:16),
-            Text('Maquillaje'),
+            Text(productEntity.nombre),
             SizedBox(height:16),
-            Text('Volumen: 23gr'),
+            Text('Volumen: ${productEntity.volume}'),
             Divider(),
             Text('Description'),
             SizedBox(height:16),
-            Text('Este es un producto genial'),
+            Text(productEntity.description),
           ],
         ),
       ),

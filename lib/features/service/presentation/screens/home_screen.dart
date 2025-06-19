@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
         title: BienvenidaWidget(),
         body: Column(children: [
           HomeTabBar(controller: _tabController),
+          
           const SizedBox(height: 16),
           Expanded(
               child: TabBarView(
