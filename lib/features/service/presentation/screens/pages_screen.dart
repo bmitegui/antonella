@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/screens/agenda_screen.dart';
 import 'package:antonella/features/service/presentation/screens/chats_screen.dart';
@@ -8,7 +9,7 @@ import 'package:antonella/features/service/presentation/screens/notifications_sc
 import 'package:antonella/features/service/presentation/screens/search_screen.dart';
 import 'package:antonella/core/widgets/custom_bottom_navigator_bar.dart';
 import 'package:antonella/features/user/domain/entities/entities.dart';
-import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +47,18 @@ class _PagesScreenState extends State<PagesScreen> {
     super.initState();
     _pageController = PageController(initialPage: 2);
     _currentIndex = 2;
-    sl<ServiceBloc>().add(GetServicesEvent());
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated) {
+      if (userState.user.rol == Rol.cliente) {
+        sl<ServiceBloc>().add(GetServicesEvent());
+      } else {
+        final dates = obtenerRangoFechas('SEMANAL');
+        sl<EmployeeInfoBloc>().add(GetEmployeeInfoEvent(
+            employeeId: userState.user.id,
+            startDate: dates['startDate']!,
+            endDate: dates['endDate']!));
+      }
+    }
   }
 
   @override

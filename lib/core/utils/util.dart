@@ -165,3 +165,39 @@ ServiceType stringToType(String type) {
 ProductType stringToProductType(String type) {
   return type == 'SHAMPOO' ? ProductType.shampoo : ProductType.crema;
 }
+
+Map<String, String> obtenerRangoFechas(String tipo) {
+  final ahora = DateTime.now();
+  late DateTime startDate;
+  late DateTime endDate;
+
+  switch (tipo.toUpperCase()) {
+    case 'SEMANAL':
+      // Lunes es weekday = 1, Domingo = 7
+      startDate = ahora.subtract(Duration(days: ahora.weekday - 1));
+      endDate = ahora;
+      break;
+
+    case 'MENSUAL':
+      startDate = DateTime(ahora.year, ahora.month, 1);
+      endDate = ahora;
+      break;
+
+    case 'ANUAL':
+      startDate = DateTime(ahora.year, 1, 1);
+      endDate = ahora;
+      break;
+
+    default:
+      // Lunes es weekday = 1, Domingo = 7
+      startDate = ahora.subtract(Duration(days: ahora.weekday - 1));
+      endDate = ahora;
+      break;
+  }
+
+  final formatter = DateFormat('yyyy-MM-dd');
+  return {
+    'startDate': formatter.format(startDate),
+    'endDate': formatter.format(endDate),
+  };
+}

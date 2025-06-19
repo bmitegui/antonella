@@ -1,8 +1,8 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/network/network.dart';
+import 'package:antonella/core/utils/repository_impl_util.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
-import 'package:antonella/features/user/data/models/user_model.dart';
+import 'package:antonella/features/user/data/models/models.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
 import 'package:dartz/dartz.dart';
 
@@ -21,22 +21,16 @@ class UserRepositoryImpl implements UserRepository {
       {required String account,
       required String password,
       required bool rememberMe}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final remoteUser = await userRemoteDataSource.signIn(
-            account: account, password: password);
-        if (rememberMe) {
-          await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
-        }
-        return Right(remoteUser);
-      } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
-      } catch (e) {
-        return Left(ServerFailure());
-      }
-    } else {
-      return Left(ServerFailure(message: networkConnectionError));
-    }
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          final remoteUser = await userRemoteDataSource.signIn(
+              account: account, password: password);
+          if (rememberMe) {
+            await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
+          }
+          return remoteUser;
+        });
   }
 
   @override
@@ -48,69 +42,62 @@ class UserRepositoryImpl implements UserRepository {
       required String birthdate,
       required String phoneNumber,
       required String? genero}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final remoteUser = await userRemoteDataSource.signUp(
-            account: account,
-            dni: dni,
-            name: name,
-            password: password,
-            birthdate: birthdate,
-            phoneNumber: phoneNumber,
-            genero: genero);
-        await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
-        return Right(remoteUser);
-      } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
-      } catch (e) {
-        return Left(ServerFailure());
-      }
-    } else {
-      return Left(ServerFailure(message: networkConnectionError));
-    }
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          final remoteUser = await userRemoteDataSource.signUp(
+              account: account,
+              dni: dni,
+              name: name,
+              password: password,
+              birthdate: birthdate,
+              phoneNumber: phoneNumber,
+              genero: genero);
+          await userLocalDataSource.uploadLocalUser(userModel: remoteUser);
+          return remoteUser;
+        });
   }
 
   @override
   Future<Either<Failure, void>> signOut() async {
-    try {
+    return handleLocalCall(operation: () async {
       await userLocalDataSource.signOut();
-      return const Right(null);
-    } catch (e) {
-      return Left(ServerFailure());
-    }
+      return;
+    });
   }
 
   @override
   Future<Either<Failure, List<String>>> passwordCode(
       {required String email}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final lista = await userRemoteDataSource.passwordCode(email: email);
-        return Right(lista);
-      } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
-      } catch (e) {
-        return Left(ServerFailure());
-      }
-    } else {
-      return Left(ServerFailure(message: networkConnectionError));
-    }
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          final lista = await userRemoteDataSource.passwordCode(email: email);
+          return lista;
+        });
   }
 
   @override
   Future<Either<Failure, void>> passwordReset(
       {required String id, required String password}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        await userRemoteDataSource.passwordReset(id: id, password: password);
-        return Right(null);
-      } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
-      } catch (e) {
-        return Left(ServerFailure());
-      }
-    } else {
-      return Left(ServerFailure(message: networkConnectionError));
-    }
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await userRemoteDataSource.passwordReset(id: id, password: password);
+        });
+  }
+
+  @override
+  Future<Either<Failure, EmployeeInfoModel>> getEmployeeInfo(
+      {required String employeeId,
+      required String startDate,
+      required String endDate}) async {
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          final lista = await userRemoteDataSource.getEmployeeInfo(
+              employeeId: employeeId, startDate: startDate, endDate: endDate);
+          return lista;
+        });
   }
 }

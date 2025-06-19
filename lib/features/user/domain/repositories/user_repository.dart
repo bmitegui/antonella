@@ -20,4 +20,8 @@ abstract class UserRepository {
   Future<Either<Failure, List<String>>> passwordCode({required String email});
   Future<Either<Failure, void>> passwordReset(
       {required String id, required String password});
+  Future<Either<Failure, EmployeeInfoModel>> getEmployeeInfo(
+      {required String employeeId,
+      required String startDate,
+      required String endDate});
 }

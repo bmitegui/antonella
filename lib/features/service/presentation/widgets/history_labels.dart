@@ -1,4 +1,7 @@
+import 'package:antonella/features/service/presentation/widgets/shimmer_history_labels.dart';
+import 'package:antonella/features/user/presentation/bloc/employee_info/employee_info_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HistoryLabels extends StatelessWidget {
   final List<String> labels;
@@ -12,25 +15,29 @@ class HistoryLabels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-        spacing: 16,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: labels.map((label) {
-          return ChoiceChip(
-              avatar: SizedBox.shrink(),
-              avatarBoxConstraints: BoxConstraints.loose(Size.zero),
-              labelStyle: TextStyle(color: Colors.white),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: BorderSide(color: Colors.transparent),
-              ),
-              backgroundColor: Colors.grey.shade300,
-              selectedColor: Color(0xFFF44565),
-              label: Text(label),
-              selected: selectedLabel == label,
-              onSelected: (selected) {
-                onSelected(label);
-              });
-        }).toList());
+    return BlocBuilder<EmployeeInfoBloc, EmployeeInfoState>(
+        builder: (context, state) {
+      return (state is EmployeeInfoLoaded)
+          ? Wrap(
+              spacing: 16,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: labels.map((label) {
+                return ChoiceChip(
+                    avatar: SizedBox.shrink(),
+                    avatarBoxConstraints: BoxConstraints.loose(Size.zero),
+                    labelStyle: TextStyle(color: Colors.white),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(color: Colors.transparent)),
+                    backgroundColor: Colors.grey.shade300,
+                    selectedColor: Color(0xFFF44565),
+                    label: Text(label),
+                    selected: selectedLabel == label,
+                    onSelected: (selected) {
+                      onSelected(label);
+                    });
+              }).toList())
+          : ShimmerHistoryLabels();
+    });
   }
 }

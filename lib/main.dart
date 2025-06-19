@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<SendRequestBloc>()),
           BlocProvider(create: (context) => di.sl<ProductsBloc>()),
           BlocProvider(create: (context) => di.sl<ProductsSelectedBloc>()),
+          BlocProvider(create: (context) => di.sl<EmployeeInfoBloc>()),
         ],
         child: BlocBuilder<ThemeBloc, bool>(builder: (context, stateTheme) {
           return BlocBuilder<LanguageBloc, Locale>(
