@@ -4,12 +4,12 @@ import 'package:antonella/features/service/domain/entities/entities.dart';
 class ListServicesModel extends ListServicesEntity {
   ListServicesModel({required super.services, required super.types});
 
-  factory ListServicesModel.fromJson(Map<String, dynamic> json) {
+  factory ListServicesModel.fromList(List lista) {
     List<ServiceEntity> services = [];
     Map<String, Set> types = {};
 
-    if (json['data'] != null && (json['data'] as List).isNotEmpty) {
-      services = (json['data'] as List).map<ServiceModel>((serviceData) {
+    if (lista.isNotEmpty) {
+      services = lista.map<ServiceModel>((serviceData) {
         final type = serviceData['type'];
         final subtype = serviceData['subtype'];
         if (!types.containsKey(type)) {

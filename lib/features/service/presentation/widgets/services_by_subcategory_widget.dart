@@ -121,16 +121,11 @@ final ScrollController _scrollController = ScrollController();
               right: 0,
               top: 0,
               bottom: 30,
-              child: Container(
-                // decoration: BoxDecoration(
-                //   color: const Color.fromARGB(115, 48, 47, 47)
-                // ),
-                child: Center(
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_forward_ios),
-                    onPressed: _scrollRight,
-                    //color: Colors.white,
-                  ),
+              child: Center(
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_forward_ios),
+                  onPressed: _scrollRight,
+                  //color: Colors.white,
                 ),
               ),
             ),

@@ -29,7 +29,7 @@ class ServiceRemoteDataSourceImpl
     return await handleRequest(
         request: () =>
             client.get(Environment.storeService, options: defaultOptions),
-        onSuccess: (data) => ListServicesModel.fromJson(data));
+        onSuccess: (data) => ListServicesModel.fromList(data));
   }
 
   @override
