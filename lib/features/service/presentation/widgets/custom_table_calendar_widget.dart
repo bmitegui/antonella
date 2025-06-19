@@ -52,7 +52,8 @@ class _CustomTableCalendarWidgetState extends State<CustomTableCalendarWidget> {
               titleCentered: true,
             ),
             locale: 'es_EC',
-            availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
+            
+            availableCalendarFormats:  const {CalendarFormat.month : 'Mes'},
             calendarBuilders: CalendarBuilders(
               headerTitleBuilder: (context, day) {
                 final month = _monthNameInSpanish(day.month).toUpperCase();

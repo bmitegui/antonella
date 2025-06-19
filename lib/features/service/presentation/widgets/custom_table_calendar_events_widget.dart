@@ -130,7 +130,7 @@ class _CustomTableCalendarEventsWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Column(children: [
         TableCalendar(
             headerStyle: HeaderStyle(
@@ -173,24 +173,24 @@ class _CustomTableCalendarEventsWidgetState
               },
               weekdayStyle: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.black
               ),
               weekendStyle: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.black
               ),
               decoration: BoxDecoration(
-                color: Color(0xFFF4A6B5),
-              ),
+                color: Color(0xFFF4A6B5)
+              )
               
             ),
             
-            availableCalendarFormats: const {CalendarFormat.month: 'Mes'},
+            availableCalendarFormats: const {CalendarFormat.twoWeeks: '2 weeks'},
             locale: 'es_EC',
             firstDay: DateTime.utc(2023),
             lastDay: DateTime.utc(2099),
             focusedDay: _focusedDay,
-            calendarFormat: CalendarFormat.month,
+            calendarFormat: CalendarFormat.twoWeeks,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {
