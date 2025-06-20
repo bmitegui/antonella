@@ -53,12 +53,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                   SizedBox(width:8),
                   CustomElevatedButton(
                     onPressed: () { 
-                      context.read<CartBloc>().add(
-                        AddToCart(
-                          product: widget.productEntity, 
-                          quantity: selectedQuantity
-                        )
-                      );
+                      
                     },
                     text: 'Agregar al carrito'
                   )

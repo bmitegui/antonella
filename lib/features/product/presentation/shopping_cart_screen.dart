@@ -1,3 +1,4 @@
+import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingCartScreen extends StatelessWidget {
@@ -5,95 +6,135 @@ class ShoppingCartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Carrito de Compras'),
-        backgroundColor: Color(0xFFF0F0F0)
+    return CustomScaffold(
+      title: Text('Carrito de compras'),
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)]),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: ElevatedButton(
+          onPressed: () {
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xFFF44565),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            elevation: 0,
+          ),
+          child: const Text(
+            'Comprar',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
-      backgroundColor: Color(0xFFF0F0F0),
-      body: Column(
+
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '2 Items',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+
+            buildCartItem(
+              imageUrl: 'https://i.imgur.com/yM7nq9c.png',
+              title: 'Maquillaje',
+              price: '\$4.74',
+              quantity: 1,
+            ),
+
+            const SizedBox(height: 16),
+            buildCartItem(
+              imageUrl: 'https://i.imgur.com/6HhU7bS.png',
+              title:
+                  'Shampoo',
+              price: '\$14.93',
+              quantity: 1,
+            ),
+
+            const SizedBox(height: 24),
+
+            buildPriceRow('Subtotal', '\$19.67'),
+            const SizedBox(height: 8),
+            buildPriceRow('IVA', '\$1.52'),
+            const Divider(height: 32),
+            buildPriceRow(
+              'Total',
+              '\$21.19',
+              isBold: true,
+              fontSize: 18,
+            ),
+          ],
+        ),
+      ),
+
+      
+    );
+  }
+
+  Widget buildCartItem({
+    required String imageUrl,
+    required String title,
+    required String price,
+    required int quantity,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
         children: [
-          Row(
+          Image.network(imageUrl, width: 60, height: 60),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,
+                    style: const TextStyle(fontWeight: FontWeight.w500)),
+                const SizedBox(height: 4),
+                Text('Qty $quantity'),
+              ],
+            ),
+          ),
+          Column(
             children: [
-              Text('Items'),
-              SizedBox(width: 16),
-              Icon(Icons.keyboard_arrow_down_outlined)
+              SizedBox(height: 40),
+              Text(price, style: const TextStyle(fontWeight: FontWeight.bold)),
             ],
-          ),
-          ListView.builder(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              Row(
-                children: [
-                  Image.network(
-                    'https://media.istockphoto.com/id/1457889029/es/foto/grupo-de-alimentos-con-alto-contenido-de-fibra-diet%C3%A9tica-dispuestos-uno-al-lado-del-otro.jpg?s=612x612&w=0&k=20&c=fGmnVlAU6yDfG29kEMoNZg28DWA5I_CjprvK2L1HhT8=',
-                    width: 20,
-                    height: 20
-                  ),
-                  Text('Maquillaje'),
-                  SizedBox(height: 16),
-                  Text('Maquillaje de noche'),
-                  SizedBox(height: 16),
-                  Text('Cantidad: 1'),
-                  SizedBox(height: 16),
-                  Text('\$ 4.74'),
-                ],
-              );
-            }
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(top: BorderSide())
-            ),
-            child: Row(
-              children: [
-                Text('Subtotal'),
-                SizedBox(width: 16),
-                Text('\$ 25.00')
-              ],
-            )
-          ),
-          SizedBox(height: 16),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(top: BorderSide())
-            ),
-            child: Row(
-              children: [
-                Text('Iva'),
-                SizedBox(width: 16),
-                Text('\$ 0.15')
-              ],
-            )
-          ),
-          SizedBox(height: 16),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(top: BorderSide())
-            ),
-            child: Row(
-              children: [
-                Text('Total'),
-                SizedBox(width: 16),
-                Text('\$ 25.15')
-              ],
-            )
           )
         ],
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.all(16),
-        color: Color(0xFFF44565),
-        child: ElevatedButton(
-          onPressed: () {
-            // Acción del botón
-          },
-          child: Text('Comprar'),
-          // style: ElevatedButton.styleFrom(
-          //   minimumSize: Size(double.infinity, 50), // ancho completo
-          //),
-        )
-      )
+    );
+  }
+
+  Widget buildPriceRow(String label, String value,
+      {bool isBold = false, double fontSize = 14}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(label,
+            style: TextStyle(
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+              fontSize: fontSize,
+            )),
+        Text(value,
+            style: TextStyle(
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+              fontSize: fontSize,
+            )),
+      ],
     );
   }
 }

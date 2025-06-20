@@ -131,7 +131,7 @@ Future<void> init() async {
   sl.registerLazySingleton<EmployeeInfoBloc>(() =>
       EmployeeInfoBloc(getEmployeeInfoUseCase: sl<GetEmployeeInfoUseCase>()));
   
-  sl.registerLazySingleton<CartBloc>(() => CartBloc(getCartItemsUseCase: sl<GetCartItemsUseCase>()));
+  //sl.registerLazySingleton<CartBloc>(() => CartBloc());
   
 
   // Theme
