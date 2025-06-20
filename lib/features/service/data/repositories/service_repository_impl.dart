@@ -54,4 +54,14 @@ class ServiceRepositoryImpl implements ServiceRepository {
               services: services);
         });
   }
+
+  @override
+  Future<Either<Failure, List<OrderModel>>> getOrders({required String id}) {
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          final orders = await serviceRemoteDataSource.getOrders(id: id);
+          return orders;
+        });
+  }
 }

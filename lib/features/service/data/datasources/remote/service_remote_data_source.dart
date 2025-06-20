@@ -1,15 +1,20 @@
 import 'package:antonella/core/constant/data_test_constant.dart';
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/error/error.dart';
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/features/service/data/models/models.dart';
 import 'package:antonella/features/service/domain/entities/question_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
+import 'package:antonella/features/user/data/models/user_model.dart';
+import 'package:antonella/features/user/domain/entities/user_entity.dart';
+import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
   Future<ListServicesModel> getServices();
   Future<List<CommentModel>> getServiceComments({required String serviceId});
+  Future<List<OrderModel>> getOrders({required String id});
   Future<void> sendRequest(
       {required String clientId,
       required String day,
@@ -30,6 +35,13 @@ class ServiceRemoteDataSourceImpl
         request: () =>
             client.get(Environment.storeService, options: defaultOptions),
         onSuccess: (data) => ListServicesModel.fromList(data));
+  }
+
+  Future<ServiceModel> getService({required String id}) async {
+    final url = '${Environment.storeService}?id=$id';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => ServiceModel.fromJson(data));
   }
 
   @override
@@ -122,5 +134,66 @@ class ServiceRemoteDataSourceImpl
         request: () => client.post(Environment.answer,
             data: data, options: defaultOptions),
         onSuccess: (_) {});
+  }
+
+  Future<List<AppointmentModel>> getAppointments({required String id}) async {
+    String keyData = 'client_id';
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated && userState.user.rol == Rol.empleado) {
+      keyData = 'employee_id';
+    }
+
+    final rawAppointments = await handleRequest(
+        request: () => client.post(
+              Environment.getAppointments,
+              data: {keyData: id},
+              options: defaultOptions,
+            ),
+        onSuccess: (data) => data as List);
+
+    final List<AppointmentModel> appointments = await Future.wait(
+        rawAppointments.map<Future<AppointmentModel>>((appointmentData) async {
+      final serviceId = appointmentData['service_id'] as String;
+      final serviceModel = await getService(id: serviceId);
+      return AppointmentModel.fromJson(appointmentData, serviceModel);
+    }));
+
+    return appointments;
+  }
+
+  Future<OrderModel> getOrder(
+      {required String orderId,
+      required List<AppointmentModel> appointments}) async {
+    final url = '${Environment.order}?id=$orderId';
+    final orderJson = await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => data);
+    final clientId = orderJson['client_id'] as String;
+    final userModel = await getUser(userId: clientId);
+    return OrderModel.fromJson(orderJson, appointments, userModel);
+  }
+
+  Future<UserModel> getUser({required String userId}) async {
+    final url = '${Environment.user}?user_id=$userId';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => UserModel.fromJson(data));
+  }
+
+  @override
+  Future<List<OrderModel>> getOrders({required String id}) async {
+    final appointments = await getAppointments(id: id);
+    final Map<String, List<AppointmentModel>> groupedByOrder = {};
+    for (AppointmentModel appointment in appointments) {
+      groupedByOrder.putIfAbsent(appointment.orderId, () => []);
+      groupedByOrder[appointment.orderId]!.add(appointment);
+    }
+    final orders = groupedByOrder.entries.map((entry) async {
+      final orderId = entry.key;
+      final appointmentList = entry.value;
+      return await getOrder(orderId: orderId, appointments: appointmentList);
+    }).toList();
+
+    return await Future.wait(orders);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -31,9 +32,17 @@ class SendRequestButton extends StatelessWidget {
                     Overlay.of(context),
                     CustomSnackBar.success(
                         message: 'Solicitud enviada correctamente'));
+
                 context
                     .read<ServicesSelectedBloc>()
                     .add(ClearServicesSelectedEvent());
+                final userState = sl<UserBloc>().state;
+                if (userState is UserAuthenticated) {
+                  context
+                      .read<OrdersBloc>()
+                      .add(GetOrdersEvent(id: userState.user.id));
+                }
+
                 sendRequest();
               }
             }, builder: (context, stateSendRequest) {
@@ -63,8 +72,9 @@ class SendRequestButton extends StatelessWidget {
                                 context.read<SendRequestBloc>().add(
                                     EnviarPeticionEvent(
                                         clientId: stateUser.user.id,
-                                        day: formatDateTime(
-                                            stateServiceSelected.dateSelected),
+                                        day:
+                                            formatDateTime(stateServiceSelected
+                                                .dateSelected),
                                         start:
                                             stateServiceSelected.timeSelected!,
                                         employeeId:
