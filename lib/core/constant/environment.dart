@@ -17,4 +17,5 @@ class Environment {
   static String user = '$apiUrl${dotenv.env['user']}';
   static String product = '$apiUrl${dotenv.env['product']}';
   static String employeeInfo = '$apiUrl${dotenv.env['employeeInfo']}';
+  static String orderProductItem = '$apiUrl${dotenv.env['orderProductItem']}';
 }

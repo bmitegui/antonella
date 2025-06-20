@@ -39,24 +39,7 @@ final ScrollController _scrollController = ScrollController();
       _showRightArrow = position.pixels < position.maxScrollExtent;
     });
   }
-
-
-  // void _scrollRight() {
-  //   _scrollController.animateTo(
-  //     _scrollController.offset + _scrollAmount,
-  //     duration: const Duration(milliseconds: 300),
-  //     curve: Curves.easeInOut,
-  //   );
-  // }
-
-  // void _scrollLeft() {
-  //   _scrollController.animateTo(
-  //     _scrollController.offset - _scrollAmount,
-  //     duration: const Duration(milliseconds: 300),
-  //     curve: Curves.easeInOut,
-  //   );
-  // }
-
+  
   void _scrollRight() {
     final newOffset = (_scrollController.offset + _scrollAmount)
         .clamp(0.0, _scrollController.position.maxScrollExtent);

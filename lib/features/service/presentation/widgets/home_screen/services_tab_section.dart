@@ -25,6 +25,7 @@ class _ServicesTabSectionState extends State<ServicesTabSection> {
 
   @override
   void dispose() {
+    _pageController.dispose();
     super.dispose();
   }
 

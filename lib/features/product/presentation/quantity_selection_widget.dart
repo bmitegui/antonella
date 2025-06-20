@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class QuantitySelectionWidget extends StatefulWidget {
   final int stock;
-  const QuantitySelectionWidget({super.key, required this.stock});
+  final Function(int) onQuantityChanged;
+  const QuantitySelectionWidget({super.key, required this.stock, required this.onQuantityChanged});
 
   @override
   State<QuantitySelectionWidget> createState() => _QuantitySelectionWidgetState();
@@ -10,6 +11,25 @@ class QuantitySelectionWidget extends StatefulWidget {
 
 class _QuantitySelectionWidgetState extends State<QuantitySelectionWidget> {
   int value = 1;
+
+  void _increment() {
+    if (value < widget.stock) {
+      setState(() {
+        value++;
+        widget.onQuantityChanged(value);
+      });
+    }
+  }
+
+  void _decrement() {
+    if (value > 1) {
+      setState(() {
+        value--;
+        widget.onQuantityChanged(value);
+      });
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +46,17 @@ class _QuantitySelectionWidgetState extends State<QuantitySelectionWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               IconButton(icon:  Icon(Icons.remove), onPressed: () {
-                setState(() {
-                  value--;
-                  if(value < 1) value = 1;
-                });
-              },),
+                _decrement();
+              }),
               Center(
                 child: Text(
                   value.toString(),
                   style: TextStyle(fontSize: 14, color: Colors.black),
                 ),
               ),
-              IconButton(icon:  Icon(Icons.add), onPressed: () { setState(() {
-                if (value < widget.stock) {
-                  value++;
-                }
-              }); })
+              IconButton(icon:  Icon(Icons.add), onPressed: () { 
+                _increment();
+               })
             ],
           ),
         ),
