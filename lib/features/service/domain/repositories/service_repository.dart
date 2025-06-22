@@ -1,6 +1,6 @@
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/service/data/models/models.dart';
-import 'package:antonella/features/service/domain/entities/service_entity.dart';
+import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ServiceRepository {
@@ -13,4 +13,6 @@ abstract class ServiceRepository {
       required String start,
       required String employeeId,
       required List<ServiceEntity> services});
+  Future<Either<Failure, List<OrderModel>>> getOrders(
+      {required String id});
 }

@@ -49,6 +49,7 @@ class _PagesScreenState extends State<PagesScreen> {
     _currentIndex = 2;
     final userState = sl<UserBloc>().state;
     if (userState is UserAuthenticated) {
+      sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
       if (userState.user.rol == Rol.cliente) {
         sl<ServiceBloc>().add(GetServicesEvent());
       } else {

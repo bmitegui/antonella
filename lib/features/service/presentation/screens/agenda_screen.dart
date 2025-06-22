@@ -1,7 +1,7 @@
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/widgets/agenda_tab_bar.dart';
-import 'package:antonella/features/service/presentation/widgets/custom_table_calendar_events_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/list_service_to_confirm.dart';
+import 'package:antonella/features/service/presentation/widgets/custom_table_calendar_events.dart';
+import 'package:antonella/features/service/presentation/widgets/list_orders_to_confirm.dart';
 import 'package:flutter/material.dart';
 
 class AgendaScreen extends StatefulWidget {
@@ -29,8 +29,6 @@ class _AgendaScreenState extends State<AgendaScreen>
 
   @override
   Widget build(BuildContext context) {
-    final int number = 2;
-
     return CustomScaffold(
         text: 'Agenda',
         body: Column(children: [
@@ -38,10 +36,8 @@ class _AgendaScreenState extends State<AgendaScreen>
           const SizedBox(height: 16),
           Expanded(
               child: TabBarView(controller: _tabController, children: [
-            const CustomTableCalendarEventsWidget(),
-            number > 0
-                ? ListServiceToConfirm(quantity: number)
-                : const Center(child: Text('No hay citas por confirmar'))
+            SingleChildScrollView(child: const CustomTableCalendarEvents()),
+            ListOrdersToConfirm()
           ]))
         ]));
   }

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
+import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
+import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -98,6 +100,36 @@ String getCategoryText(
                   : texts.all;
 }
 
+String getCategoryTextList({
+  required BuildContext context,
+  required List<ServiceType> serviceCategories,
+}) {
+  final texts = AppLocalizations.of(context)!;
+  final uniqueCategories = serviceCategories.toSet();
+  final categoryTexts = uniqueCategories.map((category) {
+    switch (category) {
+      case ServiceType.hair:
+        return texts.hair;
+      case ServiceType.nails:
+        return texts.nails;
+      case ServiceType.spa:
+        return texts.spa;
+      case ServiceType.makeup:
+        return texts.makeup;
+      case ServiceType.all:
+        return texts.all;
+    }
+  }).toList();
+
+  return categoryTexts.join(', ');
+}
+
+double getTotalBasePrice(List<AppointmentEntity> appointments) {
+  return appointments.fold(0.0, (sum, appointment) {
+    return sum + (appointment.basePrice ?? 0.0);
+  });
+}
+
 Future<DateTime?> selectDate(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
       context: context,
@@ -121,6 +153,35 @@ void navigateWithSlideTransition(BuildContext context, Widget page) {
             var offsetAnimation = animation.drive(tween);
             return SlideTransition(position: offsetAnimation, child: child);
           }));
+}
+
+Map<String, double> calculateTotals(List<ProductEntity> products) {
+  final subtotal = products.fold<double>(0.0, (sum, item) => sum + item.price);
+  final iva = subtotal * 0.15;
+  final total = subtotal + iva;
+
+  return {
+    'subtotal': double.parse(subtotal.toStringAsFixed(2)),
+    'iva': double.parse(iva.toStringAsFixed(2)),
+    'total': double.parse(total.toStringAsFixed(2)),
+  };
+}
+
+List<ProductEntity> getUniqueProducts(List<ProductEntity> products) {
+  final uniqueMap = <String, ProductEntity>{};
+
+  for (var product in products) {
+    uniqueMap[product.id] = product;
+  }
+
+  return uniqueMap.values.toList();
+}
+
+int countProductsById({
+  required List<ProductEntity> products,
+  required String productId,
+}) {
+  return products.where((product) => product.id == productId).length;
 }
 
 Future<String?> convertFileToBase64(File? file) async {
@@ -162,6 +223,28 @@ ServiceType stringToType(String type) {
               : ServiceType.makeup;
 }
 
+OrderStatus stringToOrderStatus(String status) {
+  return status == 'CONFIRMADO'
+      ? OrderStatus.confirmado
+      : OrderStatus.noConfirmado;
+}
+
+PaymentType stringToPaymentType(String type) {
+  return type == 'EFECTIVO' ? PaymentType.efectivo : PaymentType.tarjeta;
+}
+
+PaymentStatus stringToPaymentStatus(String status) {
+  return status == 'PENDIENTE' ? PaymentStatus.pendiente : PaymentStatus.pagado;
+}
+
+ProgressStatus stringToProgressStatus(String status) {
+  return status == 'PENDIENTE'
+      ? ProgressStatus.pendiente
+      : status == 'EN_PROGRESO'
+          ? ProgressStatus.enProgreso
+          : ProgressStatus.finalizado;
+}
+
 ProductType stringToProductType(String type) {
   return type == 'SHAMPOO' ? ProductType.shampoo : ProductType.crema;
 }
@@ -200,4 +283,22 @@ Map<String, String> obtenerRangoFechas(String tipo) {
     'startDate': formatter.format(startDate),
     'endDate': formatter.format(endDate),
   };
+}
+
+String monthNameInSpanish(int month) {
+  const months = [
+    'ENERO',
+    'FEBRERO',
+    'MARZO',
+    'ABRIL',
+    'MAYO',
+    'JUNIO',
+    'JULIO',
+    'AGOSTO',
+    'SEPTIEMBRE',
+    'OCTUBRE',
+    'NOVIEMBRE',
+    'DICIEMBRE'
+  ];
+  return months[month - 1];
 }

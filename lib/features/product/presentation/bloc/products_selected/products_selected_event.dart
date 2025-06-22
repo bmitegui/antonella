@@ -8,7 +8,8 @@ final class ServicesSelectedInitialEvent extends ProductsSelectedEvent {}
 
 final class AddProductEvent extends ProductsSelectedEvent {
   final ProductEntity product;
-  AddProductEvent({required this.product});
+  final int cant;
+  AddProductEvent({required this.product, required this.cant});
 }
 
 final class DeleteProductEvent extends ProductsSelectedEvent {

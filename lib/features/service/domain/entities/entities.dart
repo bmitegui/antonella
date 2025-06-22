@@ -4,3 +4,5 @@ export 'question_entity.dart';
 export 'promotion_entity.dart';
 export './comment_entity.dart';
 export './price_entity.dart';
+export './appointment_entity.dart';
+export './order_entity.dart';

@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<ProductsBloc>()),
           BlocProvider(create: (context) => di.sl<ProductsSelectedBloc>()),
           BlocProvider(create: (context) => di.sl<EmployeeInfoBloc>()),
+          BlocProvider(create: (context) => di.sl<OrdersBloc>()),
           BlocProvider(create: (context) => di.sl<CartBloc>()),
         ],
         child: BlocBuilder<ThemeBloc, bool>(builder: (context, stateTheme) {
