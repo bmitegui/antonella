@@ -5,9 +5,7 @@ part 'products_selected_state.dart';
 
 class ProductsSelectedBloc
     extends Bloc<ProductsSelectedEvent, ProductsSelectedState> {
-  ProductsSelectedBloc()
-      : super(ProductsSelectedLoaded(
-            products: [])) {
+  ProductsSelectedBloc() : super(ProductsSelectedLoaded(products: [])) {
     on<AddProductEvent>(_onAddProductEventRequest);
     on<DeleteProductEvent>(_onDeleteProductEventRequest);
     on<ClearProductSelectedEvent>(_onClearProductsSelectedEventRequest);
@@ -16,8 +14,7 @@ class ProductsSelectedBloc
       ClearProductSelectedEvent event,
       Emitter<ProductsSelectedState> emit) async {
     emit(ProductsSelectedLoading());
-    emit(ProductsSelectedLoaded(
-        products: []));
+    emit(ProductsSelectedLoaded(products: []));
   }
 
   Future<void> _onAddProductEventRequest(
@@ -27,15 +24,12 @@ class ProductsSelectedBloc
     final currentState = state;
     if (currentState is ProductsSelectedLoaded) {
       final products = List<ProductEntity>.from(currentState.products);
-      final index = products.indexWhere((s) => s.id == event.product.id);
-
-      if (index != -1) {
-        products[index] = event.product;
-      } else {
+      for (var i = 0; i < event.cant; i++) {
         products.add(event.product);
       }
 
       emit(ProductsSelectedLoading());
+      print('Se emite cargado...');
       emit(currentState.copyWith(products: products));
     }
   }

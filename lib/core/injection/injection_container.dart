@@ -4,7 +4,6 @@ import 'package:antonella/core/network/network.dart';
 import 'package:antonella/core/services/services.dart';
 import 'package:antonella/features/product/data/datasources/remote/products_remote_datasource.dart';
 import 'package:antonella/features/product/data/repositories/products_repository_impl.dart';
-import 'package:antonella/features/product/domain/usecases/get_cart_items_use_case.dart';
 import 'package:antonella/features/product/domain/usecases/usecases.dart';
 import 'package:antonella/features/product/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/data/datasources/datasources.dart';
@@ -98,6 +97,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetOrdersUseCase>(
       () => GetOrdersUseCase(serviceRepository: sl<ServiceRepository>()));
+
+  sl.registerLazySingleton<GetCartItemsUseCase>(
+      () => GetCartItemsUseCase(productRepository: sl<ProductsRepository>()));
   
 
   //! Blocs
@@ -131,12 +133,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<EmployeeInfoBloc>(() =>
       EmployeeInfoBloc(getEmployeeInfoUseCase: sl<GetEmployeeInfoUseCase>()));
-  
-  //sl.registerLazySingleton<CartBloc>(() => CartBloc());
-  
-
+    
   sl.registerLazySingleton<OrdersBloc>(
       () => OrdersBloc(getOrderssUseCase: sl<GetOrdersUseCase>()));
+
+  sl.registerLazySingleton<CartBloc>(
+      () => CartBloc(getCartItemsUseCase: sl<GetCartItemsUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

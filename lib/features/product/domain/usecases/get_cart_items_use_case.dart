@@ -11,14 +11,13 @@ class GetCartItemsUseCase implements UseCase<void, SendRequestParams> {
   @override
   Future<Either<Failure, void>> call(
       SendRequestParams sendRequestParams) async {
-    return await productRepository.sendProducts(products: sendRequestParams.products);
+    return await productRepository.sendProducts(
+        products: sendRequestParams.products);
   }
-
 }
 
 class SendRequestParams {
   final List<ProductEntity> products;
 
-  SendRequestParams(
-      {required this.products});
+  SendRequestParams({required this.products});
 }

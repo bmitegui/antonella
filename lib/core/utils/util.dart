@@ -155,6 +155,35 @@ void navigateWithSlideTransition(BuildContext context, Widget page) {
           }));
 }
 
+Map<String, double> calculateTotals(List<ProductEntity> products) {
+  final subtotal = products.fold<double>(0.0, (sum, item) => sum + item.price);
+  final iva = subtotal * 0.15;
+  final total = subtotal + iva;
+
+  return {
+    'subtotal': double.parse(subtotal.toStringAsFixed(2)),
+    'iva': double.parse(iva.toStringAsFixed(2)),
+    'total': double.parse(total.toStringAsFixed(2)),
+  };
+}
+
+List<ProductEntity> getUniqueProducts(List<ProductEntity> products) {
+  final uniqueMap = <String, ProductEntity>{};
+
+  for (var product in products) {
+    uniqueMap[product.id] = product;
+  }
+
+  return uniqueMap.values.toList();
+}
+
+int countProductsById({
+  required List<ProductEntity> products,
+  required String productId,
+}) {
+  return products.where((product) => product.id == productId).length;
+}
+
 Future<String?> convertFileToBase64(File? file) async {
   if (file == null) {
     return null;
