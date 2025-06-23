@@ -4,7 +4,7 @@ sealed class ProductsSelectedEvent {
   const ProductsSelectedEvent();
 }
 
-final class ServicesSelectedInitialEvent extends ProductsSelectedEvent {}
+final class ProductSelectedInitialEvent extends ProductsSelectedEvent {}
 
 final class AddProductEvent extends ProductsSelectedEvent {
   final ProductEntity product;

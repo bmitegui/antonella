@@ -9,7 +9,7 @@ class ListProductsModel extends ListProductsEntity {
     List<ProductEntity> products = [];
     Map<String, Set> types = {};
 
-    if (json['data'] != null && (json['data'] as List).isNotEmpty) {
+    if (json['data'] is List && (json['data'] as List).isNotEmpty) {
       products = (json['data'] as List).map<ProductModel>((productData) {
         final type = productData['product_type'];
         final subtype = productData['service_subtype'];

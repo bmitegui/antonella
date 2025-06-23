@@ -5,12 +5,19 @@ import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/product/presentation/bloc/bloc.dart';
 import 'package:antonella/features/product/presentation/bloc/products_selected/products_selected_bloc.dart';
+import 'package:antonella/features/product/presentation/buil_cart_item.dart';
+import 'package:antonella/features/product/presentation/quantity_selection_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ShoppingCartScreen extends StatelessWidget {
+class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({super.key});
 
+  @override
+  State<ShoppingCartScreen> createState() => _ShoppingCartScreenState();
+}
+
+class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -54,14 +61,21 @@ class ShoppingCartScreen extends StatelessWidget {
                           children: getUniqueProducts(state.products)
                               .map((product) => Padding(
                                   padding: const EdgeInsets.only(bottom: 8),
-                                  child: buildCartItem(
-                                      imageUrl: Environment.apiUrl +
-                                          product.images[0],
-                                      title: product.nombre,
-                                      price: '\$${product.price}',
-                                      quantity: countProductsById(
-                                          products: state.products,
+                                  child: BuilCartItem(
+                                    imageUrl: Environment.apiUrl + product.images[0],
+                                    product: product,
+                                    quantity: countProductsById(
+                                         products: state.products,
                                           productId: product.id))))
+                                  // buildCartItem(
+                                  //     imageUrl: Environment.apiUrl +
+                                  //         product.images[0],
+                                  //     title: product.nombre,
+                                  //     stock: product.stock,
+                                  //     price: '\$${product.price}',
+                                  //     quantity: countProductsById(
+                                  //         products: state.products,
+                                  //         productId: product.id))))
                               .toList()),
                       const SizedBox(height: 16),
                       buildPriceRow('Subtotal', '\$${dataTotal['subtotal']}'),
@@ -82,6 +96,7 @@ class ShoppingCartScreen extends StatelessWidget {
   Widget buildCartItem({
     required String imageUrl,
     required String title,
+    required int stock,
     required String price,
     required int quantity,
   }) {
@@ -104,6 +119,12 @@ class ShoppingCartScreen extends StatelessWidget {
                 Text('Cant $quantity')
               ])),
           Column(children: [
+            QuantitySelectionWidget(stock: stock, onQuantityChanged: (quantityProduct) {
+                        setState(() {
+                          
+                        });
+                      },
+            ),
             SizedBox(height: 40),
             Text(price, style: const TextStyle(fontWeight: FontWeight.bold))
           ])
