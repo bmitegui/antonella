@@ -1,11 +1,11 @@
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
+import 'package:antonella/core/widgets/custom_search_widget.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/service/service_bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/promotions_grid_view.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/services_filter_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/search_screen/promotions_grid_view.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/services_filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

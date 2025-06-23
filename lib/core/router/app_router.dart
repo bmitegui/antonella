@@ -3,7 +3,7 @@ import 'package:antonella/core/router/app_router_notifier.dart';
 import 'package:antonella/core/screens/loading_screen.dart';
 import 'package:antonella/core/screens/start_screen.dart';
 import 'package:antonella/features/user/presentation/screens/confirmation_screen.dart';
-import 'package:antonella/features/service/presentation/screens/pages_screen.dart';
+import 'package:antonella/core/screens/pages_screen.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/sign_in_screen.dart';
 import 'package:antonella/features/user/presentation/screens/sign_up_screen.dart';

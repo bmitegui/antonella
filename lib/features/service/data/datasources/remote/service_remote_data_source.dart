@@ -144,19 +144,21 @@ class ServiceRemoteDataSourceImpl
     }
 
     final rawAppointments = await handleRequest(
-        request: () => client.post(
-              Environment.getAppointments,
-              data: {keyData: id},
-              options: defaultOptions,
-            ),
-        onSuccess: (data) => data as List);
+        request: () => client.post(Environment.getAppointments,
+            data: {keyData: id}, options: defaultOptions),
+        onSuccess: (data) => data);
+
+    if (rawAppointments is! List || rawAppointments.isEmpty) {
+      return [];
+    }
 
     final List<AppointmentModel> appointments = await Future.wait(
-        rawAppointments.map<Future<AppointmentModel>>((appointmentData) async {
-      final serviceId = appointmentData['service_id'] as String;
-      final serviceModel = await getService(id: serviceId);
-      return AppointmentModel.fromJson(appointmentData, serviceModel);
-    }));
+      rawAppointments.map<Future<AppointmentModel>>((appointmentData) async {
+        final serviceId = appointmentData['service_id'] as String;
+        final serviceModel = await getService(id: serviceId);
+        return AppointmentModel.fromJson(appointmentData, serviceModel);
+      }),
+    );
 
     return appointments;
   }

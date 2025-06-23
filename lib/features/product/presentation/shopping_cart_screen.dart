@@ -4,7 +4,6 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/product/presentation/bloc/bloc.dart';
-import 'package:antonella/features/product/presentation/bloc/products_selected/products_selected_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

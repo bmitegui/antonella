@@ -1,5 +1,4 @@
 import 'package:antonella/core/constant/environment.dart';
-import 'package:antonella/core/error/exceptions.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/features/product/data/models/lis_product_model.dart';
