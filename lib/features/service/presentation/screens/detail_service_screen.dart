@@ -8,8 +8,8 @@ import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/service_form/service_form_bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/services_selected/services_selected_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/service_comments_list.dart';
-import 'package:antonella/features/service/presentation/widgets/label_detail_service_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/search_screen/form_service_selected_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/label_detail_service_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/form_service_selected_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

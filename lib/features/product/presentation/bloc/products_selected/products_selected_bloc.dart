@@ -29,7 +29,6 @@ class ProductsSelectedBloc
       }
 
       emit(ProductsSelectedLoading());
-      print('Se emite cargado...');
       emit(currentState.copyWith(products: products));
     }
   }

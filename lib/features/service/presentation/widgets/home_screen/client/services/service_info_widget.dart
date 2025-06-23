@@ -1,27 +1,27 @@
 import 'package:antonella/core/constant/environment.dart';
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/features/product/domain/entities/product_entity.dart';
-import 'package:antonella/features/product/presentation/detail_product_screen.dart';
-import 'package:antonella/features/product/presentation/bloc/products_selected/products_selected_bloc.dart';
+import 'package:antonella/features/service/domain/entities/entities.dart';
+import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/screens/detail_service_screen.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/service_image_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductInfoWidget extends StatelessWidget {
-  final ProductEntity productEntity;
-
-  const ProductInfoWidget({super.key, required this.productEntity});
+class ServiceInfoWidget extends StatelessWidget {
+  final ServiceEntity serviceEntity;
+  const ServiceInfoWidget({super.key, required this.serviceEntity});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
+    return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       int index = -1;
 
       bool isSelected = false;
-      if (state is ProductsSelectedLoaded) {
-        index = state.products
-            .indexWhere((service) => service.id == productEntity.id);
+      if (state is ServicesSelectedLoaded) {
+        index = state.services
+            .indexWhere((service) => service.id == serviceEntity.id);
         if (index != -1) {
           isSelected = true;
         }
@@ -31,8 +31,10 @@ class ProductInfoWidget extends StatelessWidget {
           padding: const EdgeInsets.only(right: 8),
           child: GestureDetector(
               onTap: () {
+                sl<CommentBloc>()
+                    .add(GetServiceCommentsEvent(serviceId: serviceEntity.id));
                 navigateWithSlideTransition(
-                    context, DetailProductScreen(productEntity: productEntity));
+                    context, DetailServiceScreen(serviceEntity: serviceEntity));
               },
               child: Container(
                   width: MediaQuery.of(context).size.width / 2,
@@ -46,11 +48,11 @@ class ProductInfoWidget extends StatelessWidget {
                         const SizedBox(height: 8),
                         ServiceImageNetwork(
                             urlImage:
-                                Environment.apiUrl + productEntity.images[0]),
+                                Environment.apiUrl + serviceEntity.images[0]),
                         const SizedBox(height: 8),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(productEntity.nombre,
+                            child: Text(serviceEntity.name,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
@@ -61,7 +63,7 @@ class ProductInfoWidget extends StatelessWidget {
                                             isSelected ? Colors.white : null))),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(productEntity.description,
+                            child: Text(serviceEntity.description,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
@@ -78,7 +80,7 @@ class ProductInfoWidget extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.only(right: 8, bottom: 8),
                                 child: Text(
-                                    '\$${productEntity.price}',
+                                    '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleSmall!

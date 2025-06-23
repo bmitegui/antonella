@@ -25,6 +25,18 @@ mixin RemoteRequestHelper {
     try {
       final response = await request();
       return response.parseOrThrow(onSuccess);
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.sendTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        throw ServerException(
+            message: 'Error de conexión: tiempo de espera agotado.');
+      } else if (e.type == DioExceptionType.connectionError) {
+        throw ServerException(
+            message: 'No se pudo establecer conexión con el servidor.');
+      } else {
+        throw ServerException(message: 'Error de red: ${e.message}');
+      }
     } on ServerException {
       rethrow;
     } catch (e) {

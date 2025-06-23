@@ -1,5 +1,5 @@
+import 'package:antonella/core/widgets/custom_search_widget.dart';
 import 'package:antonella/features/product/presentation/products_info_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/custom_search_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductsTabSection extends StatelessWidget {

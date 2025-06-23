@@ -4,7 +4,6 @@ import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/router/router.dart';
 import 'package:antonella/core/theme/theme.dart';
-import 'package:antonella/features/product/presentation/bloc/shopping_cart/cart_bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/core/injection/injection_container.dart' as di;
