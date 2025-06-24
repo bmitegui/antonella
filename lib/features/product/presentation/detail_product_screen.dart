@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -24,62 +25,63 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int stock = 10;
     return BlocConsumer<ProductsSelectedBloc, ProductsSelectedState>(
         listener: (context, state) {
-      if (state is ProductsSelectedLoaded) {
+      if (state is ProductsSelectedLoaded &&
+          !state.products.contains(widget.productEntity)) {
         showTopSnackBar(Overlay.of(context),
             const CustomSnackBar.success(message: 'Producto agregado'));
         Navigator.pop(context);
       }
     }, builder: (context, state) {
-      return CustomScaffold(
-          paddingScroll: EdgeInsets.all(0),
-          leading: ArrowBack(),
-          text: 'Detalles',
-          extendBodyBehindAppBar: true,
-          bottomNavigationBar: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)]),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('\$ ${widget.productEntity.price}',
-                        style: Theme.of(context).textTheme.titleMedium),
-                    SizedBox(width: 8),
-                    QuantitySelectionWidget(
-                      stock: stock,
-                      initialQuantity: 1,
-                      onQuantityChanged: (quantity) {
-                        setState(() {
-                          selectedQuantity = quantity;
-                        });
-                      },
-                    ),
-                    SizedBox(width: 8),
-                    CustomElevatedButton(
-                        onPressed: () {
-                          sl<ProductsSelectedBloc>().add(AddProductEvent(
-                              product: widget.productEntity,
-                              cant: selectedQuantity));
-                        },
-                        text: 'Agregar')
-                  ])),
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(children: [
-                ImagesScrollview(images: widget.productEntity.images),
-                SizedBox(height: 16),
-                Text(widget.productEntity.nombre),
-                SizedBox(height: 16),
-                Text('Volumen: ${widget.productEntity.volume}'),
-                Divider(),
-                Text('Descripción'),
-                SizedBox(height: 16),
-                Text(widget.productEntity.description)
-              ])));
+      return (state is ProductsSelectedLoaded)
+          ? CustomScaffold(
+              paddingScroll: EdgeInsets.all(0),
+              leading: ArrowBack(),
+              text: 'Detalles',
+              extendBodyBehindAppBar: true,
+              bottomNavigationBar: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(color: Colors.black12, blurRadius: 6)
+                      ]),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('\$ ${widget.productEntity.price}',
+                            style: Theme.of(context).textTheme.titleMedium),
+                        SizedBox(width: 8),
+                        QuantitySelectionWidget(
+                            productEntity: widget.productEntity,
+                            quantity: countProductsById(
+                                products: state.products,
+                                productId: widget.productEntity.id)),
+                        SizedBox(width: 8),
+                        CustomElevatedButton(
+                            onPressed: () {
+                              sl<ProductsSelectedBloc>().add(AddProductEvent(
+                                  product: widget.productEntity,
+                                  cant: selectedQuantity));
+                            },
+                            text: 'Agregar')
+                      ])),
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(children: [
+                    ImagesScrollview(images: widget.productEntity.images),
+                    SizedBox(height: 16),
+                    Text(widget.productEntity.nombre),
+                    SizedBox(height: 16),
+                    Text('Volumen: ${widget.productEntity.volume}'),
+                    Divider(),
+                    Text('Descripción'),
+                    SizedBox(height: 16),
+                    Text(widget.productEntity.description)
+                  ])))
+          : const SizedBox.shrink();
     });
   }
 }

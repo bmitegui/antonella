@@ -41,12 +41,27 @@ class ProductsSelectedBloc
   ) async {
     final currentState = state;
     if (currentState is ProductsSelectedLoaded) {
-      final updatedProducts = List<ProductEntity>.from(currentState.products);
+      final List<ProductEntity> updatedProducts = [];
 
-      updatedProducts.removeWhere((p) => p.id == event.product.id);
+      bool inserted = false;
 
-      for (int i = 0; i < event.newQuantity; i++) {
-        updatedProducts.add(event.product);
+      for (int i = 0; i < currentState.products.length; i++) {
+        final product = currentState.products[i];
+
+        if (product.id == event.product.id) {
+          // Insertar la nueva cantidad una sola vez en la primera coincidencia
+          if (!inserted) {
+            updatedProducts.addAll(
+              List.generate(event.newQuantity, (_) => event.product),
+            );
+            inserted = true;
+          }
+          // Omitir esta instancia
+          continue;
+        }
+
+        // Mantener el resto de productos
+        updatedProducts.add(product);
       }
 
       emit(ProductsSelectedLoading());

@@ -34,10 +34,6 @@ class _HomeScreenClientState extends State<HomeScreenClient>
 
   void _handleTabChange() {
     if (_tabController.indexIsChanging) return;
-
-    if (_tabController.index == 1) {
-      sl<ProductsBloc>().add(GetProductsEvent());
-    }
   }
 
   @override
