@@ -2,31 +2,36 @@ import 'package:flutter/material.dart';
 
 class QuantitySelectionWidget extends StatefulWidget {
   final int stock;
+  final int initialQuantity;
   final Function(int) onQuantityChanged;
-  const QuantitySelectionWidget({super.key, required this.stock, required this.onQuantityChanged});
+  const QuantitySelectionWidget({super.key, required this.stock, required this.initialQuantity, required this.onQuantityChanged});
 
   @override
   State<QuantitySelectionWidget> createState() => _QuantitySelectionWidgetState();
 }
 
 class _QuantitySelectionWidgetState extends State<QuantitySelectionWidget> {
-  int value = 1;
+  late int _quantity;
+
+  @override
+  void initState() {
+    super.initState();
+    _quantity = widget.initialQuantity;
+  }
 
   void _increment() {
-    if (value < widget.stock) {
-      setState(() {
-        value++;
-        widget.onQuantityChanged(value);
-      });
+    if (_quantity < widget.stock) {
+      setState(() { _quantity++;
+      widget.onQuantityChanged(_quantity);}
+      );
     }
   }
 
   void _decrement() {
-    if (value > 1) {
-      setState(() {
-        value--;
-        widget.onQuantityChanged(value);
-      });
+    if (_quantity > 1) {
+      setState(() { _quantity--;
+      widget.onQuantityChanged(_quantity);}
+      );
     }
   }
 
@@ -50,7 +55,7 @@ class _QuantitySelectionWidgetState extends State<QuantitySelectionWidget> {
               }),
               Center(
                 child: Text(
-                  value.toString(),
+                  _quantity.toString(),
                   style: TextStyle(fontSize: 14, color: Colors.black),
                 ),
               ),

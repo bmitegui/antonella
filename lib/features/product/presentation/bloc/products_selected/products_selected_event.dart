@@ -12,6 +12,17 @@ final class AddProductEvent extends ProductsSelectedEvent {
   AddProductEvent({required this.product, required this.cant});
 }
 
+class UpdateProductQuantityEvent extends ProductsSelectedEvent {
+  final ProductEntity product;
+  final int newQuantity;
+
+  UpdateProductQuantityEvent({
+    required this.product,
+    required this.newQuantity,
+  });
+}
+
+
 final class DeleteProductEvent extends ProductsSelectedEvent {
   final ProductEntity product;
   DeleteProductEvent({required this.product});

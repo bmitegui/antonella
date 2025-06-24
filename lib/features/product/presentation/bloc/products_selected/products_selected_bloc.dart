@@ -8,6 +8,7 @@ class ProductsSelectedBloc
   ProductsSelectedBloc() : super(ProductsSelectedLoaded(products: [])) {
     on<AddProductEvent>(_onAddProductEventRequest);
     on<DeleteProductEvent>(_onDeleteProductEventRequest);
+    on<UpdateProductQuantityEvent>(_onUpdateProductQuantityEventRequest);
     on<ClearProductSelectedEvent>(_onClearProductsSelectedEventRequest);
   }
   Future<void> _onClearProductsSelectedEventRequest(
@@ -30,6 +31,25 @@ class ProductsSelectedBloc
 
       emit(ProductsSelectedLoading());
       emit(currentState.copyWith(products: products));
+    }
+  }
+
+  Future<void> _onUpdateProductQuantityEventRequest(
+    UpdateProductQuantityEvent event,
+    Emitter<ProductsSelectedState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is ProductsSelectedLoaded) {
+      final updatedProducts = List<ProductEntity>.from(currentState.products);
+
+      updatedProducts.removeWhere((p) => p.id == event.product.id);
+
+      for (int i = 0; i < event.newQuantity; i++) {
+        updatedProducts.add(event.product);
+      }
+
+      emit(ProductsSelectedLoading());
+      emit(currentState.copyWith(products: updatedProducts));
     }
   }
 

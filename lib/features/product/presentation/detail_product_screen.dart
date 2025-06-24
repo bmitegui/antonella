@@ -51,6 +51,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                     SizedBox(width: 8),
                     QuantitySelectionWidget(
                       stock: stock,
+                      initialQuantity: 1,
                       onQuantityChanged: (quantity) {
                         setState(() {
                           selectedQuantity = quantity;
