@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/presentation/bloc/comment/comment_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/comment_container.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,8 @@ class ServiceCommentsList extends StatelessWidget {
                       ))
                   .toList())
           : (state is CommentsError)
-              ? Text(state.message)
+              ? Text(
+                  mapFailureToMessage(context: context, failure: state.failure))
               : Center(child: CircularProgressIndicator());
     });
   }

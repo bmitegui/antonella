@@ -11,6 +11,6 @@ final class SendRequestLoading extends SendRequestState {}
 final class SendRequestLoaded extends SendRequestState {}
 
 final class SendRequestError extends SendRequestState {
-  final String message;
-  SendRequestError({required this.message});
+  final Failure failure;
+  SendRequestError({required this.failure});
 }

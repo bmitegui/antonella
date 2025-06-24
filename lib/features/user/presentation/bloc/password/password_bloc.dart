@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/user/domain/usecases/usecases.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +21,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final failureOrSuccess = await passwordResetUseCase(
         PasswordResetParams(id: event.id, password: event.password));
     failureOrSuccess.fold((failure) {
-      emit(PasswordError(message: _mapFailureToMessage(failure)));
+      emit(PasswordError(failure: failure));
       emit(PasswordLoaded(code: '', userId: event.id));
     }, (vacio) async {
       emit(PasswordReseted());
@@ -35,19 +34,9 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
     final failureOrSuccess =
         await passwordCodeUseCase(PasswordCodeParams(email: event.email));
     failureOrSuccess.fold((failure) {
-      emit(PasswordError(message: _mapFailureToMessage(failure)));
+      emit(PasswordError(failure: failure));
     }, (lista) async {
       emit(PasswordLoaded(code: lista[0], userId: lista[1]));
     });
-  }
-
-  String _mapFailureToMessage(Failure failure) {
-    if (failure is ServerFailure) {
-      return failure.message;
-    } else if (failure is CacheFailure) {
-      return failure.message;
-    } else {
-      return unexpectedError;
-    }
   }
 }

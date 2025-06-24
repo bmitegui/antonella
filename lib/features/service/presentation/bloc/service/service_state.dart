@@ -28,6 +28,6 @@ final class ServicesLoaded extends ServiceState {
 }
 
 final class ServicesError extends ServiceState {
-  final String message;
-  ServicesError({required this.message});
+  final Failure failure;
+  ServicesError({required this.failure});
 }

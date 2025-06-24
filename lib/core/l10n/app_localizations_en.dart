@@ -92,4 +92,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get makeup => 'Make-up';
+
+  @override
+  String get server_error => 'Server error';
+
+  @override
+  String get cache_error => 'Cache error';
+
+  @override
+  String get network_connection_error => 'Network connection error';
+
+  @override
+  String get unexpected_error => 'Unexpected error';
+
+  @override
+  String get password_error => 'Password error';
+
+  @override
+  String get incomplete_fields => 'Incomplete Fields';
+
+  @override
+  String get model_not_found_error => 'Unregistered user';
 }

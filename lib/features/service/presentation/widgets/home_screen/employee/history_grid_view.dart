@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/employee/history_container.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/employee/shimmer_history_container.dart';
 import 'package:antonella/features/user/presentation/bloc/employee_info/employee_info_bloc.dart';
@@ -40,7 +41,9 @@ class HistoryGridView extends StatelessWidget {
         isLoading = true;
       } else if (state is EmployeeInfoError) {
         return Padding(
-            padding: const EdgeInsets.all(16.0), child: Text(state.message));
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+                mapFailureToMessage(context: context, failure: state.failure)));
       }
 
       return Padding(

@@ -31,5 +31,13 @@
     "hair": "Hair",
     "nails": "Nails",
     "spa": "Spa",
-    "makeup": "Make-up"
+    "makeup": "Make-up",
+
+    "server_error": "Server error",
+    "cache_error": "Cache error",
+    "network_connection_error": "Network connection error",
+    "unexpected_error": "Unexpected error",
+    "password_error": "Password error",
+    "incomplete_fields": "Incomplete Fields",
+    "model_not_found_error": "Unregistered user"
 }

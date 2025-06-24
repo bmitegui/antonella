@@ -19,6 +19,6 @@ final class PasswordLoaded extends PasswordState {
 final class PasswordUnauthenticated extends PasswordState {}
 
 final class PasswordError extends PasswordState {
-  final String message;
-  PasswordError({required this.message});
+  final Failure failure;
+  PasswordError({required this.failure});
 }

@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/services_by_subcategory_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,10 @@ class ServicesInfoWidget extends StatelessWidget {
       return (state is ServicesLoaded)
           ? (state.listServices.services.isNotEmpty)
               ? RefreshIndicator(
-                  onRefresh: () async => context
-                      .read<ServiceBloc>()
-                      .add(GetServicesEvent()),
+                  onRefresh: () async =>
+                      context.read<ServiceBloc>().add(GetServicesEvent()),
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.only(bottom: 100),
+                      padding: EdgeInsets.only(bottom: 100),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: state
@@ -29,7 +29,9 @@ class ServicesInfoWidget extends StatelessWidget {
               : const Center(
                   child: Text('No existen servicios para esta categoría'))
           : (state is ServicesError)
-              ? Center(child: Text(state.message))
+              ? Center(
+                  child: Text(mapFailureToMessage(
+                      context: context, failure: state.failure)))
               : const Center(child: CircularProgressIndicator());
     });
   }

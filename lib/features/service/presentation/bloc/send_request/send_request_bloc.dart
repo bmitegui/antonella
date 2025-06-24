@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/domain/usecases/send_request_use_case.dart';
@@ -25,19 +24,9 @@ class SendRequestBloc extends Bloc<SendRequestEvent, SendRequestState> {
         employeeId: event.employeeId,
         services: event.services));
     failureOrSuccess.fold((failure) async {
-      emit(SendRequestError(message: _mapFailureToMessage(failure)));
+      emit(SendRequestError(failure: failure));
     }, (data) async {
       emit(SendRequestLoaded());
     });
-  }
-
-  String _mapFailureToMessage(Failure failure) {
-    if (failure is ServerFailure) {
-      return failure.message;
-    } else if (failure is CacheFailure) {
-      return failure.message;
-    } else {
-      return unexpectedError;
-    }
   }
 }

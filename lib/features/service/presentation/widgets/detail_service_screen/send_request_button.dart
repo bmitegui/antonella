@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -25,8 +26,12 @@ class SendRequestButton extends StatelessWidget {
             return BlocConsumer<SendRequestBloc, SendRequestState>(
                 listener: (context, stateSendRequest) {
               if (stateSendRequest is SendRequestError) {
-                showTopSnackBar(Overlay.of(context),
-                    CustomSnackBar.error(message: stateSendRequest.message));
+                showTopSnackBar(
+                    Overlay.of(context),
+                    CustomSnackBar.error(
+                        message: mapFailureToMessage(
+                            context: context,
+                            failure: stateSendRequest.failure)));
               } else {
                 showTopSnackBar(
                     Overlay.of(context),

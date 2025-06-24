@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/user/domain/entities/entities.dart';
 import 'package:antonella/features/user/domain/usecases/usecases.dart';
@@ -22,19 +21,9 @@ class EmployeeInfoBloc extends Bloc<EmployeeInfoEvent, EmployeeInfoState> {
         startDate: event.startDate,
         endDate: event.endDate));
     failureOrSuccess.fold((failure) {
-      emit(EmployeeInfoError(message: _mapFailureToMessage(failure)));
+      emit(EmployeeInfoError(failure: failure));
     }, (employeeEntity) async {
       emit(EmployeeInfoLoaded(employeeInfoEntity: employeeEntity));
     });
-  }
-
-  String _mapFailureToMessage(Failure failure) {
-    if (failure is ServerFailure) {
-      return failure.message;
-    } else if (failure is CacheFailure) {
-      return failure.message;
-    } else {
-      return unexpectedError;
-    }
   }
 }

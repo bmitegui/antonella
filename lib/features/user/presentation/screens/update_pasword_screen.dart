@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/password/password_bloc.dart';
@@ -98,7 +99,9 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                                 showTopSnackBar(
                                     Overlay.of(context),
                                     CustomSnackBar.error(
-                                        message: state.message));
+                                        message: mapFailureToMessage(
+                                            context: context,
+                                            failure: state.failure)));
                               }
                             }, builder: (context, state) {
                               return state is PasswordLoading

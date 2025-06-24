@@ -265,6 +265,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Make-up'**
   String get makeup;
+
+  /// No description provided for @server_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error'**
+  String get server_error;
+
+  /// No description provided for @cache_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Cache error'**
+  String get cache_error;
+
+  /// No description provided for @network_connection_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Network connection error'**
+  String get network_connection_error;
+
+  /// No description provided for @unexpected_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Unexpected error'**
+  String get unexpected_error;
+
+  /// No description provided for @password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Password error'**
+  String get password_error;
+
+  /// No description provided for @incomplete_fields.
+  ///
+  /// In en, this message translates to:
+  /// **'Incomplete Fields'**
+  String get incomplete_fields;
+
+  /// No description provided for @model_not_found_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Unregistered user'**
+  String get model_not_found_error;
 }
 
 class _AppLocalizationsDelegate

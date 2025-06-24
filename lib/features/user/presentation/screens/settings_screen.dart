@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -32,8 +33,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             showTopSnackBar(Overlay.of(context),
                 const CustomSnackBar.success(message: 'Cierre exitoso'));
           } else if (state is UserError) {
-            showTopSnackBar(Overlay.of(context),
-                CustomSnackBar.error(message: state.message, maxLines: 3));
+            showTopSnackBar(
+                Overlay.of(context),
+                CustomSnackBar.error(
+                    message: mapFailureToMessage(
+                        context: context, failure: state.failure),
+                    maxLines: 3));
           }
         }, builder: (context, state) {
           return (state is UserAuthenticated)

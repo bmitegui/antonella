@@ -14,6 +14,6 @@ final class OrdersLoaded extends OrdersState {
 }
 
 final class OrdersError extends OrdersState {
-  final String message;
-  OrdersError({required this.message});
+  final Failure failure;
+  OrdersError({required this.failure});
 }
