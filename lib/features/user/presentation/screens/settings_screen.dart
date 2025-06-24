@@ -7,6 +7,7 @@ import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:antonella/features/user/presentation/screens/update_pasword_screen.dart';
 import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
+import 'package:antonella/features/user/presentation/screens/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -93,6 +94,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             })
                       ])),
                   const SizedBox(height: 16),
+                  Text('Compras',
+                      textAlign: TextAlign.left,
+                      style:
+                          textTheme.titleMedium!.copyWith(color: Colors.grey)),
+                  const SizedBox(height: 8),
+                  Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(children: [
+                        ListTile(
+                            leading: const Icon(Icons.article_outlined),
+                            title: Text('Historial de Compras'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SupportScreen(),
+                                  ));
+                            }),
+                        const Divider(height: 1),
+                        ListTile(
+                            leading: const Icon(Icons.add_shopping_cart),
+                            title: Text('Carrito de Compras'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SupportScreen(),
+                                  ));
+                            }),
+                        const Divider(height: 1),
+                      ])),
+                  const SizedBox(height: 16),
                   Text('Preferencias',
                       textAlign: TextAlign.left,
                       style:
@@ -138,7 +173,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ListTile(
                             leading: const Icon(Icons.build),
                             title: const Text('Soporte Técnico'),
-                            onTap: () {})
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SupportScreen(),
+                                  ));
+                            })
                       ]))
                 ])
               : LottieBuilder.asset("assets/lottie/loading_screen.json");
