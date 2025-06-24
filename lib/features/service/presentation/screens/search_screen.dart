@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_search_widget.dart';
@@ -94,7 +95,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: PromotionsGridView(
                             listPromotions: filteredPromotions))
                     : (state is ServicesError)
-                        ? Text(state.message)
+                        ? Text(mapFailureToMessage(
+                            context: context, failure: state.failure))
                         : CircularProgressIndicator()
               ]));
         }));

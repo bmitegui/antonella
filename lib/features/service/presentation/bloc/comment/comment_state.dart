@@ -14,6 +14,6 @@ final class CommentsLoaded extends CommentState {
 }
 
 final class CommentsError extends CommentState {
-  final String message;
-  CommentsError({required this.message});
+  final Failure failure;
+  CommentsError({required this.failure});
 }

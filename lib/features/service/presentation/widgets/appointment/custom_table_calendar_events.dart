@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/custom_table_calendar.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class CustomTableCalendarEvents extends StatelessWidget {
           }).toList();
         });
       } else if (state is OrdersError) {
-        return Text(state.message);
+        return Text(
+            mapFailureToMessage(context: context, failure: state.failure));
       }
 
       return const Center(child: CircularProgressIndicator());

@@ -14,6 +14,6 @@ final class ServiceFormLoaded extends ServiceFormState {
 }
 
 final class ServiceFormError extends ServiceFormState {
-  final String message;
-  ServiceFormError({required this.message});
+  final Failure failure;
+  ServiceFormError({required this.failure});
 }

@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -14,9 +15,9 @@ class IsSelectWidget extends StatelessWidget {
         builder: (context, state) {
       return (state is ServiceFormLoaded)
           ? Wrap(
-            runSpacing: 8,
-            spacing: 16,
-            alignment: WrapAlignment.center,
+              runSpacing: 8,
+              spacing: 16,
+              alignment: WrapAlignment.center,
               children: (question.choices as List)
                   .map((value) => value.isEmpty
                       ? SizedBox()
@@ -34,7 +35,9 @@ class IsSelectWidget extends StatelessWidget {
                           text: value))
                   .toList())
           : (state is ServiceFormError)
-              ? Center(child: Text(state.message))
+              ? Center(
+                  child: Text(mapFailureToMessage(
+                      context: context, failure: state.failure)))
               : const Center(child: CircularProgressIndicator());
     });
   }

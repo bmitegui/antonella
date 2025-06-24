@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/network/network.dart';
 import 'package:dartz/dartz.dart';
@@ -10,19 +9,26 @@ Future<Either<Failure, T>> handleNetworkCall<T>(
     try {
       final result = await operation();
       return Right(result);
+    } on NetworkConnectionException {
+      return Left(NetworkConnectionFailure());
+    } on IncorrectPasswordException {
+      return Left(IncorrectPasswordFailure());
+    } on IncompleteFieldsException {
+      return Left(IncompleteFieldsFailure());
+    } on UnexpectedException {
+      return Left(UnexpectedFailure());
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
   } else {
-    return Left(ServerFailure(message: networkConnectionError));
+    return Left(NetworkConnectionFailure());
   }
 }
 
-Future<Either<Failure, T>> handleLocalCall<T>({
-  required
-    Future<T> Function() operation}) async {
+Future<Either<Failure, T>> handleLocalCall<T>(
+    {required Future<T> Function() operation}) async {
   try {
     final result = await operation();
     return Right(result);

@@ -41,6 +41,6 @@ final class ServicesSelectedLoaded extends ServicesSelectedState {
 }
 
 final class ServicesSelectedError extends ServicesSelectedState {
-  final String message;
-  ServicesSelectedError({required this.message});
+  final Failure failure;
+  ServicesSelectedError({required this.failure});
 }

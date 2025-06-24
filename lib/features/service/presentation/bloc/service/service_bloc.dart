@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/usecases/usecase.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
@@ -20,7 +19,7 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
     emit(ServiceLoading());
     final failureOrSuccess = await getServicesUseCase(NoParams());
     failureOrSuccess.fold((failure) async {
-      emit(ServicesError(message: _mapFailureToMessage(failure)));
+      emit(ServicesError(failure: failure));
     }, (listServices) async {
       if (event.serviceType != null && event.serviceType != ServiceType.all) {
         final servicesFilter = listServices.services
@@ -33,15 +32,5 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
         emit(ServicesLoaded(listServices: listServices));
       }
     });
-  }
-
-  String _mapFailureToMessage(Failure failure) {
-    if (failure is ServerFailure) {
-      return failure.message;
-    } else if (failure is CacheFailure) {
-      return failure.message;
-    } else {
-      return unexpectedError;
-    }
   }
 }

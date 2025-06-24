@@ -1,4 +1,5 @@
 import 'package:antonella/core/l10n/app_localizations.dart';
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/dropdown_search_widget.dart';
@@ -64,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const CustomSnackBar.success(message: 'Registro exitoso'));
           } else if (state is UserError) {
             showTopSnackBar(Overlay.of(context),
-                CustomSnackBar.error(message: state.message, maxLines: 5));
+                CustomSnackBar.error(message: mapFailureToMessage(context: context, failure: state.failure), maxLines: 5));
           }
         }, builder: (context, state) {
           return (state is UserLoading)

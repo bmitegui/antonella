@@ -8,9 +8,20 @@ extension DioResponseExtensions on Response {
     if (isSuccess) {
       return parser(data['data']);
     } else {
-      throw ServerException(message: data['message']);
+      final exception = data['error'];
+      throw getException(exception: exception);
     }
   }
+}
+
+Exception getException({required String exception}) {
+  return (exception == 'Exception')
+      ? IncompleteFieldsException()
+      : (exception == 'ModelNotFoundException')
+          ? ModelNotFoundException()
+          : (exception == 'IncorrectPasswordException')
+              ? IncorrectPasswordException()
+              : ServerException();
 }
 
 mixin RemoteRequestHelper {
@@ -38,6 +49,14 @@ mixin RemoteRequestHelper {
         throw ServerException(message: 'Error de red: ${e.message}');
       }
     } on ServerException {
+      rethrow;
+    } on NetworkConnectionException {
+      rethrow;
+    } on UnexpectedException {
+      rethrow;
+    } on IncorrectPasswordException {
+      rethrow;
+    } on IncompleteFieldsException {
       rethrow;
     } catch (e) {
       throw ServerException(message: e.toString());

@@ -56,11 +56,12 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
         decoration: widget.errorMessage != null
             ? BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                color: Color(0xFFF44565))
+                color: colorScheme.primary)
             : null,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           if (widget.title != null)
@@ -71,7 +72,6 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                         color: Colors.black, fontWeight: FontWeight.bold))),
           if (widget.title != null) const SizedBox(height: 8),
           TextFormField(
-            
               maxLines: widget.maxLines,
               readOnly: widget.readOnly,
               onTap: widget.onTap,

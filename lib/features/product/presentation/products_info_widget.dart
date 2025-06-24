@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/product/presentation/products_by_subcategory_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:antonella/features/product/presentation/bloc/products/products_bloc.dart';
@@ -11,12 +12,11 @@ class ProductsInfoWidget extends StatelessWidget {
     return BlocBuilder<ProductsBloc, ProductsState>(builder: (context, state) {
       return (state is ProductsLoaded)
           ? (state.listProducts.products.isNotEmpty)
-            ? RefreshIndicator(
-                  onRefresh: () async => context
-                      .read<ProductsBloc>()
-                      .add(GetProductsEvent()),
+              ? RefreshIndicator(
+                  onRefresh: () async =>
+                      context.read<ProductsBloc>().add(GetProductsEvent()),
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.only(bottom: 100),
+                      padding: EdgeInsets.only(bottom: 100),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: state
@@ -29,7 +29,9 @@ class ProductsInfoWidget extends StatelessWidget {
               : const Center(
                   child: Text('No existen productos para esta categoría'))
           : (state is ProductsError)
-              ? Center(child: Text(state.message))
+              ? Center(
+                  child: Text(mapFailureToMessage(
+                      context: context, failure: state.failure)))
               : const Center(child: CircularProgressIndicator());
     });
   }

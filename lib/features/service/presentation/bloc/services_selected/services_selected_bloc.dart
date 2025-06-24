@@ -1,3 +1,4 @@
+import 'package:antonella/core/error/failures.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'services_selected_event.dart';

@@ -12,6 +12,6 @@ final class CartLoading extends CartState {}
 final class CartLoaded extends CartState {}
 
 final class CartError extends CartState {
-  final String message;
-  CartError({required this.message});
+  final Failure failure;
+  CartError({required this.failure});
 }

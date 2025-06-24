@@ -31,5 +31,13 @@
     "hair": "Cabello",
     "nails": "Uñas",
     "spa": "Spa",
-    "makeup": "Maquillaje"
+    "makeup": "Maquillaje",
+
+    "server_error": "Error del servidor",
+    "cache_error": "Error del cache",
+    "network_connection_error": "Sin conexión a internet",
+    "unexpected_error": "Error inesperado",
+    "password_error": "Contraseña incorrecta",
+    "incomplete_fields": "Campos incompletos",
+    "model_not_found_error": "Usuario no registrado"
 }

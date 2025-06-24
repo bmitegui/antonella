@@ -14,6 +14,6 @@ final class EmployeeInfoLoaded extends EmployeeInfoState {
 }
 
 final class EmployeeInfoError extends EmployeeInfoState {
-  final String message;
-  EmployeeInfoError({required this.message});
+  final Failure failure;
+  EmployeeInfoError({required this.failure});
 }

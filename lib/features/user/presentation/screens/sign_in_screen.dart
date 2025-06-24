@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/auth_prompt_widget.dart';
@@ -42,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
     final textTheme = Theme.of(context).textTheme;
-    final screenWidht = MediaQuery.of(context).size.width;
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
         backgroundColor: Color(0xFFFAE2E1),
         body: BlocConsumer<UserBloc, UserState>(
@@ -58,9 +59,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Column(children: [
                   LogoSignInWidget(),
                   Text(texts.welcome,
-                      style: textTheme.bodyLarge!.copyWith(
-                          color: Color(0XFFF44565),
-                          fontWeight: FontWeight.bold)),
+                      style: textTheme.titleLarge!
+                          .copyWith(color: colorScheme.primary)),
                   SizedBox(height: 32),
                   Padding(
                       padding: const EdgeInsets.all(16),
@@ -69,68 +69,53 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: AutofillGroup(
                               child: Column(children: [
                             Center(
-                                child: SizedBox(
-                                    width: screenWidht * 0.85,
-                                    child: Column(children: [
-                                      CustomTextFormFieldWidget(
-                                          errorMessage: (state is UserError)
-                                              ? state.message
-                                              : null,
-                                          autofillHints: const [
-                                            AutofillHints.telephoneNumber
-                                          ],
-                                          textEditingController:
-                                              _accountController,
-                                          hintText: texts.account,
-                                          keyboardType: TextInputType.phone),
-                                      const SizedBox(height: 32),
-                                      CustomTextFormFieldWidget(
-                                        errorMessage: (state is UserError)
-                                            ? state.message
-                                            : null,
-                                        autofillHints: const [
-                                          AutofillHints.password
-                                        ],
-                                        textEditingController:
-                                            _passwordController,
-                                        hintText: texts.password,
-                                        obscureText: true,
-                                      ),
-                                      Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            RememberMeWidget(
-                                                value: _value,
-                                                onChanged: (value) => setState(
-                                                    () => _value = !_value)),
-                                            const ForgotPasswordWidget()
-                                          ])
-                                    ]))),
+                                child: Column(children: [
+                              CustomTextFormFieldWidget(
+                                  errorMessage: (state is UserError)
+                                      ? mapFailureToMessage(
+                                          context: context,
+                                          failure: state.failure)
+                                      : null,
+                                  autofillHints: const [
+                                    AutofillHints.telephoneNumber
+                                  ],
+                                  textEditingController: _accountController,
+                                  hintText: texts.account,
+                                  keyboardType: TextInputType.phone),
+                              const SizedBox(height: 32),
+                              CustomTextFormFieldWidget(
+                                errorMessage: (state is UserError)
+                                    ? mapFailureToMessage(
+                                        context: context,
+                                        failure: state.failure)
+                                    : null,
+                                autofillHints: const [AutofillHints.password],
+                                textEditingController: _passwordController,
+                                hintText: texts.password,
+                                obscureText: true,
+                              ),
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RememberMeWidget(
+                                        value: _value,
+                                        onChanged: (value) =>
+                                            setState(() => _value = !_value)),
+                                    const ForgotPasswordWidget()
+                                  ])
+                            ])),
                             const SizedBox(height: 32),
-                            SizedBox(
-                                width: screenWidht * 0.35,
-                                child: FilledButton(
-                                    style: ButtonStyle(
-                                        textStyle: WidgetStateProperty.all(
-                                            TextStyle(
-                                                fontWeight: FontWeight.bold)),
-                                        backgroundColor:
-                                            WidgetStateProperty.all(
-                                                Color(0xFFF44565))),
-                                    onPressed: () {
-                                      context.read<UserBloc>().add(SignInEvent(
-                                          account:
-                                              _accountController.text.trim(),
-                                          password:
-                                              _passwordController.text.trim(),
-                                          rememberMe: _value));
-                                    },
-                                    child: Text(texts.sign_in))),
+                            FilledButton(
+                                onPressed: () {
+                                  context.read<UserBloc>().add(SignInEvent(
+                                      account: _accountController.text.trim(),
+                                      password: _passwordController.text.trim(),
+                                      rememberMe: _value));
+                                },
+                                child: Text(texts.sign_in)),
                             const SizedBox(height: 16),
-                            SizedBox(
-                                width: screenWidht * 0.85,
-                                child: const TermsAndConditionsWidget()),
+                            const TermsAndConditionsWidget(),
                             const SizedBox(height: 16),
                             const AuthPromptWidget()
                           ]))))

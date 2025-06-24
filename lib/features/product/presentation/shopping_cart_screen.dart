@@ -1,5 +1,6 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -71,7 +72,8 @@ class ShoppingCartScreen extends StatelessWidget {
                           isBold: true, fontSize: 18)
                     ]));
           } else if (state is ProductsSelectedError) {
-            return Text(state.message);
+            return Text(
+                mapFailureToMessage(context: context, failure: state.failure));
           } else {
             return CircularProgressIndicator();
           }

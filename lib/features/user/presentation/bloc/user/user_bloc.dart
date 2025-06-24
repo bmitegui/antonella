@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/services/services.dart';
 import 'package:antonella/core/usecases/usecase.dart';
@@ -38,7 +37,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     final failureOrSuccess = await signOutUseCase(NoParams());
     failureOrSuccess.fold((failure) async {
       if (event.userEntity != null) {
-        emit(UserError(message: _mapFailureToMessage(failure)));
+        emit(UserError(failure: failure));
         emit(UserAuthenticated(user: event.userEntity!));
       } else {
         emit(UserUnauthenticated());
@@ -60,7 +59,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         password: event.password,
         rememberMe: event.rememberMe));
     failureOrUser.fold((failure) {
-      emit(UserError(message: _mapFailureToMessage(failure)));
+      emit(UserError(failure: failure));
       if (event.checkAuthentication) {
         emit(UserUnauthenticated());
       }
@@ -105,20 +104,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         password: event.password,
         birthdate: event.birthdate));
     failureOrUser.fold((failure) {
-      emit(UserError(message: _mapFailureToMessage(failure)));
+      emit(UserError(failure: failure));
       emit(UserUnauthenticated());
     }, (user) async {
       emit(UserAuthenticated(user: user));
     });
-  }
-
-  String _mapFailureToMessage(Failure failure) {
-    if (failure is ServerFailure) {
-      return failure.message;
-    } else if (failure is CacheFailure) {
-      return failure.message;
-    } else {
-      return unexpectedError;
-    }
   }
 }

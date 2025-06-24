@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
@@ -21,19 +20,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     final failureOrSuccess =
         await getOrderssUseCase(GetOrdersParams(id: event.id));
     failureOrSuccess.fold((failure) async {
-      emit(OrdersError(message: _mapFailureToMessage(failure)));
+      emit(OrdersError(failure: failure));
     }, (orders) async {
       emit(OrdersLoaded(orders: orders));
     });
-  }
-
-  String _mapFailureToMessage(Failure failure) {
-    if (failure is ServerFailure) {
-      return failure.message;
-    } else if (failure is CacheFailure) {
-      return failure.message;
-    } else {
-      return unexpectedError;
-    }
   }
 }

@@ -20,6 +20,6 @@ final class ProductsSelectedLoaded extends ProductsSelectedState {
 }
 
 final class ProductsSelectedError extends ProductsSelectedState {
-  final String message;
-  ProductsSelectedError({required this.message});
+  final Failure failure;
+  ProductsSelectedError({required this.failure});
 }

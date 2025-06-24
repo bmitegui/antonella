@@ -29,8 +29,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = createTextTheme(context, "Rubik", "Rubik");
-    MaterialTheme theme = MaterialTheme(textTheme);
+    MaterialTheme theme = const MaterialTheme();
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => di.sl<ThemeBloc>()),
@@ -65,9 +64,7 @@ class MyApp extends StatelessWidget {
                 routeInformationProvider: appRouter.routeInformationProvider,
                 debugShowCheckedModeBanner: false,
                 title: appName,
-                theme: stateTheme
-                    ? theme.lightMediumContrast()
-                    : theme.lightMediumContrast());
+                theme: stateTheme ? theme.light(context) : theme.dark(context));
           });
         }));
   }

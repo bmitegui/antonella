@@ -16,6 +16,6 @@ final class UserAuthenticated extends UserState {
 final class UserUnauthenticated extends UserState {}
 
 final class UserError extends UserState {
-  final String message;
-  UserError({required this.message});
+  final Failure failure;
+  UserError({required this.failure});
 }

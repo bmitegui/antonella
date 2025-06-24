@@ -27,6 +27,6 @@ final class ProductsLoaded extends ProductsState {
 }
 
 final class ProductsError extends ProductsState {
-  final String message;
-  ProductsError({required this.message});
+  final Failure failure;
+  ProductsError({required this.failure});
 }
