@@ -10,14 +10,14 @@ import 'package:antonella/features/service/presentation/widgets/home_screen/clie
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class SearchScreenClient extends StatefulWidget {
+  const SearchScreenClient({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<SearchScreenClient> createState() => _SearchScreenClientState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenClientState extends State<SearchScreenClient> {
   final listPromotions = [
     PromotionEntity(
         id: 'id',

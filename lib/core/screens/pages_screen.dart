@@ -6,8 +6,9 @@ import 'package:antonella/features/service/presentation/screens/chats_screen.dar
 import 'package:antonella/features/service/presentation/screens/home_screen/home_screen_client.dart';
 import 'package:antonella/features/service/presentation/screens/home_screen/home_screen_employee.dart';
 import 'package:antonella/features/service/presentation/screens/notifications_screen.dart';
-import 'package:antonella/features/service/presentation/screens/search_screen.dart';
+import 'package:antonella/features/service/presentation/screens/search_screen/search_screen_client.dart';
 import 'package:antonella/core/widgets/custom_bottom_navigator_bar.dart';
+import 'package:antonella/features/service/presentation/screens/search_screen/search_screen_employee.dart';
 import 'package:antonella/features/user/domain/entities/entities.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/settings_screen.dart';
@@ -27,7 +28,7 @@ class _PagesScreenState extends State<PagesScreen> {
 
   final List<Widget> _contentPagesCliente = const [
     AppointmentClientScreen(),
-    SearchScreen(),
+    SearchScreenClient(),
     HomeScreenClient(),
     ChatsScreen(),
     NotificationsScreen(),
@@ -36,7 +37,7 @@ class _PagesScreenState extends State<PagesScreen> {
 
   final List<Widget> _contentPagesEmpleado = const [
     AppointmentClientScreen(),
-    SearchScreen(),
+    SearchScreenEmployee(),
     HomeScreenEmployee(),
     NotificationsScreen(),
     SettingsScreen()
