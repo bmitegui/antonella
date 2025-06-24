@@ -4,13 +4,24 @@ sealed class ProductsSelectedEvent {
   const ProductsSelectedEvent();
 }
 
-final class ServicesSelectedInitialEvent extends ProductsSelectedEvent {}
+final class ProductSelectedInitialEvent extends ProductsSelectedEvent {}
 
 final class AddProductEvent extends ProductsSelectedEvent {
   final ProductEntity product;
   final int cant;
   AddProductEvent({required this.product, required this.cant});
 }
+
+class UpdateProductQuantityEvent extends ProductsSelectedEvent {
+  final ProductEntity product;
+  final int newQuantity;
+
+  UpdateProductQuantityEvent({
+    required this.product,
+    required this.newQuantity,
+  });
+}
+
 
 final class DeleteProductEvent extends ProductsSelectedEvent {
   final ProductEntity product;

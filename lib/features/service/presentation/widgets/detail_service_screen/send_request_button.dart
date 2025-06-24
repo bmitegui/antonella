@@ -36,8 +36,8 @@ class SendRequestButton extends StatelessWidget {
                 showTopSnackBar(
                     Overlay.of(context),
                     CustomSnackBar.success(
-                        message: 'Solicitud enviada correctamente'));
-
+                      maxLines: 3,
+                      message: 'Solicitud enviada correctamente \n En breve el administrador se contactará con usted'));
                 context
                     .read<ServicesSelectedBloc>()
                     .add(ClearServicesSelectedEvent());

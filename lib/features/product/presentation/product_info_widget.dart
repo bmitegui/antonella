@@ -51,7 +51,7 @@ class ProductInfoWidget extends StatelessWidget {
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             child: Text(productEntity.nombre,
-                                maxLines: 2,
+                                maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
                                     .textTheme
