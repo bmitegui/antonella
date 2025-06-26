@@ -25,13 +25,41 @@ class ProductsSelectedBloc
   ) async {
     final currentState = state;
     if (currentState is ProductsSelectedLoaded) {
-      final products = List<ProductEntity>.from(currentState.products);
-      for (var i = 0; i < event.cant; i++) {
-        products.add(event.product);
+      final List<ProductEntity> original = currentState.products;
+      final List<ProductEntity> updatedProducts = [];
+
+      bool inserted = false;
+      int insertIndex = -1;
+
+      for (int i = 0; i < original.length; i++) {
+        final product = original[i];
+
+        if (product.id == event.product.id) {
+          // Solo una vez guarda el índice de inserción
+          if (!inserted) {
+            insertIndex = updatedProducts.length;
+            inserted = true;
+          }
+          // Omitimos esta instancia (porque se reemplazará)
+          continue;
+        }
+
+        updatedProducts.add(product);
+      }
+
+      // Generar la nueva cantidad de productos
+      final newItems = List.generate(event.cant, (_) => event.product);
+
+      if (inserted) {
+        // Si ya existía, insertamos en la posición original
+        updatedProducts.insertAll(insertIndex, newItems);
+      } else {
+        // Si no existía, lo agregamos al final
+        updatedProducts.addAll(newItems);
       }
 
       emit(ProductsSelectedLoading());
-      emit(currentState.copyWith(products: products));
+      emit(currentState.copyWith(products: updatedProducts));
     }
   }
 

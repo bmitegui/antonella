@@ -17,15 +17,19 @@ class ListOrdersToConfirm extends StatelessWidget {
             .where((order) => order.clientStatus == ClientStatus.noConfirmado)
             .toList();
 
-        return ListView.separated(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          itemCount: ordersToConfirm.length,
-          itemBuilder: (BuildContext context, int index) => InfoOrderContainer(
-            orderEntity: ordersToConfirm[index],
-          ),
-          separatorBuilder: (BuildContext context, int index) =>
-              const SizedBox(height: 16),
-        );
+        return ordersToConfirm.isNotEmpty
+            ? ListView.separated(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                itemCount: ordersToConfirm.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    InfoOrderContainer(
+                  orderEntity: ordersToConfirm[index],
+                ),
+                separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(height: 16),
+              )
+            : Center(child: Text('No hay citas pendientes por confirmar'));
       } else if (state is OrdersError) {
         return Text(
           mapFailureToMessage(context: context, failure: state.failure),

@@ -29,7 +29,9 @@ class AgendaTabBar extends StatelessWidget {
             labelColor: const Color(0xFFF44565),
             tabs: [
               const CustomTab(text: 'Agendados'),
-              CustomTab(text: 'Por confirmar', number: pendingCount)
+              CustomTab(
+                  text: 'Por confirmar',
+                  number: pendingCount == 0 ? null : pendingCount)
             ]);
       },
     );

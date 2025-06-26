@@ -25,15 +25,12 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductsSelectedBloc, ProductsSelectedState>(
-        listener: (context, state) {
-      if (state is ProductsSelectedLoaded &&
-          !state.products.contains(widget.productEntity)) {
-        showTopSnackBar(Overlay.of(context),
-            const CustomSnackBar.success(message: 'Producto agregado'));
-        Navigator.pop(context);
+    bool isSelected = false;
+    return BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
+        builder: (context, state) {
+      if (state is ProductsSelectedLoaded) {
+        isSelected = state.products.contains(widget.productEntity);
       }
-    }, builder: (context, state) {
       return (state is ProductsSelectedLoaded)
           ? CustomScaffold(
               paddingScroll: EdgeInsets.all(0),
@@ -56,9 +53,11 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                         SizedBox(width: 8),
                         QuantitySelectionWidget(
                           productEntity: widget.productEntity,
-                          quantity: countProductsById(
-                              products: state.products,
-                              productId: widget.productEntity.id),
+                          quantity: (isSelected)
+                              ? countProductsById(
+                                  products: state.products,
+                                  productId: widget.productEntity.id)
+                              : selectedQuantity,
                           onChanged: (newQuantity) {
                             setState(() {
                               selectedQuantity = newQuantity;
@@ -71,8 +70,16 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                               sl<ProductsSelectedBloc>().add(AddProductEvent(
                                   product: widget.productEntity,
                                   cant: selectedQuantity));
+
+                              showTopSnackBar(
+                                  Overlay.of(context),
+                                  CustomSnackBar.success(
+                                      message: (isSelected)
+                                          ? 'Producto actualizado'
+                                          : 'Producto agregado'));
+                              Navigator.pop(context);
                             },
-                            text: 'Agregar')
+                            text: (isSelected) ? 'Actualizar' : 'Agregar')
                       ])),
               child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),

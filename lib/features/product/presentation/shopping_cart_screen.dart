@@ -138,7 +138,10 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               ])),
           Column(children: [
             QuantitySelectionWidget(
-                productEntity: productEntity, quantity: quantity),
+                productEntity: productEntity, quantity: quantity, onChanged: (value){
+                   context.read<ProductsSelectedBloc>().add(AddProductEvent(product: productEntity, cant: value));
+
+                }),
             SizedBox(height: 40),
             Text('\$${productEntity.price}',
                 style: const TextStyle(fontWeight: FontWeight.bold))
