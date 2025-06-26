@@ -1,6 +1,4 @@
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
-import 'package:antonella/features/product/presentation/bloc/products_selected/products_selected_bloc.dart';
 import 'package:flutter/material.dart';
 
 class QuantitySelectionWidget extends StatefulWidget {
