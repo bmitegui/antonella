@@ -19,4 +19,7 @@ class Environment {
   static String employeeInfo = '$apiUrl${dotenv.env['employeeInfo']}';
   static String getAppointments ='$apiUrl${dotenv.env['getAppointments']}';
   static String orderProductItem = '$apiUrl${dotenv.env['orderProductItem']}';
+  static String publicity = '$apiUrl${dotenv.env['publicity']}';
+  static String chat = '$apiUrl${dotenv.env['chat']}';
+  static String userChatMessage = '$apiUrl${dotenv.env['userChatMessage']}';
 }

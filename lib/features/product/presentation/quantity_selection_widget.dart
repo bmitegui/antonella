@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 class QuantitySelectionWidget extends StatefulWidget {
   final ProductEntity productEntity;
   final int quantity;
+  final void Function(int)? onChanged;
+
   const QuantitySelectionWidget(
-      {super.key, required this.productEntity, required this.quantity});
+      {super.key, required this.productEntity, required this.quantity, this.onChanged});
 
   @override
   State<QuantitySelectionWidget> createState() =>
@@ -15,17 +17,27 @@ class QuantitySelectionWidget extends StatefulWidget {
 }
 
 class _QuantitySelectionWidgetState extends State<QuantitySelectionWidget> {
+  late int localQuantity;
+
+  @override
+  void initState() {
+    super.initState();
+    localQuantity = widget.quantity;
+  }
+
   void _increment() {
-    if (widget.quantity < widget.productEntity.stock) {
-      sl<ProductsSelectedBloc>().add(UpdateProductQuantityEvent(
-          product: widget.productEntity, newQuantity: widget.quantity + 1));
+    if (localQuantity < widget.productEntity.stock) {
+      setState(() { localQuantity++;
+      widget.onChanged!(localQuantity);}
+      );
     }
   }
 
   void _decrement() {
-    if (widget.quantity > 1) {
-      sl<ProductsSelectedBloc>().add(UpdateProductQuantityEvent(
-          product: widget.productEntity, newQuantity: widget.quantity - 1));
+    if (localQuantity > 1) {
+      setState(() { localQuantity--;
+      widget.onChanged!(localQuantity);}
+      );
     }
   }
 
@@ -44,7 +56,7 @@ class _QuantitySelectionWidgetState extends State<QuantitySelectionWidget> {
                   IconButton(
                       icon: Icon(Icons.remove), onPressed: () => _decrement()),
                   Center(
-                      child: Text(widget.quantity.toString(),
+                      child: Text(localQuantity.toString(),
                           style: TextStyle(fontSize: 14, color: Colors.black))),
                   IconButton(
                       icon: Icon(Icons.add), onPressed: () => _increment())

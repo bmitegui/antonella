@@ -18,7 +18,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get start_title => 'Descubre tu mejor versión aquí';
 
   @override
-  String get start_body => 'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
+  String get start_body =>
+      'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
 
   @override
   String get account => 'Teléfono';

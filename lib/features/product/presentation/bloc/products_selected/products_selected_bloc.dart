@@ -57,7 +57,7 @@ class ProductsSelectedBloc
             inserted = true;
           }
           // Omitir esta instancia
-          continue;
+          //continue;
         }
 
         // Mantener el resto de productos

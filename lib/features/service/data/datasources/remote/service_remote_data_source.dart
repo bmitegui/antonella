@@ -230,4 +230,8 @@ class ServiceRemoteDataSourceImpl
         request: () => client.put(url, data: data, options: defaultOptions),
         onSuccess: (_) {});
   }
+
+  // Future<List<PromotionModel>> getPromotions() async{
+
+  // }
 }
