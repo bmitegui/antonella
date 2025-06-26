@@ -1,6 +1,4 @@
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
-import 'package:antonella/features/product/presentation/bloc/products/products_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/bienvenida_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/client/home_tab_bar.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/products_tab_section.dart';

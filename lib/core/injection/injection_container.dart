@@ -100,7 +100,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetCartItemsUseCase>(
       () => GetCartItemsUseCase(productRepository: sl<ProductsRepository>()));
-  
+
+  sl.registerLazySingleton<PayOrderUseCase>(
+      () => PayOrderUseCase(serviceRepository: sl<ServiceRepository>()));
 
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
@@ -133,12 +135,15 @@ Future<void> init() async {
 
   sl.registerLazySingleton<EmployeeInfoBloc>(() =>
       EmployeeInfoBloc(getEmployeeInfoUseCase: sl<GetEmployeeInfoUseCase>()));
-    
+
   sl.registerLazySingleton<OrdersBloc>(
       () => OrdersBloc(getOrderssUseCase: sl<GetOrdersUseCase>()));
 
   sl.registerLazySingleton<CartBloc>(
       () => CartBloc(getCartItemsUseCase: sl<GetCartItemsUseCase>()));
+
+  sl.registerLazySingleton<PayOrderBloc>(
+      () => PayOrderBloc(payOrderUseCase: sl<PayOrderUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

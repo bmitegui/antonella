@@ -4,6 +4,8 @@ import 'package:equatable/equatable.dart';
 
 enum OrderStatus { confirmado, noConfirmado }
 
+enum ClientStatus {confirmado, noConfirmado}
+
 enum ProgressStatus { pendiente, enProgreso, finalizado }
 
 enum PaymentStatus { pendiente, pagado }
@@ -14,6 +16,7 @@ class OrderEntity extends Equatable {
   final String id;
   final String clientId;
   final OrderStatus orderStatus;
+  final ClientStatus clientStatus;
   final ProgressStatus progressStatus;
   final PaymentStatus paymentStatus;
   final PaymentType paymentType;
@@ -24,6 +27,7 @@ class OrderEntity extends Equatable {
       {required this.id,
       required this.clientId,
       required this.orderStatus,
+      required this.clientStatus,
       required this.progressStatus,
       required this.paymentStatus,
       required this.paymentType,

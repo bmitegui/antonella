@@ -8,6 +8,7 @@ class OrderModel extends OrderEntity {
       {required super.id,
       required super.clientId,
       required super.orderStatus,
+      required super.clientStatus,
       required super.progressStatus,
       required super.paymentStatus,
       required super.paymentType,
@@ -20,6 +21,7 @@ class OrderModel extends OrderEntity {
         id: json['id'],
         clientId: json['client_id'],
         orderStatus: stringToOrderStatus(json['status']['status']),
+        clientStatus: stringToClientStatus(json['status']['client_confirmed']),
         progressStatus:
             stringToProgressStatus(json['status']['progress_status']),
         paymentStatus: stringToPaymentStatus(json['status']['payment_status']),

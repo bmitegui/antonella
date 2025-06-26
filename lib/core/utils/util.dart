@@ -229,8 +229,23 @@ OrderStatus stringToOrderStatus(String status) {
       : OrderStatus.noConfirmado;
 }
 
+ClientStatus stringToClientStatus(String status) {
+  return status == 'CONFIRMADO'
+      ? ClientStatus.confirmado
+      : ClientStatus.noConfirmado;
+}
+
 PaymentType stringToPaymentType(String type) {
   return type == 'EFECTIVO' ? PaymentType.efectivo : PaymentType.tarjeta;
+}
+
+String paymentTypeToString(PaymentType type) {
+  switch (type) {
+    case PaymentType.efectivo:
+      return 'EFECTIVO';
+    case PaymentType.tarjeta:
+      return 'TARJETA';
+  }
 }
 
 PaymentStatus stringToPaymentStatus(String status) {

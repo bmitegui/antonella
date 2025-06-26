@@ -3,7 +3,9 @@ import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/data/models/models.dart';
+import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/question_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/user/data/models/user_model.dart';
@@ -21,6 +23,8 @@ abstract class ServiceRemoteDataSource {
       required String start,
       required String employeeId,
       required List<ServiceEntity> services});
+  Future<void> payOrder(
+      {required String orderId, required PaymentType paymentType});
 }
 
 class ServiceRemoteDataSourceImpl
@@ -87,13 +91,15 @@ class ServiceRemoteDataSourceImpl
         "payment_status": "PENDIENTE",
         "payment_type": "EFECTIVO",
         "progress_status": "PENDIENTE",
-        "status": "NO_CONFIRMADO"
+        "status": "NO_CONFIRMADO",
+        "client_confirmed": "NO_CONFIRMADO"
       }
     };
-    return await handleRequest(
+    final String a = await handleRequest(
         request: () =>
             client.post(Environment.order, data: data, options: defaultOptions),
         onSuccess: (data) => data['id']);
+    return a;
   }
 
   Future<String> createCita(
@@ -185,17 +191,43 @@ class ServiceRemoteDataSourceImpl
   @override
   Future<List<OrderModel>> getOrders({required String id}) async {
     final appointments = await getAppointments(id: id);
+
     final Map<String, List<AppointmentModel>> groupedByOrder = {};
     for (AppointmentModel appointment in appointments) {
       groupedByOrder.putIfAbsent(appointment.orderId, () => []);
       groupedByOrder[appointment.orderId]!.add(appointment);
     }
-    final orders = groupedByOrder.entries.map((entry) async {
+
+    // Crear lista de futuros
+    final futures = groupedByOrder.entries.map((entry) async {
       final orderId = entry.key;
       final appointmentList = entry.value;
       return await getOrder(orderId: orderId, appointments: appointmentList);
     }).toList();
 
-    return await Future.wait(orders);
+    // Esperar todas las órdenes
+    final allOrders = await Future.wait(futures);
+
+    // Filtrar las que tienen estado confirmado
+    final confirmedOrders = allOrders
+        .where((order) => order.orderStatus == OrderStatus.confirmado)
+        .toList();
+
+    return confirmedOrders;
+  }
+
+  @override
+  Future<void> payOrder(
+      {required String orderId, required PaymentType paymentType}) async {
+    final url = '${Environment.order}?id=$orderId';
+    final paymentTypeString = paymentTypeToString(paymentType);
+    final data = {
+      "id": orderId,
+      "payment_type": paymentTypeString,
+      "client_confirmed": "CONFIRMADO"
+    };
+    return await handleRequest(
+        request: () => client.put(url, data: data, options: defaultOptions),
+        onSuccess: (_) {});
   }
 }

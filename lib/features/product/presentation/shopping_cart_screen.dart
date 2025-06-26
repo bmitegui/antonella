@@ -56,8 +56,6 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
             final dataTotal = calculateTotals(selectedProducts);
 
-            print('Se ejcuta');
-
             return Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
