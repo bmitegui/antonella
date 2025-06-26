@@ -55,10 +55,16 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                             style: Theme.of(context).textTheme.titleMedium),
                         SizedBox(width: 8),
                         QuantitySelectionWidget(
-                            productEntity: widget.productEntity,
-                            quantity: countProductsById(
-                                products: state.products,
-                                productId: widget.productEntity.id)),
+                          productEntity: widget.productEntity,
+                          quantity: countProductsById(
+                              products: state.products,
+                              productId: widget.productEntity.id),
+                          onChanged: (newQuantity) {
+                            setState(() {
+                              selectedQuantity = newQuantity;
+                            });
+                          },
+                        ),
                         SizedBox(width: 8),
                         CustomElevatedButton(
                             onPressed: () {

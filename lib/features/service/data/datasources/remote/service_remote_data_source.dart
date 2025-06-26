@@ -4,6 +4,7 @@ import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/features/service/data/models/models.dart';
+import 'package:antonella/features/service/data/models/promotion_model.dart';
 import 'package:antonella/features/service/domain/entities/question_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/user/data/models/user_model.dart';
@@ -198,4 +199,8 @@ class ServiceRemoteDataSourceImpl
 
     return await Future.wait(orders);
   }
+
+  // Future<List<PromotionModel>> getPromotions() async{
+
+  // }
 }

@@ -48,15 +48,23 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
         body: BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
             builder: (context, state) {
           if (state is ProductsSelectedLoaded) {
-            final selectedProducts = selectedProductIds.isEmpty
-                ? state.products
-                : state.products
-                    .where((p) => selectedProductIds.contains(p.id))
-                    .toList();
+            // final selectedProducts = selectedProductIds.isEmpty
+            //     ? state.products
+            //     : state.products
+            //         .where((p) => selectedProductIds.contains(p.id))
+            //         .toList();
+
+            // final dataTotal = calculateTotals(selectedProducts);
+
+             if (selectedProductIds.isEmpty && state.products.isNotEmpty) {
+              selectedProductIds.addAll(state.products.map((p) => p.id));
+            }
+
+            final selectedProducts = state.products
+                .where((p) => selectedProductIds.contains(p.id))
+                .toList();
 
             final dataTotal = calculateTotals(selectedProducts);
-
-            print('Se ejcuta');
 
             return Padding(
                 padding: const EdgeInsets.all(16),
