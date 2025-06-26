@@ -1,10 +1,32 @@
-import 'package:antonella/core/error/failures.dart';
+import 'package:antonella/core/error/error.dart';
+import 'package:antonella/core/usecases/usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../domain/usecases/usecases.dart';
 part 'message_event.dart';
 part 'message_state.dart';
 
-class MessageBloc extends Bloc<MessageEvent, MessageState>{
-  MessageBloc(super.initialState);
+class MessagesBloc extends Bloc<MessageEvent, MessageState> {
+  final GetMessagesUseCase getMessagesUseCase;
 
+  MessagesBloc(
+      {required this.getMessagesUseCase})
+      : super(MessagesInitial()) {
+    on<GetMessagesEvent>(_onGetMessagesEventRequest);
+  }
+
+  Future<void> _onGetMessagesEventRequest(
+      GetMessagesEvent event, Emitter<MessageState> emit) async {
+    emit(MessagesLoading());
+    final failureOrMessages = await getMessagesUseCase(NoParams());
+    failureOrMessages.fold((failure) {
+      emit(MessagesError(failure: failure));
+      
+    },
+    (message) {
+
+    }
+    
+    );
+  }
 }

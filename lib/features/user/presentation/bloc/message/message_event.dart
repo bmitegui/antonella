@@ -6,4 +6,4 @@ sealed class MessageEvent {
 
 final class MessageInitialEvent extends MessageEvent {}
 
-final class GetMessageEvent extends MessageEvent {}
+final class GetMessagesEvent extends MessageEvent {}

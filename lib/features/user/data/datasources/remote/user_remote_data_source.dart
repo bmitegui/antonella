@@ -1,6 +1,8 @@
 import 'package:antonella/core/constant/environment.dart';
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/features/user/data/models/models.dart';
+import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:dio/dio.dart';
 
 abstract class UserRemoteDataSource {
@@ -22,6 +24,7 @@ abstract class UserRemoteDataSource {
       {required String employeeId,
       required String startDate,
       required String endDate});
+  Future<MessageModel> getMessages();
 }
 
 class UserRemoteDataSourceImpl
@@ -95,5 +98,19 @@ class UserRemoteDataSourceImpl
             },
             options: defaultOptions),
         onSuccess: (data) => EmployeeInfoModel.fromJson(data));
+  }
+
+  @override
+  Future<MessageModel> getMessages() async {
+    String userId = "";
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated) {
+      userId = userState.user.id;
+    }
+    final url = '${Environment.chat}?user_id=$userId';
+
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => MessageModel.fromJson(data));
   }
 }

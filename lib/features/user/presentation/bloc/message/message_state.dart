@@ -4,13 +4,13 @@ sealed class MessageState {
   const MessageState();
 }
 
-final class MessageInitial extends MessageState {}
+final class MessagesInitial extends MessageState {}
 
-final class MessageLoading extends MessageState {}
+final class MessagesLoading extends MessageState {}
 
-final class MessageLoaded extends MessageState {}
+final class MessagesLoaded extends MessageState {}
 
-final class MessageError extends MessageState {
+final class MessagesError extends MessageState {
   final Failure failure;
-  MessageError({required this.failure});
+  MessagesError({required this.failure});
 }
