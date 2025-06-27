@@ -1,5 +1,7 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
+import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -34,7 +36,11 @@ class _ChatsScreenState extends State<ChatsScreen> {
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRrJqk6q56_yFxyf124738UZSAaFKT_AqF3Q&s',
               title: 'Taylor Swift',
               subtitle: 'Claro. Con eso esta todo.',
-              check: true)
+              check: true),
+          ElevatedButton(
+            onPressed: () => sl<MessagesBloc>().add(GetMessagesEvent()), 
+            child: Text('Chat')
+          )
         ]));
   }
 

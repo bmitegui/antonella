@@ -6,12 +6,12 @@ import 'package:dartz/dartz.dart';
 import '../entities/entities.dart';
 
 class GetMessagesUseCase
-    implements UseCase<MessageEntity, NoParams> {
+    implements UseCase<List<MessageEntity>, NoParams> {
   final UserRepository userRepository;
   GetMessagesUseCase({required this.userRepository});
   
   @override
-  Future<Either<Failure, MessageEntity>> call(NoParams params) async{
+  Future<Either<Failure, List<MessageEntity>>> call(NoParams params) async{
     return await userRepository.getMessages();
   }
 

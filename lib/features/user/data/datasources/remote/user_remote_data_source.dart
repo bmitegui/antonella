@@ -24,7 +24,7 @@ abstract class UserRemoteDataSource {
       {required String employeeId,
       required String startDate,
       required String endDate});
-  Future<MessageModel> getMessages();
+  Future<List<MessageModel>> getMessages();
 }
 
 class UserRemoteDataSourceImpl
@@ -101,7 +101,7 @@ class UserRemoteDataSourceImpl
   }
 
   @override
-  Future<MessageModel> getMessages() async {
+  Future<List<MessageModel>> getMessages() async {
     String userId = "";
     final userState = sl<UserBloc>().state;
     if (userState is UserAuthenticated) {
@@ -111,6 +111,9 @@ class UserRemoteDataSourceImpl
 
     return await handleRequest(
         request: () => client.get(url, options: defaultOptions),
-        onSuccess: (data) => MessageModel.fromJson(data));
+        onSuccess: (data) => (data as List)
+            .map<MessageModel>(
+                (messageJson) => MessageModel.fromJson(messageJson))
+            .toList());
   }
 }

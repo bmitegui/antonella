@@ -104,7 +104,8 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, MessageModel>> getMessages() {
+  Future<Either<Failure, List<MessageModel>>> getMessages() {
+    print('llega implementacion');
     return handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {

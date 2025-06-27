@@ -9,6 +9,7 @@ class MessageModel extends MessageEntity {
       required super.messageType});
 
   factory MessageModel.fromJson(Map<String, dynamic> json) {
+    print(json);
     return MessageModel(
         messageId: json['id'],
         userId: json['sender_id'],
