@@ -1,6 +1,8 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/responsive_size.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
+import 'package:antonella/features/service/presentation/screens/chat_screen/visualize_chat_user_screen.dart';
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +42,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
           ElevatedButton(
             onPressed: () => sl<MessagesBloc>().add(GetMessagesEvent()), 
             child: Text('Chat')
+            
           )
         ]));
   }
@@ -52,7 +55,14 @@ class _ChatsScreenState extends State<ChatsScreen> {
       String? pendingMessages,
       bool check = false}) {
     return ListTile(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const VisualizeChatUserScreen(),
+        ),
+      );
+        },
         contentPadding: EdgeInsets.zero,
         minVerticalPadding: 0,
         title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
