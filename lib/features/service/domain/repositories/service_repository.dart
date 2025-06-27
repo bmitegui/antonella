@@ -14,7 +14,8 @@ abstract class ServiceRepository {
       required String employeeId,
       required List<ServiceEntity> services});
   Future<Either<Failure, List<OrderModel>>> getOrders({required String id});
-  Future<Either<Failure, void>> payOrder({required PaymentType paymentType});
+  Future<Either<Failure, void>> payOrder(
+      {required String orderId, required PaymentType paymentType});
   Future<Either<Failure, List<QuestionModel>>> getFormDone(
       {required String clientId, required String serviceItemId});
   Future<Either<Failure, void>> startAppointment(

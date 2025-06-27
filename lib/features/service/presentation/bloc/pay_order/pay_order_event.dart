@@ -7,6 +7,7 @@ sealed class PayOrderEvent {
 final class PayOrderInitialEvent extends PayOrderEvent {}
 
 final class PagarOrdenEvent extends PayOrderEvent {
+  final String orderId;
   final PaymentType paymentType;
-  PagarOrdenEvent({required this.paymentType});
+  PagarOrdenEvent({required this.orderId, required this.paymentType});
 }

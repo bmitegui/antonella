@@ -69,11 +69,12 @@ class ServiceRepositoryImpl implements ServiceRepository {
 
   @override
   Future<Either<Failure, void>> payOrder(
-      {required PaymentType paymentType}) async {
+      {required String orderId, required PaymentType paymentType}) async {
     return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
-          await serviceRemoteDataSource.payOrder(paymentType: paymentType);
+          await serviceRemoteDataSource.payOrder(
+              orderId: orderId, paymentType: paymentType);
         });
   }
 

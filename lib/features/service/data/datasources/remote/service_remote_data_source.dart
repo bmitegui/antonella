@@ -23,7 +23,8 @@ abstract class ServiceRemoteDataSource {
       required String start,
       required String employeeId,
       required List<ServiceEntity> services});
-  Future<void> payOrder({required PaymentType paymentType});
+  Future<void> payOrder(
+      {required String orderId, required PaymentType paymentType});
   Future<List<QuestionModel>> getFormDone(
       {required String clientId, required String serviceItemId});
   Future<void> startAppointment(
@@ -220,14 +221,8 @@ class ServiceRemoteDataSourceImpl
   }
 
   @override
-  Future<void> payOrder({required PaymentType paymentType}) async {
-    String userId = "";
-    final userState = sl<UserBloc>().state;
-    if (userState is UserAuthenticated) {
-      userId = userState.user.id;
-    }
-    final orderId = await createOrder(clientId: userId);
-
+  Future<void> payOrder(
+      {required String orderId, required PaymentType paymentType}) async {
     final url = '${Environment.order}?id=$orderId';
     final paymentTypeString = paymentTypeToString(paymentType);
     final data = {

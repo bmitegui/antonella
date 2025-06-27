@@ -17,7 +17,7 @@ class PayOrderBloc extends Bloc<PayOrderEvent, PayOrderState> {
       PagarOrdenEvent event, Emitter<PayOrderState> emit) async {
     emit(PayOrderLoading());
     final failureOrSuccess = await payOrderUseCase(
-        PayOrderParams(paymentType: event.paymentType));
+        PayOrderParams(orderId: event.orderId, paymentType: event.paymentType));
     failureOrSuccess.fold((failure) async {
       emit(PayOrderError(failure: failure));
     }, (data) async {

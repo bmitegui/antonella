@@ -11,11 +11,13 @@ class PayOrderUseCase implements UseCase<void, PayOrderParams> {
   @override
   Future<Either<Failure, void>> call(PayOrderParams payOrderParams) async {
     return await serviceRepository.payOrder(
+        orderId: payOrderParams.orderId,
         paymentType: payOrderParams.paymentType);
   }
 }
 
 class PayOrderParams {
+  final String orderId;
   final PaymentType paymentType;
-  PayOrderParams({required this.paymentType});
+  PayOrderParams({required this.orderId, required this.paymentType});
 }
