@@ -1,5 +1,4 @@
 import 'package:antonella/core/constant/environment.dart';
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
@@ -37,9 +36,9 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                           final selected = state.products
                               .where((p) => selectedProductIds.contains(p.id))
                               .toList();
-                          sl<CartBloc>().add(AddToCart(products: selected));
-                          navigateWithSlideTransition(
-                              context, OptionsPayShoppingCartScreen());
+
+                          navigateWithSlideTransition(context,
+                              OptionsPayShoppingCartScreen(products: selected));
                         }
                       },
                       child: Text('Pagar'))
@@ -56,7 +55,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
             // final dataTotal = calculateTotals(selectedProducts);
 
-             if (selectedProductIds.isEmpty && state.products.isNotEmpty) {
+            if (selectedProductIds.isEmpty && state.products.isNotEmpty) {
               selectedProductIds.addAll(state.products.map((p) => p.id));
             }
 
@@ -138,9 +137,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               ])),
           Column(children: [
             QuantitySelectionWidget(
-                productEntity: productEntity, quantity: quantity, onChanged: (value){
-                   context.read<ProductsSelectedBloc>().add(AddProductEvent(product: productEntity, cant: value));
-
+                productEntity: productEntity,
+                quantity: quantity,
+                onChanged: (value) {
+                  context.read<ProductsSelectedBloc>().add(
+                      AddProductEvent(product: productEntity, cant: value));
                 }),
             SizedBox(height: 40),
             Text('\$${productEntity.price}',

@@ -1,5 +1,4 @@
 import 'package:antonella/core/injection/injection_container.dart';
-import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/widgets/message_input_field.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
@@ -59,9 +58,7 @@ class VisualizeChatUserScreen extends StatelessWidget {
                                   color:
                                       isClient ? Colors.black : Colors.white));
                         })),
-                MessageInputField(onSend: (value) {
-                  print(value);
-                })
+                MessageInputField(onSend: (value) {})
               ]));
         }));
   }

@@ -226,9 +226,7 @@ ServiceType stringToType(String type) {
 }
 
 MessageType stringToMessageType(String type) {
-  return type == 'TEXT'
-      ? MessageType.text
-      : MessageType.image;
+  return type == 'TEXT' ? MessageType.text : MessageType.image;
 }
 
 OrderStatus stringToOrderStatus(String status) {
@@ -354,4 +352,24 @@ Future<void> launchWhatsApp(
   final uri = Uri.parse(
       'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}');
   await launchCustomUri(uri);
+}
+
+List<Map<String, dynamic>> groupProducts(
+    List<ProductEntity> products, String orderId) {
+  final Map<String, Map<String, dynamic>> grouped = {};
+
+  for (final product in products) {
+    if (grouped.containsKey(product.id)) {
+      grouped[product.id]!['quantity'] += 1;
+    } else {
+      grouped[product.id] = {
+        'order_id': orderId,
+        'product_id': product.id,
+        'quantity': 1,
+        'base_price': product.price,
+      };
+    }
+  }
+
+  return grouped.values.toList();
 }
