@@ -8,6 +8,8 @@ import 'package:antonella/features/user/presentation/screens/edit_profile_screen
 import 'package:antonella/features/user/presentation/screens/update_pasword_screen.dart';
 import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
 import 'package:antonella/features/user/presentation/screens/support_screen.dart';
+import 'package:antonella/features/product/presentation/shopping_cart_screen.dart';
+import 'package:antonella/features/product/presentation/purchase_history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -107,12 +109,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ListTile(
                             leading: const Icon(Icons.article_outlined),
                             title: Text('Historial de Compras'),
-                            onTap: () {}),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PurchaseHistoryScreen(),
+                                  ));
+                            }),
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.add_shopping_cart),
                             title: Text('Carrito de Compras'),
-                            onTap: () {}),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ShoppingCartScreen(),
+                                  ));
+                            }),
                         Divider(height: 1, color: Colors.grey.shade300),
                       ])),
                   const SizedBox(height: 16),
