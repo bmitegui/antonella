@@ -1,18 +1,16 @@
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/usecases/usecase.dart';
-import 'package:antonella/features/user/domain/entities/entities.dart';
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
+import 'package:antonella/features/user/domain/usecases/get_messages_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/usecases/usecases.dart';
 part 'message_event.dart';
 part 'message_state.dart';
 
 class MessagesBloc extends Bloc<MessageEvent, MessageState> {
   final GetMessagesUseCase getMessagesUseCase;
 
-  MessagesBloc(
-      {required this.getMessagesUseCase})
-      : super(MessagesInitial()) {
+  MessagesBloc({required this.getMessagesUseCase}) : super(MessagesInitial()) {
     on<GetMessagesEvent>(_onGetMessagesEventRequest);
   }
 
@@ -22,14 +20,8 @@ class MessagesBloc extends Bloc<MessageEvent, MessageState> {
     final failureOrMessages = await getMessagesUseCase(NoParams());
     failureOrMessages.fold((failure) {
       emit(MessagesError(failure: failure));
-      
-    },
-    (messages) {
+    }, (messages) {
       emit(MessagesLoaded(listMessages: messages));
-      
-
-    }
-    
-    );
+    });
   }
 }

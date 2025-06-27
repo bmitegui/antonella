@@ -17,7 +17,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
 
   @override
   Future<Either<Failure, ListServicesModel>> getServices() async {
-    return handleNetworkCall(
+    return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
           final remoteServices = await serviceRemoteDataSource.getServices();
@@ -28,7 +28,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
   @override
   Future<Either<Failure, List<CommentModel>>> getServiceComments(
       {required String serviceId}) async {
-    return handleNetworkCall(
+    return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
           final remoteServiceComments = await serviceRemoteDataSource
@@ -44,7 +44,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
       required String start,
       required String employeeId,
       required List<ServiceEntity> services}) async {
-    return handleNetworkCall(
+    return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
           await serviceRemoteDataSource.sendRequest(
@@ -59,7 +59,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
   @override
   Future<Either<Failure, List<OrderModel>>> getOrders(
       {required String id}) async {
-    return handleNetworkCall(
+    return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
           final orders = await serviceRemoteDataSource.getOrders(id: id);
@@ -70,10 +70,21 @@ class ServiceRepositoryImpl implements ServiceRepository {
   @override
   Future<Either<Failure, void>> payOrder(
       {required PaymentType paymentType}) async {
-    return handleNetworkCall(
+    return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
-          await serviceRemoteDataSource.payOrder(paymentType: paymentType);
+          await serviceRemoteDataSource.payOrder( paymentType: paymentType);
+        });
+  }
+
+  @override
+  Future<Either<Failure, List<QuestionModel>>> getFormDone(
+      {required String serviceItemId}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await serviceRemoteDataSource.getFormDone(
+              serviceItemId: serviceItemId);
         });
   }
 }

@@ -35,10 +35,8 @@ mixin RemoteRequestHelper {
       required T Function(dynamic data) onSuccess}) async {
     try {
       final response = await request();
-      print(response);
       return response.parseOrThrow(onSuccess);
     } on DioException catch (e) {
-      print('error: $e');
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.sendTimeout ||
           e.type == DioExceptionType.receiveTimeout) {

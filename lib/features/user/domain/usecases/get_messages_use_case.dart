@@ -1,9 +1,8 @@
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/usecases/usecase.dart';
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
 import 'package:dartz/dartz.dart';
-
-import '../entities/entities.dart';
 
 class GetMessagesUseCase
     implements UseCase<List<MessageEntity>, NoParams> {

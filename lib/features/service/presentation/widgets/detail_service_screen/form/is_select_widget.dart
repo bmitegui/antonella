@@ -14,7 +14,7 @@ class IsSelectWidget extends StatelessWidget {
     return BlocBuilder<ServiceFormBloc, ServiceFormState>(
         builder: (context, state) {
       return (state is ServiceFormLoaded)
-          ? Wrap(
+          ?  Wrap(
               runSpacing: 8,
               spacing: 16,
               alignment: WrapAlignment.center,

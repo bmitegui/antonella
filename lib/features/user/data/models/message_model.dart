@@ -1,4 +1,5 @@
-import '../../domain/entities/entities.dart';
+
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
 
 class MessageModel extends MessageEntity {
   MessageModel(
@@ -9,7 +10,6 @@ class MessageModel extends MessageEntity {
       required super.messageType});
 
   factory MessageModel.fromJson(Map<String, dynamic> json) {
-    print(json);
     return MessageModel(
         messageId: json['id'],
         userId: json['sender_id'],
