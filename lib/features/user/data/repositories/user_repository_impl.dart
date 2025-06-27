@@ -3,6 +3,7 @@ import 'package:antonella/core/network/network.dart';
 import 'package:antonella/core/utils/repository_impl_util.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/models/models.dart';
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
 import 'package:dartz/dartz.dart';
 
@@ -109,4 +110,21 @@ class UserRepositoryImpl implements UserRepository {
           return await userRemoteDataSource.getMessages();
         });
   }
+
+  @override
+  Future<Either<Failure, void>> sendMessage(
+    {
+      required String userId,
+      required String content,
+      required MessageType type
+    }
+  ) {
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+           await userRemoteDataSource.sendMessage(
+            userId: userId, content: content, type: type);
+        });
+  }
+  
 }

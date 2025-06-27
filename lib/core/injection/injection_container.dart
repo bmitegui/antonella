@@ -15,9 +15,11 @@ import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
+import 'package:antonella/features/user/domain/usecases/send_messages_use_case.dart';
 import 'package:antonella/features/user/domain/usecases/usecases.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -107,6 +109,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetMessagesUseCase>(
       () => GetMessagesUseCase(userRepository: sl<UserRepository>()));
+  
+  sl.registerLazySingleton<SendMessagesUseCase>(
+      () => SendMessagesUseCase(userRepository: sl<UserRepository>()));
 
   sl.registerLazySingleton<GetFormDoneUseCase>(
       () => GetFormDoneUseCase(serviceRepository: sl<ServiceRepository>()));
@@ -157,6 +162,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<MessagesBloc>(
       () => MessagesBloc(getMessagesUseCase: sl<GetMessagesUseCase>()));
+  
+  sl.registerLazySingleton<SendMessageBloc>(
+      () => SendMessageBloc(sendMessagesUseCase: sl<SendMessagesUseCase>()));
 
   sl.registerLazySingleton<FormDoneBloc>(
       () => FormDoneBloc(getFormDoneUseCase: sl<GetFormDoneUseCase>()));

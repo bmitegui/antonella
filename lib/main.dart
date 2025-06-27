@@ -8,6 +8,7 @@ import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/core/injection/injection_container.dart' as di;
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<CartBloc>()),
           BlocProvider(create: (context) => di.sl<PayOrderBloc>()),
           BlocProvider(create: (context) => di.sl<MessagesBloc>()),
+          BlocProvider(create: (context) => di.sl<SendMessageBloc>()),
           BlocProvider(create: (context) => di.sl<FormDoneBloc>()),
           BlocProvider(create: (context) => di.sl<StartAppointmentBloc>()),
         ],

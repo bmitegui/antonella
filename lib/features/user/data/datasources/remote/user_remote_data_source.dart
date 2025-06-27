@@ -1,7 +1,9 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/data/models/models.dart';
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:dio/dio.dart';
 
@@ -25,6 +27,10 @@ abstract class UserRemoteDataSource {
       required String startDate,
       required String endDate});
   Future<List<MessageModel>> getMessages();
+  Future<void> sendMessage(
+      {required String userId,
+      required String content,
+      required MessageType type});
 }
 
 class UserRemoteDataSourceImpl
@@ -112,6 +118,7 @@ class UserRemoteDataSourceImpl
     return await handleRequest(
         request: () => client.get(url, options: defaultOptions),
         onSuccess: (data) {
+          print(data);
           if (data is! List) {
             return [];
           } else {
@@ -121,5 +128,21 @@ class UserRemoteDataSourceImpl
                 .toList();
           }
         });
+  }
+
+  @override
+  Future<void> sendMessage(
+      {required String userId,
+      required String content,
+      required MessageType type}) async {
+    return await handleRequest(
+        request: () => client.post(Environment.userChatMessage,
+            data: {
+              "user_id": userId,
+              "content": content,
+              "message_type": messageTypeToString(type)
+            },
+            options: defaultOptions),
+        onSuccess: (_) {});
   }
 }

@@ -1,5 +1,6 @@
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/features/user/data/models/models.dart';
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class UserRepository {
@@ -25,4 +26,12 @@ abstract class UserRepository {
       required String startDate,
       required String endDate});
   Future<Either<Failure, List<MessageModel>>> getMessages();
+  Future<Either<Failure, void>> sendMessage(
+    {
+      required String userId,
+      required String content,
+      required MessageType type
+    }
+  );
+
 }

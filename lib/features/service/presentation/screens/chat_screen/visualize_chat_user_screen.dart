@@ -3,14 +3,21 @@ import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/widgets/message_input_field.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class VisualizeChatUserScreen extends StatelessWidget {
+class VisualizeChatUserScreen extends StatefulWidget {
   const VisualizeChatUserScreen({super.key});
 
+  @override
+  State<VisualizeChatUserScreen> createState() =>
+      _VisualizeChatUserScreenState();
+}
+
+class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
   @override
   Widget build(BuildContext context) {
     String clientId = '';
@@ -41,7 +48,6 @@ class VisualizeChatUserScreen extends StatelessWidget {
                 Expanded(
                     child: ListView.builder(
                         padding: EdgeInsets.only(bottom: 16),
-                        reverse: true,
                         itemCount: messages.length,
                         itemBuilder: (context, index) {
                           final message = messages[messages.length - 1 - index];
@@ -58,7 +64,17 @@ class VisualizeChatUserScreen extends StatelessWidget {
                                   color:
                                       isClient ? Colors.black : Colors.white));
                         })),
-                MessageInputField(onSend: (value) {})
+                BlocConsumer<MessagesBloc, MessageState>(
+                    listener: (context, state) {
+               
+                }, builder: (context, state) {
+                  return MessageInputField(onSend: (value) {
+                    sl<SendMessageBloc>().add(SendMessagesEvent(
+                        userId: clientId,
+                        content: value,
+                        type: MessageType.text));
+                  });
+                })
               ]));
         }));
   }

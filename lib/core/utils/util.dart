@@ -229,6 +229,10 @@ MessageType stringToMessageType(String type) {
   return type == 'TEXT' ? MessageType.text : MessageType.image;
 }
 
+String messageTypeToString(MessageType type) {
+  return type == MessageType.text ? 'TEXT' : 'IMAGE';
+}
+
 OrderStatus stringToOrderStatus(String status) {
   return status == 'CONFIRMADO'
       ? OrderStatus.confirmado
