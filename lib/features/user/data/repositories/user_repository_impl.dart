@@ -1,11 +1,9 @@
 import 'package:antonella/core/error/error.dart';
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/network/network.dart';
 import 'package:antonella/core/utils/repository_impl_util.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/models/models.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
-import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:dartz/dartz.dart';
 
 class UserRepositoryImpl implements UserRepository {
@@ -105,7 +103,6 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, List<MessageModel>>> getMessages() {
-    print('llega implementacion');
     return handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {

@@ -25,6 +25,7 @@ abstract class ServiceRemoteDataSource {
       required List<ServiceEntity> services});
   Future<void> payOrder(
       {required String orderId, required PaymentType paymentType});
+  Future<List<QuestionModel>> getFormDone({required String serviceItemId});
 }
 
 class ServiceRemoteDataSourceImpl
@@ -35,7 +36,6 @@ class ServiceRemoteDataSourceImpl
 
   @override
   Future<ListServicesModel> getServices() async {
-    print(Environment.storeService);
     return await handleRequest(
         request: () =>
             client.get(Environment.storeService, options: defaultOptions),
@@ -230,6 +230,24 @@ class ServiceRemoteDataSourceImpl
     return await handleRequest(
         request: () => client.put(url, data: data, options: defaultOptions),
         onSuccess: (_) {});
+  }
+
+  @override
+  Future<List<QuestionModel>> getFormDone(
+      {required String serviceItemId}) async {
+    String userId = '';
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated) {
+      userId = userState.user.id;
+    }
+    final url =
+        '${Environment.answer}?client_id=$userId&service_item_id=$serviceItemId';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => (data as List)
+            .map<QuestionModel>(
+                (questionJson) => QuestionModel.fromJson(questionJson))
+            .toList());
   }
 
   // Future<List<PromotionModel>> getPromotions() async{

@@ -108,6 +108,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetMessagesUseCase>(
       () => GetMessagesUseCase(userRepository: sl<UserRepository>()));
 
+  sl.registerLazySingleton<GetFormDoneUseCase>(
+      () => GetFormDoneUseCase(serviceRepository: sl<ServiceRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -148,9 +151,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<PayOrderBloc>(
       () => PayOrderBloc(payOrderUseCase: sl<PayOrderUseCase>()));
-  
+
   sl.registerLazySingleton<MessagesBloc>(
       () => MessagesBloc(getMessagesUseCase: sl<GetMessagesUseCase>()));
+
+  sl.registerLazySingleton<FormDoneBloc>(
+      () => FormDoneBloc(getFormDoneUseCase: sl<GetFormDoneUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

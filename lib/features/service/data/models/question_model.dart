@@ -12,12 +12,12 @@ class QuestionModel extends QuestionEntity {
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     final questionModel = QuestionModel(
-        id: json['id'],
-        title: capitalize(json['title']),
+        id: json['id'] ?? json['question_id'],
+        title: capitalize(json['title'] ?? json['question_title']),
         inputType: stringToInputType(json['input_type']),
         choiceType: stringToChoiceType(json['choice_type']),
         choices: json['choices'],
-        answer: null);
+        answer: json['answer']);
     return questionModel;
   }
 }

@@ -4,4 +4,5 @@ export './comment/comment_bloc.dart';
 export './service_form/service_form_bloc.dart';
 export './send_request/send_request_bloc.dart';
 export 'orders/orders_bloc.dart';
-export 'pay_order/pay_order_bloc.dart';
+export './pay_order/pay_order_bloc.dart';
+export './form_done/form_done_bloc.dart';
