@@ -14,6 +14,7 @@ import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart' as path;
+import 'package:url_launcher/url_launcher.dart';
 
 double generarDoubleEntre35y50() {
   final random = Random();
@@ -316,4 +317,34 @@ String monthNameInSpanish(int month) {
     'DICIEMBRE'
   ];
   return months[month - 1];
+}
+
+Future<void> launchCustomUri(Uri uri,
+    {LaunchMode mode = LaunchMode.externalApplication}) async {
+  await launchUrl(uri, mode: mode);
+}
+
+Future<void> utilLaunchUrl({required String url}) async {
+  final uri = Uri.parse(url);
+  await launchCustomUri(uri);
+}
+
+Future<void> emailLaunch({required String emailAddress}) async {
+  final uri = Uri(
+    scheme: 'mailto',
+    path: emailAddress,
+  );
+  await launchCustomUri(uri);
+}
+
+Future<void> makePhoneCall({required String phoneNumber}) async {
+  final uri = Uri(scheme: 'tel', path: phoneNumber);
+  await launchCustomUri(uri);
+}
+
+Future<void> launchWhatsApp(
+    {required String phoneNumber, required String message}) async {
+  final uri = Uri.parse(
+      'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}');
+  await launchCustomUri(uri);
 }

@@ -15,3 +15,8 @@ final imagesServiceCategory = {
   ServiceType.nails: 'assets/svg/nails.svg',
   ServiceType.hair: 'assets/svg/hair.svg',
 };
+
+//Support Contact
+const String phoneNumber = '+593 961530738';
+const String email = 'contacto@hubitrack.com';
+const String instagram = 'https://www.instagram.com/antonellacbe/';

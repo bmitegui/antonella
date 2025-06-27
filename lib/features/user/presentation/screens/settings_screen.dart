@@ -173,13 +173,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ListTile(
                             leading: const Icon(Icons.build),
                             title: const Text('Soporte Técnico'),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SupportScreen(),
-                                  ));
-                            })
+                            onTap: () => navigateWithSlideTransition(
+                                context, SupportScreen()))
                       ]))
                 ])
               : LottieBuilder.asset("assets/lottie/loading_screen.json");
