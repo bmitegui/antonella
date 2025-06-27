@@ -15,6 +15,7 @@ class AppointmentInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(appointmentEntity.id);
     return CustomScaffold(
         leading: ArrowBack(),
         text: 'Cita',
@@ -34,16 +35,26 @@ class AppointmentInfoScreen extends StatelessWidget {
                         assetPath: imagesServiceCategory[
                             appointmentEntity.serviceEntity.type]!)),
                 const SizedBox(width: 16),
-                Text(
-                    getCategoryText(
-                        context: context,
-                        serviceCategory: appointmentEntity.serviceEntity.type),
-                    style: Theme.of(context).textTheme.titleMedium),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                      getCategoryText(
+                          context: context,
+                          serviceCategory:
+                              appointmentEntity.serviceEntity.type),
+                      style: Theme.of(context).textTheme.titleMedium),
+                  Text(appointmentEntity.serviceEntity.subtype)
+                ]),
                 Spacer(),
                 ProgressStatusLabel(status: appointmentEntity.status)
               ]),
               const SizedBox(height: 16),
+              Divider(color: Colors.grey.shade300),
+              const SizedBox(height: 16),
+              CustomTitle(title: 'Acerca de:'),
               Text(appointmentEntity.serviceEntity.name),
+              Text(appointmentEntity.serviceEntity.description),
+              const SizedBox(height: 16),
+              Divider(color: Colors.grey.shade300),
               const SizedBox(height: 16),
               CustomTitle(title: 'Fecha', description: appointmentEntity.day),
               const SizedBox(height: 16),
@@ -55,6 +66,11 @@ class AppointmentInfoScreen extends StatelessWidget {
                   description:
                       '\$${appointmentEntity.basePrice?.toStringAsFixed(2) ?? '0.00'}'),
               const SizedBox(height: 16),
+              Divider(color: Colors.grey.shade300),
+              const SizedBox(height: 16),
+              CustomTitle(title: 'Formulario hecho'),
+              const SizedBox(height: 16),
+              FilledButton(onPressed: () {}, child: Text('Ver formulario'))
             ])));
   }
 }

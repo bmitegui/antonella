@@ -1,4 +1,5 @@
 import 'package:antonella/features/service/domain/entities/entities.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/info_list_appointments.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/services_type_group.dart';
 import 'package:flutter/material.dart';
 
@@ -21,11 +22,24 @@ class InfoServicesChosen extends StatelessWidget {
           Row(children: [
             Text('Servicios escogidos: ${orderEntity.appointments.length}'),
             Spacer(),
-            Text('Ver más',
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Color(0xFFF44565),
-                    decoration: TextDecoration.underline,
-                    decorationColor: Color(0xFFF44565)))
+            GestureDetector(
+              onTap: () async {
+                await showModalBottomSheet<List>(
+                    scrollControlDisabledMaxHeightRatio: 1,
+                    isScrollControlled: true,
+                    backgroundColor: Color(0xFFF0F0F0),
+                    context: context,
+                    builder: (BuildContext context) {
+                      return InfoListAppointments(
+                          appointments: orderEntity.appointments);
+                    });
+              },
+              child: Text('Ver más',
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: Color(0xFFF44565),
+                      decoration: TextDecoration.underline,
+                      decorationColor: Color(0xFFF44565))),
+            )
           ]),
           Divider(color: Colors.grey.shade300),
           const SizedBox(height: 16),
