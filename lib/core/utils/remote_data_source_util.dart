@@ -38,6 +38,7 @@ mixin RemoteRequestHelper {
       print(response);
       return response.parseOrThrow(onSuccess);
     } on DioException catch (e) {
+      print('error: $e');
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.sendTimeout ||
           e.type == DioExceptionType.receiveTimeout) {

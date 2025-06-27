@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class PromotionsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    throw Container();
+    return Container();
   }
   // final List<PromotionEntity> listPromotions;
   // const PromotionsGridView({super.key, required this.listPromotions});

@@ -35,6 +35,7 @@ class ServiceRemoteDataSourceImpl
 
   @override
   Future<ListServicesModel> getServices() async {
+    print(Environment.storeService);
     return await handleRequest(
         request: () =>
             client.get(Environment.storeService, options: defaultOptions),
