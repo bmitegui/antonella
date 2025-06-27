@@ -24,4 +24,5 @@ abstract class UserRepository {
       {required String employeeId,
       required String startDate,
       required String endDate});
+  Future<Either<Failure, List<MessageModel>>> getMessages();
 }

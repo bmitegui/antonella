@@ -17,6 +17,7 @@ import 'package:antonella/features/user/data/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/usecases/usecases.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -104,6 +105,9 @@ Future<void> init() async {
   sl.registerLazySingleton<PayOrderUseCase>(
       () => PayOrderUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<GetMessagesUseCase>(
+      () => GetMessagesUseCase(userRepository: sl<UserRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -144,6 +148,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<PayOrderBloc>(
       () => PayOrderBloc(payOrderUseCase: sl<PayOrderUseCase>()));
+  
+  sl.registerLazySingleton<MessagesBloc>(
+      () => MessagesBloc(getMessagesUseCase: sl<GetMessagesUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());
