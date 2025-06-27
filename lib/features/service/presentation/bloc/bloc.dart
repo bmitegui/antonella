@@ -6,3 +6,4 @@ export './send_request/send_request_bloc.dart';
 export 'orders/orders_bloc.dart';
 export './pay_order/pay_order_bloc.dart';
 export './form_done/form_done_bloc.dart';
+export './start_appointment/start_appointment_bloc.dart';

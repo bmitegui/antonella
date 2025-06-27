@@ -23,12 +23,22 @@ class FormDoneByType extends StatelessWidget {
                   images: question.answer)
               : (question.inputType == InputType.choice &&
                       question.choiceType == ChoiceType.image)
-                  ? Text(question.answer)
+                  ? Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(horizontal: 48),
+                      child: Text(question.answer))
                   : (question.inputType == InputType.choice &&
                           question.choiceType == ChoiceType.text)
-                      ? Text(question.answer)
+                      ? Container(
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.symmetric(horizontal: 48),
+                          child: Text(question.answer))
                       : (question.inputType == InputType.text)
-                          ? Text(question.answer)
+                          ? Container(
+                              alignment: Alignment.centerLeft,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 48),
+                              child: Text(question.answer))
                           : const SizedBox.shrink()
         ]));
   }

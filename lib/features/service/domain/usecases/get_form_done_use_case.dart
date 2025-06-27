@@ -13,11 +13,13 @@ class GetFormDoneUseCase
   Future<Either<Failure, List<QuestionModel>>> call(
       GetFormDoneParams getFormDoneParams) async {
     return await serviceRepository.getFormDone(
+        clientId: getFormDoneParams.clientId,
         serviceItemId: getFormDoneParams.serviceItemId);
   }
 }
 
 class GetFormDoneParams {
+  final String clientId;
   final String serviceItemId;
-  GetFormDoneParams({required this.serviceItemId});
+  GetFormDoneParams({required this.clientId, required this.serviceItemId});
 }

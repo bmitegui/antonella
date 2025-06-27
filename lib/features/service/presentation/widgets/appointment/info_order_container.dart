@@ -1,5 +1,7 @@
+import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/utils/util.dart';
-import 'package:antonella/features/service/domain/entities/order_entity.dart';
+import 'package:antonella/core/widgets/custom_local_svg_image.dart';
+import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/core/widgets/banner_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/order_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,9 @@ class InfoOrderContainer extends StatelessWidget {
                 color: Colors.white),
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                BannerWidget(child: Icon(Icons.face)),
+                BannerWidget(
+                    child: CustomLocalSvgImage(
+                        assetPath: imagesServiceCategory[ServiceType.all]!)),
                 const SizedBox(width: 16),
                 Text(
                     getCategoryTextList(

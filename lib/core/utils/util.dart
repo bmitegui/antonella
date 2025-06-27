@@ -254,9 +254,9 @@ PaymentStatus stringToPaymentStatus(String status) {
 }
 
 ProgressStatus stringToProgressStatus(String status) {
-  return status == 'PENDIENTE'
+  return (status == 'PENDIENTE' || status == 'Pendientes')
       ? ProgressStatus.pendiente
-      : status == 'EN_PROGRESO'
+      : (status == 'EN_PROGRESO' || status == 'En curso')
           ? ProgressStatus.enProgreso
           : ProgressStatus.finalizado;
 }

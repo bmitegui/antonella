@@ -16,8 +16,8 @@ class FormDoneBloc extends Bloc<FormDoneEvent, FormDoneState> {
   Future<void> _onGetFormDoneEventRequest(
       GetFormDoneEvent event, Emitter<FormDoneState> emit) async {
     emit(FormDoneLoading());
-    final failureOrSuccess = await getFormDoneUseCase(
-        GetFormDoneParams(serviceItemId: event.serviceItemId));
+    final failureOrSuccess = await getFormDoneUseCase(GetFormDoneParams(
+        clientId: event.clientId, serviceItemId: event.serviceItemId));
     failureOrSuccess.fold((failure) async {
       emit(FormDoneError(failure: failure));
     }, (questions) async {

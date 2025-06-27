@@ -2,13 +2,15 @@ import 'package:antonella/core/theme/responsive_size.dart';
 import 'package:flutter/material.dart';
 
 class CustomModalBottomSheetWidget extends StatelessWidget {
-  final String title;
+  final String? title;
   final bool? closeAction;
   final Widget? otherAction;
   final Widget body;
+  final Widget? titleWidget;
   const CustomModalBottomSheetWidget(
       {super.key,
-      required this.title,
+      this.title,
+      this.titleWidget,
       required this.body,
       this.closeAction = true,
       this.otherAction});
@@ -31,24 +33,20 @@ class CustomModalBottomSheetWidget extends StatelessWidget {
                 icon: Icon(Icons.close,
                     color: closeAction!
                         ? const Color(0XFFADADAD)
-                        : Colors.transparent
-                        )
-                        ),
-            Expanded(
-                child: Text(title,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: const Color(0XFF484850),
-                        fontWeight: FontWeight.bold))),
+                        : Colors.transparent)),
+            (title != null)
+                ? Expanded(
+                    child: Text(title!,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: const Color(0XFF484850),
+                            fontWeight: FontWeight.bold)))
+                : titleWidget!,
             otherAction ??
                 IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon:
-                        Icon(Icons.close, 
-                        
-                        color: const Color(0XFFADADAD)
-                        ))
+                    icon: Icon(Icons.close, color: const Color(0XFFADADAD)))
           ]),
           const SizedBox(height: 16),
           body

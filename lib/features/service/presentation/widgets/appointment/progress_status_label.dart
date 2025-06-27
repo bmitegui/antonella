@@ -21,7 +21,7 @@ class ProgressStatusLabel extends StatelessWidget {
         label = 'En curso';
         break;
       case ProgressStatus.finalizado:
-        bgColor = Colors.pink;
+        bgColor = Colors.blue;
         label = 'Finalizado';
         break;
     }

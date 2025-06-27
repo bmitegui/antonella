@@ -1,20 +1,53 @@
 import 'package:antonella/core/constant/constant.dart';
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
+import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/appointment_info_screen.dart';
 import 'package:antonella/core/widgets/banner_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/progress_status_label.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/pending_appointment_modal.dart';
+import 'package:antonella/features/user/domain/entities/user_entity.dart';
+import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
 
 class InfoAppointmentContainer extends StatelessWidget {
+  final bool isAgendaScreen;
+  final OrderEntity orderEntity;
   final AppointmentEntity appointmentEntity;
-  const InfoAppointmentContainer({super.key, required this.appointmentEntity});
+  const InfoAppointmentContainer(
+      {super.key,
+      required this.isAgendaScreen,
+      required this.orderEntity,
+      required this.appointmentEntity});
 
   @override
   Widget build(BuildContext context) {
+    bool isClient = false;
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated) {
+      isClient = userState.user.rol == Rol.cliente;
+    }
     return GestureDetector(
-        onTap: () => navigateWithSlideTransition(context,
-            AppointmentInfoScreen(appointmentEntity: appointmentEntity)),
+        onTap: () async =>
+            (!isClient && appointmentEntity.status == ProgressStatus.pendiente)
+                ? await showModalBottomSheet<List>(
+                    scrollControlDisabledMaxHeightRatio: 1,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.white,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return PendingAppointmentModal(
+                          isAgendaScreen: isAgendaScreen,
+                          orderEntity: orderEntity,
+                          appointmentEntity: appointmentEntity);
+                    })
+                : navigateWithSlideTransition(
+                    context,
+                    AppointmentInfoScreen(
+                        orderEntity: orderEntity,
+                        appointmentEntity: appointmentEntity)),
         child: Container(
             padding: EdgeInsets.only(right: 16, left: 16, bottom: 16),
             decoration: BoxDecoration(
@@ -39,11 +72,15 @@ class InfoAppointmentContainer extends StatelessWidget {
               ]),
               SizedBox(height: 16),
               Row(children: [
-                SizedBox(width: 25),
-                Icon(Icons.attach_money),
-                SizedBox(width: 20),
-                Text(
-                    '\$${appointmentEntity.basePrice?.toStringAsFixed(2) ?? '0.00'}')
+                Row(children: [
+                  SizedBox(width: 25),
+                  Icon(Icons.attach_money),
+                  SizedBox(width: 20),
+                  Text(
+                      '\$${appointmentEntity.basePrice?.toStringAsFixed(2) ?? '0.00'}')
+                ]),
+                Spacer(),
+                ProgressStatusLabel(status: appointmentEntity.status)
               ]),
               SizedBox(height: 8),
               Row(children: [
