@@ -1,9 +1,6 @@
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/theme/responsive_size.dart';
-import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/screens/chat_screen/visualize_chat_user_screen.dart';
-import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -23,27 +20,10 @@ class _ChatsScreenState extends State<ChatsScreen> {
               context: context,
               url:
                   'https://b2472105.smushcdn.com/2472105/wp-content/uploads/2022/11/10-Poses-para-foto-de-Perfil-Profesional-Mujer-04-2022-1-819x1024.jpg?lossy=1&strip=1&webp=1',
-              title: 'Sofía Hernández',
-              subtitle: 'Te envío los datos de facturación',
+              title: 'Administrador',
+              subtitle: 'C',
               pendingMessages: '4'),
-          infoChat(
-              context: context,
-              url: 'https://ntvb.tmsimg.com/assets/assets/720474_v9_bc.jpg',
-              title: 'Sabrina Carpenter',
-              subtitle: 'Hola?? Hay alguien??!!',
-              check: true),
-          infoChat(
-              context: context,
-              url:
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRrJqk6q56_yFxyf124738UZSAaFKT_AqF3Q&s',
-              title: 'Taylor Swift',
-              subtitle: 'Claro. Con eso esta todo.',
-              check: true),
-          ElevatedButton(
-            onPressed: () => sl<MessagesBloc>().add(GetMessagesEvent()), 
-            child: Text('Chat')
-            
-          )
+        
         ]));
   }
 

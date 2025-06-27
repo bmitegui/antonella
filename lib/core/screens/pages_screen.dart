@@ -4,7 +4,8 @@ import 'package:antonella/features/product/presentation/bloc/products/products_b
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/screens/appointment/appointment_client_screen.dart';
 import 'package:antonella/features/service/presentation/screens/appointment/appointment_employee_screen.dart';
-import 'package:antonella/features/service/presentation/screens/chats_screen.dart';
+import 'package:antonella/features/service/presentation/screens/chat_screen/chats_screen.dart';
+import 'package:antonella/features/service/presentation/screens/chat_screen/visualize_chat_user_screen.dart';
 import 'package:antonella/features/service/presentation/screens/home_screen/home_screen_client.dart';
 import 'package:antonella/features/service/presentation/screens/home_screen/home_screen_employee.dart';
 import 'package:antonella/features/service/presentation/screens/notifications_screen.dart';
@@ -33,7 +34,7 @@ class _PagesScreenState extends State<PagesScreen> {
     AppointmentClientScreen(),
     SearchScreenClient(),
     HomeScreenClient(),
-    ChatsScreen(),
+    VisualizeChatUserScreen(),
     NotificationsScreen(),
     SettingsScreen()
   ];
