@@ -7,14 +7,17 @@ import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/core/widgets/banner_widget.dart';
+import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/form_done/form_done_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/progress_status_label.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/form_done.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentInfoScreen extends StatelessWidget {
+  final OrderEntity orderEntity;
   final AppointmentEntity appointmentEntity;
-  const AppointmentInfoScreen({super.key, required this.appointmentEntity});
+  const AppointmentInfoScreen(
+      {super.key, required this.orderEntity, required this.appointmentEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +78,9 @@ class AppointmentInfoScreen extends StatelessWidget {
               const SizedBox(height: 16),
               FilledButton(
                   onPressed: () async {
-                    sl<FormDoneBloc>().add(
-                        GetFormDoneEvent(serviceItemId: appointmentEntity.id));
+                    sl<FormDoneBloc>().add(GetFormDoneEvent(
+                        clientId: orderEntity.clientId,
+                        serviceItemId: appointmentEntity.id));
 
                     await showModalBottomSheet<List>(
                         scrollControlDisabledMaxHeightRatio: 1,

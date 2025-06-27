@@ -31,7 +31,7 @@ class InfoServicesChosen extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return InfoListAppointments(
-                          appointments: orderEntity.appointments);
+                          orderEntity: orderEntity);
                     });
               },
               child: Text('Ver más',

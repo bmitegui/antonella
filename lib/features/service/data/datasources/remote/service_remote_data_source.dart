@@ -23,9 +23,11 @@ abstract class ServiceRemoteDataSource {
       required String start,
       required String employeeId,
       required List<ServiceEntity> services});
-  Future<void> payOrder(
-      {required PaymentType paymentType});
-  Future<List<QuestionModel>> getFormDone({required String serviceItemId});
+  Future<void> payOrder({required PaymentType paymentType});
+  Future<List<QuestionModel>> getFormDone(
+      {required String clientId, required String serviceItemId});
+  Future<void> startAppointment(
+      {required String orderId, required String appointmentId});
 }
 
 class ServiceRemoteDataSourceImpl
@@ -240,14 +242,9 @@ class ServiceRemoteDataSourceImpl
 
   @override
   Future<List<QuestionModel>> getFormDone(
-      {required String serviceItemId}) async {
-    String userId = '';
-    final userState = sl<UserBloc>().state;
-    if (userState is UserAuthenticated) {
-      userId = userState.user.id;
-    }
+      {required String clientId, required String serviceItemId}) async {
     final url =
-        '${Environment.answer}?client_id=$userId&service_item_id=$serviceItemId';
+        '${Environment.answer}?client_id=$clientId&service_item_id=$serviceItemId';
     return await handleRequest(
         request: () => client.get(url, options: defaultOptions),
         onSuccess: (data) => (data as List)
@@ -256,7 +253,18 @@ class ServiceRemoteDataSourceImpl
             .toList());
   }
 
-  // Future<List<PromotionModel>> getPromotions() async{
-
-  // }
+  @override
+  Future<void> startAppointment(
+      {required String orderId, required String appointmentId}) async {
+    await handleRequest(
+        request: () => client.put(Environment.order,
+            data: {"id": orderId, "progress_status": "EN_PROGRESO"},
+            options: defaultOptions),
+        onSuccess: (_) {});
+    await handleRequest(
+        request: () => client.put(Environment.oderServiceItem,
+            data: {"id": appointmentId, "status": "EN_PROGRESO"},
+            options: defaultOptions),
+        onSuccess: (_) {});
+  }
 }

@@ -73,18 +73,29 @@ class ServiceRepositoryImpl implements ServiceRepository {
     return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
-          await serviceRemoteDataSource.payOrder( paymentType: paymentType);
+          await serviceRemoteDataSource.payOrder(paymentType: paymentType);
         });
   }
 
   @override
   Future<Either<Failure, List<QuestionModel>>> getFormDone(
-      {required String serviceItemId}) async {
+      {required String clientId, required String serviceItemId}) async {
     return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
           return await serviceRemoteDataSource.getFormDone(
-              serviceItemId: serviceItemId);
+              clientId: clientId, serviceItemId: serviceItemId);
+        });
+  }
+
+  @override
+  Future<Either<Failure, void>> startAppointment(
+      {required String orderId, required String appointmentId}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await serviceRemoteDataSource.startAppointment(
+              orderId: orderId, appointmentId: appointmentId);
         });
   }
 }
