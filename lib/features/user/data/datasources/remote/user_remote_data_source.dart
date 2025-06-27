@@ -111,9 +111,15 @@ class UserRemoteDataSourceImpl
 
     return await handleRequest(
         request: () => client.get(url, options: defaultOptions),
-        onSuccess: (data) => (data as List)
-            .map<MessageModel>(
-                (messageJson) => MessageModel.fromJson(messageJson))
-            .toList());
+        onSuccess: (data) {
+          if (data is! List) {
+            return [];
+          } else {
+            return data
+                .map<MessageModel>(
+                    (messageJson) => MessageModel.fromJson(messageJson))
+                .toList();
+          }
+        });
   }
 }

@@ -13,6 +13,7 @@ import 'package:antonella/core/widgets/custom_bottom_navigator_bar.dart';
 import 'package:antonella/features/service/presentation/screens/search_screen/search_screen_employee.dart';
 import 'package:antonella/features/user/domain/entities/entities.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:antonella/features/user/presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,6 +55,7 @@ class _PagesScreenState extends State<PagesScreen> {
     if (userState is UserAuthenticated) {
       sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
       if (userState.user.rol == Rol.cliente) {
+        sl<MessagesBloc>().add(GetMessagesEvent());
         sl<ServiceBloc>().add(GetServicesEvent());
         sl<ProductsBloc>().add(GetProductsEvent());
       } else {

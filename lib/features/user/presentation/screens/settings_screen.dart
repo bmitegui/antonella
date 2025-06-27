@@ -75,13 +75,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             title: Text('Cambiar Contraseña'),
                             onTap: () => navigateWithSlideTransition(
                                 context, UpdatePaswordScreen())),
-                        const Divider(height: 1),
+                        Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.edit),
                             title: const Text('Editar Perfil'),
                             onTap: () => navigateWithSlideTransition(
                                 context, EditProfileScreen())),
-                        const Divider(height: 1),
+                        Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.logout),
                             title: const Text('Cerrar Sesión'),
@@ -107,25 +107,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ListTile(
                             leading: const Icon(Icons.article_outlined),
                             title: Text('Historial de Compras'),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SupportScreen(),
-                                  ));
-                            }),
-                        const Divider(height: 1),
+                            onTap: () {}),
+                        Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.add_shopping_cart),
                             title: Text('Carrito de Compras'),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SupportScreen(),
-                                  ));
-                            }),
-                        const Divider(height: 1),
+                            onTap: () {}),
+                        Divider(height: 1, color: Colors.grey.shade300),
                       ])),
                   const SizedBox(height: 16),
                   Text('Preferencias',
@@ -143,12 +131,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 style: Theme.of(context).textTheme.titleMedium),
                             title: const Text('Cambiar Idioma'),
                             onTap: () {}),
-                        const Divider(height: 1),
+                        Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.dark_mode),
                             title: const Text('Modo Oscuro'),
                             onTap: () {}),
-                        const Divider(height: 1),
+                        Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.notifications),
                             title: const Text('Notificaciones'),
@@ -169,7 +157,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             leading: const Icon(Icons.policy),
                             title: const Text('Políticas de Privacidad'),
                             onTap: () {}),
-                        const Divider(height: 1),
+                        Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.build),
                             title: const Text('Soporte Técnico'),

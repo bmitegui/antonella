@@ -5,6 +5,7 @@ import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -222,6 +223,12 @@ ServiceType stringToType(String type) {
           : type == 'CABELLO'
               ? ServiceType.hair
               : ServiceType.makeup;
+}
+
+MessageType stringToMessageType(String type) {
+  return type == 'TEXT'
+      ? MessageType.text
+      : MessageType.image;
 }
 
 OrderStatus stringToOrderStatus(String status) {
