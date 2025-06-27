@@ -15,5 +15,5 @@ abstract class ServiceRepository {
       required List<ServiceEntity> services});
   Future<Either<Failure, List<OrderModel>>> getOrders({required String id});
   Future<Either<Failure, void>> payOrder(
-      {required String orderId, required PaymentType paymentType});
+      {required PaymentType paymentType});
 }

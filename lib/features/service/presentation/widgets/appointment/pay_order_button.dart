@@ -46,7 +46,6 @@ class PayOrderButton extends StatelessWidget {
                           WidgetStateProperty.all(Color(0xFFF44565))),
                   onPressed: () async => context.read<PayOrderBloc>().add(
                       PagarOrdenEvent(
-                          orderId: orderEntity.id,
                           paymentType: stringToPaymentType(metodo))),
                   child: (metodo == "EFECTIVO")
                       ? Text('Confirmar cita')

@@ -20,7 +20,7 @@ class SearchScreenClient extends StatefulWidget {
 class _SearchScreenClientState extends State<SearchScreenClient> {
   @override
   Widget build(BuildContext context) {
-    throw Scaffold();
+    return Scaffold();
   }
   // final listPromotions = [
   //   PromotionEntity(
