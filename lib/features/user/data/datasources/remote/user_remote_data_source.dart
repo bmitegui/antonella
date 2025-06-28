@@ -118,7 +118,6 @@ class UserRemoteDataSourceImpl
     return await handleRequest(
         request: () => client.get(url, options: defaultOptions),
         onSuccess: (data) {
-          print(data);
           if (data is! List) {
             return [];
           } else {

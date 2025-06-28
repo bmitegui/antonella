@@ -21,7 +21,9 @@ Exception getException({required String exception}) {
           ? ModelNotFoundException()
           : (exception == 'IncorrectPasswordException')
               ? IncorrectPasswordException()
-              : ServerException();
+              : (exception == 'InvalidUserNameException') 
+                  ? IncorrectUserNameException()
+                  : ServerException();
 }
 
 mixin RemoteRequestHelper {
@@ -35,7 +37,6 @@ mixin RemoteRequestHelper {
       required T Function(dynamic data) onSuccess}) async {
     try {
       final response = await request();
-      print('Respuesta: $response');
       return response.parseOrThrow(onSuccess);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
@@ -58,6 +59,8 @@ mixin RemoteRequestHelper {
     } on IncorrectPasswordException {
       rethrow;
     } on IncompleteFieldsException {
+      rethrow;
+    } on IncorrectUserNameException {
       rethrow;
     } catch (e) {
       throw ServerException(message: e.toString());

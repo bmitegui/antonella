@@ -19,6 +19,11 @@ class IncorrectPasswordException implements Exception {
   IncorrectPasswordException();
 }
 
+class IncorrectUserNameException implements Exception {
+  final String? message;
+  IncorrectUserNameException({this.message = 'Nombre de usuario incorrecto'});
+}
+
 class IncompleteFieldsException implements Exception {
   IncompleteFieldsException();
 }
