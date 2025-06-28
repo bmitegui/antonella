@@ -19,8 +19,13 @@ class PromotionsGridView extends StatelessWidget {
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0),
             itemBuilder: (context, index) {
-              return CustomCachedNetworkImage(
-                  imageUrl: listPromotions[index].imageUrl);
+              return GestureDetector(
+                onTap:() {
+                  
+                },
+                child: CustomCachedNetworkImage(
+                    imageUrl: listPromotions[index].imageUrl[0]),
+              );
             }));
   }
 }

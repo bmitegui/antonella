@@ -33,4 +33,5 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
       }
     });
   }
+
 }

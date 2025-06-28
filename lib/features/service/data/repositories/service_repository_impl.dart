@@ -4,6 +4,7 @@ import 'package:antonella/core/utils/repository_impl_util.dart';
 import 'package:antonella/features/service/data/datasources/datasources.dart';
 import 'package:antonella/features/service/data/models/models.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
+import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/domain/repositories/repositories.dart';
 import 'package:dartz/dartz.dart';
@@ -98,5 +99,15 @@ class ServiceRepositoryImpl implements ServiceRepository {
           await serviceRemoteDataSource.startAppointment(
               orderId: orderId, appointmentId: appointmentId);
         });
+  }
+  
+  @override
+  Future<Either<Failure, List<PromotionEntity>>> getPromotions() async{
+    return await handleNetworkCall( 
+      networkInfo: networkInfo,
+      operation: () async {
+        return await serviceRemoteDataSource.getPromotions();
+      }
+    );
   }
 }

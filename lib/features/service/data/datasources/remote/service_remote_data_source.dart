@@ -5,7 +5,9 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/data/models/models.dart';
+import 'package:antonella/features/service/data/models/promotion_model.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
+import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/domain/entities/question_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/user/data/models/user_model.dart';
@@ -29,6 +31,7 @@ abstract class ServiceRemoteDataSource {
       {required String clientId, required String serviceItemId});
   Future<void> startAppointment(
       {required String orderId, required String appointmentId});
+  Future<List<PromotionEntity>> getPromotions();
 }
 
 class ServiceRemoteDataSourceImpl
@@ -261,5 +264,16 @@ class ServiceRemoteDataSourceImpl
             data: {"id": appointmentId, "status": "EN_PROGRESO"},
             options: defaultOptions),
         onSuccess: (_) {});
+  }
+  
+  @override
+  Future<List<PromotionEntity>> getPromotions() async{
+    return await handleRequest(
+      request: () => client.get(Environment.publicity, options: defaultOptions), 
+      onSuccess: (data) => (data as List)
+            .map<PromotionModel>(
+                (dataJson) => PromotionModel.fromJson(dataJson))
+            .toList()
+    );
   }
 }

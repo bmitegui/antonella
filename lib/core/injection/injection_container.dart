@@ -10,8 +10,10 @@ import 'package:antonella/features/service/data/datasources/datasources.dart';
 import 'package:antonella/features/service/data/repositories/repositories.dart';
 import 'package:antonella/features/service/domain/repositories/repositories.dart';
 import 'package:antonella/features/product/domain/repositories/repositories.dart';
+import 'package:antonella/features/service/domain/usecases/get_promotions_use_case.dart';
 import 'package:antonella/features/service/domain/usecases/usecases.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
@@ -118,6 +120,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<StartAppointmentUseCase>(() =>
       StartAppointmentUseCase(serviceRepository: sl<ServiceRepository>()));
+  
+  sl.registerLazySingleton<GetPromotionsUseCase>(() =>
+      GetPromotionsUseCase(serviceRepository: sl<ServiceRepository>()));
 
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
@@ -171,6 +176,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<StartAppointmentBloc>(() => StartAppointmentBloc(
       startAppointmentUseCase: sl<StartAppointmentUseCase>()));
+
+  sl.registerLazySingleton<PromotionBloc>(() => PromotionBloc(
+      getPromotionsUseCase: sl<GetPromotionsUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

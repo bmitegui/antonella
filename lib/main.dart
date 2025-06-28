@@ -5,6 +5,7 @@ import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/router/router.dart';
 import 'package:antonella/core/theme/theme.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/core/injection/injection_container.dart' as di;
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<SendMessageBloc>()),
           BlocProvider(create: (context) => di.sl<FormDoneBloc>()),
           BlocProvider(create: (context) => di.sl<StartAppointmentBloc>()),
+          BlocProvider(create: (context) => di.sl<PromotionBloc>()),
         ],
         child: BlocBuilder<ThemeBloc, bool>(builder: (context, stateTheme) {
           return BlocBuilder<LanguageBloc, Locale>(
