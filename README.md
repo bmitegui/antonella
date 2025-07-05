@@ -44,6 +44,7 @@ Además:
 git clone https://github.com/usuario/antonella-app.git
 ```
 cd antonella-app
+
 2. **Solicita y agrega el archivo .env en la raíz del proyecto.**
 
 3. **Instala las dependencias:**
