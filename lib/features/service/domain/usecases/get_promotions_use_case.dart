@@ -11,6 +11,7 @@ class GetPromotionsUseCase implements UseCase<List<PromotionEntity>, NoParams> {
   @override
   Future<Either<Failure, List<PromotionEntity>>> call(
       NoParams noParams) async {
+        print("Volveras");
     return await serviceRepository.getPromotions();
   }
 }

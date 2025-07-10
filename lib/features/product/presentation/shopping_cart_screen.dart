@@ -7,8 +7,12 @@ import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/product/presentation/bloc/bloc.dart';
 import 'package:antonella/features/product/presentation/options_pay_shopping_cart_screen.dart';
 import 'package:antonella/features/product/presentation/quantity_selection_widget.dart';
+import 'package:antonella/features/service/domain/entities/order_entity.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/info_order_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../service/presentation/bloc/orders/orders_bloc.dart';
 
 class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({super.key});
@@ -45,69 +49,105 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                   : const SizedBox.shrink();
             })),
         body: BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
-            builder: (context, state) {
-          if (state is ProductsSelectedLoaded) {
-            // final selectedProducts = selectedProductIds.isEmpty
-            //     ? state.products
-            //     : state.products
-            //         .where((p) => selectedProductIds.contains(p.id))
-            //         .toList();
+          builder: (context, productState) {
 
-            // final dataTotal = calculateTotals(selectedProducts);
+            return BlocBuilder<OrdersBloc, OrdersState>(
+              builder: (context, orderState) {
+                if (productState is ProductsSelectedLoaded && orderState is OrdersLoaded) {
+                  final orders = orderState.orders;
+                  
+                  final ordersConfirmed = orders.where((order) {
+                    final isClientConfirmed =
+                        order.clientStatus == ClientStatus.confirmado;
 
-            if (selectedProductIds.isEmpty && state.products.isNotEmpty) {
-              selectedProductIds.addAll(state.products.map((p) => p.id));
-            }
+                    return isClientConfirmed;
+                  }).toList();
 
-            final selectedProducts = state.products
-                .where((p) => selectedProductIds.contains(p.id))
-                .toList();
+                  if (selectedProductIds.isEmpty && productState.products.isNotEmpty) {
+                    selectedProductIds.addAll(productState.products.map((p) => p.id));
+                  }
 
-            final dataTotal = calculateTotals(selectedProducts);
+                  final selectedProducts = productState.products
+                      .where((p) => selectedProductIds.contains(p.id))
+                      .toList();
 
-            return Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${state.products.length} items'),
-                      const SizedBox(height: 16),
-                      Column(
-                          children: getUniqueProducts(state.products)
-                              .map((product) => Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: buildCartItem(
-                                      productEntity: product,
-                                      quantity: countProductsById(
-                                          products: state.products,
-                                          productId: product.id),
-                                      isSelected: selectedProductIds
-                                          .contains(product.id),
-                                      onChanged: (bool? value) {
-                                        setState(() {
-                                          if (value == true) {
-                                            selectedProductIds.add(product.id);
-                                          } else {
-                                            selectedProductIds
-                                                .remove(product.id);
-                                          }
-                                        });
-                                      })))
-                              .toList()),
-                      const SizedBox(height: 16),
-                      buildPriceRow('Subtotal', '\$${dataTotal['subtotal']}'),
-                      const SizedBox(height: 8),
-                      buildPriceRow('IVA', '\$${dataTotal['iva']}'),
-                      const Divider(height: 32),
-                      buildPriceRow('Total', '\$${dataTotal['total']}',
-                          isBold: true, fontSize: 18)
-                    ]));
-          } else if (state is ProductsSelectedError) {
-            return Text(
-                mapFailureToMessage(context: context, failure: state.failure));
-          } else {
-            return CircularProgressIndicator();
-          }
+                  final dataTotal = calculateTotals(selectedProducts); 
+
+                  return SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Productos', style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(color: Color(0xFFF44565))),
+                            const SizedBox(height: 16),
+                            Text('${productState.products.length} items'),
+                            const SizedBox(height: 16),
+                            Column(
+                                children: getUniqueProducts(productState.products)
+                                    .map((product) => Padding(
+                                        padding: const EdgeInsets.only(bottom: 8),
+                                        child: buildCartItem(
+                                            productEntity: product,
+                                            quantity: countProductsById(
+                                                products: productState.products,
+                                                productId: product.id),
+                                            isSelected: selectedProductIds
+                                                .contains(product.id),
+                                            onChanged: (bool? value) {
+                                              setState(() {
+                                                if (value == true) {
+                                                  selectedProductIds.add(product.id);
+                                                } else {
+                                                  selectedProductIds
+                                                      .remove(product.id);
+                                                }
+                                              });
+                                            })))
+                                    .toList()),
+                            if (ordersConfirmed.isNotEmpty)
+                              Text('Servicios', style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(color: Color(0xFFF44565))), 
+                              const SizedBox(height: 16),
+                              ListView.separated(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) =>
+                                    InfoOrderContainer(
+                                  orderEntity: ordersConfirmed[index],
+                                ), 
+                                separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 16), 
+                                itemCount: ordersConfirmed.length
+                              ),
+                            const SizedBox(height: 16),
+                            buildPriceRow('Subtotal', '\$${dataTotal['subtotal']}'),
+                            const SizedBox(height: 8),
+                            buildPriceRow('IVA', '\$${dataTotal['iva']}'),
+                            const Divider(height: 32),
+                            buildPriceRow('Total', '\$${dataTotal['total']}',
+                                isBold: true, fontSize: 18)
+                          ])),
+                  );
+                  }
+                  else if (productState is ProductsSelectedError) {
+                    return Text(
+                        mapFailureToMessage(context: context, failure: productState.failure));
+                  } 
+                  else if (orderState is OrdersError) {
+                    return Text(
+                        mapFailureToMessage(context: context, failure: orderState.failure));
+                  }
+                  else {
+                    return CircularProgressIndicator();
+                  }
+              }
+                  
+            );         
         }));
   }
 

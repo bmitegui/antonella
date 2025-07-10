@@ -6,18 +6,25 @@ import 'package:antonella/core/widgets/banner_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/order_screen.dart';
 import 'package:flutter/material.dart';
 
-class InfoOrderContainer extends StatelessWidget {
+class InfoOrderContainer extends StatefulWidget {
   final OrderEntity orderEntity;
   const InfoOrderContainer({super.key, required this.orderEntity});
 
   @override
+  State<InfoOrderContainer> createState() => _InfoOrderContainerState();
+}
+
+class _InfoOrderContainerState extends State<InfoOrderContainer> {
+  bool isChecked = false;
+
+  @override
   Widget build(BuildContext context) {
-    final categories = orderEntity.appointments
+    final categories = widget.orderEntity.appointments
         .map((appointment) => appointment.serviceEntity.type)
         .toList();
     return GestureDetector(
         onTap: () => navigateWithSlideTransition(
-            context, OrderScreen(orderEntity: orderEntity)),
+            context, OrderScreen(orderEntity: widget.orderEntity)),
         child: Container(
             padding: EdgeInsets.only(right: 16, left: 16, bottom: 16),
             decoration: BoxDecoration(
@@ -27,6 +34,14 @@ class InfoOrderContainer extends StatelessWidget {
                 color: Colors.white),
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Checkbox(
+                  value: isChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
                 BannerWidget(
                     child: CustomLocalSvgImage(
                         assetPath: imagesServiceCategory[ServiceType.all]!)),
@@ -43,7 +58,7 @@ class InfoOrderContainer extends StatelessWidget {
                 SizedBox(width: 25),
                 Icon(Icons.attach_money),
                 SizedBox(width: 20),
-                Text('\$${getTotalBasePrice(orderEntity.appointments)}')
+                Text('\$${getTotalBasePrice(widget.orderEntity.appointments)}')
               ]),
               SizedBox(height: 8),
               Row(children: [
@@ -51,21 +66,21 @@ class InfoOrderContainer extends StatelessWidget {
                 Icon(Icons.calendar_month),
                 SizedBox(width: 20),
                 Text(
-                    '${orderEntity.appointments[0].day} - ${orderEntity.appointments[0].startTime}')
+                    '${widget.orderEntity.appointments[0].day} - ${widget.orderEntity.appointments[0].startTime}')
               ]),
               Divider(),
               Row(children: [
                 SizedBox(width: 25),
                 Icon(Icons.person),
                 SizedBox(width: 20),
-                Text(orderEntity.userEntity.name)
+                Text(widget.orderEntity.userEntity.name)
               ]),
               SizedBox(height: 10),
               Row(children: [
                 SizedBox(width: 25),
                 Icon(Icons.email),
                 SizedBox(width: 20),
-                Text(orderEntity.userEntity.email)
+                Text(widget.orderEntity.userEntity.email)
               ])
             ])));
   }

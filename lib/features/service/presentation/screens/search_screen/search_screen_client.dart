@@ -70,7 +70,8 @@ class _SearchScreenClientState extends State<SearchScreenClient> {
         text: 'Promociones',
         body: BlocBuilder<PromotionBloc, PromotionState>(builder: (context, state) {
           List<PromotionEntity>? filteredPromotions;
-          if (state is PromotionLoaded) filteredPromotions = state.listPromotions;
+          if (state is PromotionLoaded) {
+            filteredPromotions = state.listPromotions;}
           return Padding(
               padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
               child: Column(children: [

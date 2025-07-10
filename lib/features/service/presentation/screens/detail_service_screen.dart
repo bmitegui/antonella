@@ -13,10 +13,16 @@ import 'package:antonella/features/service/presentation/widgets/detail_service_s
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DetailServiceScreen extends StatelessWidget {
+class DetailServiceScreen extends StatefulWidget {
   final ServiceEntity serviceEntity;
   const DetailServiceScreen({super.key, required this.serviceEntity});
 
+  @override
+  State<DetailServiceScreen> createState() => _DetailServiceScreenState();
+}
+
+class _DetailServiceScreenState extends State<DetailServiceScreen> {
+  String? _chosenEmployee;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
@@ -26,7 +32,7 @@ class DetailServiceScreen extends StatelessWidget {
       bool isSelected = false;
       if (state is ServicesSelectedLoaded) {
         index = state.services
-            .indexWhere((service) => service.id == serviceEntity.id);
+            .indexWhere((service) => service.id == widget.serviceEntity.id);
         if (index != -1) {
           isSelected = true;
         }
@@ -46,14 +52,14 @@ class DetailServiceScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                        '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
+                        '\$${widget.serviceEntity.minPrice} - ${widget.serviceEntity.maxPrice}',
                         style: Theme.of(context).textTheme.titleMedium),
                     CustomElevatedButton(
                         onPressed: () async {
                           if (state is ServicesSelectedLoaded) {
                             final serviceSelected = isSelected
                                 ? state.services[index]
-                                : serviceEntity;
+                                : widget.serviceEntity;
                             sl<ServiceFormBloc>().add(
                                 SelectServiceEvent(service: serviceSelected));
                             await showModalBottomSheet<List>(
@@ -70,35 +76,67 @@ class DetailServiceScreen extends StatelessWidget {
                   ])),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            ImagesScrollview(images: serviceEntity.images),
+            ImagesScrollview(images: widget.serviceEntity.images),
             Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(serviceEntity.name,
+                      Text(widget.serviceEntity.name,
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium!
                               .copyWith(color: Color(0xFFF44565))),
                       SizedBox(height: 8),
-                      Text(serviceEntity.subtype,
+                      Text(widget.serviceEntity.subtype,
                           style: Theme.of(context).textTheme.titleMedium),
                       SizedBox(height: 8),
                       LabelDetailServiceWidget(
                           category: getCategoryText(
                               context: context,
-                              serviceCategory: serviceEntity.type),
-                          rating: serviceEntity.rating,
-                          duration: serviceEntity.duration),
+                              serviceCategory: widget.serviceEntity.type),
+                          rating: widget.serviceEntity.rating,
+                          duration: widget.serviceEntity.duration),
                       SizedBox(height: 8),
-                      Text(serviceEntity.description,
+                      Text(widget.serviceEntity.description,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
                               .copyWith(color: Colors.grey)),
                       SizedBox(height: 16),
+                      // Text("Trabajadores Disponibles", style: Theme.of(context)
+                      //         .textTheme
+                      //         .titleMedium!
+                      //         .copyWith(color: Color(0xFFF44565))),
+                      // DropdownButton(
+                      //   value: _chosenEmployee,
+                      //   items: <String>[
+                      //     'Juan',
+                      //     'Pedro',
+                      //     'David',
+                      //     'Daniel',
+                      //     'Mercedes'
+                      //   ].map<DropdownMenuItem<String>>((String value) {
+                      //     return DropdownMenuItem<String>(
+                      //       value: value,
+                      //       child: Text(value),
+                      //     );
+                      //   }).toList(), 
+                      //   onChanged: (String? newValue) {
+                      //     setState(() {
+                      //       _chosenEmployee = newValue;
+                      //     });
+                      //   },
+                      //   hint: Text(
+                      //     "Choose an available employee",
+                      //     style: TextStyle(
+                      //         color: Colors.black,
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.w600),
+                      //   ),
+                      // ),
+                      // SizedBox(height: 16),                      
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

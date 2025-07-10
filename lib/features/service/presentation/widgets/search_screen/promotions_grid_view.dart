@@ -1,3 +1,4 @@
+import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class PromotionsGridView extends StatelessWidget {
                   
                 },
                 child: CustomCachedNetworkImage(
-                    imageUrl: listPromotions[index].imageUrl[0]),
+                    imageUrl: Environment.apiUrl + listPromotions[index].imageUrl[0]),
               );
             }));
   }
