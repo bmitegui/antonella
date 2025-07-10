@@ -2,6 +2,7 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/product/presentation/bloc/products/products_bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
 import 'package:antonella/features/service/presentation/screens/appointment/appointment_client_screen.dart';
 import 'package:antonella/features/service/presentation/screens/appointment/appointment_employee_screen.dart';
 import 'package:antonella/features/service/presentation/screens/chat_screen/visualize_chat_user_screen.dart';
@@ -58,6 +59,7 @@ class _PagesScreenState extends State<PagesScreen> {
         sl<MessagesBloc>().add(GetMessagesEvent());
         sl<ServiceBloc>().add(GetServicesEvent());
         sl<ProductsBloc>().add(GetProductsEvent());
+        sl<PromotionBloc>().add(GetPromotionsEvent());
       } else {
         final dates = obtenerRangoFechas('SEMANAL');
         sl<EmployeeInfoBloc>().add(GetEmployeeInfoEvent(

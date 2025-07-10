@@ -7,16 +7,16 @@ class PromotionEntity extends Equatable {
   final String name;
   final String description;
   final List<String> imageUrl;
-  final List<ServiceType> categoryServices;
-  final List<ProductType> categoryProducts;
+  final List<dynamic> serviceItems;
+  final List<dynamic> productItems;
 
   const PromotionEntity(
       {required this.id,
       required this.name,
       required this.description,
       required this.imageUrl,
-      required this.categoryServices,
-      required this.categoryProducts
+      required this.serviceItems,
+      required this.productItems
       });
 
   @override

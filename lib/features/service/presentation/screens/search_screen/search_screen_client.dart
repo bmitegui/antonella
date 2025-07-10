@@ -1,3 +1,4 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -20,7 +21,6 @@ class SearchScreenClient extends StatefulWidget {
 }
 
 class _SearchScreenClientState extends State<SearchScreenClient> {
-
   // final listPromotions = [
   //   PromotionEntity(
   //       id: 'id',
@@ -68,28 +68,30 @@ class _SearchScreenClientState extends State<SearchScreenClient> {
   Widget build(BuildContext context) {
     return CustomScaffold(
         text: 'Promociones',
-        body: BlocBuilder<PromotionBloc, PromotionState>(builder: (context, state) {
+        body: BlocBuilder<PromotionBloc, PromotionState>(
+            builder: (context, state) {
           List<PromotionEntity>? filteredPromotions;
           if (state is PromotionLoaded) {
-            filteredPromotions = state.listPromotions;}
-          return Padding(
-              padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
-              child: Column(children: [
-                CustomSearchWidget(),
-                const SizedBox(height: 16),
-                (state is PromotionLoaded)
-                    ? Expanded(
-                        child: PromotionsGridView(
-                            listPromotions: filteredPromotions!))
+            filteredPromotions = state.listPromotions;
+          }
+          return RefreshIndicator(
+            onRefresh: () async =>sl<PromotionBloc>().add(GetPromotionsEvent()),
+            child: Padding(
+                padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
+                child: (state is PromotionLoaded)
+                    ? (state.listPromotions.isNotEmpty)
+                        ? Expanded(
+                          child: PromotionsGridView(
+                              listPromotions: filteredPromotions!),
+                        )
+                        : Center(
+                            child:
+                                Text('No existe promociones en este momento'))
                     : (state is PromotionError)
                         ? Text(mapFailureToMessage(
                             context: context, failure: state.failure))
-                        : Center(child: Text('No existe promociones en este momento'))
-                        //CircularProgressIndicator()
-              ]));
+                        : Center(child: CircularProgressIndicator())),
+          );
         }));
   }
 }
-
-
-

@@ -1,5 +1,6 @@
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
+import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/password/password_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
@@ -40,12 +41,10 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
   Widget build(BuildContext context) {
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
-    return Scaffold(
-        appBar: AppBar(
-            leading: ArrowBack(color: Color(0XFFF44565)),
-            backgroundColor: Color(0xFFF0F0F0)),
-        backgroundColor: Color(0xFFF0F0F0),
-        body: BlocBuilder<UserBloc, UserState>(builder: (context, stateUser) {
+    return CustomScaffold(
+        leading: ArrowBack(color: Color(0XFFF44565)),
+      
+        child: BlocBuilder<UserBloc, UserState>(builder: (context, stateUser) {
           return (stateUser is UserAuthenticated)
               ? Padding(
                   padding: const EdgeInsets.all(8.0),

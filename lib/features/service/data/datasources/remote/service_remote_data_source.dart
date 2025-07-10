@@ -267,7 +267,7 @@ class ServiceRemoteDataSourceImpl
   }
   
   @override
-  Future<List<PromotionEntity>> getPromotions() async{
+  Future<List<PromotionModel>> getPromotions() async{
     return await handleRequest(
       request: () => client.get(Environment.publicity, options: defaultOptions), 
       onSuccess: (data) => (data as List)

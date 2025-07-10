@@ -6,8 +6,8 @@ class PromotionModel extends PromotionEntity {
       required super.name,
       required super.description,
       required super.imageUrl,
-      required super.categoryServices,
-      required super.categoryProducts
+      required super.serviceItems,
+      required super.productItems
       });
 
   factory PromotionModel.fromJson(Map<String, dynamic> json) {
@@ -15,9 +15,9 @@ class PromotionModel extends PromotionEntity {
       id: json['id'], 
       name: json['title'], 
       description: json['description'], 
-      imageUrl: json['images'], 
-      categoryServices: json['service_items'], 
-      categoryProducts: json['product_items']
+      imageUrl: List<String>.from(json['images']), 
+      serviceItems: json['service_items'], 
+      productItems: json['product_items']
       );
   }
 }
