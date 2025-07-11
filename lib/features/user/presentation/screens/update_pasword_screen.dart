@@ -121,6 +121,7 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                                             context.read<PasswordBloc>().add(
                                                 PasswordResetEvent(
                                                     id: stateUser.user.id,
+                                                    code: '',
                                                     password: passwordController
                                                         .text
                                                         .trim()));

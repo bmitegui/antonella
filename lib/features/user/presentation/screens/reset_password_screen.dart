@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/features/user/presentation/bloc/password/password_bloc.dart';
@@ -81,6 +82,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               const CustomSnackBar.success(
                                   message: 'Contraseña actualizada'));
                           GoRouter.of(context).go('/signIn');
+                        } else if (state is PasswordError) {
+                          showTopSnackBar(
+                              Overlay.of(context),
+                              CustomSnackBar.error(
+                                  message: mapFailureToMessage(
+                                      context: context,
+                                      failure: state.failure)));
                         }
                       }, builder: (context, state) {
                         return state is PasswordLoading
@@ -107,6 +115,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                         context.read<PasswordBloc>().add(
                                             PasswordResetEvent(
                                                 id: state.userId,
+                                                code: state.code,
                                                 password: passwordController
                                                     .text
                                                     .trim()));
