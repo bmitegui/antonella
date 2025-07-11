@@ -48,8 +48,6 @@ final appRouter = GoRouter(
       SharedPreferences preferences = await SharedPreferences.getInstance();
       bool hasSeenStartScreen =
           preferences.getBool('hasSeenStartScreen') ?? false;
-      bool isFirebaseNotificationInit =
-          preferences.getBool('isFirebaseNotificationInit') ?? false;
       bool isNotificationGranted = await isNotificationPermissionGranted();
       final isGoingTo = state.fullPath;
 
@@ -69,16 +67,9 @@ final appRouter = GoRouter(
             await preferences.setBool('isFirebaseNotificationInit', false);
             return '/notification';
           } else {
-            if (!isFirebaseNotificationInit) {
-              final localNotificationsService =
-                  LocalNotificationsService.instance();
-              await localNotificationsService.init();
-              final firebaseMessagingService =
-                  FirebaseMessagingService.instance();
-              await firebaseMessagingService.init(
-                  localNotificationsService: localNotificationsService);
-              await preferences.setBool('isFirebaseNotificationInit', true);
-            }
+            await sl<LocalNotificationsService>().init();
+            await sl<FirebaseMessagingService>().init(
+                localNotificationsService: sl<LocalNotificationsService>());
           }
           if (isGoingTo == '/signUp') {
             return '/signUp';

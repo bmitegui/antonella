@@ -10,18 +10,40 @@ import 'package:antonella/core/widgets/banner_widget.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/form_done/form_done_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/progress_status_label.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/end_appointment_button.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/form_done.dart';
+import 'package:antonella/features/user/domain/entities/user_entity.dart';
+import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentInfoScreen extends StatelessWidget {
+  final bool isAgendaScreen;
   final OrderEntity orderEntity;
   final AppointmentEntity appointmentEntity;
   const AppointmentInfoScreen(
-      {super.key, required this.orderEntity, required this.appointmentEntity});
+      {super.key,
+      required this.isAgendaScreen,
+      required this.orderEntity,
+      required this.appointmentEntity});
 
   @override
   Widget build(BuildContext context) {
+    bool isClient = false;
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated) {
+      isClient = userState.user.rol == Rol.cliente;
+    }
+    final bool canFinishAppointment =
+        (!isClient && appointmentEntity.status == ProgressStatus.enProgreso);
     return CustomScaffold(
+        bottomNavigationBar: canFinishAppointment
+            ? Padding(
+                padding: const EdgeInsets.all(16),
+                child: EndAppoinmentButton(
+                    isAgendaScreen: isAgendaScreen,
+                    orderEntity: orderEntity,
+                    appointmentEntity: appointmentEntity))
+            : null,
         leading: ArrowBack(),
         text: 'Cita',
         body: Container(

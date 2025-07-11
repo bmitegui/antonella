@@ -2,19 +2,19 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
+import 'package:antonella/features/service/presentation/bloc/end_appointment/end_appointment_bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
-import 'package:antonella/features/service/presentation/bloc/start_appointment/start_appointment_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class StartAppoinmentButton extends StatelessWidget {
+class EndAppoinmentButton extends StatelessWidget {
   final bool isAgendaScreen;
   final OrderEntity orderEntity;
   final AppointmentEntity appointmentEntity;
-  const StartAppoinmentButton(
+  const EndAppoinmentButton(
       {super.key,
       required this.isAgendaScreen,
       required this.orderEntity,
@@ -22,15 +22,15 @@ class StartAppoinmentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<StartAppointmentBloc, StartAppointmentState>(
+    return BlocConsumer<EndAppointmentBloc, EndAppointmentState>(
         listener: (context, state) {
-      if (state is StartAppointmentLoaded) {
+      if (state is EndAppointmentLoaded) {
         final userState = sl<UserBloc>().state;
         if (userState is UserAuthenticated) {
           sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
         }
         showTopSnackBar(Overlay.of(context),
-            const CustomSnackBar.success(message: 'Cita empezada'));
+            const CustomSnackBar.success(message: 'Cita finalizada'));
         if (isAgendaScreen) {
           Navigator.pop(context);
           Navigator.pop(context);
@@ -38,7 +38,7 @@ class StartAppoinmentButton extends StatelessWidget {
         } else {
           Navigator.pop(context);
         }
-      } else if (state is StartAppointmentError) {
+      } else if (state is EndAppointmentError) {
         showTopSnackBar(
             Overlay.of(context),
             CustomSnackBar.error(
@@ -46,14 +46,14 @@ class StartAppoinmentButton extends StatelessWidget {
                     context: context, failure: state.failure)));
       }
     }, builder: (context, state) {
-      return (state is StartAppointmentLoading)
+      return (state is EndAppointmentLoading)
           ? Center(child: CircularProgressIndicator())
           : FilledButton(
-              onPressed: () => context.read<StartAppointmentBloc>().add(
-                  EmpezarCitaEvent(
+              onPressed: () => context.read<EndAppointmentBloc>().add(
+                  TerminarCitaEvent(
                       orderId: orderEntity.id,
                       appointmentId: appointmentEntity.id)),
-              child: Text("Empezar cita"));
+              child: Text("Terminar cita"));
     });
   }
 }
