@@ -31,3 +31,17 @@ class IncompleteFieldsException implements Exception {
 class ModelNotFoundException implements Exception {
   ModelNotFoundException();
 }
+
+class InvalidUserEmailException implements Exception {}
+
+class InvalidUserBirthdateException implements Exception {}
+
+class UserAlreadyExistsException implements Exception {}
+
+class InvalidUserNameException implements Exception {}
+
+class InvalidDniException implements Exception {}
+
+class InvalidPhoneNumberException implements Exception {}
+
+class InvalidUserPasswordException implements Exception {}

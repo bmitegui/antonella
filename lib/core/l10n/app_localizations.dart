@@ -304,6 +304,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unregistered user'**
   String get model_not_found_error;
+
+  /// No description provided for @invalid_user_email_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The format of the email entered is not correct'**
+  String get invalid_user_email_error;
+
+  /// No description provided for @invalid_user_birthdate_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The date of birth is invalid'**
+  String get invalid_user_birthdate_error;
+
+  /// No description provided for @user_already_exists_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The user is already registered'**
+  String get user_already_exists_error;
+
+  /// No description provided for @invalid_user_name_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The username is invalid'**
+  String get invalid_user_name_error;
+
+  /// No description provided for @invalid_dni_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The ID is invalid'**
+  String get invalid_dni_error;
+
+  /// No description provided for @invalid_phone_number_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The format of cell phone number is invalid'**
+  String get invalid_phone_number_error;
+
+  /// No description provided for @invalid_user_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The format of the password is invalid'**
+  String get invalid_user_password_error;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

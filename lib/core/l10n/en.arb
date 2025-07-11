@@ -39,5 +39,12 @@
     "unexpected_error": "Unexpected error",
     "password_error": "Password error",
     "incomplete_fields": "Incomplete Fields",
-    "model_not_found_error": "Unregistered user"
+    "model_not_found_error": "Unregistered user",
+    "invalid_user_email_error": "The format of the email entered is not correct",
+    "invalid_user_birthdate_error": "The date of birth is invalid",
+    "user_already_exists_error": "The user is already registered",
+    "invalid_user_name_error": "The username is invalid",
+    "invalid_dni_error": "The ID is invalid",
+    "invalid_phone_number_error": "The format of cell phone number is invalid",
+    "invalid_user_password_error": "The format of the password is invalid"
 }

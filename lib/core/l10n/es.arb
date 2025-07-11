@@ -39,5 +39,12 @@
     "unexpected_error": "Error inesperado",
     "password_error": "Contraseña incorrecta",
     "incomplete_fields": "Campos incompletos",
-    "model_not_found_error": "Usuario no registrado"
+    "model_not_found_error": "Usuario no registrado",
+    "invalid_user_email_error": "El formato del correo ingresado no es el correcto",
+    "invalid_user_birthdate_error": "La fecha de nacimiento es inválida",
+    "user_already_exists_error": "El usuario ya se encuentra registrado",
+    "invalid_user_name_error": "El nombre de usuario es inválido",
+    "invalid_dni_error": "El dni es inválido",
+    "invalid_phone_number_error": "El formato del número de celular es inválido",
+    "invalid_user_password_error": "El formato de la contraseña es inválido"
 }

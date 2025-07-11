@@ -27,6 +27,22 @@ class IncompleteFieldsFailure extends Failure {
   IncompleteFieldsFailure({super.message});
 }
 
-class ModelNotFoundFailure implements Exception {
-  ModelNotFoundFailure();
+class ModelNotFoundFailure extends Failure {
+  ModelNotFoundFailure({super.message});
 }
+
+class InvalidUserEmailFailure extends Failure {
+  InvalidUserEmailFailure({super.message});
+}
+
+class InvalidUserBirthdateFailure extends Failure {}
+
+class UserAlreadyExistsFailure extends Failure {}
+
+class InvalidUserNameFailure extends Failure {}
+
+class InvalidDniFailure extends Failure {}
+
+class InvalidPhoneNumberFailure extends Failure {}
+
+class InvalidUserPasswordFailure extends Failure {}
