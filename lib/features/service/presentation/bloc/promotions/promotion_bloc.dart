@@ -11,6 +11,7 @@ class PromotionBloc extends Bloc<PromotionEvent, PromotionState> {
 
   PromotionBloc({required this.getPromotionsUseCase}) : super(PromotionInitial()) {
     on<GetPromotionsEvent>(_onGetPromotionsEventRequest);
+    on<AddPromotionEvent>(_onAddPromotionsEventRequest);
   }
 
   Future<void> _onGetPromotionsEventRequest(
@@ -22,6 +23,20 @@ class PromotionBloc extends Bloc<PromotionEvent, PromotionState> {
     }, (listPromotions) async {
         emit(PromotionLoaded(listPromotions: listPromotions));
     });
+  }
+
+  Future<void> _onAddPromotionsEventRequest(AddPromotionEvent event, Emitter<PromotionState> emit) async {
+    final currentState = state;
+    if (currentState is PromotionLoaded) {
+    // Copiamos la lista actual y agregamos la nueva promoción
+    final updatedPromotions = List<PromotionEntity>.from(currentState.listPromotions)
+      ..add(event.promotionEntity);
+
+    emit(PromotionLoaded(listPromotions: updatedPromotions));
+  } else {
+    // Si no hay promociones cargadas aún, creamos una nueva lista
+    emit(PromotionLoaded(listPromotions: [event.promotionEntity]));
+  }
   }
 
 }

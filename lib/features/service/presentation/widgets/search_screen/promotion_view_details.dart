@@ -1,8 +1,10 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/images_scrollview.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
+import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -28,6 +30,8 @@ class _PromotionViewDetailsState extends State<PromotionViewDetails> {
                 boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)]),
             child: CustomElevatedButton(
                 onPressed: () {
+                  sl<PromotionBloc>().add(AddPromotionEvent(promotionEntity: widget.promotionEntity));
+                  
                   showTopSnackBar(Overlay.of(context),
                       CustomSnackBar.success(message: 'Producto agregado'));
                   Navigator.pop(context);
