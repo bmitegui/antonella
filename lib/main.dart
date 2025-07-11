@@ -3,6 +3,7 @@ import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/router/router.dart';
+import 'package:antonella/core/services/firebase_options.dart';
 import 'package:antonella/core/theme/theme.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/core/injection/injection_container.dart' as di;
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +20,7 @@ import 'features/product/presentation/bloc/bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await di.init();
   await Environment.initializeEnv();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MaterialTheme theme = const MaterialTheme();
+
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => di.sl<ThemeBloc>()),

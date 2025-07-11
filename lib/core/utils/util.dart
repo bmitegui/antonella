@@ -15,6 +15,7 @@ import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart' as path;
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 double generarDoubleEntre35y50() {
@@ -376,4 +377,24 @@ List<Map<String, dynamic>> groupProducts(
   }
 
   return grouped.values.toList();
+}
+
+Future<bool> isNotificationPermissionGranted() async {
+  final status = await Permission.notification.status;
+  return status.isGranted;
+}
+
+Future<void> requestNotificationPermission(BuildContext context) async {
+  final status = await Permission.notification.status;
+
+  if (status.isDenied || status.isRestricted) {
+    final result = await Permission.notification.request();
+
+    if (result.isPermanentlyDenied) {
+      // Llevar al usuario a configuración de la app
+      openAppSettings();
+    }
+  } else if (status.isPermanentlyDenied) {
+    openAppSettings();
+  }
 }
