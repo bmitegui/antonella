@@ -14,6 +14,7 @@ import 'package:antonella/features/service/domain/usecases/get_promotions_use_ca
 import 'package:antonella/features/service/domain/usecases/usecases.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
+import 'package:antonella/features/service/presentation/promotion_cart/promotion_cart_bloc.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
@@ -179,6 +180,8 @@ Future<void> init() async {
 
   sl.registerLazySingleton<PromotionBloc>(() => PromotionBloc(
       getPromotionsUseCase: sl<GetPromotionsUseCase>()));
+
+  sl.registerLazySingleton<PromotionCartBloc>(() => PromotionCartBloc());
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());
