@@ -22,7 +22,6 @@ class DetailServiceScreen extends StatefulWidget {
 }
 
 class _DetailServiceScreenState extends State<DetailServiceScreen> {
-  String? _chosenEmployee;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(

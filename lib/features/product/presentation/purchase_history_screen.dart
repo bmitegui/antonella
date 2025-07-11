@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 

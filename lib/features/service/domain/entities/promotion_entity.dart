@@ -1,5 +1,3 @@
-import 'package:antonella/features/product/domain/entities/product_entity.dart';
-import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:equatable/equatable.dart';
 
 class PromotionEntity extends Equatable {

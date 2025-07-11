@@ -1,7 +1,11 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/router/app_router_notifier.dart';
 import 'package:antonella/core/screens/loading_screen.dart';
+import 'package:antonella/core/screens/notification_screen.dart';
 import 'package:antonella/core/screens/start_screen.dart';
+import 'package:antonella/core/services/firebase_messaging_service.dart';
+import 'package:antonella/core/services/local_notifications_service.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/presentation/screens/confirmation_screen.dart';
 import 'package:antonella/core/screens/pages_screen.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
@@ -23,18 +27,28 @@ final appRouter = GoRouter(
           path: '/loading', builder: (context, state) => const LoadingScreen()),
       GoRoute(path: '/start', builder: (context, state) => const StartScreen()),
       GoRoute(
+          path: '/notification',
+          builder: (context, state) => const NotificationScreen()),
+      GoRoute(
           path: '/signIn', builder: (context, state) => const SignInScreen()),
       GoRoute(
           path: '/signUp', builder: (context, state) => const SignUpScreen()),
       GoRoute(path: '/pages', builder: (context, state) => const PagesScreen()),
-      GoRoute(path: '/forgotPassword', builder:(context, state) => const RecoverForgotPasswordScreen()),
-      GoRoute(path: '/confirmation', builder: (context, state) => const ConfirmationScreen()),
-      GoRoute(path: '/resetPassword', builder: (context, state) => const ResetPasswordScreen())
+      GoRoute(
+          path: '/forgotPassword',
+          builder: (context, state) => const RecoverForgotPasswordScreen()),
+      GoRoute(
+          path: '/confirmation',
+          builder: (context, state) => const ConfirmationScreen()),
+      GoRoute(
+          path: '/resetPassword',
+          builder: (context, state) => const ResetPasswordScreen())
     ],
     redirect: (context, state) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       bool hasSeenStartScreen =
           preferences.getBool('hasSeenStartScreen') ?? false;
+      bool isNotificationGranted = await isNotificationPermissionGranted();
       final isGoingTo = state.fullPath;
 
       if (userBloc.state is UserLoading) {
@@ -48,16 +62,29 @@ final appRouter = GoRouter(
       } else if (userBloc.state is UserUnauthenticated) {
         if (!hasSeenStartScreen) {
           return '/start';
-        } else if (isGoingTo == '/signUp') {
-          return '/signUp';
-        } else if (isGoingTo == '/forgotPassword') {
-          return '/forgotPassword';
-        } else if (isGoingTo == '/confirmation') {
-          return '/confirmation';
-        }else if (isGoingTo == '/resetPassword') {
-          return '/resetPassword';
-        } else if (isGoingTo != '/signIn') {
-          return '/signIn';
+        } else {
+          if (!isNotificationGranted) {
+            return '/notification';
+          } else {
+            final localNotificationsService =
+                LocalNotificationsService.instance();
+            await localNotificationsService.init();
+            final firebaseMessagingService =
+                FirebaseMessagingService.instance();
+            await firebaseMessagingService.init(
+                localNotificationsService: localNotificationsService);
+          }
+          if (isGoingTo == '/signUp') {
+            return '/signUp';
+          } else if (isGoingTo == '/forgotPassword') {
+            return '/forgotPassword';
+          } else if (isGoingTo == '/confirmation') {
+            return '/confirmation';
+          } else if (isGoingTo == '/resetPassword') {
+            return '/resetPassword';
+          } else if (isGoingTo != '/signIn') {
+            return '/signIn';
+          }
         }
       }
       return null;
