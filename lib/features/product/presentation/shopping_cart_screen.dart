@@ -9,7 +9,7 @@ import 'package:antonella/features/product/presentation/options_pay_shopping_car
 import 'package:antonella/features/product/presentation/quantity_selection_widget.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
-import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
+import 'package:antonella/features/service/presentation/promotion_cart/promotion_cart_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_order_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +25,7 @@ class ShoppingCartScreen extends StatefulWidget {
 
 class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   final Set<String> selectedProductIds = {};
+  bool value = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +56,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
             return BlocBuilder<OrdersBloc, OrdersState>(
               builder: (context, orderState) {
-                return BlocBuilder<PromotionBloc, PromotionState>(
+                return BlocBuilder<PromotionCartBloc, PromotionCartState>(
                   builder: (context, promotionState) {
-                    if (productState is ProductsSelectedLoaded && orderState is OrdersLoaded && promotionState is PromotionLoaded) {
+                    if (productState is ProductsSelectedLoaded && orderState is OrdersLoaded && promotionState is PromotionCartLoaded) {
                       final orders = orderState.orders;
-                      final promotions = promotionState.listPromotions;
+                      final promotions = promotionState.cartPromotions;
                       
                       final ordersConfirmed = orders.where((order) {
                         final isClientConfirmed =
@@ -147,7 +148,14 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                                           children: promotions
                                               .map((promotion) => Padding(
                                                     padding: const EdgeInsets.only(bottom: 8),
-                                                    child: buildCartPromotion(promotionEntity: promotion),
+                                                    child: buildCartPromotion(
+                                                      promotionEntity: promotion,
+                                                       value: value, 
+                                                       onChanged: (bool? data) {
+                                                        setState(() {
+                                                          value = data!;
+                                                        });
+                                                      }),
                                                   ))
                                               .toList(),
                                         ),
@@ -226,19 +234,14 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
         ]));
   }
 
-  Widget buildCartPromotion({required PromotionEntity promotionEntity }) {
-    bool value = false;
+  Widget buildCartPromotion({required PromotionEntity promotionEntity, required bool value, required onChanged}) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(12)),
       child: Row(
         children: [
-          Checkbox(value: value, onChanged: (bool? data) {
-            setState(() {
-              value = data!;
-            });
-          }),
+          Checkbox(value: value, onChanged: onChanged),
           Image.network(Environment.apiUrl + promotionEntity.imageUrl[0],
               width: 60, height: 60),
           const SizedBox(width: 12),
