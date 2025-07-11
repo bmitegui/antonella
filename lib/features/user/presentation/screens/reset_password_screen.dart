@@ -104,8 +104,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                             WidgetStateProperty.all(
                                                 Color(0xFFF44565))),
                                     onPressed: () {
-                                      if (passwordController.text !=
-                                          repeatPasswordController.text) {
+                                      if (passwordController.text.trim() !=
+                                          repeatPasswordController.text
+                                              .trim()) {
                                         showTopSnackBar(
                                             Overlay.of(context),
                                             CustomSnackBar.error(

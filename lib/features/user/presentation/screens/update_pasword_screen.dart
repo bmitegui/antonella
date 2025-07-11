@@ -1,3 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/services/key_value_storage_service_impl.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -43,7 +47,6 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
     final textTheme = Theme.of(context).textTheme;
     return CustomScaffold(
         leading: ArrowBack(color: Color(0XFFF44565)),
-      
         child: BlocBuilder<UserBloc, UserState>(builder: (context, stateUser) {
           return (stateUser is UserAuthenticated)
               ? Padding(
@@ -117,14 +120,37 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                                               backgroundColor:
                                                   WidgetStateProperty.all(
                                                       Color(0xFFF44565))),
-                                          onPressed: () {
-                                            context.read<PasswordBloc>().add(
-                                                PasswordResetEvent(
-                                                    id: stateUser.user.id,
-                                                    code: '',
-                                                    password: passwordController
-                                                        .text
-                                                        .trim()));
+                                          onPressed: () async {
+                                            if (passwordController.text
+                                                    .trim() !=
+                                                repeatPasswordController.text
+                                                    .trim()) {
+                                              showTopSnackBar(
+                                                  Overlay.of(context),
+                                                  CustomSnackBar.error(
+                                                      message:
+                                                          'Las contraseñas no son iguales'));
+                                            } else if (await sl<
+                                                        KeyValueStorageServiceImpl>()
+                                                    .getValue<String>(
+                                                        'password') !=
+                                                passwordBackController.text
+                                                    .trim()) {
+                                              showTopSnackBar(
+                                                  Overlay.of(context),
+                                                  CustomSnackBar.error(
+                                                      message:
+                                                          'La contraseña actual es incorrecta'));
+                                            } else {
+                                              context.read<PasswordBloc>().add(
+                                                  PasswordResetEvent(
+                                                      id: stateUser.user.id,
+                                                      code: '',
+                                                      password:
+                                                          passwordController
+                                                              .text
+                                                              .trim()));
+                                            }
                                           },
                                           child: Text('Guardar')));
                             })
