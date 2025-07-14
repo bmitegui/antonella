@@ -14,5 +14,7 @@ final class PasswordCodeEvent extends PasswordEvent {
 final class PasswordResetEvent extends PasswordEvent {
   final String id;
   final String password;
-  PasswordResetEvent({required this.id, required this.password});
+  final String code;
+  PasswordResetEvent(
+      {required this.id, required this.password, required this.code});
 }

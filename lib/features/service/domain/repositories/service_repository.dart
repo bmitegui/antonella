@@ -20,5 +20,7 @@ abstract class ServiceRepository {
       {required String clientId, required String serviceItemId});
   Future<Either<Failure, void>> startAppointment(
       {required String orderId, required String appointmentId});
+  Future<Either<Failure, void>> endAppointment(
+      {required String orderId, required String appointmentId});
   Future<Either<Failure, List<PromotionEntity>>> getPromotions();
 }

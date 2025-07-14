@@ -46,6 +46,7 @@ class InfoAppointmentContainer extends StatelessWidget {
                 : navigateWithSlideTransition(
                     context,
                     AppointmentInfoScreen(
+                        isAgendaScreen: isAgendaScreen,
                         orderEntity: orderEntity,
                         appointmentEntity: appointmentEntity)),
         child: Container(

@@ -31,6 +31,8 @@ abstract class ServiceRemoteDataSource {
       {required String clientId, required String serviceItemId});
   Future<void> startAppointment(
       {required String orderId, required String appointmentId});
+  Future<void> endAppointment(
+      {required String orderId, required String appointmentId});
   Future<List<PromotionEntity>> getPromotions();
 }
 
@@ -262,6 +264,16 @@ class ServiceRemoteDataSourceImpl
     await handleRequest(
         request: () => client.put(Environment.oderServiceItem,
             data: {"id": appointmentId, "status": "EN_PROGRESO"},
+            options: defaultOptions),
+        onSuccess: (_) {});
+  }
+
+    @override
+  Future<void> endAppointment(
+      {required String orderId, required String appointmentId}) async {
+    await handleRequest(
+        request: () => client.put(Environment.oderServiceItem,
+            data: {"id": appointmentId, "status": "FINALIZADO"},
             options: defaultOptions),
         onSuccess: (_) {});
   }

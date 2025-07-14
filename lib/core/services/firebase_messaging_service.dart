@@ -15,8 +15,15 @@ class FirebaseMessagingService {
   // Reference to local notifications service for displaying notifications
   LocalNotificationsService? _localNotificationsService;
 
+  //Flag to track initialization status
+  bool _isFirebaseMessagingInitialized = false;
+
   /// Initialize Firebase Messaging and sets up all message listeners
   Future<void> init({required LocalNotificationsService localNotificationsService}) async {
+     if (_isFirebaseMessagingInitialized) {
+      return;
+    }
+
     // Init local notifications service
     _localNotificationsService = localNotificationsService;
 
@@ -40,6 +47,9 @@ class FirebaseMessagingService {
     if (initialMessage != null) {
       _onMessageOpenedApp(initialMessage);
     }
+
+    // Mark initialization as complete
+    _isFirebaseMessagingInitialized = true;
   }
 
   /// Retrieves and manages the FCM token for push notifications

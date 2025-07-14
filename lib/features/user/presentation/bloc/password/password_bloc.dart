@@ -22,7 +22,7 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
         PasswordResetParams(id: event.id, password: event.password));
     failureOrSuccess.fold((failure) {
       emit(PasswordError(failure: failure));
-      emit(PasswordLoaded(code: '', userId: event.id));
+      emit(PasswordLoaded(code: event.code, userId: event.id));
     }, (vacio) async {
       emit(PasswordReseted());
     });

@@ -34,19 +34,18 @@ class FilterListAppointment extends StatelessWidget {
                 .toList();
           }
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: appointmentEntries.map((entry) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: InfoAppointmentContainer(
-                  isAgendaScreen: false,
-                  orderEntity: entry.order,
-                  appointmentEntity: entry.appointment,
-                ),
-              );
-            }).toList(),
-          );
+          return appointmentEntries.isNotEmpty
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: appointmentEntries.map((entry) {
+                    return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: InfoAppointmentContainer(
+                            isAgendaScreen: false,
+                            orderEntity: entry.order,
+                            appointmentEntity: entry.appointment));
+                  }).toList())
+              : Center(child: Text('No existen citas disponibles'));
         } else if (state is OrdersLoading) {
           return const Center(child: CircularProgressIndicator());
         } else {

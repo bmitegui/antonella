@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 
 class InfoOrderContainer extends StatefulWidget {
   final OrderEntity orderEntity;
-  const InfoOrderContainer({super.key, required this.orderEntity});
+  final bool hasCheckBox;
+  const InfoOrderContainer(
+      {super.key, required this.orderEntity, this.hasCheckBox = false});
 
   @override
   State<InfoOrderContainer> createState() => _InfoOrderContainerState();
@@ -34,14 +36,10 @@ class _InfoOrderContainerState extends State<InfoOrderContainer> {
                 color: Colors.white),
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Checkbox(
-                  value: isChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      isChecked = value!;
-                    });
-                  },
-                ),
+                if (widget.hasCheckBox)
+                  Checkbox(
+                      value: isChecked,
+                      onChanged: (value) => setState(() => isChecked = value!)),
                 BannerWidget(
                     child: CustomLocalSvgImage(
                         assetPath: imagesServiceCategory[ServiceType.all]!)),

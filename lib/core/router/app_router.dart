@@ -64,15 +64,12 @@ final appRouter = GoRouter(
           return '/start';
         } else {
           if (!isNotificationGranted) {
+            await preferences.setBool('isFirebaseNotificationInit', false);
             return '/notification';
           } else {
-            final localNotificationsService =
-                LocalNotificationsService.instance();
-            await localNotificationsService.init();
-            final firebaseMessagingService =
-                FirebaseMessagingService.instance();
-            await firebaseMessagingService.init(
-                localNotificationsService: localNotificationsService);
+            await sl<LocalNotificationsService>().init();
+            await sl<FirebaseMessagingService>().init(
+                localNotificationsService: sl<LocalNotificationsService>());
           }
           if (isGoingTo == '/signUp') {
             return '/signUp';

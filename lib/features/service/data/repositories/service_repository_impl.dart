@@ -110,4 +110,14 @@ class ServiceRepositoryImpl implements ServiceRepository {
       }
     );
   }
+  
+  @override
+  Future<Either<Failure, void>> endAppointment({required String orderId, required String appointmentId}) async{
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await serviceRemoteDataSource.endAppointment(
+              orderId: orderId, appointmentId: appointmentId);
+        });
+  }
 }

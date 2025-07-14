@@ -7,3 +7,4 @@ export 'orders/orders_bloc.dart';
 export './pay_order/pay_order_bloc.dart';
 export './form_done/form_done_bloc.dart';
 export './start_appointment/start_appointment_bloc.dart';
+export './end_appointment/end_appointment_bloc.dart';

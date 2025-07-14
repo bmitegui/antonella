@@ -113,4 +113,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get model_not_found_error => 'Unregistered user';
+
+  @override
+  String get invalid_user_email_error => 'The format of the email entered is not correct';
+
+  @override
+  String get invalid_user_birthdate_error => 'The date of birth is invalid';
+
+  @override
+  String get user_already_exists_error => 'The user is already registered';
+
+  @override
+  String get invalid_user_name_error => 'The username is invalid';
+
+  @override
+  String get invalid_dni_error => 'The ID is invalid';
+
+  @override
+  String get invalid_phone_number_error => 'The format of cell phone number is invalid';
+
+  @override
+  String get invalid_user_password_error => 'The format of the password is invalid';
 }

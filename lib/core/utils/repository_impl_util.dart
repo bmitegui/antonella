@@ -15,6 +15,20 @@ Future<Either<Failure, T>> handleNetworkCall<T>(
       return Left(IncorrectPasswordFailure());
     } on IncompleteFieldsException {
       return Left(IncompleteFieldsFailure());
+    } on InvalidUserEmailException {
+      return Left(InvalidUserEmailFailure());
+    } on InvalidUserBirthdateException {
+      return Left(InvalidUserBirthdateFailure());
+    } on UserAlreadyExistsException {
+      return Left(UserAlreadyExistsFailure());
+    } on InvalidUserNameException {
+      return Left(InvalidUserNameFailure());
+    } on InvalidDniException {
+      return Left(InvalidDniFailure());
+    } on InvalidPhoneNumberException {
+      return Left(InvalidPhoneNumberFailure());
+    } on InvalidUserPasswordException {
+      return Left(InvalidUserPasswordFailure());
     } on UnexpectedException {
       return Left(UnexpectedFailure());
     } on ServerException catch (e) {

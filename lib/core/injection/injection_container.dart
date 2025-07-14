@@ -1,6 +1,8 @@
 import 'package:antonella/core/bloc/bloc.dart';
 import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/network/network.dart';
+import 'package:antonella/core/services/firebase_messaging_service.dart';
+import 'package:antonella/core/services/local_notifications_service.dart';
 import 'package:antonella/core/services/services.dart';
 import 'package:antonella/features/product/data/datasources/remote/products_remote_datasource.dart';
 import 'package:antonella/features/product/data/repositories/products_repository_impl.dart';
@@ -48,6 +50,11 @@ Future<void> init() async {
       instanceName: 'UserModel');
   await Hive.openBox('UserModel');
 
+  sl.registerLazySingleton<LocalNotificationsService>(
+      () => LocalNotificationsService.instance());
+  sl.registerLazySingleton<FirebaseMessagingService>(
+      () => FirebaseMessagingService.instance());
+      
   //! Data sources
   sl.registerLazySingleton<UserRemoteDataSource>(
       () => UserRemoteDataSourceImpl(client: sl<Dio>()));
@@ -112,7 +119,7 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetMessagesUseCase>(
       () => GetMessagesUseCase(userRepository: sl<UserRepository>()));
-  
+
   sl.registerLazySingleton<SendMessagesUseCase>(
       () => SendMessagesUseCase(userRepository: sl<UserRepository>()));
 
@@ -121,9 +128,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<StartAppointmentUseCase>(() =>
       StartAppointmentUseCase(serviceRepository: sl<ServiceRepository>()));
-  
-  sl.registerLazySingleton<GetPromotionsUseCase>(() =>
-      GetPromotionsUseCase(serviceRepository: sl<ServiceRepository>()));
+
+  sl.registerLazySingleton<EndAppointmentUseCase>(
+      () => EndAppointmentUseCase(serviceRepository: sl<ServiceRepository>()));
+
+  sl.registerLazySingleton<GetPromotionsUseCase>(
+      () => GetPromotionsUseCase(serviceRepository: sl<ServiceRepository>()));
 
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
@@ -168,7 +178,7 @@ Future<void> init() async {
 
   sl.registerLazySingleton<MessagesBloc>(
       () => MessagesBloc(getMessagesUseCase: sl<GetMessagesUseCase>()));
-  
+
   sl.registerLazySingleton<SendMessageBloc>(
       () => SendMessageBloc(sendMessagesUseCase: sl<SendMessagesUseCase>()));
 
@@ -178,8 +188,11 @@ Future<void> init() async {
   sl.registerLazySingleton<StartAppointmentBloc>(() => StartAppointmentBloc(
       startAppointmentUseCase: sl<StartAppointmentUseCase>()));
 
-  sl.registerLazySingleton<PromotionBloc>(() => PromotionBloc(
-      getPromotionsUseCase: sl<GetPromotionsUseCase>()));
+  sl.registerLazySingleton<EndAppointmentBloc>(() =>
+      EndAppointmentBloc(endAppointmentUseCase: sl<EndAppointmentUseCase>()));
+
+  sl.registerLazySingleton<PromotionBloc>(
+      () => PromotionBloc(getPromotionsUseCase: sl<GetPromotionsUseCase>()));
 
   sl.registerLazySingleton<PromotionCartBloc>(() => PromotionCartBloc());
 

@@ -21,9 +21,22 @@ Exception getException({required String exception}) {
           ? ModelNotFoundException()
           : (exception == 'IncorrectPasswordException')
               ? IncorrectPasswordException()
-              : (exception == 'InvalidUserNameException') 
-                  ? IncorrectUserNameException()
-                  : ServerException();
+              : (exception == 'InvalidUserEmailException')
+                  ? InvalidUserEmailException()
+                  : (exception == 'InvalidUserBirthdateException')
+                      ? InvalidUserBirthdateException()
+                      : (exception == 'UserAlreadyExistsException')
+                          ? UserAlreadyExistsException()
+                          : (exception == 'InvalidUserNameException')
+                              ? InvalidUserNameException()
+                              : (exception == 'InvalidDniException')
+                                  ? InvalidDniException()
+                                  : (exception == 'InvalidPhoneNumberException')
+                                      ? InvalidPhoneNumberException()
+                                      : (exception ==
+                                              'InvalidUserPasswordException')
+                                          ? InvalidUserPasswordException()
+                                          : ServerException();
 }
 
 mixin RemoteRequestHelper {
@@ -61,6 +74,20 @@ mixin RemoteRequestHelper {
     } on IncompleteFieldsException {
       rethrow;
     } on IncorrectUserNameException {
+      rethrow;
+    } on InvalidUserEmailException {
+      rethrow;
+    } on InvalidUserBirthdateException {
+      rethrow;
+    } on UserAlreadyExistsException {
+      rethrow;
+    } on InvalidUserNameException {
+      rethrow;
+    } on InvalidDniException {
+      rethrow;
+    } on InvalidPhoneNumberException {
+      rethrow;
+    } on InvalidUserPasswordException {
       rethrow;
     } catch (e) {
       throw ServerException(message: e.toString());
