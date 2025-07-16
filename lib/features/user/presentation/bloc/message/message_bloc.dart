@@ -16,7 +16,6 @@ class MessagesBloc extends Bloc<MessageEvent, MessageState> {
 
   Future<void> _onGetMessagesEventRequest(
       GetMessagesEvent event, Emitter<MessageState> emit) async {
-    emit(MessagesLoading());
     final failureOrMessages = await getMessagesUseCase(NoParams());
     failureOrMessages.fold((failure) {
       emit(MessagesError(failure: failure));

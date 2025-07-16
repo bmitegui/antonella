@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 enum MessageType { text, image }
 
-class MessageEntity {
+class MessageEntity extends Equatable {
   final String messageId;
   final String senderId;
   final String userId;
@@ -8,11 +10,14 @@ class MessageEntity {
   final DateTime dateTime;
   final MessageType messageType;
 
-  MessageEntity({
-      required this.messageId, 
+  const MessageEntity(
+      {required this.messageId,
       required this.senderId,
-      required this.userId, 
-      required this.content, 
-      required this.dateTime, 
+      required this.userId,
+      required this.content,
+      required this.dateTime,
       required this.messageType});
+
+  @override
+  List<Object?> get props => [messageId, content];
 }

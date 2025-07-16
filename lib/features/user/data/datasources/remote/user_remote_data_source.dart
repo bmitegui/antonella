@@ -1,5 +1,6 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/services/key_value_storage_service_impl.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/data/models/models.dart';
@@ -42,11 +43,19 @@ class UserRemoteDataSourceImpl
   @override
   Future<UserModel> signIn(
       {required String account, required String password}) async {
-    return await handleRequest(
+    final user = await handleRequest(
         request: () => client.post(Environment.signIn,
             data: {'phone_number': account, 'password': password},
             options: defaultOptions),
         onSuccess: (data) => UserModel.fromJson(data));
+
+    final fcmToken =
+        await sl<KeyValueStorageServiceImpl>().getValue<String>('fcmToken');
+    await handleRequest(
+        request: () => client.post(Environment.fcmToken,
+            data: {'user_id': user.id, 'token': fcmToken}),
+        onSuccess: (_) {});
+    return user;
   }
 
   @override
@@ -58,7 +67,7 @@ class UserRemoteDataSourceImpl
       required String birthdate,
       required String phoneNumber,
       required String? genero}) async {
-    return await handleRequest(
+    final user = await handleRequest(
         request: () => client.post(Environment.signUp,
             data: {
               'email': account,
@@ -71,6 +80,14 @@ class UserRemoteDataSourceImpl
             },
             options: defaultOptions),
         onSuccess: (data) => UserModel.fromJson(data));
+
+    final fcmToken =
+        await sl<KeyValueStorageServiceImpl>().getValue<String>('fcmToken');
+    await handleRequest(
+        request: () => client.post(Environment.fcmToken,
+            data: {'user_id': user.id, 'token': fcmToken}),
+        onSuccess: (_) {});
+    return user;
   }
 
   @override

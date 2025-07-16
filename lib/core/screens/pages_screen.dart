@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/product/presentation/bloc/products/products_bloc.dart';
@@ -47,6 +49,8 @@ class _PagesScreenState extends State<PagesScreen> {
     SettingsScreen()
   ];
 
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
@@ -56,7 +60,9 @@ class _PagesScreenState extends State<PagesScreen> {
     if (userState is UserAuthenticated) {
       sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
       if (userState.user.rol == Rol.cliente) {
-        sl<MessagesBloc>().add(GetMessagesEvent());
+        _timer = Timer.periodic(Duration(milliseconds: 1500), (timer) {
+          sl<MessagesBloc>().add(GetMessagesEvent());
+        });
         sl<ServiceBloc>().add(GetServicesEvent());
         sl<ProductsBloc>().add(GetProductsEvent());
         sl<PromotionBloc>().add(GetPromotionsEvent());
@@ -73,6 +79,7 @@ class _PagesScreenState extends State<PagesScreen> {
   @override
   void dispose() {
     _pageController.dispose();
+    _timer?.cancel();
     super.dispose();
   }
 

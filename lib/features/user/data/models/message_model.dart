@@ -2,7 +2,7 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
 
 class MessageModel extends MessageEntity {
-  MessageModel(
+  const MessageModel(
       {required super.messageId,
       required super.senderId,
       required super.userId,

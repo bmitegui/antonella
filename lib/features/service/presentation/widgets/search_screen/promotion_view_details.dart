@@ -4,7 +4,6 @@ import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/images_scrollview.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
-import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
 import 'package:antonella/features/service/presentation/promotion_cart/promotion_cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';

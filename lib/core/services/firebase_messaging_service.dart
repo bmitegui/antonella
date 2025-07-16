@@ -1,3 +1,5 @@
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/services/key_value_storage_service_impl.dart';
 import 'package:antonella/core/services/local_notifications_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +59,7 @@ class FirebaseMessagingService {
     // Get the FCM token for the device
     final token = await FirebaseMessaging.instance.getToken();
     debugPrint('Push notifications token: $token');
+    await sl<KeyValueStorageServiceImpl>().setKeyValue('fcmToken', token!);
 
     // Listen for token refresh events
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
