@@ -64,7 +64,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                       
                       final ordersConfirmed = orders.where((order) {
                         final isClientConfirmed =
-                            order.clientStatus == ClientStatus.confirmado;
+                            order.clientStatus == ClientStatus.noConfirmado;
 
                         return isClientConfirmed;
                       }).toList();

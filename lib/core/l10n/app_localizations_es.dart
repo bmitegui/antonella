@@ -115,13 +115,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get model_not_found_error => 'Usuario no registrado';
 
   @override
-  String get invalid_user_email_error => 'El formato del correo ingresado no es el correcto';
+  String get invalid_user_email_error =>
+      'El formato del correo ingresado no es el correcto';
 
   @override
-  String get invalid_user_birthdate_error => 'La fecha de nacimiento es inválida';
+  String get invalid_user_birthdate_error =>
+      'La fecha de nacimiento es inválida';
 
   @override
-  String get user_already_exists_error => 'El usuario ya se encuentra registrado';
+  String get user_already_exists_error =>
+      'El usuario ya se encuentra registrado';
 
   @override
   String get invalid_user_name_error => 'El nombre de usuario es inválido';
@@ -130,8 +133,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get invalid_dni_error => 'El dni es inválido';
 
   @override
-  String get invalid_phone_number_error => 'El formato del número de celular es inválido';
+  String get invalid_phone_number_error =>
+      'El formato del número de celular es inválido';
 
   @override
-  String get invalid_user_password_error => 'El formato de la contraseña es inválido';
+  String get invalid_user_password_error =>
+      'El formato de la contraseña es inválido';
 }

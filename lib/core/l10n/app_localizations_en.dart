@@ -115,7 +115,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get model_not_found_error => 'Unregistered user';
 
   @override
-  String get invalid_user_email_error => 'The format of the email entered is not correct';
+  String get invalid_user_email_error =>
+      'The format of the email entered is not correct';
 
   @override
   String get invalid_user_birthdate_error => 'The date of birth is invalid';
@@ -130,8 +131,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invalid_dni_error => 'The ID is invalid';
 
   @override
-  String get invalid_phone_number_error => 'The format of cell phone number is invalid';
+  String get invalid_phone_number_error =>
+      'The format of cell phone number is invalid';
 
   @override
-  String get invalid_user_password_error => 'The format of the password is invalid';
+  String get invalid_user_password_error =>
+      'The format of the password is invalid';
 }
