@@ -69,15 +69,14 @@ class _SearchScreenClientState extends State<SearchScreenClient> {
             filteredPromotions = state.listPromotions;
           }
           return RefreshIndicator(
-            onRefresh: () async =>sl<PromotionBloc>().add(GetPromotionsEvent()),
+            onRefresh: () async =>
+                sl<PromotionBloc>().add(GetPromotionsEvent()),
             child: Padding(
                 padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
                 child: (state is PromotionLoaded)
                     ? (state.listPromotions.isNotEmpty)
-                        ? Expanded(
-                          child: PromotionsGridView(
-                              listPromotions: filteredPromotions!),
-                        )
+                        ? PromotionsGridView(
+                            listPromotions: filteredPromotions!)
                         : Center(
                             child:
                                 Text('No existe promociones en este momento'))
