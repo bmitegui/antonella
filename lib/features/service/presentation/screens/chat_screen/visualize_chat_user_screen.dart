@@ -1,4 +1,6 @@
+import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/widgets/message_input_field.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
@@ -51,6 +53,17 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
     }
 
     return CustomScaffold(
+        resizeToAvoidBottomInset: true,
+        bottomNavigationBar:
+            BlocBuilder<MessagesBloc, MessageState>(builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: MessageInputField(onSend: (value) {
+              sl<SendMessageBloc>().add(SendMessagesEvent(
+                  userId: clientId, content: value, type: MessageType.text));
+            }),
+          );
+        }),
         title: Row(children: [
           const CircleAvatar(
             backgroundImage: NetworkImage(
@@ -76,7 +89,7 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
             messages = newMessages;
           }
           return Padding(
-              padding: const EdgeInsets.only(bottom: 100, right: 16, left: 16),
+              padding: const EdgeInsets.only(right: 16, left: 16),
               child: Column(children: [
                 Expanded(
                     child: ListView.builder(
@@ -86,42 +99,50 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
                         itemBuilder: (context, index) {
                           final message = messages[messages.length - 1 - index];
                           final isClient = message.senderId == clientId;
+                          final isImage =
+                              message.messageType == MessageType.image;
                           final formattedTime = DateFormat('hh:mm a')
                               .format(message.dateTime.toLocal());
                           return Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Column(
                                   mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  crossAxisAlignment: isClient
+                                      ? CrossAxisAlignment.end
+                                      : CrossAxisAlignment.start,
                                   children: [
-                                    BubbleNormal(
-                                        seen: true,
-                                        text: message.content,
-                                        isSender: isClient,
-                                        color: isClient
-                                            ? Color(0xFFE8E8EE)
-                                            : Color(0xFFFAE2E1),
-                                        textStyle: TextStyle(
+                                    isImage
+                                        ? BubbleNormalImage(
+                                            id: message.messageId,
+                                            padding: EdgeInsets.zero,
+                                            seen: true,
+                                            isSender: isClient,
                                             color: isClient
-                                                ? Colors.black
-                                                : Colors.white)),
+                                                ? Color(0xFFFAE2E1)
+                                                : Colors.white,
+                                            image: CustomCachedNetworkImage(
+                                                imageUrl: Environment.apiUrl +
+                                                    message.content))
+                                        : BubbleNormal(
+                                            padding: EdgeInsets.zero,
+                                            seen: true,
+                                            text: message.content,
+                                            isSender: isClient,
+                                            color: isClient
+                                                ? Color(0xFFFAE2E1)
+                                                : Colors.white,
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!),
                                     Text(formattedTime,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodySmall!
-                                            .copyWith(color: Colors.grey))
+                                            .copyWith(
+                                                color: Colors.grey,
+                                                fontSize: 10))
                                   ]));
                         })),
-                BlocConsumer<MessagesBloc, MessageState>(
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      return MessageInputField(onSend: (value) {
-                        sl<SendMessageBloc>().add(SendMessagesEvent(
-                            userId: clientId,
-                            content: value,
-                            type: MessageType.text));
-                      });
-                    })
               ]));
         }));
   }
