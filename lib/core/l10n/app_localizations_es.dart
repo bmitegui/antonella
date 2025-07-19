@@ -133,4 +133,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get invalid_user_password_error => 'El formato de la contraseña es inválido';
+
+  @override
+  String get change_language => 'Cambiar idioma';
+
+  @override
+  String get english => 'Inglés';
+
+  @override
+  String get spanish => 'Español';
+
+  @override
+  String get info_change_language => 'Cambia el idioma de los botones, títulos y otros textos de \'Antonella\'.';
 }

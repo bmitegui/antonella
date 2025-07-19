@@ -46,5 +46,11 @@
     "invalid_user_name_error": "El nombre de usuario es inválido",
     "invalid_dni_error": "El dni es inválido",
     "invalid_phone_number_error": "El formato del número de celular es inválido",
-    "invalid_user_password_error": "El formato de la contraseña es inválido"
+    "invalid_user_password_error": "El formato de la contraseña es inválido",
+
+    "change_language": "Cambiar idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+
+    "info_change_language": "Cambia el idioma de los botones, títulos y otros textos de 'Antonella'."
 }

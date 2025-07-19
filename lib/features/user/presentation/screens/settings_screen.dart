@@ -4,6 +4,7 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
+import 'package:antonella/features/user/presentation/screens/change_language_screen.dart';
 import 'package:antonella/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:antonella/features/user/presentation/screens/update_pasword_screen.dart';
 import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
@@ -146,7 +147,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             leading: Text('ESP',
                                 style: Theme.of(context).textTheme.titleMedium),
                             title: const Text('Cambiar Idioma'),
-                            onTap: () {}),
+                            onTap: () => navigateWithSlideTransition(
+                                context, ChangeLanguageScreen())),
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.dark_mode),

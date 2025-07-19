@@ -346,6 +346,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The format of the password is invalid'**
   String get invalid_user_password_error;
+
+  /// No description provided for @change_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Change language'**
+  String get change_language;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @spanish.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish'**
+  String get spanish;
+
+  /// No description provided for @info_change_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Change the language of buttons, titles and other text in \'Antonella\'.'**
+  String get info_change_language;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
