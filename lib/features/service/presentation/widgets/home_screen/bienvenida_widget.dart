@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/product/presentation/bloc/bloc.dart';
 import 'package:antonella/features/product/presentation/shopping_cart_screen.dart';
@@ -11,6 +12,7 @@ class BienvenidaWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<UserBloc, UserState>(builder: (context, state) {
       return (state is UserAuthenticated)
           ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -19,7 +21,7 @@ class BienvenidaWidget extends StatelessWidget {
                   child: RichText(
                       textAlign: TextAlign.start,
                       text: TextSpan(
-                          text: 'Bienvenid@, ',
+                          text: texts.welcome_user,
                           style: Theme.of(context).textTheme.titleMedium,
                           children: [
                             TextSpan(
@@ -34,7 +36,8 @@ class BienvenidaWidget extends StatelessWidget {
               BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
                   builder: (context, state) {
                 if ((state is ProductsSelectedLoaded &&
-                    state.products.isNotEmpty) || state is ServicesSelectedBloc) {
+                        state.products.isNotEmpty) ||
+                    state is ServicesSelectedBloc) {
                   return IconButton(
                       onPressed: () => navigateWithSlideTransition(
                           context, ShoppingCartScreen()),

@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MessageInputField extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MessageInputFieldState extends State<MessageInputField> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return Padding(
         padding: EdgeInsets.only(bottom: bottom),
         child: Row(children: [
@@ -53,7 +55,7 @@ class _MessageInputFieldState extends State<MessageInputField> {
                       fillColor: const Color(0xFFFAE2E1),
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
-                      hintText: 'Escribe un mensaje...',
+                      hintText: texts.write_message,
                       hintStyle: const TextStyle(
                           color: Colors.grey, fontWeight: FontWeight.bold),
                       border: OutlineInputBorder(

@@ -65,7 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               .copyWith(color: Colors.grey))),
                   const SizedBox(height: 16),
                   SizedBox(
-                      child: Text('Cuenta',
+                      child: Text(texts.account,
                           textAlign: TextAlign.left,
                           style: textTheme.titleMedium!
                               .copyWith(color: Colors.grey))),
@@ -77,19 +77,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Column(children: [
                         ListTile(
                             leading: const Icon(Icons.lock_outline),
-                            title: Text('Cambiar Contraseña'),
+                            title: Text(texts.change_password),
                             onTap: () => navigateWithSlideTransition(
                                 context, UpdatePaswordScreen())),
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.edit),
-                            title: const Text('Editar Perfil'),
+                            title: Text(texts.edit_profile),
                             onTap: () => navigateWithSlideTransition(
                                 context, EditProfileScreen())),
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.logout),
-                            title: const Text('Cerrar Sesión'),
+                            title: Text(texts.log_out),
                             onTap: () {
                               sl<ServicesSelectedBloc>()
                                   .add(ClearServicesSelectedEvent());
@@ -99,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             })
                       ])),
                   const SizedBox(height: 16),
-                  Text('Compras',
+                  Text(texts.purchases,
                       textAlign: TextAlign.left,
                       style:
                           textTheme.titleMedium!.copyWith(color: Colors.grey)),
@@ -111,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Column(children: [
                         ListTile(
                             leading: const Icon(Icons.article_outlined),
-                            title: Text('Historial de Compras'),
+                            title: Text(texts.purchases_history),
                             onTap: () {
                               Navigator.push(
                                   context,
@@ -123,7 +123,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.add_shopping_cart),
-                            title: Text('Carrito de Compras'),
+                            title: Text(texts.shopping_cart),
                             onTap: () {
                               Navigator.push(
                                   context,
@@ -135,7 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         Divider(height: 1, color: Colors.grey.shade300),
                       ])),
                   const SizedBox(height: 16),
-                  Text('Preferencias',
+                  Text(texts.preferences,
                       textAlign: TextAlign.left,
                       style:
                           textTheme.titleMedium!.copyWith(color: Colors.grey)),
@@ -146,7 +146,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(children: [
                         ListTile(
-                            leading: Text('ESP',
+                            leading: Text(texts.idm,
                                 style: Theme.of(context).textTheme.titleMedium),
                             title: Text(texts.change_language),
                             onTap: () => navigateWithSlideTransition(
@@ -154,16 +154,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.dark_mode),
-                            title: const Text('Modo Oscuro'),
+                            title: Text(texts.dark_mode),
                             onTap: () {}),
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.notifications),
-                            title: const Text('Notificaciones'),
+                            title: Text(texts.notifications),
                             onTap: () {})
                       ])),
                   const SizedBox(height: 16),
-                  Text('Soporte y Legales',
+                  Text(texts.support_and_legal,
                       textAlign: TextAlign.left,
                       style:
                           textTheme.titleMedium!.copyWith(color: Colors.grey)),
@@ -175,12 +175,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Column(children: [
                         ListTile(
                             leading: const Icon(Icons.policy),
-                            title: const Text('Políticas de Privacidad'),
+                            title: Text(texts.privacy_policy),
                             onTap: () {}),
                         Divider(height: 1, color: Colors.grey.shade300),
                         ListTile(
                             leading: const Icon(Icons.build),
-                            title: const Text('Soporte Técnico'),
+                            title: Text(texts.technical_support),
                             onTap: () => navigateWithSlideTransition(
                                 context, SupportScreen()))
                       ]))

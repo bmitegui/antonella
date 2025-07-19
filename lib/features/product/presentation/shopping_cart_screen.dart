@@ -1,4 +1,5 @@
 import 'package:antonella/core/constant/environment.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
@@ -29,9 +30,10 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
         leading: ArrowBack(),
-        text: "Carrito de compras",
+        text: texts.shopping_cart,
         bottomNavigationBar: Container(
             padding: const EdgeInsets.all(16),
             child: BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
@@ -48,7 +50,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                               OptionsPayShoppingCartScreen(products: selected));
                         }
                       },
-                      child: Text('Pagar'))
+                      child: Text(texts.pay))
                   : const SizedBox.shrink();
             })),
         body: BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
@@ -85,7 +87,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Productos', style: Theme.of(context)
+                                Text(texts.products, style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
                                   .copyWith(color: Color(0xFFF44565))),
@@ -117,7 +119,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                                 
                                 // Servicios en el carrito de compras 
                                 if (ordersConfirmed.isNotEmpty)
-                                  Text('Servicios', style: Theme.of(context)
+                                  Text(texts.services, style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
                                     .copyWith(color: Color(0xFFF44565))), 
@@ -138,7 +140,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: promotions.isNotEmpty
                                     ? [
-                                        Text('Promociones',
+                                        Text(texts.promotions,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium!
@@ -166,11 +168,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
                                 // Elementos de subtotal, iva y total a pagar
                                 const SizedBox(height: 16),
-                                buildPriceRow('Subtotal', '\$${dataTotal['subtotal']}'),
+                                buildPriceRow(texts.subtotal, '\$${dataTotal['subtotal']}'),
                                 const SizedBox(height: 8),
-                                buildPriceRow('IVA', '\$${dataTotal['iva']}'),
+                                buildPriceRow(texts.iva, '\$${dataTotal['iva']}'),
                                 const Divider(height: 32),
-                                buildPriceRow('Total', '\$${dataTotal['total']}',
+                                buildPriceRow(texts.total, '\$${dataTotal['total']}',
                                     isBold: true, fontSize: 18)
                               ])),
                       );

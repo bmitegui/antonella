@@ -21,7 +21,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get start_body => 'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
 
   @override
-  String get account => 'Phone number';
+  String get phone_number => 'Phone number';
 
   @override
   String get account_hint => 'Enter your account';
@@ -148,4 +148,154 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings => 'Settings';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get change_password => 'Change Password';
+
+  @override
+  String get edit_profile => 'Edit Profile';
+
+  @override
+  String get log_out => 'Log Out';
+
+  @override
+  String get purchases => 'Purchases';
+
+  @override
+  String get purchases_history => 'Purchases History';
+
+  @override
+  String get shopping_cart => 'Shopping Cart';
+
+  @override
+  String get preferences => 'Preferences';
+
+  @override
+  String get idm => 'ENG';
+
+  @override
+  String get dark_mode => 'Dark Mode';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get support_and_legal => 'Support and Legal';
+
+  @override
+  String get privacy_policy => 'Privacy Policy';
+
+  @override
+  String get technical_support => 'Technical Support';
+
+  @override
+  String get no_notifications => 'No Notifications';
+
+  @override
+  String get notification_message => 'We will let you know when there is something new for you.';
+
+  @override
+  String get administrator => 'Administrator';
+
+  @override
+  String get write_message => 'Write a message...';
+
+  @override
+  String get promotions => 'Promotions';
+
+  @override
+  String get no_promotions => 'There are no promotions at this time';
+
+  @override
+  String get agenda => 'Agenda';
+
+  @override
+  String get scheduled => 'Scheduled';
+
+  @override
+  String get to_confirm => 'To be confirmed';
+
+  @override
+  String get january => 'JANUARY';
+
+  @override
+  String get february => 'FEBRUARY';
+
+  @override
+  String get march => 'MARCH';
+
+  @override
+  String get april => 'APRIL';
+
+  @override
+  String get may => 'MAY';
+
+  @override
+  String get june => 'JUNE';
+
+  @override
+  String get july => 'JULY';
+
+  @override
+  String get august => 'AUGUST';
+
+  @override
+  String get september => 'SEPTEMBER';
+
+  @override
+  String get october => 'OCTOBER';
+
+  @override
+  String get november => 'NOVEMBER';
+
+  @override
+  String get december => 'DECEMBER';
+
+  @override
+  String get sunday => 'SU';
+
+  @override
+  String get monday => 'M';
+
+  @override
+  String get tuesday => 'T';
+
+  @override
+  String get wednesday => 'W';
+
+  @override
+  String get thursday => 'TH';
+
+  @override
+  String get friday => 'F';
+
+  @override
+  String get saturday => 'S';
+
+  @override
+  String get no_appointments => 'No appointments for this day';
+
+  @override
+  String get welcome_user => 'Welcome, ';
+
+  @override
+  String get pay => 'Pay';
+
+  @override
+  String get products => 'Products';
+
+  @override
+  String get services => 'Services';
+
+  @override
+  String get subtotal => 'Subtotal';
+
+  @override
+  String get iva => 'Sale Tax';
+
+  @override
+  String get total => 'Total';
 }

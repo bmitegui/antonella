@@ -119,11 +119,11 @@ abstract class AppLocalizations {
   /// **'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.'**
   String get start_body;
 
-  /// No description provided for @account.
+  /// No description provided for @phone_number.
   ///
   /// In en, this message translates to:
   /// **'Phone number'**
-  String get account;
+  String get phone_number;
 
   /// No description provided for @account_hint.
   ///
@@ -376,6 +376,306 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @change_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get change_password;
+
+  /// No description provided for @edit_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile;
+
+  /// No description provided for @log_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get log_out;
+
+  /// No description provided for @purchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases'**
+  String get purchases;
+
+  /// No description provided for @purchases_history.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases History'**
+  String get purchases_history;
+
+  /// No description provided for @shopping_cart.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping Cart'**
+  String get shopping_cart;
+
+  /// No description provided for @preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferences;
+
+  /// No description provided for @idm.
+  ///
+  /// In en, this message translates to:
+  /// **'ENG'**
+  String get idm;
+
+  /// No description provided for @dark_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get dark_mode;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @support_and_legal.
+  ///
+  /// In en, this message translates to:
+  /// **'Support and Legal'**
+  String get support_and_legal;
+
+  /// No description provided for @privacy_policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacy_policy;
+
+  /// No description provided for @technical_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical Support'**
+  String get technical_support;
+
+  /// No description provided for @no_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'No Notifications'**
+  String get no_notifications;
+
+  /// No description provided for @notification_message.
+  ///
+  /// In en, this message translates to:
+  /// **'We will let you know when there is something new for you.'**
+  String get notification_message;
+
+  /// No description provided for @administrator.
+  ///
+  /// In en, this message translates to:
+  /// **'Administrator'**
+  String get administrator;
+
+  /// No description provided for @write_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a message...'**
+  String get write_message;
+
+  /// No description provided for @promotions.
+  ///
+  /// In en, this message translates to:
+  /// **'Promotions'**
+  String get promotions;
+
+  /// No description provided for @no_promotions.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no promotions at this time'**
+  String get no_promotions;
+
+  /// No description provided for @agenda.
+  ///
+  /// In en, this message translates to:
+  /// **'Agenda'**
+  String get agenda;
+
+  /// No description provided for @scheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get scheduled;
+
+  /// No description provided for @to_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'To be confirmed'**
+  String get to_confirm;
+
+  /// No description provided for @january.
+  ///
+  /// In en, this message translates to:
+  /// **'JANUARY'**
+  String get january;
+
+  /// No description provided for @february.
+  ///
+  /// In en, this message translates to:
+  /// **'FEBRUARY'**
+  String get february;
+
+  /// No description provided for @march.
+  ///
+  /// In en, this message translates to:
+  /// **'MARCH'**
+  String get march;
+
+  /// No description provided for @april.
+  ///
+  /// In en, this message translates to:
+  /// **'APRIL'**
+  String get april;
+
+  /// No description provided for @may.
+  ///
+  /// In en, this message translates to:
+  /// **'MAY'**
+  String get may;
+
+  /// No description provided for @june.
+  ///
+  /// In en, this message translates to:
+  /// **'JUNE'**
+  String get june;
+
+  /// No description provided for @july.
+  ///
+  /// In en, this message translates to:
+  /// **'JULY'**
+  String get july;
+
+  /// No description provided for @august.
+  ///
+  /// In en, this message translates to:
+  /// **'AUGUST'**
+  String get august;
+
+  /// No description provided for @september.
+  ///
+  /// In en, this message translates to:
+  /// **'SEPTEMBER'**
+  String get september;
+
+  /// No description provided for @october.
+  ///
+  /// In en, this message translates to:
+  /// **'OCTOBER'**
+  String get october;
+
+  /// No description provided for @november.
+  ///
+  /// In en, this message translates to:
+  /// **'NOVEMBER'**
+  String get november;
+
+  /// No description provided for @december.
+  ///
+  /// In en, this message translates to:
+  /// **'DECEMBER'**
+  String get december;
+
+  /// No description provided for @sunday.
+  ///
+  /// In en, this message translates to:
+  /// **'SU'**
+  String get sunday;
+
+  /// No description provided for @monday.
+  ///
+  /// In en, this message translates to:
+  /// **'M'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'T'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'W'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In en, this message translates to:
+  /// **'TH'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In en, this message translates to:
+  /// **'F'**
+  String get friday;
+
+  /// No description provided for @saturday.
+  ///
+  /// In en, this message translates to:
+  /// **'S'**
+  String get saturday;
+
+  /// No description provided for @no_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'No appointments for this day'**
+  String get no_appointments;
+
+  /// No description provided for @welcome_user.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, '**
+  String get welcome_user;
+
+  /// No description provided for @pay.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay'**
+  String get pay;
+
+  /// No description provided for @products.
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get products;
+
+  /// No description provided for @services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get services;
+
+  /// No description provided for @subtotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get subtotal;
+
+  /// No description provided for @iva.
+  ///
+  /// In en, this message translates to:
+  /// **'Sale Tax'**
+  String get iva;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
