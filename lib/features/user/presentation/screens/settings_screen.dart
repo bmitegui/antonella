@@ -16,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import "package:antonella/core/l10n/app_localizations.dart";
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -28,9 +29,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final texts = AppLocalizations.of(context)!;
 
     return CustomScaffold(
-        text: 'Ajustes',
+        text: texts.settings,
         child: BlocConsumer<UserBloc, UserState>(
             listener: (BuildContext context, UserState state) {
           if (state is UserUnauthenticated) {
@@ -146,7 +148,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ListTile(
                             leading: Text('ESP',
                                 style: Theme.of(context).textTheme.titleMedium),
-                            title: const Text('Cambiar Idioma'),
+                            title: Text(texts.change_language),
                             onTap: () => navigateWithSlideTransition(
                                 context, ChangeLanguageScreen())),
                         Divider(height: 1, color: Colors.grey.shade300),

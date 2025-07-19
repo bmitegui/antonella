@@ -370,6 +370,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change the language of buttons, titles and other text in \'Antonella\'.'**
   String get info_change_language;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

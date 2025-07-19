@@ -145,4 +145,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get info_change_language => 'Change the language of buttons, titles and other text in \'Antonella\'.';
+
+  @override
+  String get settings => 'Settings';
 }

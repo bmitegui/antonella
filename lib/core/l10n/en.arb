@@ -51,6 +51,7 @@
     "change_language": "Change language",
     "english": "English",
     "spanish": "Spanish",
+    "info_change_language": "Change the language of buttons, titles and other text in 'Antonella'.",
 
-    "info_change_language": "Change the language of buttons, titles and other text in 'Antonella'."
+    "settings": "Settings"
 }
