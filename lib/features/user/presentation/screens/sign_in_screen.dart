@@ -80,7 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     AutofillHints.telephoneNumber
                                   ],
                                   textEditingController: _accountController,
-                                  hintText: texts.account,
+                                  hintText: texts.phone_number,
                                   keyboardType: TextInputType.phone),
                               const SizedBox(height: 32),
                               CustomTextFormFieldWidget(

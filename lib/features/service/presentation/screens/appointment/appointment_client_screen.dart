@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/agenda_tab_bar.dart';
@@ -11,7 +12,8 @@ class AppointmentClientScreen extends StatefulWidget {
   const AppointmentClientScreen({super.key});
 
   @override
-  State<AppointmentClientScreen> createState() => _AppointmentClientScreenState();
+  State<AppointmentClientScreen> createState() =>
+      _AppointmentClientScreenState();
 }
 
 class _AppointmentClientScreenState extends State<AppointmentClientScreen>
@@ -32,8 +34,9 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
-        text: 'Agenda',
+        text: texts.agenda,
         body: Column(children: [
           AgendaTabBar(controller: _tabController),
           const SizedBox(height: 16),

@@ -1,5 +1,6 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/widgets/message_input_field.dart';
@@ -46,6 +47,7 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     String clientId = '';
     final userState = sl<UserBloc>().state;
     if (userState is UserAuthenticated) {
@@ -70,7 +72,7 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
                 'https://randomuser.me/api/portraits/women/44.jpg'),
           ),
           const SizedBox(width: 8),
-          const Text('Administrador')
+          Text(texts.administrator)
         ]),
         body:
             BlocBuilder<MessagesBloc, MessageState>(builder: (context, state) {

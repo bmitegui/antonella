@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/services_selected/services_selected_bloc.dart';
@@ -35,6 +36,7 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(children: [
@@ -62,7 +64,22 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
               startingDayOfWeek: StartingDayOfWeek.sunday,
               calendarBuilders:
                   CalendarBuilders(headerTitleBuilder: (context, day) {
-                final month = monthNameInSpanish(day.month).toUpperCase();
+                final month = [
+                  texts.january,
+                  texts.february,
+                  texts.march,
+                  texts.april,
+                  texts.may,
+                  texts.june,
+                  texts.july,
+                  texts.august,
+                  texts.september,
+                  texts.october,
+                  texts.november,
+                  texts.december
+                ][(day.month) - 1]
+                    .toUpperCase();
+                //final month = monthNameInSpanish(day.month).toUpperCase();
                 return GestureDetector(
                     onTap: () => setState(() {
                           _calendarFormat =
@@ -74,8 +91,15 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.titleMedium));
               }, dowBuilder: (context, day) {
-                final text =
-                    ['D', 'L', 'M', 'MI', 'J', 'V', 'S'][day.weekday % 7];
+                final text = [
+                  texts.sunday,
+                  texts.monday,
+                  texts.tuesday,
+                  texts.wednesday,
+                  texts.thursday,
+                  texts.friday,
+                  texts.saturday
+                ][day.weekday % 7];
                 return Container(
                     alignment: Alignment.center,
                     color: const Color(0xFFE596A9),
@@ -125,7 +149,7 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
                       child: InfoOrderContainer(orderEntity: orderEntity));
                 })
           else if (widget.eventLoader != null && _selectedorders.isEmpty)
-            Text("No hay citas para este día",
+            Text(texts.no_appointments,
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!

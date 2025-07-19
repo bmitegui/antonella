@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_tab.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
@@ -11,6 +12,7 @@ class AgendaTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<OrdersBloc, OrdersState>(
       builder: (context, state) {
         int pendingCount = 0;
@@ -28,9 +30,9 @@ class AgendaTabBar extends StatelessWidget {
             dividerColor: Colors.grey.shade400,
             labelColor: const Color(0xFFF44565),
             tabs: [
-              const CustomTab(text: 'Agendados'),
+              CustomTab(text: texts.scheduled),
               CustomTab(
-                  text: 'Por confirmar',
+                  text: texts.to_confirm,
                   number: pendingCount == 0 ? null : pendingCount)
             ]);
       },
