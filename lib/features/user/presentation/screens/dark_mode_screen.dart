@@ -13,7 +13,6 @@ class DarkModeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
-    final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<ThemeBloc, bool>(builder: (context, state) {
       final selectedItem = state ? texts.activated : texts.disabled;
       return CustomScaffold(

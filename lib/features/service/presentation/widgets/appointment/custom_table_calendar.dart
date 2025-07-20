@@ -40,6 +40,7 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(children: [
           TableCalendar(
+              rowHeight: 48,
               eventLoader: widget.eventLoader,
               daysOfWeekHeight: 36,
               headerStyle: HeaderStyle(
@@ -78,7 +79,6 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
                   texts.december
                 ][(day.month) - 1]
                     .toUpperCase();
-                //final month = monthNameInSpanish(day.month).toUpperCase();
                 return GestureDetector(
                     onTap: () => setState(() {
                           _calendarFormat =
