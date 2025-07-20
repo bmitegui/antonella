@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -13,6 +14,7 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final height = MediaQuery.of(context).size.height;
@@ -42,8 +44,7 @@ class _StartScreenState extends State<StartScreen> {
               top: height / 1.6,
               left: 32,
               right: 32,
-              child: Text(
-                  'Explora y agenda fácilmente citas para servicios de belleza, peluqueria y bienestar, adaptados a tu necesidad y estilo',
+              child: Text(texts.start_body,
                   textAlign: TextAlign.center,
                   style: textTheme.bodyLarge!
                       .copyWith(fontWeight: FontWeight.bold))),
@@ -52,8 +53,7 @@ class _StartScreenState extends State<StartScreen> {
               left: 128,
               right: 128,
               child: FilledButton(
-                  onPressed: () async => await _seen(),
-                  child: Text('Iniciar')))
+                  onPressed: () async => await _seen(), child: Text('Iniciar')))
         ]));
   }
 

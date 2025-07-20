@@ -20,11 +20,7 @@ class ChangeLanguageScreen extends StatelessWidget {
         body: Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
             child: Column(children: [
-              Text(texts.info_change_language,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.black54)),
+              Text(texts.info_change_language),
               const SizedBox(height: 16),
               const DropdownLanguageWidget()
             ])));

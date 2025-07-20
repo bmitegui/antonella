@@ -53,6 +53,13 @@
     "spanish": "Spanish",
     "info_change_language": "Change the language of buttons, titles and other text in 'Antonella'.",
 
+    "dark_mode": "Dark mode",
+    "select_mode": "Select a mode",
+    "info_dark_mode": "Switch between dark and light modes as needed, right from this screen.",
+    "activated": "Activated",
+    "disabled": "Disabled",
+    "use_system_configuration": "Use system configuration",
+
     "settings": "Settings",
     "account": "Account",
     "change_password": "Change Password",
@@ -63,7 +70,6 @@
     "shopping_cart": "Shopping Cart",
     "preferences": "Preferences",
     "idm": "ENG",
-    "dark_mode": "Dark Mode",
     "notifications": "Notifications",
     "support_and_legal": "Support and Legal",
     "privacy_policy": "Privacy Policy",

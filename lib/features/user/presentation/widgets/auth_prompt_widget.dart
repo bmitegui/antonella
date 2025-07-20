@@ -13,6 +13,7 @@ class AuthPromptWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
     final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
@@ -21,8 +22,8 @@ class AuthPromptWidget extends StatelessWidget {
             children: [
               TextSpan(
                   text: isSignIn ? texts.sign_up : texts.sign_in,
-                  style:
-                      textTheme.bodyMedium!.copyWith(color: Color(0XFFF44565)),
+                  style: textTheme.bodyMedium!.copyWith(
+                      color: colorScheme.primary, fontWeight: FontWeight.bold),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       sl<UserBloc>().add(ResetUserEvent());

@@ -134,7 +134,27 @@ double getTotalBasePrice(List<AppointmentEntity> appointments) {
 }
 
 Future<DateTime?> selectDate(BuildContext context) async {
+  final colorScheme = Theme.of(context).colorScheme;
   final DateTime? picked = await showDatePicker(
+      builder: (context, child) {
+        return Theme(
+            data: Theme.of(context).copyWith(
+                colorScheme: colorScheme.brightness == Brightness.light
+                    ? ColorScheme.light(
+                        primary: colorScheme.primary,
+                        onPrimary: colorScheme.onPrimary,
+                        surface: colorScheme.surface,
+                        onSurface: colorScheme.onSurface)
+                    : ColorScheme.dark(
+                        primary: colorScheme.primary,
+                        onPrimary: colorScheme.onPrimary,
+                        surface: colorScheme.surface,
+                        onSurface: colorScheme.onSurface),
+                textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                        foregroundColor: colorScheme.primary))),
+            child: child!);
+      },
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1950),
@@ -217,7 +237,6 @@ Map<String, double> calculateTotals(List<ProductEntity> products) {
 //     return 0.0;
 //   }
 // }
-
 
 List<ProductEntity> getUniqueProducts(List<ProductEntity> products) {
   final uniqueMap = <String, ProductEntity>{};
@@ -446,4 +465,16 @@ Future<void> requestNotificationPermission(BuildContext context) async {
   } else if (status.isPermanentlyDenied) {
     openAppSettings();
   }
+}
+
+TextStyle bodyBlack54Style(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  return Theme.of(context).textTheme.bodyMedium!.copyWith(
+      color: colorScheme.onSecondaryContainer, fontWeight: FontWeight.bold);
+}
+
+TextStyle titleBlack54Style(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  return Theme.of(context).textTheme.titleMedium!.copyWith(
+      color: colorScheme.onSurfaceVariant, fontWeight: FontWeight.bold);
 }

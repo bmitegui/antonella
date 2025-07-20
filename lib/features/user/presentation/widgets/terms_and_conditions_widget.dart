@@ -20,7 +20,7 @@ class TermsAndConditionsWidget extends StatelessWidget {
               TextSpan(
                   text: texts.terms_2,
                   style:
-                      textTheme.bodySmall!.copyWith(color: Color(0XFFF44565)),
+                      textTheme.bodySmall!.copyWith(color: colorScheme.primary),
                   recognizer: TapGestureRecognizer()..onTap = () {}),
               TextSpan(
                   text: texts.terms_3,
@@ -29,7 +29,7 @@ class TermsAndConditionsWidget extends StatelessWidget {
               TextSpan(
                   text: texts.terms_4,
                   style:
-                      textTheme.bodySmall!.copyWith(color: Color(0XFFF44565)),
+                      textTheme.bodySmall!.copyWith(color: colorScheme.primary),
                   recognizer: TapGestureRecognizer()..onTap = () {}),
               TextSpan(
                   text: '.',

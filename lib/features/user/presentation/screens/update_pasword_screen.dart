@@ -46,7 +46,11 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return CustomScaffold(
-        leading: ArrowBack(color: Color(0XFFF44565)),
+        leading: ArrowBack(
+            color: Color(0XFFF44565),
+            onBack: () {
+              Navigator.pop(context);
+            }),
         child: BlocBuilder<UserBloc, UserState>(builder: (context, stateUser) {
           return (stateUser is UserAuthenticated)
               ? Padding(
