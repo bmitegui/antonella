@@ -3,6 +3,7 @@ import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/user/domain/entities/user_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/screens/change_language_screen.dart';
 import 'package:antonella/features/user/presentation/screens/edit_profile_screen.dart';
@@ -98,42 +99,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   .add(SignOutEvent(userEntity: state.user));
                             })
                       ])),
-                  const SizedBox(height: 16),
-                  Text(texts.purchases,
-                      textAlign: TextAlign.left,
-                      style:
-                          textTheme.titleMedium!.copyWith(color: Colors.grey)),
-                  const SizedBox(height: 8),
-                  Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(children: [
-                        ListTile(
-                            leading: const Icon(Icons.article_outlined),
-                            title: Text(texts.purchases_history),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const PurchaseHistoryScreen(),
-                                  ));
-                            }),
-                        Divider(height: 1, color: Colors.grey.shade300),
-                        ListTile(
-                            leading: const Icon(Icons.add_shopping_cart),
-                            title: Text(texts.shopping_cart),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ShoppingCartScreen(),
-                                  ));
-                            }),
-                        Divider(height: 1, color: Colors.grey.shade300),
-                      ])),
+                  (state.user.rol == Rol.cliente)
+                    ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 16),
+                          Text(texts.purchases,
+                          textAlign: TextAlign.left,
+                          style:
+                              textTheme.titleMedium!.copyWith(color: Colors.grey)),
+                          const SizedBox(height: 8),
+                          Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade100,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(children: [
+                                ListTile(
+                                    leading: const Icon(Icons.article_outlined),
+                                    title: Text(texts.purchases_history),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const PurchaseHistoryScreen(),
+                                          ));
+                                    }),
+                                Divider(height: 1, color: Colors.grey.shade300),
+                                ListTile(
+                                    leading: const Icon(Icons.add_shopping_cart),
+                                    title: Text(texts.shopping_cart),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ShoppingCartScreen(),
+                                          ));
+                                    }),
+                                Divider(height: 1, color: Colors.grey.shade300),
+                            ]))
+                      ],
+                    )  : const SizedBox.shrink(), 
                   const SizedBox(height: 16),
                   Text(texts.preferences,
                       textAlign: TextAlign.left,
