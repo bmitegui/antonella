@@ -64,11 +64,18 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                       
                       final ordersConfirmed = orders.where((order) {
                         final isClientConfirmed =
-                            order.clientStatus == ClientStatus.noConfirmado;
+                            order.clientStatus == ClientStatus.confirmado;
+                            
 
                         return isClientConfirmed;
                       }).toList();
 
+                      // final ordersConfirmed = orders.where((order) {
+                      //   final isClientConfirmed = order.clientStatus == ClientStatus.noConfirmado;
+                      //   final isRelatedToPromotion = serviceIdsFromPromotions.contains(order.id);
+                      //   return isClientConfirmed && !isRelatedToPromotion;
+                      // }).toList();
+                      
                       if (selectedProductIds.isEmpty && productState.products.isNotEmpty) {
                         selectedProductIds.addAll(productState.products.map((p) => p.id));
                       }

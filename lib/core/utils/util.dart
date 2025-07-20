@@ -170,6 +170,55 @@ Map<String, double> calculateTotals(List<ProductEntity> products) {
   };
 }
 
+// Map<String, double> calculateTotals({
+//   required List<ProductEntity> products,
+//   required List<OrderEntity> orders,
+//   required List<PromotionEntity> promotions,
+// }) {
+//   double subtotal = 0.0;
+
+//   // Productos
+//   subtotal += products.fold<double>(0.0, (sum, item) => sum + item.price);
+
+//   // Servicios (órdenes)
+//   for (final order in orders) {
+//     subtotal += getTotalBasePrice(order.appointments); // Ya tienes esta función
+//   }
+
+//   // Promociones
+//   for (final promo in promotions) {
+//     for (final serviceItem in promo.serviceItems) {
+//       final originalPrice = getServicePriceById(serviceItem.id); // Debes implementar esta función
+//       final discountedPrice = originalPrice * (1 - serviceItem.discount);
+//       subtotal += discountedPrice;
+//     }
+//   }
+
+//   final iva = subtotal * 0.15;
+//   final total = subtotal + iva;
+
+//   return {
+//     'subtotal': double.parse(subtotal.toStringAsFixed(2)),
+//     'iva': double.parse(iva.toStringAsFixed(2)),
+//     'total': double.parse(total.toStringAsFixed(2)),
+//   };
+// }
+
+// double getServicePriceById(String serviceId) {
+//   // Ejemplo estático (reemplaza con tu lógica real)
+//   final allOrders = ...; // debes tener acceso a todas las órdenes o servicios
+//   final service = allOrders
+//       .expand((order) => order.appointments)
+//       .firstWhere((a) => a.serviceEntity.id == serviceId, orElse: () => null);
+
+//   if (service != null) {
+//     return service.serviceEntity.price;
+//   } else {
+//     return 0.0;
+//   }
+// }
+
+
 List<ProductEntity> getUniqueProducts(List<ProductEntity> products) {
   final uniqueMap = <String, ProductEntity>{};
 
