@@ -47,6 +47,7 @@
     "invalid_dni_error": "The ID is invalid",
     "invalid_phone_number_error": "The format of cell phone number is invalid",
     "invalid_user_password_error": "The format of the password is invalid",
+    "model_not_found_error": "The user is not registered",
 
     "change_language": "Change language",
     "english": "English",

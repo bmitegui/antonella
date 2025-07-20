@@ -50,6 +50,7 @@ mixin RemoteRequestHelper {
       required T Function(dynamic data) onSuccess}) async {
     try {
       final response = await request();
+      print(response);
       return response.parseOrThrow(onSuccess);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
@@ -66,6 +67,8 @@ mixin RemoteRequestHelper {
     } on ServerException {
       rethrow;
     } on NetworkConnectionException {
+      rethrow;
+    } on ModelNotFoundException {
       rethrow;
     } on UnexpectedException {
       rethrow;

@@ -111,7 +111,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get incomplete_fields => 'Campos incompletos';
 
   @override
-  String get model_not_found_error => 'Usuario no registrado';
+  String get model_not_found_error => 'El usuario no se encuentra registrado';
 
   @override
   String get invalid_user_email_error => 'El formato del correo ingresado no es el correcto';

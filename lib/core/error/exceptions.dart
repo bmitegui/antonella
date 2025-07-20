@@ -24,13 +24,9 @@ class IncorrectUserNameException implements Exception {
   IncorrectUserNameException({this.message = 'Nombre de usuario incorrecto'});
 }
 
-class IncompleteFieldsException implements Exception {
-  IncompleteFieldsException();
-}
+class IncompleteFieldsException implements Exception {}
 
-class ModelNotFoundException implements Exception {
-  ModelNotFoundException();
-}
+class ModelNotFoundException implements Exception {}
 
 class InvalidUserEmailException implements Exception {}
 

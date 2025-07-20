@@ -302,7 +302,7 @@ abstract class AppLocalizations {
   /// No description provided for @model_not_found_error.
   ///
   /// In en, this message translates to:
-  /// **'Unregistered user'**
+  /// **'The user is not registered'**
   String get model_not_found_error;
 
   /// No description provided for @invalid_user_email_error.
