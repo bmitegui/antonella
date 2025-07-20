@@ -16,15 +16,16 @@ class IconServiceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return CustomCircularIconButtom(
-        borderColor: isSelected ? Color(0xFFF44565) : null,
-        bottomTitleColor: isSelected ? Color(0xFFF44565) : null,
+        borderColor: isSelected ? colorScheme.primary : null,
+        bottomTitleColor: isSelected ? colorScheme.primary : null,
         fontWeight: FontWeight.bold,
         bottomTitle: bottomTitle,
         padding: EdgeInsets.zero,
         icon: CircleAvatar(
             radius: 24,
-            backgroundColor: Colors.white,
+            backgroundColor: colorScheme.onPrimary,
             child: CustomLocalSvgImage(assetPath: asset)),
         onTap: onTap);
   }

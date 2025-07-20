@@ -7,12 +7,13 @@ class HomeTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return TabBar(
         unselectedLabelColor: Colors.black,
-        indicatorColor: Color(0XFFF44565),
-        dividerColor: Colors.grey.shade400,
+        indicatorColor: colorScheme.primary,
+        dividerColor: colorScheme.onSurfaceVariant,
         controller: controller,
-        labelColor: Color(0XFFF44565),
+        labelColor: colorScheme.primary,
         tabs: const [
           CustomTab(text: 'Servicios'),
           CustomTab(text: 'Productos')

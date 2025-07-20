@@ -28,10 +28,10 @@ class DropdownLanguageWidget extends StatelessWidget {
                   labelStyle: Theme.of(context).textTheme.bodySmall),
               menuStyle: MenuStyle(
                   backgroundColor: WidgetStatePropertyAll(
-                      colorScheme.surfaceContainerLowest),
+                      colorScheme.onPrimary),
                   shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)))),
-              leadingIcon: Icon(Icons.language, color: colorScheme.onSurface),
+              leadingIcon: Icon(Icons.language, color: colorScheme.primary),
               width: double.infinity,
               label: Text(texts.change_language,
                   style: Theme.of(context).textTheme.bodyMedium),

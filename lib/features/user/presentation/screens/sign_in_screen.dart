@@ -45,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-        backgroundColor: Color(0xFFFAE2E1),
+        backgroundColor: colorScheme.primaryContainer,
         body: BlocConsumer<UserBloc, UserState>(
             listener: (BuildContext context, UserState state) {
           if (state is UserAuthenticated) {
@@ -58,9 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
               : SingleChildScrollView(
                   child: Column(children: [
                   LogoSignInWidget(),
-                  Text(texts.welcome,
-                      style: textTheme.titleLarge!
-                          .copyWith(color: colorScheme.primary)),
+                  Text(texts.welcome, style: textTheme.titleLarge),
                   SizedBox(height: 32),
                   Padding(
                       padding: const EdgeInsets.all(16),
@@ -84,16 +82,15 @@ class _SignInScreenState extends State<SignInScreen> {
                                   keyboardType: TextInputType.phone),
                               const SizedBox(height: 32),
                               CustomTextFormFieldWidget(
-                                errorMessage: (state is UserError)
-                                    ? mapFailureToMessage(
-                                        context: context,
-                                        failure: state.failure)
-                                    : null,
-                                autofillHints: const [AutofillHints.password],
-                                textEditingController: _passwordController,
-                                hintText: texts.password,
-                                obscureText: true,
-                              ),
+                                  errorMessage: (state is UserError)
+                                      ? mapFailureToMessage(
+                                          context: context,
+                                          failure: state.failure)
+                                      : null,
+                                  autofillHints: const [AutofillHints.password],
+                                  textEditingController: _passwordController,
+                                  hintText: texts.password,
+                                  obscureText: true),
                               Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

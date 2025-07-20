@@ -18,8 +18,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get start_title => 'Descubre tu mejor versión aquí';
 
   @override
-  String get start_body =>
-      'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
+  String get start_body => 'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
 
   @override
   String get phone_number => 'Teléfono';
@@ -115,16 +114,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get model_not_found_error => 'Usuario no registrado';
 
   @override
-  String get invalid_user_email_error =>
-      'El formato del correo ingresado no es el correcto';
+  String get invalid_user_email_error => 'El formato del correo ingresado no es el correcto';
 
   @override
-  String get invalid_user_birthdate_error =>
-      'La fecha de nacimiento es inválida';
+  String get invalid_user_birthdate_error => 'La fecha de nacimiento es inválida';
 
   @override
-  String get user_already_exists_error =>
-      'El usuario ya se encuentra registrado';
+  String get user_already_exists_error => 'El usuario ya se encuentra registrado';
 
   @override
   String get invalid_user_name_error => 'El nombre de usuario es inválido';
@@ -133,12 +129,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get invalid_dni_error => 'El dni es inválido';
 
   @override
-  String get invalid_phone_number_error =>
-      'El formato del número de celular es inválido';
+  String get invalid_phone_number_error => 'El formato del número de celular es inválido';
 
   @override
-  String get invalid_user_password_error =>
-      'El formato de la contraseña es inválido';
+  String get invalid_user_password_error => 'El formato de la contraseña es inválido';
 
   @override
   String get change_language => 'Cambiar idioma';
@@ -150,8 +144,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get spanish => 'Español';
 
   @override
-  String get info_change_language =>
-      'Cambia el idioma de los botones, títulos y otros textos de \'Antonella\'.';
+  String get info_change_language => 'Cambia el idioma de los botones, títulos y otros textos de \'Antonella\'.';
+
+  @override
+  String get dark_mode => 'Modo oscuro';
+
+  @override
+  String get select_mode => 'Selecciona un modo';
+
+  @override
+  String get info_dark_mode => 'Cambia entre los modos oscuro y claro según tus necesidades, directamente desde esta pantalla.';
+
+  @override
+  String get activated => 'Activado';
+
+  @override
+  String get disabled => 'Desactivado';
+
+  @override
+  String get use_system_configuration => 'Usar configuración del sistema';
 
   @override
   String get settings => 'Ajustes';
@@ -184,9 +195,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get idm => 'ESP';
 
   @override
-  String get dark_mode => 'Modo Oscuro';
-
-  @override
   String get notifications => 'Notificaciones';
 
   @override
@@ -202,8 +210,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get no_notifications => 'Sin Notificaciones';
 
   @override
-  String get notification_message =>
-      'Te avisaremos cuando haya algo nuevo para ti.';
+  String get notification_message => 'Te avisaremos cuando haya algo nuevo para ti.';
 
   @override
   String get administrator => 'Administrador';

@@ -12,19 +12,20 @@ class CircleCheckbox extends StatefulWidget {
 class _CircleCheckboxState extends State<CircleCheckbox> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
         onTap: () => widget.onTap(!widget.checked),
         child: Container(
             width: 24,
             height: 24,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, color: colorScheme.secondaryContainer),
             child: widget.checked
                 ? Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 5),
-                        color: Color(0xFF999999)))
+                        color: colorScheme.onSecondaryContainer))
                 : null));
   }
 }

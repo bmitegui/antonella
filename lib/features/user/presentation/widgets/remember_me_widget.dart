@@ -10,12 +10,13 @@ class RememberMeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return Row(children: [
       CircleCheckbox(checked: value, onTap: onChanged),
       const SizedBox(width: 8),
       Text('Recuérdame',
           style: textTheme.bodySmall!.copyWith(
-              color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold))
+              color: colorScheme.onSurface, fontWeight: FontWeight.bold))
     ]);
   }
 }

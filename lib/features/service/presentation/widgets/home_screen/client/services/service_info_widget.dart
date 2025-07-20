@@ -14,6 +14,7 @@ class ServiceInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       int index = -1;
@@ -40,8 +41,9 @@ class ServiceInfoWidget extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 2,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color:
-                          isSelected ? Color(0xFFF44565) : Colors.transparent),
+                      color: isSelected
+                          ? colorScheme.primary
+                          : Colors.transparent),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -59,8 +61,9 @@ class ServiceInfoWidget extends StatelessWidget {
                                     .textTheme
                                     .titleSmall!
                                     .copyWith(
-                                        color:
-                                            isSelected ? Colors.white : null))),
+                                        color: isSelected
+                                            ? colorScheme.onPrimary
+                                            : colorScheme.onSurface))),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             child: Text(serviceEntity.description,
@@ -71,8 +74,8 @@ class ServiceInfoWidget extends StatelessWidget {
                                     .bodyMedium!
                                     .copyWith(
                                         color: isSelected
-                                            ? Colors.white70
-                                            : Colors.grey))),
+                                            ? colorScheme.onPrimary
+                                            : colorScheme.onSurfaceVariant))),
                         const SizedBox(height: 8),
                         Align(
                             alignment: Alignment.centerRight,
@@ -86,8 +89,8 @@ class ServiceInfoWidget extends StatelessWidget {
                                         .titleSmall!
                                         .copyWith(
                                             color: isSelected
-                                                ? Colors.white
-                                                : Color(0xFFF44565)))))
+                                                ? colorScheme.onPrimary
+                                                : colorScheme.primary))))
                       ]))));
     });
   }

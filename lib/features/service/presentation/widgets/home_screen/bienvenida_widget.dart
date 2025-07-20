@@ -13,6 +13,8 @@ class BienvenidaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<UserBloc, UserState>(builder: (context, state) {
       return (state is UserAuthenticated)
           ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -22,16 +24,12 @@ class BienvenidaWidget extends StatelessWidget {
                       textAlign: TextAlign.start,
                       text: TextSpan(
                           text: texts.welcome_user,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: textTheme.titleMedium!
+                              .copyWith(color: colorScheme.onSurface),
                           children: [
                             TextSpan(
                                 text: state.user.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFFF44565)))
+                                style: textTheme.titleMedium)
                           ]))),
               BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
                   builder: (context, state) {
@@ -41,8 +39,8 @@ class BienvenidaWidget extends StatelessWidget {
                   return IconButton(
                       onPressed: () => navigateWithSlideTransition(
                           context, ShoppingCartScreen()),
-                      icon:
-                          Icon(Icons.shopping_cart, color: Color(0xFFF44565)));
+                      icon: Icon(Icons.shopping_cart,
+                          color: colorScheme.primary));
                 } else {
                   return SizedBox.shrink();
                 }

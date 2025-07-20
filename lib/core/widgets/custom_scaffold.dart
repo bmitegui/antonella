@@ -10,6 +10,7 @@ class CustomScaffold extends StatelessWidget {
   final Widget? bottomNavigationBar;
   final EdgeInsetsGeometry? paddingScroll;
   final bool? resizeToAvoidBottomInset;
+  final Color? backgroundColor;
   const CustomScaffold(
       {super.key,
       this.resizeToAvoidBottomInset,
@@ -20,11 +21,13 @@ class CustomScaffold extends StatelessWidget {
       this.body,
       this.extendBodyBehindAppBar = false,
       this.bottomNavigationBar,
+      this.backgroundColor,
       this.paddingScroll =
           const EdgeInsets.only(right: 16, left: 16, bottom: 100)});
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         bottomNavigationBar: bottomNavigationBar,
@@ -36,12 +39,9 @@ class CustomScaffold extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 title: title ??
                     Text(text ?? '',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(color: Color(0xFFF44565))))
+                        style: Theme.of(context).textTheme.titleMedium))
             : null,
-        backgroundColor: Color(0xFFF0F0F0),
+        backgroundColor: backgroundColor ?? colorScheme.surface,
         body: body ??
             SingleChildScrollView(padding: paddingScroll, child: child));
   }

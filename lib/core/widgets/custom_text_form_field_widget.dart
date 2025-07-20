@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/util.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormFieldWidget extends StatefulWidget {
@@ -16,7 +17,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final String? errorMessage;
   final void Function()? onTap;
   final bool readOnly;
-  final Color fillColor;
+  final Color? fillColor;
   final int maxLines;
 
   const CustomTextFormFieldWidget(
@@ -36,7 +37,7 @@ class CustomTextFormFieldWidget extends StatefulWidget {
       this.suffixIcon,
       this.onTap,
       this.readOnly = false,
-      this.fillColor = Colors.white,
+      this.fillColor,
       this.maxLines = 1});
 
   @override
@@ -68,8 +69,8 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
             Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(widget.title!,
-                    style: textTheme.bodyMedium!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.bold))),
+                    style: textTheme.titleSmall!
+                        .copyWith(color: colorScheme.onSurface))),
           if (widget.title != null) const SizedBox(height: 8),
           TextFormField(
               maxLines: widget.maxLines,
@@ -81,17 +82,16 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
               onChanged: widget.onChanged,
               obscureText: _obscureText,
               onTapOutside: (event) => FocusScope.of(context).unfocus(),
-              style: textTheme.bodyMedium!
-                  .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
+              style: bodyBlack54Style(context),
               controller: widget.textEditingController,
               onEditingComplete: widget.onEditingComplete,
               decoration: InputDecoration(
+                  prefixIconColor: colorScheme.onSurfaceVariant,
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  hintStyle: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.bold),
+                  hintStyle: bodyBlack54Style(context),
                   filled: true,
-                  fillColor: widget.fillColor,
+                  fillColor: widget.fillColor ?? colorScheme.secondaryContainer,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide.none),
@@ -102,7 +102,7 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                               _obscureText
                                   ? Icons.visibility_off
                                   : Icons.visibility,
-                              color: Colors.grey),
+                              color: colorScheme.onSecondaryContainer),
                           onTap: () =>
                               setState(() => _obscureText = !_obscureText))
                       : widget.suffixIcon,
@@ -115,8 +115,8 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
                 child: Text(widget.errorMessage!,
                     maxLines: 2,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
+                    style: textTheme.bodyMedium!.copyWith(
+                        color: colorScheme.onPrimary,
                         fontWeight: FontWeight.bold,
                         overflow: TextOverflow.ellipsis)))
         ]));

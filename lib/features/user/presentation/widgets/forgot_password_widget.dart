@@ -9,12 +9,15 @@ class ForgotPasswordWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
     final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
         alignment: Alignment.centerRight,
         child: TextButton(
             onPressed: () => GoRouter.of(context).go('/forgotPassword'),
             child: Text(texts.forgot_password,
-                style: textTheme.bodySmall!
-                    .copyWith(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold, decoration: TextDecoration.underline))));
+                style: textTheme.bodySmall!.copyWith(
+                    color: colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline))));
   }
 }
