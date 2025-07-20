@@ -13,16 +13,18 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-        backgroundColor: const Color(0XffE596A9),
+        backgroundColor: colorScheme.secondary,
         body: Stack(children: [
           Positioned(
               left: 0,
               right: 0,
               bottom: 0,
-              child: Container(color: Color(0XffFAE2E1), height: height / 2)),
+              child: Container(
+                  color: colorScheme.primaryContainer, height: height / 2)),
           Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +33,8 @@ class _StartScreenState extends State<StartScreen> {
                 Container(
                     padding: EdgeInsets.all(64),
                     decoration: BoxDecoration(
-                        color: Color(0XffFAE2E1), shape: BoxShape.circle),
+                        color: colorScheme.primaryContainer,
+                        shape: BoxShape.circle),
                     child:
                         Image.asset('assets/icon/logo.png', height: height / 5))
               ])),
@@ -42,15 +45,13 @@ class _StartScreenState extends State<StartScreen> {
               child: Text(
                   'Explora y agenda fácilmente citas para servicios de belleza, peluqueria y bienestar, adaptados a tu necesidad y estilo',
                   textAlign: TextAlign.center,
-                  style: textTheme.titleMedium)),
+                  style: textTheme.bodyLarge!
+                      .copyWith(fontWeight: FontWeight.bold))),
           Positioned(
               bottom: 64,
               left: 128,
               right: 128,
               child: FilledButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Color(0xFFF44565))),
                   onPressed: () async => await _seen(),
                   child: Text('Iniciar')))
         ]));

@@ -4,6 +4,7 @@ import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.
 import 'package:antonella/features/service/presentation/widgets/appointment/info_order_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class ListOrdersToConfirm extends StatelessWidget {
   const ListOrdersToConfirm({super.key});
@@ -29,11 +30,14 @@ class ListOrdersToConfirm extends StatelessWidget {
                 separatorBuilder: (BuildContext context, int index) =>
                     const SizedBox(height: 16),
               )
-            : Center(child: Text('No hay citas pendientes por confirmar'));
+            : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                LottieBuilder.asset("assets/lottie/calendar.json"),
+                Text('No hay citas pendientes por confirmar'),
+                const SizedBox(height: 128)
+              ]);
       } else if (state is OrdersError) {
         return Text(
-          mapFailureToMessage(context: context, failure: state.failure),
-        );
+            mapFailureToMessage(context: context, failure: state.failure));
       } else {
         return const Center(child: CircularProgressIndicator());
       }

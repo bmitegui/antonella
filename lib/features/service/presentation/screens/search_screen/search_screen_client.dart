@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
@@ -60,8 +61,9 @@ class _SearchScreenClientState extends State<SearchScreenClient> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
-        text: 'Promociones',
+        text: texts.promotions,
         body: BlocBuilder<PromotionBloc, PromotionState>(
             builder: (context, state) {
           List<PromotionEntity>? filteredPromotions;
@@ -77,9 +79,7 @@ class _SearchScreenClientState extends State<SearchScreenClient> {
                     ? (state.listPromotions.isNotEmpty)
                         ? PromotionsGridView(
                             listPromotions: filteredPromotions!)
-                        : Center(
-                            child:
-                                Text('No existe promociones en este momento'))
+                        : Center(child: Text(texts.no_promotions))
                     : (state is PromotionError)
                         ? Text(mapFailureToMessage(
                             context: context, failure: state.failure))

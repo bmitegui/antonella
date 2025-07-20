@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
                 routeInformationProvider: appRouter.routeInformationProvider,
                 debugShowCheckedModeBanner: false,
                 title: appName,
-                theme: stateTheme ? theme.light(context) : theme.dark(context));
+                theme: stateTheme ? theme.dark(context) : theme.light(context));
           });
         }));
   }
