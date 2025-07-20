@@ -14,7 +14,8 @@ class AppointmentWithOrder {
 
 class FilterListAppointment extends StatelessWidget {
   final ProgressStatus? status;
-  const FilterListAppointment({super.key, required this.status});
+  final String? value;
+  const FilterListAppointment({super.key, required this.status, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,20 @@ class FilterListAppointment extends StatelessWidget {
             appointmentEntries = appointmentEntries
                 .where((entry) => entry.appointment.status == status)
                 .toList();
+          }
+
+          if (value != null) {
+            if (value == "Nombre") {
+              // Ordenar por nombre
+              appointmentEntries.sort((a, b) => a.appointment.serviceEntity.id.compareTo(b.appointment.serviceEntity.id));
+              
+            } else if (value == "Precio") {
+              // Ordenar por precio
+              appointmentEntries.sort((a, b) => a.appointment.basePrice!.compareTo(b.appointment.basePrice!));
+            } else {
+              // Ordenar por los mas recientes
+              appointmentEntries.sort((a, b) => b.appointment.day.compareTo(a.appointment.day));
+            }
           }
 
           return appointmentEntries.isNotEmpty

@@ -19,6 +19,7 @@ class SearchScreenEmployee extends StatefulWidget {
 
 class _SearchScreenEmployeeState extends State<SearchScreenEmployee> {
   ProgressStatus? _status;
+  String? _value = "Recientes";
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +44,13 @@ class _SearchScreenEmployeeState extends State<SearchScreenEmployee> {
                 const SizedBox(height: 16),
                 CustomTitle(title: 'Ordenar'),
                 const SizedBox(height: 16),
-                FilterLabelAppoinment(),
+                FilterLabelAppoinment(
+                  onSelect: (data) => setState(() => _value = data)
+                ),
                 const SizedBox(height: 16),
                 CustomTitle(title: 'Citas'),
                 const SizedBox(height: 16),
-                FilterListAppointment(status: _status)
+                FilterListAppointment(status: _status, value: _value)
               ]));
         })));
   }

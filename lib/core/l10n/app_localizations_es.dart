@@ -137,7 +137,8 @@ class AppLocalizationsEs extends AppLocalizations {
       'El formato del número de celular es inválido';
 
   @override
-  String get invalid_user_password_error => 'El formato de la contraseña es inválido';
+  String get invalid_user_password_error =>
+      'El formato de la contraseña es inválido';
 
   @override
   String get change_language => 'Cambiar idioma';
@@ -149,7 +150,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get spanish => 'Español';
 
   @override
-  String get info_change_language => 'Cambia el idioma de los botones, títulos y otros textos de \'Antonella\'.';
+  String get info_change_language =>
+      'Cambia el idioma de los botones, títulos y otros textos de \'Antonella\'.';
 
   @override
   String get settings => 'Ajustes';
@@ -200,7 +202,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get no_notifications => 'Sin Notificaciones';
 
   @override
-  String get notification_message => 'Te avisaremos cuando haya algo nuevo para ti.';
+  String get notification_message =>
+      'Te avisaremos cuando haya algo nuevo para ti.';
 
   @override
   String get administrator => 'Administrador';

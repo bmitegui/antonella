@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FilterLabelAppoinment extends StatefulWidget {
-  const FilterLabelAppoinment({super.key});
+  final Function(String) onSelect;
+  const FilterLabelAppoinment({super.key, required this.onSelect});
 
   @override
   State<FilterLabelAppoinment> createState() => _FilterLabelAppoinmentState();
@@ -12,7 +13,7 @@ class _FilterLabelAppoinmentState extends State<FilterLabelAppoinment> {
 
   @override
   Widget build(BuildContext context) {
-    final List data = ['Recientes', 'Nombre', 'Código'];
+    final List data = ['Recientes', 'Nombre', 'Precio'];
     return Row(
         children: data
             .map((value) => Padding(
@@ -24,7 +25,10 @@ class _FilterLabelAppoinmentState extends State<FilterLabelAppoinment> {
                                 ? Color(0xFFFAE2E1)
                                 : Color(0xFFF44565))),
                     onPressed: () =>
-                        setState(() => _filterLabelSelected = value),
+                        setState(() {
+                          _filterLabelSelected = value;
+                          widget.onSelect(value);
+                        } ),
                     child: Text(value))))
             .toList());
   }
