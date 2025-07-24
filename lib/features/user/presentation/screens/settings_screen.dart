@@ -14,6 +14,7 @@ import 'package:antonella/features/user/presentation/widgets/settings_photowidge
 import 'package:antonella/features/user/presentation/screens/support_screen.dart';
 import 'package:antonella/features/product/presentation/shopping_cart_screen.dart';
 import 'package:antonella/features/product/presentation/purchase_history_screen.dart';
+import 'package:antonella/features/user/presentation/widgets/user_photo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -52,7 +53,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         }, builder: (context, state) {
           return (state is UserAuthenticated)
               ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Center(child: const SettingsPhotowidget()),
+                  Center(child: const UserPhotoWidget()),
                   const SizedBox(height: 8),
                   Center(
                       child: Text(state.user.name,

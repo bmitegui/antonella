@@ -28,6 +28,7 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
+import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -56,73 +57,73 @@ class UploadUserPhotoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return CustomModalBottomSheetWidget(
-    //   title: 'Foto del perfil',
-    //   otherAction: IconButton(
-    //     onPressed: () {
-    //       // Aquí podrías emitir un evento para eliminar la foto
-    //     },
-    //     icon: const Icon(Icons.delete_outline),
-    //   ),
-    //   body: Row(
-    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //     children: [
-    //       CustomCircularIconButtom(
-    //         onTap: () => _pickImage(context, ImageSource.camera),
-    //         icon: const Icon(Icons.photo_camera_outlined),
-    //         bottomTitle: 'Cámara',
-    //       ),
-    //       CustomCircularIconButtom(
-    //         onTap: () => _pickImage(context, ImageSource.gallery),
-    //         icon: const Icon(Icons.photo_outlined),
-    //         bottomTitle: 'Galería',
-    //       ),
-    //     ],
-    //   ),
-    // );
-    return CustomScaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (initialPhotoUrl != null)
-                  Image.network(initialPhotoUrl!,
-                      width: 250, height: 250, fit: BoxFit.cover),
-            SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    CustomCircularIconButtom(
-                      icon: const Icon(Icons.photo_camera_outlined),
-                      onTap: () => _pickImage(context, ImageSource.camera),
-                    ),
-                    const Text("Cámara", style: TextStyle(color: Colors.white))
-                  ],
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // IconButton(
-                    //   iconSize: 64,
-                    //   icon: const Icon(Icons.photo_outlined),
-                    //   onPressed: () => _pickImage(context, ImageSource.gallery),
-                    // ),
-                    CustomCircularIconButtom(
-                      icon: const Icon(Icons.photo_camera_outlined),
-                      onTap: () => _pickImage(context, ImageSource.gallery),
-                    ),
-                    const Text("Galería", style: TextStyle(color: Colors.white))
-                  ],
-                )
-              ],
-            ),
-          ],
-        ),
+    return CustomModalBottomSheetWidget(
+      title: 'Foto del perfil',
+      otherAction: IconButton(
+        onPressed: () {
+          // Aquí podrías emitir un evento para eliminar la foto
+        },
+        icon: const Icon(Icons.delete_outline),
+      ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CustomCircularIconButtom(
+            onTap: () => _pickImage(context, ImageSource.camera),
+            icon: const Icon(Icons.photo_camera_outlined),
+            bottomTitle: 'Cámara',
+          ),
+          CustomCircularIconButtom(
+            onTap: () => _pickImage(context, ImageSource.gallery),
+            icon: const Icon(Icons.photo_outlined),
+            bottomTitle: 'Galería',
+          ),
+        ],
       ),
     );
+    // return CustomScaffold(
+    //   backgroundColor: Colors.black,
+    //   body: Center(
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         if (initialPhotoUrl != null)
+    //               Image.network(initialPhotoUrl!,
+    //                   width: 250, height: 250, fit: BoxFit.cover),
+    //         SizedBox(height: 16),
+    //         Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //           children: [
+    //             Column(
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: [
+    //                 CustomCircularIconButtom(
+    //                   icon: const Icon(Icons.photo_camera_outlined),
+    //                   onTap: () => _pickImage(context, ImageSource.camera),
+    //                 ),
+    //                 const Text("Cámara", style: TextStyle(color: Colors.white))
+    //               ],
+    //             ),
+    //             Column(
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: [
+    //                 // IconButton(
+    //                 //   iconSize: 64,
+    //                 //   icon: const Icon(Icons.photo_outlined),
+    //                 //   onPressed: () => _pickImage(context, ImageSource.gallery),
+    //                 // ),
+    //                 CustomCircularIconButtom(
+    //                   icon: const Icon(Icons.photo_camera_outlined),
+    //                   onTap: () => _pickImage(context, ImageSource.gallery),
+    //                 ),
+    //                 const Text("Galería", style: TextStyle(color: Colors.white))
+    //               ],
+    //             )
+    //           ],
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
