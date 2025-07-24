@@ -19,7 +19,7 @@ class SelectDatePage extends StatelessWidget {
               ActivityStateWidget(),
               const SizedBox(height: 16),
               SizedBox(
-                  height: 400,
+                  height: 500,
                   child: CustomTableCalendar())
             ]));
   }

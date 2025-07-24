@@ -47,6 +47,7 @@
     "invalid_dni_error": "El dni es inválido",
     "invalid_phone_number_error": "El formato del número de celular es inválido",
     "invalid_user_password_error": "El formato de la contraseña es inválido",
+    "model_not_found_error": "El usuario no se encuentra registrado",
 
     "change_language": "Cambiar idioma",
     "english": "Inglés",

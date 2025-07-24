@@ -30,6 +30,8 @@ String mapFailureToMessage(
     return texts.invalid_phone_number_error;
   } else if (failure is InvalidUserPasswordFailure) {
     return texts.invalid_user_password_error;
+  } else if (failure is ModelNotFoundFailure) {
+    return texts.model_not_found_error;
   } else {
     return texts.unexpected_error;
   }

@@ -27,6 +27,8 @@ Future<Either<Failure, T>> handleNetworkCall<T>(
       return Left(InvalidDniFailure());
     } on InvalidPhoneNumberException {
       return Left(InvalidPhoneNumberFailure());
+    } on ModelNotFoundException {
+      return Left(ModelNotFoundFailure());
     } on InvalidUserPasswordException {
       return Left(InvalidUserPasswordFailure());
     } on UnexpectedException {

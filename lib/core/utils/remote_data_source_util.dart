@@ -67,6 +67,8 @@ mixin RemoteRequestHelper {
       rethrow;
     } on NetworkConnectionException {
       rethrow;
+    } on ModelNotFoundException {
+      rethrow;
     } on UnexpectedException {
       rethrow;
     } on IncorrectPasswordException {
