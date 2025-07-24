@@ -33,5 +33,6 @@ abstract class UserRepository {
       required MessageType type
     }
   );
+  Future<Either<Failure, void>> addProfile();
 
 }
