@@ -126,5 +126,14 @@ class UserRepositoryImpl implements UserRepository {
             userId: userId, content: content, type: type);
         });
   }
+
+  Future<Either<Failure, void>> addProfile() {
+    return handleNetworkCall(
+      networkInfo: networkInfo,
+      operation: () async {
+        await userRemoteDataSource.addProfile();
+      }
+    );
+  }
   
 }

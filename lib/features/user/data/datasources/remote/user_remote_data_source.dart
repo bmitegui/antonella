@@ -32,6 +32,7 @@ abstract class UserRemoteDataSource {
       {required String userId,
       required String content,
       required MessageType type});
+  Future<void> addProfile();
 }
 
 class UserRemoteDataSourceImpl
@@ -160,5 +161,11 @@ class UserRemoteDataSourceImpl
             },
             options: defaultOptions),
         onSuccess: (_) {});
+  }
+
+  Future<void> addProfile() {
+    return await handleRequest(
+      request: () => ,
+      onSuccess: (_) {});
   }
 }
