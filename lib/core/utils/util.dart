@@ -28,6 +28,16 @@ String formatDateToString(DateTime date) {
   return "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
 }
 
+String formatDurationToHours(String timeString) {
+  final parts = timeString.split(':');
+  if (parts.length != 3) return timeString; // En caso de formato incorrecto
+
+  final hours = int.parse(parts[0]);
+  final minutes = int.parse(parts[1]);
+
+  return '$hours:${minutes.toString().padLeft(2, '0')} hrs';
+}
+
 DateTime parseStringToDate(String dateString) {
   return DateTime.parse(dateString);
 }
