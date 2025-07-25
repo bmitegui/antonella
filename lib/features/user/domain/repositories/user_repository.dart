@@ -9,6 +9,7 @@ abstract class UserRepository {
     required String password,
     required bool rememberMe,
   });
+  Future<Either<Failure, UserModel>> getAdmin();
   Future<Either<Failure, UserModel>> signUp(
       {required String account,
       required String dni,
@@ -27,12 +28,9 @@ abstract class UserRepository {
       required String endDate});
   Future<Either<Failure, List<MessageModel>>> getMessages();
   Future<Either<Failure, void>> sendMessage(
-    {
-      required String userId,
+      {required String userId,
       required String content,
-      required MessageType type
-    }
-  );
-  Future<Either<Failure, void>> addProfile({required String id, required String urlPhoto});
-
+      required MessageType type});
+  Future<Either<Failure, void>> addProfile(
+      {required String id, required String urlPhoto});
 }

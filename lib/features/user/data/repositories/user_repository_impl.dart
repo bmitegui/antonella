@@ -139,4 +139,13 @@ class UserRepositoryImpl implements UserRepository {
           await userRemoteDataSource.addProfile(id: id, urlPhoto: urlPhoto);
         });
   }
+
+  @override
+  Future<Either<Failure, UserModel>> getAdmin() async {
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await userRemoteDataSource.getAdmin();
+        });
+  }
 }

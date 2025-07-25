@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
-import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
+import 'package:antonella/features/service/presentation/widgets/admin_header.dart';
 import 'package:antonella/features/service/presentation/widgets/message_input_field.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
@@ -91,7 +91,6 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final texts = AppLocalizations.of(context)!;
     String clientId = '';
     final userState = sl<UserBloc>().state;
     if (userState is UserAuthenticated) {
@@ -100,16 +99,8 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
 
     return CustomScaffold(
       resizeToAvoidBottomInset: true,
-      title: Row(
-        children: [
-          const CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://randomuser.me/api/portraits/women/44.jpg'),
-          ),
-          const SizedBox(width: 8),
-          Text(texts.administrator)
-        ],
-      ),
+      backgroundImageAsset: 'assets/img/background_chat.jpg',
+      title: AdminHeader(),
       bottomNavigationBar: BlocBuilder<MessagesBloc, MessageState>(
         builder: (context, state) {
           return Padding(

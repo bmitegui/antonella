@@ -138,6 +138,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetNotificationsUseCase>(() =>
       GetNotificationsUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<GetAdminUseCase>(
+      () => GetAdminUseCase(userRepository: sl<UserRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -201,6 +204,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<NotificationsBloc>(() => NotificationsBloc(
       getNotificationsUseCase: sl<GetNotificationsUseCase>()));
+
+  sl.registerLazySingleton<AdminBloc>(
+      () => AdminBloc(getAdminUseCase: sl<GetAdminUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

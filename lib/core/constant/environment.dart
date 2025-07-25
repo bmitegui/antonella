@@ -25,4 +25,5 @@ class Environment {
   static String fcmToken = '$apiUrl${dotenv.env['fcmToken']}';
   static String comments = '$apiUrl${dotenv.env['comments']}';
   static String notifications = '$apiUrl${dotenv.env['notifications']}';
+  static String admin = '$apiUrl${dotenv.env['admin']}';
 }

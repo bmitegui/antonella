@@ -13,6 +13,7 @@ abstract class UserRemoteDataSource {
     required String account,
     required String password,
   });
+  Future<UserModel> getAdmin();
   Future<UserModel> signUp(
       {required String account,
       required String dni,
@@ -184,5 +185,12 @@ class UserRemoteDataSourceImpl
     return await handleRequest(
         request: () => client.delete(url, options: defaultOptions),
         onSuccess: (_) {});
+  }
+
+  @override
+  Future<UserModel> getAdmin() async {
+    return await handleRequest(
+        request: () => client.get(Environment.admin, options: defaultOptions),
+        onSuccess: (data) => UserModel.fromJson(data));
   }
 }
