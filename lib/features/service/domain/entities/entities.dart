@@ -6,3 +6,4 @@ export './comment_entity.dart';
 export './price_entity.dart';
 export './appointment_entity.dart';
 export './order_entity.dart';
+export './notification_entity.dart';

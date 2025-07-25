@@ -59,6 +59,7 @@ class PagesScreenState extends State<PagesScreen> {
     final userState = sl<UserBloc>().state;
     if (userState is UserAuthenticated) {
       sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
+      sl<NotificationsBloc>().add(GetNotificationsEvent());
       if (userState.user.rol == Rol.cliente) {
         sl<MessagesBloc>().add(GetMessagesEvent());
         sl<ServiceBloc>().add(GetServicesEvent());

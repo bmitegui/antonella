@@ -16,6 +16,7 @@ import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
   Future<ListServicesModel> getServices();
+  Future<List<NotificationModel>> getNotifications();
   Future<List<CommentModel>> getServiceComments({required String serviceId});
   Future<List<OrderModel>> getOrders({required String id});
   Future<void> sendRequest(
@@ -300,6 +301,23 @@ class ServiceRemoteDataSourceImpl
         onSuccess: (data) => (data as List)
             .map<PromotionModel>(
                 (dataJson) => PromotionModel.fromJson(dataJson))
+            .toList());
+  }
+
+  @override
+  Future<List<NotificationModel>> getNotifications() async {
+    String userId = '';
+    final userState = sl<UserBloc>().state;
+
+    if (userState is UserAuthenticated) {
+      userId = userState.user.id;
+    }
+    final url = '${Environment.notifications}?user_id=$userId';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => (data as List)
+            .map<NotificationModel>((notificationJson) =>
+                NotificationModel.fromJson(notificationJson))
             .toList());
   }
 }

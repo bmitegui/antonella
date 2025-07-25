@@ -5,3 +5,4 @@ export './comment_model.dart';
 export './price_model.dart';
 export './appointment_model.dart';
 export './order_model.dart';
+export './notification_model.dart';

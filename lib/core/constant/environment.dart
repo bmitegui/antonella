@@ -24,4 +24,5 @@ class Environment {
   static String userChatMessage = '$apiUrl${dotenv.env['userChatMessage']}';
   static String fcmToken = '$apiUrl${dotenv.env['fcmToken']}';
   static String comments = '$apiUrl${dotenv.env['comments']}';
+  static String notifications = '$apiUrl${dotenv.env['notifications']}';
 }

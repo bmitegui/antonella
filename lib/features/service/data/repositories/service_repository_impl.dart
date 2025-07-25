@@ -100,24 +100,33 @@ class ServiceRepositoryImpl implements ServiceRepository {
               orderId: orderId, appointmentId: appointmentId);
         });
   }
-  
+
   @override
-  Future<Either<Failure, List<PromotionEntity>>> getPromotions() async{
-    return await handleNetworkCall( 
-      networkInfo: networkInfo,
-      operation: () async {
-        return await serviceRemoteDataSource.getPromotions();
-      }
-    );
+  Future<Either<Failure, List<PromotionEntity>>> getPromotions() async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await serviceRemoteDataSource.getPromotions();
+        });
   }
-  
+
   @override
-  Future<Either<Failure, void>> endAppointment({required String orderId, required String appointmentId}) async{
+  Future<Either<Failure, void>> endAppointment(
+      {required String orderId, required String appointmentId}) async {
     return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
           await serviceRemoteDataSource.endAppointment(
               orderId: orderId, appointmentId: appointmentId);
+        });
+  }
+
+  @override
+  Future<Either<Failure, List<NotificationModel>>> getNotifications() async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await serviceRemoteDataSource.getNotifications();
         });
   }
 }

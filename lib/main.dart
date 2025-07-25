@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<PromotionBloc>()),
           BlocProvider(create: (context) => di.sl<PromotionCartBloc>()),
           BlocProvider(create: (context) => di.sl<EndAppointmentBloc>()),
+          BlocProvider(create: (context) => di.sl<NotificationsBloc>()),
         ],
         child: BlocBuilder<ThemeBloc, bool>(builder: (context, stateTheme) {
           return BlocBuilder<LanguageBloc, Locale>(
