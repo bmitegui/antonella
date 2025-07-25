@@ -17,12 +17,12 @@ class ProductModel extends ProductEntity {
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
         id: json['id'],
-        nombre: json['name'],
+        nombre: capitalize(json['name']),
         type: stringToProductType(json['product_type']),
         serviceType: stringToType(json['service_type']),
-        serviceSubtype: json['service_subtype'],
+        serviceSubtype: capitalize(json['service_subtype']),
         volume: json['volume'],
-        description: json['description'],
+        description: capitalize(json['description']),
         price: json['price'],
         stock: json['stock'],
         images: List<String>.from(json['images']));

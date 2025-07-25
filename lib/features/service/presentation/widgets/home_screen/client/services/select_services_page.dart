@@ -12,9 +12,15 @@ class SelectServicesPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          CustomSearchWidget(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: CustomSearchWidget(),
+          ),
           const SizedBox(height: 16),
-          const ServicesFilterWidget(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: const ServicesFilterWidget(),
+          ),
           const SizedBox(height: 16),
           Expanded(child: ServicesInfoWidget()),
         ]);

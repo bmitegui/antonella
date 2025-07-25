@@ -12,13 +12,13 @@ class ProductsTabSection extends StatelessWidget {
     return RefreshIndicator(
         onRefresh: () async => sl<ProductsBloc>().add(GetProductsEvent()),
         child: SingleChildScrollView(
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Column(children: [
-                  CustomSearchWidget(),
-                  const SizedBox(height: 16),
-                  const SizedBox(height: 16),
-                  ProductsInfoWidget()
-                ]))));
+            child: Column(children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: CustomSearchWidget(),
+          ),
+          const SizedBox(height: 16),
+          ProductsInfoWidget()
+        ])));
   }
 }

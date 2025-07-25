@@ -14,6 +14,7 @@ class ProductInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
         builder: (context, state) {
       int index = -1;
@@ -28,18 +29,20 @@ class ProductInfoWidget extends StatelessWidget {
       }
 
       return Padding(
-          padding: const EdgeInsets.only(right: 8),
+          padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
               onTap: () {
                 navigateWithSlideTransition(
                     context, DetailProductScreen(productEntity: productEntity));
               },
               child: Container(
+                  padding: EdgeInsets.all(8),
                   width: MediaQuery.of(context).size.width / 2,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color:
-                          isSelected ? Color(0xFFF44565) : Colors.transparent),
+                      borderRadius: BorderRadius.circular(16),
+                      color: isSelected
+                          ? Color(0xFFF44565)
+                          : colorScheme.onPrimary),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -57,8 +60,9 @@ class ProductInfoWidget extends StatelessWidget {
                                     .textTheme
                                     .titleSmall!
                                     .copyWith(
-                                        color:
-                                            isSelected ? Colors.white : null))),
+                                        color: isSelected
+                                            ? colorScheme.onPrimary
+                                            : colorScheme.onSurface))),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             child: Text(productEntity.description,
@@ -69,16 +73,15 @@ class ProductInfoWidget extends StatelessWidget {
                                     .bodyMedium!
                                     .copyWith(
                                         color: isSelected
-                                            ? Colors.white70
-                                            : Colors.grey))),
+                                            ? colorScheme.onPrimary
+                                            : colorScheme.onSurfaceVariant))),
                         const SizedBox(height: 8),
                         Align(
                             alignment: Alignment.centerRight,
                             child: Padding(
                                 padding:
                                     const EdgeInsets.only(right: 8, bottom: 8),
-                                child: Text(
-                                    '\$${productEntity.price}',
+                                child: Text('\$${productEntity.price}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleSmall!

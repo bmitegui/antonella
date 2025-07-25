@@ -53,20 +53,27 @@ class _ServicesTabSectionState extends State<ServicesTabSection> {
         leading: _currentPage != 0 ? ArrowBack(onBack: _previousPage) : null,
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Expanded(
-              child: Padding(
+              child: PageView(
+                  clipBehavior: Clip.antiAlias,
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: _pageController,
+                  onPageChanged: (index) =>
+                      setState(() => _currentPage = index),
+                  children: [
+                SelectServicesPage(),
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: PageView(
-                      clipBehavior: Clip.antiAlias,
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: _pageController,
-                      onPageChanged: (index) =>
-                          setState(() => _currentPage = index),
-                      children: [
-                        SelectServicesPage(),
-                        SelectDatePage(),
-                        SelectTimePage(),
-                        ConfirmationServicesPage()
-                      ]))),
+                  child: SelectDatePage(),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: SelectTimePage(),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: ConfirmationServicesPage(),
+                )
+              ])),
           BottomButtonsSearchScreen(
               currentPage: _currentPage,
               nextPage: _nextPage,

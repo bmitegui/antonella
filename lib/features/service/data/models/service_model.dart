@@ -46,7 +46,7 @@ class ServiceModel extends ServiceEntity {
         prices: prices,
         images: List<String>.from(json['images']),
         questions: questions,
-        rating: generarDoubleEntre35y50(),
+        rating: json['stars'],
         minPrice: minOfAll,
         maxPrice: maxOfAll);
   }

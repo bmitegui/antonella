@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Create temporary .env file
+        run: echo "DUMMY_KEY=dummy_value" > .env
+
       - name: Analyze (opcional)
         run: flutter analyze
 
