@@ -5,19 +5,22 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
+import "package:antonella/core/l10n/app_localizations.dart";
+
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
-        text: 'Soporte técnico',
+        text: texts.technical_support,
         leading: ArrowBack(),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const SizedBox(height: 16),
           Text(
-              'Seleccione uno de los medios a continuación para recibir soporte técnico:',
+              texts.select_technical_support,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
@@ -29,8 +32,8 @@ class SupportScreen extends StatelessWidget {
               onTap: () {},
               icon: Icons.mail_outline,
               color: Colors.yellow.shade700,
-              title: 'Correo',
-              subtitle: 'contacto@antonella.com'),
+              title: texts.email,
+              subtitle: texts.contact_mail),
 
           const SizedBox(height: 16),
 
@@ -38,10 +41,10 @@ class SupportScreen extends StatelessWidget {
           SupportItem(
               onTap: () async => await launchWhatsApp(
                   phoneNumber: phoneNumber,
-                  message: "Buenas dias, tengo un problema con"),
+                  message: texts.good_moorning),
               icon: Icons.phone_android,
               color: Colors.green,
-              title: 'Whatsapp',
+              title: texts.whatsapp,
               subtitle: phoneNumber),
 
           const SizedBox(height: 16),
@@ -51,7 +54,7 @@ class SupportScreen extends StatelessWidget {
               onTap: () async => await makePhoneCall(phoneNumber: phoneNumber),
               icon: Icons.phone,
               color: Colors.blue,
-              title: 'Teléfono',
+              title: texts.phone_number,
               subtitle: phoneNumber),
 
           const SizedBox(height: 16),
@@ -61,7 +64,7 @@ class SupportScreen extends StatelessWidget {
               onTap: () async => await utilLaunchUrl(url: instagram),
               icon: Icons.web,
               color: Colors.pinkAccent,
-              title: 'Instagram',
+              title: texts.instagram,
               subtitle: 'antonellacbe')
         ]));
   }

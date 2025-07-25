@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/employee/history_container.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/employee/shimmer_history_container.dart';
@@ -10,11 +11,12 @@ class HistoryGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<EmployeeInfoBloc, EmployeeInfoState>(
         builder: (context, state) {
       List<dynamic> data = [
         {
-          'title': 'Total Facturado',
+          'title': texts.total_billed,
           'valor': '\$325.0',
           'image': 'assets/svg/facturas.svg',
           'color': Color(0xFF009387)

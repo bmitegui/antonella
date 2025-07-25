@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -11,6 +12,7 @@ class ConfirmationServicesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       if (state is ServicesSelectedLoaded) {
@@ -22,15 +24,15 @@ class ConfirmationServicesPage extends StatelessWidget {
               const ProgressSearchWidget(page: 4),
               const SizedBox(height: 16),
               CustomTitle(
-                  title: 'Fecha solicitada:',
+                  title: texts.requested_date,
                   description: formatDateTime(state.dateSelected)),
               const SizedBox(height: 16),
               CustomTitle(
-                  title: 'Horario solicitado:',
+                  title: texts.requested_schedule,
                   description: state.timeSelected ?? '-'),
               const SizedBox(height: 16),
               CustomTitle(
-                  title: 'Valor aproximado:',
+                  title: texts.approximate_value,
                   description: state.getSummedPriceRange()),
               const SizedBox(height: 16),
               CustomTitle(

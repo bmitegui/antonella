@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
@@ -11,6 +12,7 @@ class ListOrdersToConfirm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<OrdersBloc, OrdersState>(builder: (context, state) {
       if (state is OrdersLoaded) {
         // Filtrar solo órdenes no confirmadas por el cliente
@@ -32,7 +34,7 @@ class ListOrdersToConfirm extends StatelessWidget {
               )
             : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 LottieBuilder.asset("assets/lottie/calendar.json"),
-                Text('No hay citas pendientes por confirmar'),
+                Text(texts.no_appointments_to_be_confirmed),
                 const SizedBox(height: 128)
               ]);
       } else if (state is OrdersError) {

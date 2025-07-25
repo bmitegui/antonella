@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
@@ -34,6 +35,7 @@ class _RecoverForgotPasswordScreenState
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
@@ -48,20 +50,20 @@ class _RecoverForgotPasswordScreenState
                     width: screenWidht * 0.80,
                     child: Column(children: [
                       SizedBox(height: 32),
-                      Text('¿Olvidaste tu contraseña?',
+                      Text(texts.forgot_password,
                           style: textTheme.bodyLarge!.copyWith(
                               color: Color(0XFFF44565),
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: 32),
                       Text(
-                          ' Ingresa tu correo electrónico asociado a tu cuenta',
+                          texts.enter_associated_email,
                           style: textTheme.bodyMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center),
                       SizedBox(height: 16),
                       CustomTextFormFieldWidget(
                           textEditingController: emailController,
-                          hintText: 'Correo',
+                          hintText: texts.email,
                           keyboardType: TextInputType.emailAddress),
                       SizedBox(height: 32),
                       BlocConsumer<PasswordBloc, PasswordState>(listener:
@@ -69,8 +71,8 @@ class _RecoverForgotPasswordScreenState
                         if (state is PasswordLoaded) {
                           showTopSnackBar(
                               Overlay.of(context),
-                              const CustomSnackBar.success(
-                                  message: 'Código enviado'));
+                              CustomSnackBar.success(
+                                  message: texts.code_sent));
                           GoRouter.of(context).go('/confirmation');
                         } else if (state is PasswordError) {
                           showTopSnackBar(
@@ -98,7 +100,7 @@ class _RecoverForgotPasswordScreenState
                                           PasswordCodeEvent(
                                               email: emailController.text));
                                     },
-                                    child: Text('Enviar')));
+                                    child: Text(texts.send)));
                       })
                     ])))));
   }

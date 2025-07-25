@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/services/key_value_storage_service_impl.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
@@ -43,6 +44,7 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return CustomScaffold(
@@ -60,36 +62,35 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                           width: screenWidht * 0.80,
                           child: Column(children: [
                             SizedBox(height: 32),
-                            Text('Cambiar contraseña',
+                            Text(texts.change_password,
                                 style: textTheme.bodyLarge!.copyWith(
                                     color: Color(0XFFF44565),
                                     fontWeight: FontWeight.bold)),
                             SizedBox(height: 32),
-                            Text(
-                                'Completa la informacion para cambiar la contraseña correctamente',
+                            Text(texts.change_password_full_info,
                                 style: textTheme.bodyMedium!.copyWith(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.center),
                             SizedBox(height: 32),
                             CustomTextFormFieldWidget(
-                              title: 'Anterior Contraseña',
+                              title: texts.last_password,
                               textEditingController: passwordBackController,
-                              hintText: 'Contraseña',
+                              hintText: texts.password,
                               keyboardType: TextInputType.visiblePassword,
                             ),
                             SizedBox(height: 32),
                             CustomTextFormFieldWidget(
-                              title: 'Nueva Contraseña',
+                              title: texts.new_password,
                               textEditingController: passwordController,
-                              hintText: 'Contraseña',
+                              hintText: texts.password,
                               keyboardType: TextInputType.visiblePassword,
                             ),
                             SizedBox(height: 32),
                             CustomTextFormFieldWidget(
-                              title: 'Confirmar Contraseña',
+                              title: texts.confirm_password,
                               textEditingController: repeatPasswordController,
-                              hintText: ' Repetir Contraseña',
+                              hintText: texts.repeat_password,
                               keyboardType: TextInputType.visiblePassword,
                             ),
                             SizedBox(height: 32),
@@ -98,8 +99,8 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                               if (state is PasswordReseted) {
                                 showTopSnackBar(
                                     Overlay.of(context),
-                                    const CustomSnackBar.success(
-                                        message: 'Contraseña actualizada'));
+                                    CustomSnackBar.success(
+                                        message: texts.updated_password));
                                 Navigator.pop(context);
                               } else if (state is PasswordError) {
                                 showTopSnackBar(
@@ -132,8 +133,8 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                                               showTopSnackBar(
                                                   Overlay.of(context),
                                                   CustomSnackBar.error(
-                                                      message:
-                                                          'Las contraseñas no son iguales'));
+                                                      message: texts
+                                                          .not_same_password));
                                             } else if (await sl<
                                                         KeyValueStorageServiceImpl>()
                                                     .getValue<String>(
@@ -143,8 +144,8 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                                               showTopSnackBar(
                                                   Overlay.of(context),
                                                   CustomSnackBar.error(
-                                                      message:
-                                                          'La contraseña actual es incorrecta'));
+                                                      message: texts
+                                                          .wrong_password));
                                             } else {
                                               context.read<PasswordBloc>().add(
                                                   PasswordResetEvent(
@@ -156,7 +157,7 @@ class _UpdatePaswordScreenState extends State<UpdatePaswordScreen> {
                                                               .trim()));
                                             }
                                           },
-                                          child: Text('Guardar')));
+                                          child: Text(texts.save)));
                             })
                           ]))))
               : const SizedBox.shrink();

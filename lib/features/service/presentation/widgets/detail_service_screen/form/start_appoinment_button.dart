@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
@@ -22,6 +23,7 @@ class StartAppoinmentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocConsumer<StartAppointmentBloc, StartAppointmentState>(
         listener: (context, state) {
       if (state is StartAppointmentLoaded) {
@@ -30,7 +32,7 @@ class StartAppoinmentButton extends StatelessWidget {
           sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
         }
         showTopSnackBar(Overlay.of(context),
-            const CustomSnackBar.success(message: 'Cita empezada'));
+            CustomSnackBar.success(message: texts.appointment_started));
         if (isAgendaScreen) {
           Navigator.pop(context);
           Navigator.pop(context);
@@ -53,7 +55,7 @@ class StartAppoinmentButton extends StatelessWidget {
                   EmpezarCitaEvent(
                       orderId: orderEntity.id,
                       appointmentId: appointmentEntity.id)),
-              child: Text("Empezar cita"));
+              child: Text(texts.start_appointment));
     });
   }
 }

@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ class HomeTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     return TabBar(
         unselectedLabelColor: Colors.black,
@@ -14,9 +16,9 @@ class HomeTabBar extends StatelessWidget {
         dividerColor: colorScheme.onSurfaceVariant,
         controller: controller,
         labelColor: colorScheme.primary,
-        tabs: const [
-          CustomTab(text: 'Servicios'),
-          CustomTab(text: 'Productos')
+        tabs: [
+          CustomTab(text: texts.services),
+          CustomTab(text: texts.products)
         ]);
   }
 }

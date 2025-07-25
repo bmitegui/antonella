@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
@@ -16,6 +17,7 @@ class SendRequestButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final height = MediaQuery.of(context).size.height / 6.3;
 
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
@@ -37,7 +39,7 @@ class SendRequestButton extends StatelessWidget {
                     Overlay.of(context),
                     CustomSnackBar.success(
                       maxLines: 3,
-                      message: 'Solicitud enviada correctamente \n En breve el administrador se contactará con usted'));
+                      message: texts.request_sent_succesfully));
                 context
                     .read<ServicesSelectedBloc>()
                     .add(ClearServicesSelectedEvent());
@@ -87,7 +89,7 @@ class SendRequestButton extends StatelessWidget {
                                         services:
                                             stateServiceSelected.services));
                               },
-                              text: 'Enviar Petición')
+                              text: texts.submit_request)
                         ]));
               }
             });

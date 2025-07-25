@@ -706,6 +706,402 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Total'**
   String get total;
+
+  /// No description provided for @profile_picture.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile Picture'**
+  String get profile_picture;
+
+  /// No description provided for @camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
+  /// No description provided for @galery.
+  ///
+  /// In en, this message translates to:
+  /// **'Galery'**
+  String get galery;
+
+  /// No description provided for @image_cut.
+  ///
+  /// In en, this message translates to:
+  /// **'Image Cut'**
+  String get image_cut;
+
+  /// No description provided for @change_password_full_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the information to change your password correctly.'**
+  String get change_password_full_info;
+
+  /// No description provided for @last_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Password'**
+  String get last_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirm_password;
+
+  /// No description provided for @repeat_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat Password'**
+  String get repeat_password;
+
+  /// No description provided for @updated_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated Password'**
+  String get updated_password;
+
+  /// No description provided for @not_same_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords are not the same'**
+  String get not_same_password;
+
+  /// No description provided for @wrong_password.
+  ///
+  /// In en, this message translates to:
+  /// **'The current password is incorrect'**
+  String get wrong_password;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @select_technical_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Select one of the methods below to receive technical support:'**
+  String get select_technical_support;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'E-mail'**
+  String get email;
+
+  /// No description provided for @contact_mail.
+  ///
+  /// In en, this message translates to:
+  /// **'contacto@antonella.com'**
+  String get contact_mail;
+
+  /// No description provided for @good_moorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning, I have a problem with'**
+  String get good_moorning;
+
+  /// No description provided for @whatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'Whatsapp'**
+  String get whatsapp;
+
+  /// No description provided for @instagram.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram'**
+  String get instagram;
+
+  /// No description provided for @create_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get create_account;
+
+  /// No description provided for @successful_sign_up.
+  ///
+  /// In en, this message translates to:
+  /// **'Successful Sign Up'**
+  String get successful_sign_up;
+
+  /// No description provided for @id.
+  ///
+  /// In en, this message translates to:
+  /// **'Id'**
+  String get id;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @select_gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Gender'**
+  String get select_gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get reset_password;
+
+  /// No description provided for @write_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your new password'**
+  String get write_new_password;
+
+  /// No description provided for @enter_associated_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address associated with your account'**
+  String get enter_associated_email;
+
+  /// No description provided for @code_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Code Sent'**
+  String get code_sent;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @edit_account_information.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Account Information'**
+  String get edit_account_information;
+
+  /// No description provided for @confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation'**
+  String get confirmation;
+
+  /// No description provided for @code_sent_to_number.
+  ///
+  /// In en, this message translates to:
+  /// **'The code has been sent to your phone number'**
+  String get code_sent_to_number;
+
+  /// No description provided for @enter_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Code'**
+  String get enter_code;
+
+  /// No description provided for @right_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Right Code'**
+  String get right_code;
+
+  /// No description provided for @wrong_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong Code'**
+  String get wrong_code;
+
+  /// No description provided for @product_added.
+  ///
+  /// In en, this message translates to:
+  /// **'Product added'**
+  String get product_added;
+
+  /// No description provided for @add_to_cart.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to cart'**
+  String get add_to_cart;
+
+  /// No description provided for @service_applied_to_promo.
+  ///
+  /// In en, this message translates to:
+  /// **'Services applied to this promotion'**
+  String get service_applied_to_promo;
+
+  /// No description provided for @haircut.
+  ///
+  /// In en, this message translates to:
+  /// **'Haircut'**
+  String get haircut;
+
+  /// No description provided for @manicure_and_pedicure.
+  ///
+  /// In en, this message translates to:
+  /// **'Manicure and Pedicure'**
+  String get manicure_and_pedicure;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @all_ages_service.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a service that applies to all ages.'**
+  String get all_ages_service;
+
+  /// No description provided for @total_billed.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Billed'**
+  String get total_billed;
+
+  /// No description provided for @total_customers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Customers'**
+  String get total_customers;
+
+  /// No description provided for @total_to_receive.
+  ///
+  /// In en, this message translates to:
+  /// **'Total to Receive'**
+  String get total_to_receive;
+
+  /// No description provided for @no_service_for_category.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no services for this category'**
+  String get no_service_for_category;
+
+  /// No description provided for @select_time_then_continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a time you prefer by swiping the screen to book the appointment, and then continue'**
+  String get select_time_then_continue;
+
+  /// No description provided for @requested_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Requested date:'**
+  String get requested_date;
+
+  /// No description provided for @requested_schedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Requested schedule:'**
+  String get requested_schedule;
+
+  /// No description provided for @approximate_value.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximate value:'**
+  String get approximate_value;
+
+  /// No description provided for @request_sent_succesfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Request sent successfully \n The administrator will contact you shortly'**
+  String get request_sent_succesfully;
+
+  /// No description provided for @submit_request.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Request'**
+  String get submit_request;
+
+  /// No description provided for @delete_service.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete service'**
+  String get delete_service;
+
+  /// No description provided for @sure_delete_service.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete the selected service?'**
+  String get sure_delete_service;
+
+  /// No description provided for @eliminate.
+  ///
+  /// In en, this message translates to:
+  /// **'Eliminate'**
+  String get eliminate;
+
+  /// No description provided for @no_service_selected.
+  ///
+  /// In en, this message translates to:
+  /// **'No services selected'**
+  String get no_service_selected;
+
+  /// No description provided for @appointment_started.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment started'**
+  String get appointment_started;
+
+  /// No description provided for @start_appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Start appointment'**
+  String get start_appointment;
+
+  /// No description provided for @customer_data.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer data'**
+  String get customer_data;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @form_loaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Form Loaded'**
+  String get form_loaded;
+
+  /// No description provided for @appointment_ended.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment ended'**
+  String get appointment_ended;
+
+  /// No description provided for @end_appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'End appointment'**
+  String get end_appointment;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
@@ -18,11 +19,12 @@ class PayOrderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocConsumer<PayOrderBloc, PayOrderState>(
         listener: (context, state) {
       if (state is PayOrderLoaded) {
         showTopSnackBar(Overlay.of(context),
-            const CustomSnackBar.success(message: 'Cita confirmada'));
+            const CustomSnackBar.success(message: texts.appointment_confirmed));
         final userState = sl<UserBloc>().state;
         if (userState is UserAuthenticated) {
           sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
@@ -49,11 +51,11 @@ class PayOrderButton extends StatelessWidget {
                           orderId: orderEntity.id,
                           paymentType: stringToPaymentType(metodo))),
                   child: (metodo == "EFECTIVO")
-                      ? Text('Confirmar cita')
+                      ? Text(texts.confirm_appointment)
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                              Text('Pagar ahora'),
+                              Text(texts.pay_now),
                               Text(
                                   '\$${getTotalBasePrice(orderEntity.appointments)}',
                                   style: Theme.of(context)

@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_list_appointments.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/services_type_group.dart';
@@ -9,6 +10,7 @@ class InfoServicesChosen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final categories = orderEntity.appointments
         .map((appointment) => appointment.serviceEntity.type)
         .toSet()
@@ -34,7 +36,7 @@ class InfoServicesChosen extends StatelessWidget {
                           orderEntity: orderEntity);
                     });
               },
-              child: Text('Ver más',
+              child: Text(texts.see_more,
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Color(0xFFF44565),
                       decoration: TextDecoration.underline,

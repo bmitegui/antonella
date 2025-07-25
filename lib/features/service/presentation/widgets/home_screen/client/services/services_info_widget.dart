@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/services_by_subcategory_widget.dart';
@@ -9,6 +10,7 @@ class ServicesInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<ServiceBloc, ServiceState>(builder: (context, state) {
       return (state is ServicesLoaded)
           ? (state.listServices.services.isNotEmpty)
@@ -26,8 +28,8 @@ class ServicesInfoWidget extends StatelessWidget {
                             return ServicesBySubcategoryWidget(
                                 subCategory: entry.key, services: entry.value);
                           }).toList())))
-              : const Center(
-                  child: Text('No existen servicios para esta categoría'))
+              : Center(
+                  child: Text(texts.no_service_for_category))
           : (state is ServicesError)
               ? Center(
                   child: Text(mapFailureToMessage(

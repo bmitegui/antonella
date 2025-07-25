@@ -1,4 +1,5 @@
 import 'package:antonella/core/constant/constant.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/banner_widget.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
@@ -19,6 +20,7 @@ class PendingAppointmentModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomModalBottomSheetWidget(
         closeAction: false,
         titleWidget: ProgressStatusLabel(status: appointmentEntity.status),
@@ -78,7 +80,7 @@ class PendingAppointmentModal extends StatelessWidget {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                        Text('Datos del cliente',
+                        Text(texts.customer_data,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!

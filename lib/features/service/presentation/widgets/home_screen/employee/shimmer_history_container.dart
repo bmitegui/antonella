@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_shimmer.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ class ShimmerHistoryContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomShimmer(
         padding: EdgeInsets.all(8),
         borderRadius: 16,
@@ -17,7 +19,7 @@ class ShimmerHistoryContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                Text('Total facturado',
+                Text(texts.total_billed,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!

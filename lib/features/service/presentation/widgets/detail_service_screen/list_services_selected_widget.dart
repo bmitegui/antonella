@@ -1,5 +1,6 @@
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -12,6 +13,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       if (state is ServicesSelectedLoaded) {
@@ -104,10 +106,10 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                       onPressed: () async =>
                                           await showWarningDialog(
                                               context: context,
-                                              title: 'Eliminar servicio',
+                                              title: texts.delete_service,
                                               message:
-                                                  '¿Está seguro que desea eliminar el servicio seleccionado?',
-                                              textOnAccept: 'Eliminar',
+                                                  texts.sure_delete_service,
+                                              textOnAccept: texts.eliminate,
                                               onAccept: () => context
                                                   .read<ServicesSelectedBloc>()
                                                   .add(DeleteServiceEvent(
@@ -118,7 +120,7 @@ class ListServicesSelectedWidget extends StatelessWidget {
                           ])));
                 }).toList()),
               ))
-            : const Center(child: Text('No hay servicios seleccionados'));
+            : Center(child: Text(texts.no_service_selected));
       }
       return const SizedBox.shrink();
     });

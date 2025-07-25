@@ -115,5 +115,114 @@
     "services": "Servicios",
     "subtotal": "Subtotal",
     "iva": "IVA",
-    "total": "Total"
+    "total": "Total",
+
+    "profile_picture": "Foto del perfil",
+    "camera": "Cámara",
+    "galery": "Galería",
+
+    "remember_me": "Recuérdame",
+
+    "image_cut": "Recorta la imagen",
+
+    "change_password_full_info": "Completa la informacion para cambiar la contraseña correctamente",
+    "last_password": "Anterior Contraseña",
+    "new_password": "Nueva Contraseña",
+    "confirm_password": "Confirmar Contraseña",
+    "repeat_password": "Repetir Contraseña",
+    "updated_password": "Contraseña actualizada",
+    "not_same_password": "Las contraseñas no son iguales",
+    "wrong_password": "La contraseña actual es incorrecta",
+    "save": "Guardar",
+
+    "select_technical_support": "Seleccione uno de los medios a continuación para recibir soporte técnico:",
+    "email": "Correo Electronico",
+    "contact_mail": "contacto@antonella.com",
+    "good_moorning": "Buenas dias, tengo un problema con",
+    "whatsapp": "Whatsapp",
+    "instagram": "Instagram",
+
+    "create_account": "Crear Cuenta",
+    "successful_sign_up": "Registro exitoso",
+    "id": "Cédula",
+    "gender": "Genero",
+    "select_gender": "Seleccionar Genero",
+    "male": "Masculino",
+    "female": "Femenino",
+    "other": "Otro",
+
+    "reset_password": "Restablecer contraseña",
+    "write_new_password": "Escriba su nueva contraseña",
+
+    "enter_associated_email": "Ingresa tu correo electrónico asociado a tu cuenta",
+    "code_sent": "Código enviado",
+    "send": "Enviar",
+
+    "edit_account_information": "Editar la información de la cuenta",
+
+    "confirmation": "Confirmación",
+    "code_sent_to_number": "El código ha sido enviado a su número telefónico",
+    "enter_code": "Ingrese Código",
+    "right_code": "Código correcto",
+    "wrong_code": "Código incorrecto",
+
+    "product_added": "Producto añadido",
+    "add_to_cart": "Agregar al carrito",
+    "service_applied_to_promo": "Servicios aplicados a esta promoción",
+    "haircut": "Corte de pelo",
+    "manicure_and_pedicure": "Manicura y pedicura",
+    "description": "Descripción",
+    "all_ages_service": "Este es un servicio que aplica para todas las edades.",
+
+    "total_billed": "Total Facturado",
+    "total_customers": "Total Clientes",
+    "total_to_receive": "Total a Recibir",
+
+    "no_service_for_category": "No existen servicios para esta categoría",
+
+    "select_time_then_continue": "Seleccione una hora que prefiera deslizando la pantalla para reservar la cita, y luego continue",
+
+    "requested_date": "Fecha solicitada:",
+    "requested_schedule": "Horario solicitado:",
+    "approximate_value": "Valor aproximado:",
+
+    "request_sent_succesfully": "Solicitud enviada correctamente \n En breve el administrador se contactará con usted",
+    "submit_request": "Enviar Petición",
+
+    "delete_service": "Eliminar servicio",
+    "sure_delete_service": "¿Está seguro de que desea eliminar el servicio seleccionado?",
+    "eliminate": "Eliminar",
+    "no_service_selected": "No hay servicios seleccionados",
+
+    "appointment_started": "Cita empezada",
+    "start_appointment": "Empezar cita",
+
+    "customer_data": "Datos del cliente",
+    "category": "Categoría",
+
+    "form_loaded": "Formulario cargado",
+
+    "appointment_ended": "Cita finalizada",
+    "end_appointment": "Terminar cita",
+
+    "form_saved": "Formulario guardado",
+    "not_all_fields_completed": "No ha completado todos los campos",
+
+    "appointment_confirmed": "Cita confirmada",
+    "confirm_appointment": "Confirmar cita",
+    "pay_now": "Pagar ahora",
+
+    "no_appointments_to_be_confirmed": "No hay citas pendientes por confirmar",
+
+    "see_more": "Ver más",
+
+    "billing_information": "Datos de facturación",
+    "change": "Change",
+
+    "about": "Acerca de:",
+    "date": "Fecha",
+    "schedule": "Horario",
+    "value": "Valor",
+    "form_done": "Formulario hecho",
+    "view_form": "Ver formulario",
 }

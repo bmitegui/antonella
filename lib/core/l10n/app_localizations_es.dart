@@ -36,7 +36,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get forgot_password => '¿Olvidaste tu contraseña?';
 
   @override
-  String get remember_me => 'Recuérdame para la próxima vez';
+  String get remember_me => 'Recuérdame';
 
   @override
   String get sign_in => 'Iniciar sesión';
@@ -313,4 +313,202 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get total => 'Total';
+
+  @override
+  String get profile_picture => 'Foto del perfil';
+
+  @override
+  String get camera => 'Cámara';
+
+  @override
+  String get galery => 'Galería';
+
+  @override
+  String get image_cut => 'Recorta la imagen';
+
+  @override
+  String get change_password_full_info => 'Completa la informacion para cambiar la contraseña correctamente';
+
+  @override
+  String get last_password => 'Anterior Contraseña';
+
+  @override
+  String get new_password => 'Nueva Contraseña';
+
+  @override
+  String get confirm_password => 'Confirmar Contraseña';
+
+  @override
+  String get repeat_password => 'Repetir Contraseña';
+
+  @override
+  String get updated_password => 'Contraseña actualizada';
+
+  @override
+  String get not_same_password => 'Las contraseñas no son iguales';
+
+  @override
+  String get wrong_password => 'La contraseña actual es incorrecta';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get select_technical_support => 'Seleccione uno de los medios a continuación para recibir soporte técnico:';
+
+  @override
+  String get email => 'Correo Electronico';
+
+  @override
+  String get contact_mail => 'contacto@antonella.com';
+
+  @override
+  String get good_moorning => 'Buenas dias, tengo un problema con';
+
+  @override
+  String get whatsapp => 'Whatsapp';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get create_account => 'Crear Cuenta';
+
+  @override
+  String get successful_sign_up => 'Registro exitoso';
+
+  @override
+  String get id => 'Cédula';
+
+  @override
+  String get gender => 'Genero';
+
+  @override
+  String get select_gender => 'Seleccionar Genero';
+
+  @override
+  String get male => 'Masculino';
+
+  @override
+  String get female => 'Femenino';
+
+  @override
+  String get other => 'Otro';
+
+  @override
+  String get reset_password => 'Restablecer contraseña';
+
+  @override
+  String get write_new_password => 'Escriba su nueva contraseña';
+
+  @override
+  String get enter_associated_email => 'Ingresa tu correo electrónico asociado a tu cuenta';
+
+  @override
+  String get code_sent => 'Código enviado';
+
+  @override
+  String get send => 'Enviar';
+
+  @override
+  String get edit_account_information => 'Editar la información de la cuenta';
+
+  @override
+  String get confirmation => 'Confirmación';
+
+  @override
+  String get code_sent_to_number => 'El código ha sido enviado a su número telefónico';
+
+  @override
+  String get enter_code => 'Ingrese Código';
+
+  @override
+  String get right_code => 'Código correcto';
+
+  @override
+  String get wrong_code => 'Código incorrecto';
+
+  @override
+  String get product_added => 'Producto añadido';
+
+  @override
+  String get add_to_cart => 'Agregar al carrito';
+
+  @override
+  String get service_applied_to_promo => 'Servicios aplicados a esta promoción';
+
+  @override
+  String get haircut => 'Corte de pelo';
+
+  @override
+  String get manicure_and_pedicure => 'Manicura y pedicura';
+
+  @override
+  String get description => 'Descripción';
+
+  @override
+  String get all_ages_service => 'Este es un servicio que aplica para todas las edades.';
+
+  @override
+  String get total_billed => 'Total Facturado';
+
+  @override
+  String get total_customers => 'Total Clientes';
+
+  @override
+  String get total_to_receive => 'Total a Recibir';
+
+  @override
+  String get no_service_for_category => 'No existen servicios para esta categoría';
+
+  @override
+  String get select_time_then_continue => 'Seleccione una hora que prefiera deslizando la pantalla para reservar la cita, y luego continue';
+
+  @override
+  String get requested_date => 'Fecha solicitada:';
+
+  @override
+  String get requested_schedule => 'Horario solicitado:';
+
+  @override
+  String get approximate_value => 'Valor aproximado:';
+
+  @override
+  String get request_sent_succesfully => 'Solicitud enviada correctamente \n En breve el administrador se contactará con usted';
+
+  @override
+  String get submit_request => 'Enviar Petición';
+
+  @override
+  String get delete_service => 'Eliminar servicio';
+
+  @override
+  String get sure_delete_service => '¿Está seguro de que desea eliminar el servicio seleccionado?';
+
+  @override
+  String get eliminate => 'Eliminar';
+
+  @override
+  String get no_service_selected => 'No hay servicios seleccionados';
+
+  @override
+  String get appointment_started => 'Cita empezada';
+
+  @override
+  String get start_appointment => 'Empezar cita';
+
+  @override
+  String get customer_data => 'Datos del cliente';
+
+  @override
+  String get category => 'Categoría';
+
+  @override
+  String get form_loaded => 'Formulario cargado';
+
+  @override
+  String get appointment_ended => 'Cita finalizada';
+
+  @override
+  String get end_appointment => 'Terminar cita';
 }

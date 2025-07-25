@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
@@ -11,6 +12,7 @@ class FormServiceSelectedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<ServiceFormBloc, ServiceFormState>(
         builder: (context, state) {
       return (state is ServiceFormLoaded)
@@ -23,13 +25,13 @@ class FormServiceSelectedWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                     CustomTitle(
-                        title: 'Categoría:',
+                        title: texts.category,
                         description: getCategoryText(
                             context: context,
                             serviceCategory: state.service.type)),
                     const SizedBox(height: 8),
                     CustomTitle(
-                        title: 'Valor aproximado:',
+                        title: texts.approximate_value,
                         description:
                             '\$${state.service.minPrice} - ${state.service.maxPrice}'),
                     const SizedBox(height: 8),

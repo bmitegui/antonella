@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
@@ -35,6 +36,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
@@ -50,27 +52,27 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     width: screenWidht * 0.80,
                     child: Column(children: [
                       SizedBox(height: 32),
-                      Text('Restablecer contraseña',
+                      Text(texts.reset_password,
                           style: textTheme.bodyLarge!.copyWith(
                               color: Color(0XFFF44565),
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: 32),
-                      Text('Escriba su nueva contraseña',
+                      Text(texts.write_new_password,
                           style: textTheme.bodyMedium!.copyWith(
                               color: Colors.black, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center),
                       SizedBox(height: 32),
                       CustomTextFormFieldWidget(
-                        title: 'Nueva Contraseña',
+                        title: texts.new_password,
                         textEditingController: passwordController,
-                        hintText: 'Contraseña',
+                        hintText: texts.password,
                         keyboardType: TextInputType.visiblePassword,
                       ),
                       SizedBox(height: 32),
                       CustomTextFormFieldWidget(
-                        title: 'Confirmar Contraseña',
+                        title: texts.confirm_password,
                         textEditingController: repeatPasswordController,
-                        hintText: ' Repetir Contraseña',
+                        hintText: texts.repeat_password,
                         keyboardType: TextInputType.visiblePassword,
                       ),
                       SizedBox(height: 32),
@@ -79,8 +81,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         if (state is PasswordReseted) {
                           showTopSnackBar(
                               Overlay.of(context),
-                              const CustomSnackBar.success(
-                                  message: 'Contraseña actualizada'));
+                               CustomSnackBar.success(
+                                  message: texts.updated_password));
                           GoRouter.of(context).go('/signIn');
                         } else if (state is PasswordError) {
                           showTopSnackBar(
@@ -111,7 +113,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                             Overlay.of(context),
                                             CustomSnackBar.error(
                                                 message:
-                                                    'Las contraseñas no son iguales'));
+                                                    texts.not_same_password));
                                       } else if (state is PasswordLoaded) {
                                         context.read<PasswordBloc>().add(
                                             PasswordResetEvent(
@@ -122,7 +124,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                                     .trim()));
                                       }
                                     },
-                                    child: Text('Guardar')));
+                                    child: Text(texts.save)));
                       })
                     ])))));
   }

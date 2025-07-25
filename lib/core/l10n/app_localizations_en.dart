@@ -313,4 +313,202 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get total => 'Total';
+
+  @override
+  String get profile_picture => 'Profile Picture';
+
+  @override
+  String get camera => 'Camera';
+
+  @override
+  String get galery => 'Galery';
+
+  @override
+  String get image_cut => 'Image Cut';
+
+  @override
+  String get change_password_full_info => 'Complete the information to change your password correctly.';
+
+  @override
+  String get last_password => 'Last Password';
+
+  @override
+  String get new_password => 'New Password';
+
+  @override
+  String get confirm_password => 'Confirm Password';
+
+  @override
+  String get repeat_password => 'Repeat Password';
+
+  @override
+  String get updated_password => 'Updated Password';
+
+  @override
+  String get not_same_password => 'Passwords are not the same';
+
+  @override
+  String get wrong_password => 'The current password is incorrect';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get select_technical_support => 'Select one of the methods below to receive technical support:';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get contact_mail => 'contacto@antonella.com';
+
+  @override
+  String get good_moorning => 'Good morning, I have a problem with';
+
+  @override
+  String get whatsapp => 'Whatsapp';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get create_account => 'Create Account';
+
+  @override
+  String get successful_sign_up => 'Successful Sign Up';
+
+  @override
+  String get id => 'Id';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get select_gender => 'Select Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get reset_password => 'Reset Password';
+
+  @override
+  String get write_new_password => 'Enter your new password';
+
+  @override
+  String get enter_associated_email => 'Enter your email address associated with your account';
+
+  @override
+  String get code_sent => 'Code Sent';
+
+  @override
+  String get send => 'Send';
+
+  @override
+  String get edit_account_information => 'Edit Account Information';
+
+  @override
+  String get confirmation => 'Confirmation';
+
+  @override
+  String get code_sent_to_number => 'The code has been sent to your phone number';
+
+  @override
+  String get enter_code => 'Enter Code';
+
+  @override
+  String get right_code => 'Right Code';
+
+  @override
+  String get wrong_code => 'Wrong Code';
+
+  @override
+  String get product_added => 'Product added';
+
+  @override
+  String get add_to_cart => 'Add to cart';
+
+  @override
+  String get service_applied_to_promo => 'Services applied to this promotion';
+
+  @override
+  String get haircut => 'Haircut';
+
+  @override
+  String get manicure_and_pedicure => 'Manicure and Pedicure';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get all_ages_service => 'This is a service that applies to all ages.';
+
+  @override
+  String get total_billed => 'Total Billed';
+
+  @override
+  String get total_customers => 'Total Customers';
+
+  @override
+  String get total_to_receive => 'Total to Receive';
+
+  @override
+  String get no_service_for_category => 'There are no services for this category';
+
+  @override
+  String get select_time_then_continue => 'Select a time you prefer by swiping the screen to book the appointment, and then continue';
+
+  @override
+  String get requested_date => 'Requested date:';
+
+  @override
+  String get requested_schedule => 'Requested schedule:';
+
+  @override
+  String get approximate_value => 'Approximate value:';
+
+  @override
+  String get request_sent_succesfully => 'Request sent successfully \n The administrator will contact you shortly';
+
+  @override
+  String get submit_request => 'Submit Request';
+
+  @override
+  String get delete_service => 'Delete service';
+
+  @override
+  String get sure_delete_service => 'Are you sure you want to delete the selected service?';
+
+  @override
+  String get eliminate => 'Eliminate';
+
+  @override
+  String get no_service_selected => 'No services selected';
+
+  @override
+  String get appointment_started => 'Appointment started';
+
+  @override
+  String get start_appointment => 'Start appointment';
+
+  @override
+  String get customer_data => 'Customer data';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get form_loaded => 'Form Loaded';
+
+  @override
+  String get appointment_ended => 'Appointment ended';
+
+  @override
+  String get end_appointment => 'End appointment';
 }

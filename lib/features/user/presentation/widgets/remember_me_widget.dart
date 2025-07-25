@@ -1,4 +1,5 @@
 import 'package:antonella/core/widgets/circle_check_box.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class RememberMeWidget extends StatelessWidget {
@@ -9,12 +10,13 @@ class RememberMeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     return Row(children: [
       CircleCheckbox(checked: value, onTap: onChanged),
       const SizedBox(width: 8),
-      Text('Recuérdame',
+      Text(texts.remember_me,
           style: textTheme.bodySmall!.copyWith(
               color: colorScheme.onSurface, fontWeight: FontWeight.bold))
     ]);

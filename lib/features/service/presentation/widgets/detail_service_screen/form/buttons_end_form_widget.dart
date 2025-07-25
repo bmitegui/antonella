@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/show_warning_dialog_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
@@ -11,6 +12,7 @@ class ButtonsEndFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<ServiceFormBloc, ServiceFormState>(
         builder: (context, stateServiceForm) {
       return (stateServiceForm is ServiceFormLoaded)
@@ -30,17 +32,17 @@ class ButtonsEndFormWidget extends StatelessWidget {
                                 horizontal: 48, vertical: 12),
                             onPressed: () async => await showWarningDialog(
                                 context: context,
-                                title: 'Eliminar servicio',
+                                title: texts.delete_service,
                                 message:
-                                    '¿Está seguro que desea eliminar el servicio seleccionado?',
-                                textOnAccept: 'Eliminar',
+                                    texts.sure_delete_service,
+                                textOnAccept: texts.eliminate,
                                 onAccept: () {
                                   context.read<ServicesSelectedBloc>().add(
                                       DeleteServiceEvent(
                                           service: stateServiceForm.service));
                                   Navigator.pop(context);
                                 }),
-                            text: 'Eliminar'),
+                            text: texts.eliminate),
                       if (isSelected) const SizedBox(width: 8),
                       CustomElevatedButton(
                           padding: EdgeInsets.symmetric(
@@ -57,17 +59,17 @@ class ButtonsEndFormWidget extends StatelessWidget {
                               showTopSnackBar(
                                   Overlay.of(context),
                                   const CustomSnackBar.success(
-                                      message: 'Formulario guardado'));
+                                      message: texts.form_saved));
                               Navigator.pop(context);
                             } else {
                               showTopSnackBar(
                                   Overlay.of(context),
                                   const CustomSnackBar.error(
                                       message:
-                                          'No ha completado todos los campos'));
+                                          texts.not_all_fields_completed));
                             }
                           },
-                          text: 'Guardar')
+                          text: texts.save)
                     ]);
               }
               return const SizedBox.shrink();

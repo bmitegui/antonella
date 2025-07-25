@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -34,6 +35,7 @@ class _PhotoWidgetWithCameraGalleryState extends State<PhotoWidgetWithCameraGall
   }
 
   Widget _addImageCamera() {
+    final texts = AppLocalizations.of(context)!;
     return Column(
       children: [
         RawMaterialButton(
@@ -49,12 +51,13 @@ class _PhotoWidgetWithCameraGalleryState extends State<PhotoWidgetWithCameraGall
           padding: const EdgeInsets.all(15),
           shape: const CircleBorder(),
         ),
-        const Text("Cámara")
+        Text(texts.camera)
       ],
     );
   }
 
   Widget _addImageGallery() {
+    final texts = AppLocalizations.of(context)!;
     return Column(
       children: [
         RawMaterialButton(
@@ -70,12 +73,13 @@ class _PhotoWidgetWithCameraGalleryState extends State<PhotoWidgetWithCameraGall
           padding: const EdgeInsets.all(15),
           shape: const CircleBorder(),
         ),
-        const Text("Galería")
+        Text(texts.galery)
       ],
     );
   }
 
   Future<void> getImage(bool gallery) async {
+    final texts = AppLocalizations.of(context)!;
     final ImagePicker picker = ImagePicker();
 
     final XFile? pickedFile = await picker.pickImage(
@@ -93,7 +97,7 @@ class _PhotoWidgetWithCameraGalleryState extends State<PhotoWidgetWithCameraGall
         uiSettings: [
           AndroidUiSettings(
             toolbarColor: Colors.blue,
-            toolbarTitle: "Recorta la imagen",
+            toolbarTitle: texts.image_cut,
             toolbarWidgetColor: Colors.white,
             backgroundColor: Colors.white,
             aspectRatioPresets: [

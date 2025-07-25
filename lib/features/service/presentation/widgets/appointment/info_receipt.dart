@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class InfoReceipt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return Container(
         width: double.infinity,
         padding: EdgeInsets.all(16),
@@ -15,9 +17,11 @@ class InfoReceipt extends StatelessWidget {
             borderRadius: BorderRadius.circular(16), color: Colors.white),
         child: Column(children: [
           Row(children: [
-            Text('Datos de facturación'),
+            Text(texts.billing_information,
+                style: Theme.of(context).textTheme.titleLarge!
+                    .copyWith(fontWeight: FontWeight.bold)),
             Spacer(),
-            Text('Cambiar',
+            Text(texts.change,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Color(0xFFF44565),
                     decoration: TextDecoration.underline,

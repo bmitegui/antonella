@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -20,6 +21,7 @@ class PromotionViewDetails extends StatefulWidget {
 class _PromotionViewDetailsState extends State<PromotionViewDetails> {
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
         paddingScroll: EdgeInsets.all(0),
         leading: ArrowBack(),
@@ -30,27 +32,28 @@ class _PromotionViewDetailsState extends State<PromotionViewDetails> {
                 boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)]),
             child: CustomElevatedButton(
                 onPressed: () {
-                  sl<PromotionCartBloc>().add(AddPromotionToCartEvent(promotionEntity: widget.promotionEntity));
-                  
+                  sl<PromotionCartBloc>().add(AddPromotionToCartEvent(
+                      promotionEntity: widget.promotionEntity));
+
                   showTopSnackBar(Overlay.of(context),
-                      CustomSnackBar.success(message: 'Producto agregado'));
+                      CustomSnackBar.success(message: texts.product_added));
                   Navigator.pop(context);
                 },
-                text: 'Agregar al carrito')),
+                text: texts.add_to_cart,)),
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(children: [
               ImagesScrollview(images: widget.promotionEntity.imageUrl),
               SizedBox(height: 16),
-              Text('Servicios aplicado a esta promoción'),
+              Text(texts.service_applied_to_promo),
               SizedBox(height: 16),
-              Text('Corte de cabello'),
+              Text(texts.haircut),
               SizedBox(height: 16),
-              Text('Manicure y Pedicure'),
+              Text(texts.manicure_and_pedicure),
               Divider(),
-              Text('Descripción'),
+              Text(texts.description),
               SizedBox(height: 16),
-              Text('Este es un servicio que aplica para todas las edades')
+              Text(texts.all_ages_service)
             ])));
   }
 }

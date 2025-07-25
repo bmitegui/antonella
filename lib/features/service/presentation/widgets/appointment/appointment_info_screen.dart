@@ -1,5 +1,6 @@
 import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
@@ -28,6 +29,7 @@ class AppointmentInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     bool isClient = false;
     final userState = sl<UserBloc>().state;
     if (userState is UserAuthenticated) {
@@ -77,26 +79,26 @@ class AppointmentInfoScreen extends StatelessWidget {
               const SizedBox(height: 16),
               Divider(color: Colors.grey.shade300),
               const SizedBox(height: 16),
-              CustomTitle(title: 'Acerca de:'),
+              CustomTitle(title: texts.about),
               const SizedBox(height: 16),
               Text(appointmentEntity.serviceEntity.name),
               Text(appointmentEntity.serviceEntity.description),
               const SizedBox(height: 16),
               Divider(color: Colors.grey.shade300),
               const SizedBox(height: 16),
-              CustomTitle(title: 'Fecha', description: appointmentEntity.day),
+              CustomTitle(title: texts.date, description: appointmentEntity.day),
               const SizedBox(height: 16),
               CustomTitle(
-                  title: 'Horario', description: appointmentEntity.startTime),
+                  title: texts.schedule, description: appointmentEntity.startTime),
               const SizedBox(height: 16),
               CustomTitle(
-                  title: 'Valor',
+                  title: texts.value,
                   description:
                       '\$${appointmentEntity.basePrice?.toStringAsFixed(2) ?? '0.00'}'),
               const SizedBox(height: 16),
               Divider(color: Colors.grey.shade300),
               const SizedBox(height: 16),
-              CustomTitle(title: 'Formulario hecho'),
+              CustomTitle(title: texts.form_done),
               const SizedBox(height: 16),
               FilledButton(
                   onPressed: () async {
@@ -113,7 +115,7 @@ class AppointmentInfoScreen extends StatelessWidget {
                           return FormDone();
                         });
                   },
-                  child: Text('Ver formulario'))
+                  child: Text(texts.view_form))
             ])));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/progress_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/time_picker.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ class SelectTimePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return Center(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -15,7 +17,7 @@ class SelectTimePage extends StatelessWidget {
           const ProgressSearchWidget(page: 3),
           const SizedBox(height: 16),
           Text(
-              ' Seleccione una hora que prefiera deslizando la pantalla para reservar la cita, y luego continue'),
+              texts.select_time_then_continue),
           const SizedBox(height: 32),
           TimePicker()
         ]));

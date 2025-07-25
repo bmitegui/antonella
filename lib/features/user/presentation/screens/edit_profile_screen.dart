@@ -40,7 +40,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         appBar: AppBar(
             leading: ArrowBack(color: Color(0XFFF44565)),
             backgroundColor: Color(0xFFF0F0F0),
-            title: Text('Editar Perfil',
+            title: Text(texts.edit_profile,
                 style: textTheme.bodyLarge!.copyWith(
                     color: Color(0XFFF44565), fontWeight: FontWeight.bold))),
         backgroundColor: Color(0xFFF0F0F0),
@@ -63,7 +63,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: SingleChildScrollView(
                       child: Center(
                           child: Column(children: [
-                    Text('Edita la información de la cuenta',
+                    Text(texts.edit_account_information,
                         style:
                             textTheme.bodyLarge!.copyWith(color: Colors.black)),
                     SizedBox(height: 32),
@@ -71,24 +71,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     SizedBox(height: 32),
                     CustomTextFormFieldWidget(
                       textEditingController: _nameController,
-                      title: 'Nombres'
+                      title: texts.name,
                     ),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
                       readOnly: true,
                       textEditingController: _dniController,
-                      title: 'Cédula'
+                      title: texts.id,
                     ),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
                       readOnly: true,
                       textEditingController: _emailController,
-                      title: 'Correo'
+                      title: texts.email,
                     ),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
                       textEditingController: _phoneController,
-                      title: 'Teléfono',
+                      title: texts.phone_number,
                     ),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
@@ -106,7 +106,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 backgroundColor:
                                     WidgetStateProperty.all(Color(0xFFF44565))),
                             onPressed: () {},
-                            child: Text('Guardar')))
+                            child: Text(texts.save)))
                   ]))))
               : const SizedBox.shrink();
         }));

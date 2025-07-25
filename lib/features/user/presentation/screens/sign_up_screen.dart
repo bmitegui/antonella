@@ -55,15 +55,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     return CustomScaffold(
         paddingScroll: EdgeInsets.all(16),
-        text: 'Crear Cuenta',
+        text: texts.create_account,
         backgroundColor: colorScheme.primaryContainer,
         leading: ArrowBack(route: '/signIn', color: colorScheme.secondary),
         child: Center(
             child: BlocConsumer<UserBloc, UserState>(
                 listener: (BuildContext context, UserState state) {
           if (state is UserAuthenticated) {
-            showTopSnackBar(Overlay.of(context),
-                const CustomSnackBar.success(message: 'Registro exitoso'));
+            showTopSnackBar(
+                Overlay.of(context),
+                CustomSnackBar.success(
+                    message: texts.successful_sign_up));
           } else if (state is UserError) {
             showTopSnackBar(
                 Overlay.of(context),
@@ -87,17 +89,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           const SizedBox(height: 16),
                           CustomTextFormFieldWidget(
                               textEditingController: _dniController,
-                              title: 'Cédula',
+                              title: texts.id,
                               keyboardType: TextInputType.number),
                           const SizedBox(height: 16),
                           CustomTextFormFieldWidget(
                               textEditingController: _phoneController,
-                              title: 'Celular',
+                              title: texts.phone_number,
                               keyboardType: TextInputType.phone),
                           const SizedBox(height: 16),
                           CustomTextFormFieldWidget(
                               textEditingController: _emailController,
-                              title: 'Correo',
+                              title: texts.email,
                               keyboardType: TextInputType.emailAddress),
                           const SizedBox(height: 16),
                           CustomTextFormFieldWidget(
@@ -118,11 +120,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               suffixIcon: Icon(Icons.date_range)),
                           const SizedBox(height: 16),
                           CustomDropdownSearchWidget(
-                              title: 'Género',
+                              title: texts.gender,
                               showSearchBox: false,
                               selectedItem: genero,
-                              initialText: 'Seleccionar género',
-                              options: ['Masculino', 'Femenino', 'Otro'],
+                              initialText: texts.select_gender,
+                              options: [texts.male, texts.female, texts.other],
                               onChange: (value) {
                                 setState(() {
                                   genero = value;
@@ -148,7 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         password:
                                             _passwordController.text.trim()));
                                   },
-                                  child: Text('Registrar')))
+                                  child: Text(texts.sign_up)))
                         ]))
                   ]));
         })));

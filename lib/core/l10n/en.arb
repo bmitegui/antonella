@@ -115,5 +115,114 @@
     "services": "Services",
     "subtotal": "Subtotal",
     "iva": "Sale Tax",
-    "total": "Total"
+    "total": "Total",
+
+    "profile_picture": "Profile Picture",
+    "camera": "Camera",
+    "galery": "Galery",
+
+    "remember_me": "Remember me",
+
+    "image_cut": "Image Cut",
+
+    "change_password_full_info": "Complete the information to change your password correctly.",
+    "last_password": "Last Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "repeat_password": "Repeat Password",
+    "updated_password": "Updated Password",
+    "not_same_password": "Passwords are not the same",
+    "wrong_password": "The current password is incorrect",
+    "save": "Save",
+
+    "select_technical_support": "Select one of the methods below to receive technical support:",
+    "email": "E-mail",
+    "contact_mail": "contacto@antonella.com",
+    "good_moorning": "Good morning, I have a problem with",
+    "whatsapp": "Whatsapp",
+    "instagram": "Instagram",
+
+    "create_account": "Create Account",
+    "successful_sign_up": "Successful Sign Up",
+    "id": "Id",
+    "gender": "Gender",
+    "select_gender": "Select Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+
+    "reset_password": "Reset Password",
+    "write_new_password": "Enter your new password",
+
+    "enter_associated_email": "Enter your email address associated with your account",
+    "code_sent": "Code Sent",
+    "send": "Send",
+
+    "edit_account_information": "Edit Account Information",
+
+    "confirmation": "Confirmation",
+    "code_sent_to_number": "The code has been sent to your phone number",
+    "enter_code": "Enter Code",
+    "right_code": "Right Code",
+    "wrong_code": "Wrong Code",
+
+    "product_added": "Product added",
+    "add_to_cart": "Add to cart",
+    "service_applied_to_promo": "Services applied to this promotion",
+    "haircut": "Haircut",
+    "manicure_and_pedicure": "Manicure and Pedicure",
+    "description": "Description",
+    "all_ages_service": "This is a service that applies to all ages.",
+
+    "total_billed": "Total Billed",
+    "total_customers": "Total Customers",
+    "total_to_receive": "Total to Receive",
+
+    "no_service_for_category": "There are no services for this category",
+
+    "select_time_then_continue": "Select a time you prefer by swiping the screen to book the appointment, and then continue",
+
+    "requested_date": "Requested date:",
+    "requested_schedule": "Requested schedule:",
+    "approximate_value": "Approximate value:",
+
+    "request_sent_succesfully": "Request sent successfully \n The administrator will contact you shortly",
+    "submit_request": "Submit Request",
+
+    "delete_service": "Delete service",
+    "sure_delete_service": "Are you sure you want to delete the selected service?",
+    "eliminate": "Eliminate",
+    "no_service_selected": "No services selected",
+
+    "appointment_started": "Appointment started",
+    "start_appointment": "Start appointment",
+
+    "customer_data": "Customer data",
+    "category": "Category",
+
+    "form_loaded": "Form Loaded",
+
+    "appointment_ended": "Appointment ended",
+    "end_appointment": "End appointment",
+
+    "form_saved": "Form saved",
+    "not_all_fields_completed": "You have not completed all fields",
+
+    "appointment_confirmed": "Appointment confirmed",
+    "confirm_appointment": "Confirm appointment",
+    "pay_now": "Pay now",
+
+    "no_appointments_to_be_confirmed": "There are no pending appointments to be confirmed.",\
+
+    "see_more": "See more",
+
+    "billing_information": "Billing information",
+    "change": "Change",
+
+    "about": "About:",
+    "date": "Date",
+    "schedule": "Schedule",
+    "value": "Value",
+    "form_done": "Form done",
+    "view_form": "View form",
 }

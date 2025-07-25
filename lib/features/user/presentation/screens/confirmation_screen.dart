@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/features/user/presentation/bloc/password/password_bloc.dart';
@@ -31,6 +32,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
@@ -46,19 +48,19 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                     width: screenWidht * 0.80,
                     child: Column(children: [
                       SizedBox(height: 32),
-                      Text('Confirmación',
+                      Text(texts.confirmation,
                           style: textTheme.bodyLarge!.copyWith(
                               color: Color(0XFFF44565),
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: 32),
-                      Text('El código ha sido enviado a su número telefónico',
+                      Text(texts.code_sent_to_number,
                           style: textTheme.bodyMedium!.copyWith(
                               color: Colors.black, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center),
                       SizedBox(height: 32),
                       CustomTextFormFieldWidget(
                           textEditingController: codeController,
-                          hintText: 'Ingrese Código',
+                          hintText: texts.enter_code,
                           keyboardType: TextInputType.number),
                       SizedBox(height: 32),
                       BlocBuilder<PasswordBloc, PasswordState>(
@@ -80,20 +82,20 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                                         if (state.code == codeController.text) {
                                           showTopSnackBar(
                                               Overlay.of(context),
-                                              const CustomSnackBar.success(
-                                                  message: 'Código correcto'));
+                                              CustomSnackBar.success(
+                                                  message: texts.right_code));
                                           GoRouter.of(context)
                                               .go('/resetPassword');
                                         } else {
                                           showTopSnackBar(
                                               Overlay.of(context),
                                               CustomSnackBar.error(
-                                                  message: 'Código incorrecto',
+                                                  message: texts.wrong_code,
                                                   maxLines: 3));
                                         }
                                       }
                                     },
-                                    child: Text('Enviar')));
+                                    child: Text(texts.send)));
                       })
                     ])))));
   }
