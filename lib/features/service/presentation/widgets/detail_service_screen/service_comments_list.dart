@@ -13,13 +13,15 @@ class ServiceCommentsSection extends StatelessWidget {
     return CustomScaffold(
       child: BlocBuilder<CommentBloc, CommentState>(builder: (context, state) {
         return (state is CommentsLoaded)
-            ? Column(
-                children: state.serviceComments
-                    .map((comment) => Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: CommentContainer(commentEntity: comment),
-                        ))
-                    .toList())
+            ? (state.serviceComments.isNotEmpty)
+                ? Column(
+                    children: state.serviceComments
+                        .map((comment) => Padding(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: CommentContainer(commentEntity: comment),
+                            ))
+                        .toList())
+                : Text('No existen comentarios todavía')
             : (state is CommentsError)
                 ? Text(mapFailureToMessage(
                     context: context, failure: state.failure))
