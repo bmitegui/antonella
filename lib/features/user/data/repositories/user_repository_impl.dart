@@ -61,10 +61,16 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, void>> signOut() async {
-    return handleLocalCall(operation: () async {
+    await handleLocalCall(operation: () async {
       await userLocalDataSource.signOut();
       return;
     });
+
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await userRemoteDataSource.signOut();
+        });
   }
 
   @override
@@ -113,18 +119,33 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, void>> sendMessage(
-    {
-      required String userId,
+      {required String userId,
       required String content,
-      required MessageType type
-    }
-  ) {
+      required MessageType type}) {
     return handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
-           await userRemoteDataSource.sendMessage(
-            userId: userId, content: content, type: type);
+          await userRemoteDataSource.sendMessage(
+              userId: userId, content: content, type: type);
         });
   }
-  
+
+  @override
+  Future<Either<Failure, void>> addProfile(
+      {required String id, required String urlPhoto}) {
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await userRemoteDataSource.addProfile(id: id, urlPhoto: urlPhoto);
+        });
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> getAdmin() async {
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await userRemoteDataSource.getAdmin();
+        });
+  }
 }

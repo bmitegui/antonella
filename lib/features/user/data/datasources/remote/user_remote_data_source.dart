@@ -13,6 +13,7 @@ abstract class UserRemoteDataSource {
     required String account,
     required String password,
   });
+  Future<UserModel> getAdmin();
   Future<UserModel> signUp(
       {required String account,
       required String dni,
@@ -32,6 +33,8 @@ abstract class UserRemoteDataSource {
       {required String userId,
       required String content,
       required MessageType type});
+  Future<void> addProfile({required String id, required String urlPhoto});
+  Future<void> signOut();
 }
 
 class UserRemoteDataSourceImpl
@@ -160,5 +163,34 @@ class UserRemoteDataSourceImpl
             },
             options: defaultOptions),
         onSuccess: (_) {});
+  }
+
+  @override
+  Future<void> addProfile(
+      {required String id, required String urlPhoto}) async {
+    return await handleRequest(
+        request: () => client.put(Environment.signUp,
+            data: {'id': id, 'photo': urlPhoto}, options: defaultOptions),
+        onSuccess: (_) {});
+  }
+
+  @override
+  Future<void> signOut() async {
+    String userId = "";
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated) {
+      userId = userState.user.id;
+    }
+    final url = '${Environment.fcmToken}?user_id=$userId';
+    return await handleRequest(
+        request: () => client.delete(url, options: defaultOptions),
+        onSuccess: (_) {});
+  }
+
+  @override
+  Future<UserModel> getAdmin() async {
+    return await handleRequest(
+        request: () => client.get(Environment.admin, options: defaultOptions),
+        onSuccess: (data) => UserModel.fromJson(data));
   }
 }

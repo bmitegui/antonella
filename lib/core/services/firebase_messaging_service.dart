@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/router/app_router.dart';
 import 'package:antonella/core/services/key_value_storage_service_impl.dart';
 import 'package:antonella/core/services/local_notifications_service.dart';
+import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +13,8 @@ class FirebaseMessagingService {
   FirebaseMessagingService._internal();
 
   // Singleton instance
-  static final FirebaseMessagingService _instance = FirebaseMessagingService._internal();
+  static final FirebaseMessagingService _instance =
+      FirebaseMessagingService._internal();
 
   // Factory constructor to provide singleton instance
   factory FirebaseMessagingService.instance() => _instance;
@@ -21,8 +26,9 @@ class FirebaseMessagingService {
   bool _isFirebaseMessagingInitialized = false;
 
   /// Initialize Firebase Messaging and sets up all message listeners
-  Future<void> init({required LocalNotificationsService localNotificationsService}) async {
-     if (_isFirebaseMessagingInitialized) {
+  Future<void> init(
+      {required LocalNotificationsService localNotificationsService}) async {
+    if (_isFirebaseMessagingInitialized) {
       return;
     }
 
@@ -47,7 +53,11 @@ class FirebaseMessagingService {
     // Check for initial message that opened the app from terminated state
     final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
-      _onMessageOpenedApp(initialMessage);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Future.delayed(const Duration(seconds: 5), () {
+          _onMessageOpenedApp(initialMessage);
+        });
+      });
     }
 
     // Mark initialization as complete
@@ -64,7 +74,7 @@ class FirebaseMessagingService {
     // Listen for token refresh events
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
       debugPrint('FCM token refreshed: $fcmToken');
-      // TODO: optionally send token to your server for targeting this device
+      // Optionally send token to your server for targeting this device
     }).onError((error) {
       // Handle errors during token refresh
       debugPrint('Error refreshing FCM token: $error');
@@ -89,16 +99,27 @@ class FirebaseMessagingService {
     debugPrint('Foreground message received: ${message.data.toString()}');
     final notificationData = message.notification;
     if (notificationData != null) {
+      if (message.data['redirect_to'] == 'CHAT') {
+        sl<MessagesBloc>().add(UpdateMessagesEvent(
+            content: notificationData.body!,
+            type: message.data['type'],
+            userId: message.data['user_id'],
+            messageId: message.data['message_id'],
+            senderId: message.data['sender_id']));
+      }
       // Display a local notification using the service
-      _localNotificationsService?.showNotification(
-          notificationData.title, notificationData.body, message.data.toString());
+      _localNotificationsService?.showNotification(notificationData.title,
+          notificationData.body, jsonEncode(message.data));
     }
   }
 
   /// Handles notification taps when app is opened from the background or terminated state
   void _onMessageOpenedApp(RemoteMessage message) {
-    debugPrint('Notification caused the app to open: ${message.data.toString()}');
-    // TODO: Add navigation or specific handling based on message data
+    debugPrint(
+        'Notification caused the app to open: ${message.data.toString()}');
+    if (message.data['redirect_to'] == 'CHAT') {
+      pagesScreenKey.currentState?.jumpToPage(3);
+    }
   }
 }
 
@@ -107,4 +128,7 @@ class FirebaseMessagingService {
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   debugPrint('Background message received: ${message.data.toString()}');
+  if (message.data['redirect_to'] == 'CHAT') {
+    pagesScreenKey.currentState?.jumpToPage(3);
+  }
 }

@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class ServiceRepository {
   Future<Either<Failure, ListServicesModel>> getServices();
+  Future<Either<Failure, List<NotificationModel>>> getNotifications();
   Future<Either<Failure, List<CommentModel>>> getServiceComments(
       {required String serviceId});
   Future<Either<Failure, void>> sendRequest(

@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/data_test_constant.dart';
 import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/injection/injection_container.dart';
@@ -17,6 +16,7 @@ import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
   Future<ListServicesModel> getServices();
+  Future<List<NotificationModel>> getNotifications();
   Future<List<CommentModel>> getServiceComments({required String serviceId});
   Future<List<OrderModel>> getOrders({required String id});
   Future<void> sendRequest(
@@ -60,11 +60,26 @@ class ServiceRemoteDataSourceImpl
   @override
   Future<List<CommentModel>> getServiceComments(
       {required String serviceId}) async {
-    final serviceCommentsList = serviceComments;
-    return (serviceCommentsList['ServiceComments'] as List)
-        .map<CommentModel>((commentData) {
-      return CommentModel.fromJson(commentData);
-    }).toList();
+    final url = '${Environment.comments}?service_id=$serviceId';
+    final commentsData = await handleRequest(
+      request: () => client.get(url, options: defaultOptions),
+      onSuccess: (data) => data,
+    );
+
+    if (commentsData.isEmpty) {
+      return [];
+    }
+
+    final List<CommentModel> comments = [];
+
+    for (dynamic item in commentsData) {
+      final userId = item['user_id'];
+      final userModel = await getUser(userId: userId);
+      final comment = CommentModel.fromJson(item, userModel);
+      comments.add(comment);
+    }
+
+    return comments;
   }
 
   @override
@@ -268,7 +283,7 @@ class ServiceRemoteDataSourceImpl
         onSuccess: (_) {});
   }
 
-    @override
+  @override
   Future<void> endAppointment(
       {required String orderId, required String appointmentId}) async {
     await handleRequest(
@@ -277,15 +292,32 @@ class ServiceRemoteDataSourceImpl
             options: defaultOptions),
         onSuccess: (_) {});
   }
-  
+
   @override
-  Future<List<PromotionModel>> getPromotions() async{
+  Future<List<PromotionModel>> getPromotions() async {
     return await handleRequest(
-      request: () => client.get(Environment.publicity, options: defaultOptions), 
-      onSuccess: (data) => (data as List)
+        request: () =>
+            client.get(Environment.publicity, options: defaultOptions),
+        onSuccess: (data) => (data as List)
             .map<PromotionModel>(
                 (dataJson) => PromotionModel.fromJson(dataJson))
-            .toList()
-    );
+            .toList());
+  }
+
+  @override
+  Future<List<NotificationModel>> getNotifications() async {
+    String userId = '';
+    final userState = sl<UserBloc>().state;
+
+    if (userState is UserAuthenticated) {
+      userId = userState.user.id;
+    }
+    final url = '${Environment.notifications}?user_id=$userId';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => (data as List)
+            .map<NotificationModel>((notificationJson) =>
+                NotificationModel.fromJson(notificationJson))
+            .toList());
   }
 }

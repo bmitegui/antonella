@@ -1,22 +1,22 @@
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/domain/entities/comment_entity.dart';
+import 'package:antonella/features/user/data/models/user_model.dart';
 
 class CommentModel extends CommentEntity {
   const CommentModel(
       {required super.id,
-      required super.name,
       required super.rating,
       required super.dateTime,
-      required super.urlImage,
-      required super.comment});
+      required super.comment,
+      required super.userEntity});
 
-  factory CommentModel.fromJson(Map<String, dynamic> json) {
+  factory CommentModel.fromJson(
+      Map<String, dynamic> json, UserModel userModel) {
     return CommentModel(
-        id: json['id'],
-        name: json['name'],
-        rating: json['rating'],
-        dateTime: parseStringToDate(json['dateTime']),
-        urlImage: json['urlImage'],
-        comment: json['comment']);
+        id: '${json['id']}',
+        rating: json['starts'].toDouble(),
+        dateTime: parseStringToDate(json['created_at']),
+        userEntity: userModel,
+        comment: capitalize(json['content']));
   }
 }

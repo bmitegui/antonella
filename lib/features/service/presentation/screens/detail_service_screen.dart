@@ -7,6 +7,8 @@ import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/service_form/service_form_bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/services_selected/services_selected_bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/description_service_section.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/detail_service_tab_bar.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/service_comments_list.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/label_detail_service_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/form_service_selected_widget.dart';
@@ -21,9 +23,31 @@ class DetailServiceScreen extends StatefulWidget {
   State<DetailServiceScreen> createState() => _DetailServiceScreenState();
 }
 
-class _DetailServiceScreenState extends State<DetailServiceScreen> {
+class _DetailServiceScreenState extends State<DetailServiceScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(_handleTabChange);
+  }
+
+  @override
+  void dispose() {
+    _tabController.removeListener(_handleTabChange);
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  void _handleTabChange() {
+    if (_tabController.indexIsChanging) return;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       int index = -1;
@@ -40,7 +64,6 @@ class _DetailServiceScreenState extends State<DetailServiceScreen> {
       return CustomScaffold(
           paddingScroll: EdgeInsets.all(0),
           leading: ArrowBack(),
-          text: 'Detalles',
           extendBodyBehindAppBar: true,
           bottomNavigationBar: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -52,7 +75,10 @@ class _DetailServiceScreenState extends State<DetailServiceScreen> {
                   children: [
                     Text(
                         '\$${widget.serviceEntity.minPrice} - ${widget.serviceEntity.maxPrice}',
-                        style: Theme.of(context).textTheme.titleMedium),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontWeight: FontWeight.bold)),
                     CustomElevatedButton(
                         onPressed: () async {
                           if (state is ServicesSelectedLoaded) {
@@ -73,8 +99,7 @@ class _DetailServiceScreenState extends State<DetailServiceScreen> {
                         },
                         text: 'Agregar Servicio')
                   ])),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             ImagesScrollview(images: widget.serviceEntity.images),
             Padding(
                 padding:
@@ -82,14 +107,14 @@ class _DetailServiceScreenState extends State<DetailServiceScreen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(widget.serviceEntity.subtype,
+                          style: titleBlack54Style(context)),
+                      SizedBox(height: 8),
                       Text(widget.serviceEntity.name,
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium!
-                              .copyWith(color: Color(0xFFF44565))),
-                      SizedBox(height: 8),
-                      Text(widget.serviceEntity.subtype,
-                          style: Theme.of(context).textTheme.titleMedium),
+                              .copyWith(color: colorScheme.onSurface)),
                       SizedBox(height: 8),
                       LabelDetailServiceWidget(
                           category: getCategoryText(
@@ -97,60 +122,16 @@ class _DetailServiceScreenState extends State<DetailServiceScreen> {
                               serviceCategory: widget.serviceEntity.type),
                           rating: widget.serviceEntity.rating,
                           duration: widget.serviceEntity.duration),
-                      SizedBox(height: 8),
-                      Text(widget.serviceEntity.description,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: Colors.grey)),
-                      SizedBox(height: 16),
-                      // Text("Trabajadores Disponibles", style: Theme.of(context)
-                      //         .textTheme
-                      //         .titleMedium!
-                      //         .copyWith(color: Color(0xFFF44565))),
-                      // DropdownButton(
-                      //   value: _chosenEmployee,
-                      //   items: <String>[
-                      //     'Juan',
-                      //     'Pedro',
-                      //     'David',
-                      //     'Daniel',
-                      //     'Mercedes'
-                      //   ].map<DropdownMenuItem<String>>((String value) {
-                      //     return DropdownMenuItem<String>(
-                      //       value: value,
-                      //       child: Text(value),
-                      //     );
-                      //   }).toList(), 
-                      //   onChanged: (String? newValue) {
-                      //     setState(() {
-                      //       _chosenEmployee = newValue;
-                      //     });
-                      //   },
-                      //   hint: Text(
-                      //     "Choose an available employee",
-                      //     style: TextStyle(
-                      //         color: Colors.black,
-                      //         fontSize: 16,
-                      //         fontWeight: FontWeight.w600),
-                      //   ),
-                      // ),
-                      // SizedBox(height: 16),                      
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Calificaciones y Opiniones',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(color: Color(0xFFF44565))),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.arrow_forward,
-                                    color: Color(0xFFF44565)))
-                          ]),
-                      ServiceCommentsList()
-                    ]))
+                    ])),
+            SizedBox(height: 8),
+            DetailServiceTabBar(controller: _tabController),
+            const SizedBox(height: 16),
+            Expanded(
+                child: TabBarView(controller: _tabController, children: [
+              DescriptionServiceSection(
+                  description: widget.serviceEntity.description),
+              ServiceCommentsSection()
+            ]))
           ]));
     });
   }

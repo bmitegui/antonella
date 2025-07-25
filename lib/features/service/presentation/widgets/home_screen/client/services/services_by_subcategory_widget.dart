@@ -10,11 +10,13 @@ class ServicesBySubcategoryWidget extends StatefulWidget {
       {super.key, required this.subCategory, required this.services});
 
   @override
-  State<ServicesBySubcategoryWidget> createState() => _ServicesBySubcategoryWidgetState();
+  State<ServicesBySubcategoryWidget> createState() =>
+      _ServicesBySubcategoryWidgetState();
 }
 
-class _ServicesBySubcategoryWidgetState extends State<ServicesBySubcategoryWidget> {
-final ScrollController _scrollController = ScrollController();
+class _ServicesBySubcategoryWidgetState
+    extends State<ServicesBySubcategoryWidget> {
+  final ScrollController _scrollController = ScrollController();
 
   final double _scrollAmount = 200.0;
 
@@ -31,7 +33,7 @@ final ScrollController _scrollController = ScrollController();
   }
 
   void _updateArrowVisibility() {
-    if (!_scrollController.hasClients) return; 
+    if (!_scrollController.hasClients) return;
     final position = _scrollController.position;
 
     setState(() {
@@ -39,7 +41,7 @@ final ScrollController _scrollController = ScrollController();
       _showRightArrow = position.pixels < position.maxScrollExtent;
     });
   }
-  
+
   void _scrollRight() {
     final newOffset = (_scrollController.offset + _scrollAmount)
         .clamp(0.0, _scrollController.position.maxScrollExtent);
@@ -68,24 +70,24 @@ final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      CustomTitle(title: widget.subCategory),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: CustomTitle(title: widget.subCategory),
+      ),
       const SizedBox(height: 8),
       Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              padding: EdgeInsets.only(bottom: 16),
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                  children: widget.services.map((service) {
-                return ServiceInfoWidget(serviceEntity: service);
-              }).toList()))
-          ),
-
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: SingleChildScrollView(
+                  controller: _scrollController,
+                  padding: EdgeInsets.only(bottom: 16),
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      children: widget.services.map((service) {
+                    return ServiceInfoWidget(serviceEntity: service);
+                  }).toList()))),
           if (_showLeftArrow)
             Positioned(
               left: 0,
@@ -98,7 +100,6 @@ final ScrollController _scrollController = ScrollController();
                 ),
               ),
             ),
-      
           if (_showRightArrow)
             Positioned(
               right: 0,
@@ -114,8 +115,6 @@ final ScrollController _scrollController = ScrollController();
             ),
         ],
       )
-      
-      
     ]);
   }
 }

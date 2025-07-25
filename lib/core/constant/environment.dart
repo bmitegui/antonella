@@ -17,10 +17,13 @@ class Environment {
   static String user = '$apiUrl${dotenv.env['user']}';
   static String product = '$apiUrl${dotenv.env['product']}';
   static String employeeInfo = '$apiUrl${dotenv.env['employeeInfo']}';
-  static String getAppointments ='$apiUrl${dotenv.env['getAppointments']}';
+  static String getAppointments = '$apiUrl${dotenv.env['getAppointments']}';
   static String orderProductItem = '$apiUrl${dotenv.env['orderProductItem']}';
   static String publicity = '$apiUrl${dotenv.env['publicity']}';
   static String chat = '$apiUrl${dotenv.env['chat']}';
   static String userChatMessage = '$apiUrl${dotenv.env['userChatMessage']}';
   static String fcmToken = '$apiUrl${dotenv.env['fcmToken']}';
+  static String comments = '$apiUrl${dotenv.env['comments']}';
+  static String notifications = '$apiUrl${dotenv.env['notifications']}';
+  static String admin = '$apiUrl${dotenv.env['admin']}';
 }

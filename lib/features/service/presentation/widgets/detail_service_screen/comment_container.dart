@@ -1,3 +1,4 @@
+import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/rating_stars_widget.dart';
@@ -10,16 +11,21 @@ class CommentContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(children: [
         Container(
             width: 32,
-            decoration: BoxDecoration(shape: BoxShape.circle),
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.white),
             clipBehavior: Clip.hardEdge,
-            child: CustomCachedNetworkImage(imageUrl: commentEntity.urlImage)),
+            child: commentEntity.userEntity.photoUrl != null
+                ? CustomCachedNetworkImage(
+                    imageUrl:
+                        Environment.apiUrl + commentEntity.userEntity.photoUrl!)
+                : Icon(Icons.person)),
         const SizedBox(width: 8),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Juliana Andrea Daza'),
+          Text(commentEntity.userEntity.name, style: bodyBlack54Style(context)),
           Row(children: [
             RatingStars(rating: commentEntity.rating),
             const SizedBox(width: 16),
@@ -32,7 +38,7 @@ class CommentContainer extends StatelessWidget {
         ])
       ]),
       const SizedBox(height: 8),
-      Text(commentEntity.comment)
+      Text(commentEntity.comment, style: bodyBlack54Style(context))
     ]);
   }
 }

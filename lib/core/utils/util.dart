@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
+import 'package:antonella/features/service/domain/entities/notification_entity.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
@@ -26,6 +27,16 @@ double generarDoubleEntre35y50() {
 
 String formatDateToString(DateTime date) {
   return "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
+}
+
+String formatDurationToHours(String timeString) {
+  final parts = timeString.split(':');
+  if (parts.length != 3) return timeString; // En caso de formato incorrecto
+
+  final hours = int.parse(parts[0]);
+  final minutes = int.parse(parts[1]);
+
+  return '$hours:${minutes.toString().padLeft(2, '0')} hrs';
 }
 
 DateTime parseStringToDate(String dateString) {
@@ -81,12 +92,26 @@ String formatHour(DateTime? dateTime) =>
     dateTime == null ? 'HH:mm' : DateFormat('HH:mm').format(dateTime);
 
 String capitalize(String text) {
-  if (text.isEmpty) return text;
+  if (text.trim().isEmpty) return text;
 
-  return text.toLowerCase().replaceAllMapped(RegExp(r'(^\s*\w|(?<=\.\s*)\w)'),
-      (match) {
-    return match.group(0)!.toUpperCase();
-  });
+  final buffer = StringBuffer();
+  bool capitalizeNext = true;
+
+  for (int i = 0; i < text.length; i++) {
+    final char = text[i];
+
+    if (capitalizeNext && RegExp(r'[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]').hasMatch(char)) {
+      buffer.write(char.toUpperCase());
+      capitalizeNext = false;
+    } else {
+      buffer.write(char);
+      if (char == '.' || char == '!' || char == '?' || char == '\n') {
+        capitalizeNext = true;
+      }
+    }
+  }
+
+  return buffer.toString();
 }
 
 String getCategoryText(
@@ -316,6 +341,12 @@ ClientStatus stringToClientStatus(String status) {
 
 PaymentType stringToPaymentType(String type) {
   return type == 'EFECTIVO' ? PaymentType.efectivo : PaymentType.tarjeta;
+}
+
+NotificationType stringToNotificationType(String type) {
+  return type == 'INSTANTANEA'
+      ? NotificationType.instantanea
+      : NotificationType.otro;
 }
 
 String paymentTypeToString(PaymentType type) {

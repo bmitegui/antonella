@@ -7,13 +7,16 @@ class ProductsBySubcategoryWidget extends StatefulWidget {
   final String subCategory;
   final List<ProductEntity> products;
 
-  const ProductsBySubcategoryWidget({super.key, required this.subCategory, required this.products});
+  const ProductsBySubcategoryWidget(
+      {super.key, required this.subCategory, required this.products});
 
   @override
-  State<ProductsBySubcategoryWidget> createState() => _ProductsBySubcategoryWidgetState();
+  State<ProductsBySubcategoryWidget> createState() =>
+      _ProductsBySubcategoryWidgetState();
 }
 
-class _ProductsBySubcategoryWidgetState extends State<ProductsBySubcategoryWidget> {
+class _ProductsBySubcategoryWidgetState
+    extends State<ProductsBySubcategoryWidget> {
   final ScrollController _scrollController = ScrollController();
 
   final double _scrollAmount = 200.0;
@@ -31,7 +34,7 @@ class _ProductsBySubcategoryWidgetState extends State<ProductsBySubcategoryWidge
   }
 
   void _updateArrowVisibility() {
-    if (!_scrollController.hasClients) return; 
+    if (!_scrollController.hasClients) return;
     final position = _scrollController.position;
 
     setState(() {
@@ -69,51 +72,49 @@ class _ProductsBySubcategoryWidgetState extends State<ProductsBySubcategoryWidge
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      CustomTitle(title: widget.subCategory),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: CustomTitle(title: widget.subCategory),
+      ),
       const SizedBox(height: 8),
-      
-      Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: SingleChildScrollView(
-            controller: _scrollController,
-            padding: EdgeInsets.only(bottom: 16),
-            scrollDirection: Axis.horizontal,
-            child: Row(
-                children: widget.products.map((product) {
-              return ProductInfoWidget(productEntity: product);
-            }).toList())),
+      Stack(children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: SingleChildScrollView(
+              controller: _scrollController,
+              padding: EdgeInsets.only(bottom: 16),
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                  children: widget.products.map((product) {
+                return ProductInfoWidget(productEntity: product);
+              }).toList())),
+        ),
+        if (_showLeftArrow)
+          Positioned(
+            left: 0,
+            top: 0,
+            bottom: 30,
+            child: Center(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: _scrollLeft,
+              ),
+            ),
           ),
-      
-          if (_showLeftArrow)
-            Positioned(
-              left: 0,
-              top: 0,
-              bottom: 30,
-              child: Center(
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios),
-                  onPressed: _scrollLeft,
-                ),
+        if (_showRightArrow)
+          Positioned(
+            right: 0,
+            top: 0,
+            bottom: 30,
+            child: Center(
+              child: IconButton(
+                icon: const Icon(Icons.arrow_forward_ios),
+                onPressed: _scrollRight,
+                //color: Colors.white,
               ),
             ),
-      
-          if (_showRightArrow)
-            Positioned(
-              right: 0,
-              top: 0,
-              bottom: 30,
-              child: Center(
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_forward_ios),
-                  onPressed: _scrollRight,
-                  //color: Colors.white,
-                ),
-              ),
-            ),
-        ]
-      ),  
+          ),
+      ]),
     ]);
   }
 }

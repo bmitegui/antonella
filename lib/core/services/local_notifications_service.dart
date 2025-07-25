@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:antonella/core/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -6,7 +9,8 @@ class LocalNotificationsService {
   LocalNotificationsService._internal();
 
   //Singleton instance
-  static final LocalNotificationsService _instance = LocalNotificationsService._internal();
+  static final LocalNotificationsService _instance =
+      LocalNotificationsService._internal();
 
   //Factory constructor to return singleton instance
   factory LocalNotificationsService.instance() => _instance;
@@ -15,7 +19,8 @@ class LocalNotificationsService {
   late FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
 
   //Android-specific initialization settings using app launcher icon
-  final _androidInitializationSettings = const AndroidInitializationSettings('@mipmap/ic_launcher');
+  final _androidInitializationSettings =
+      const AndroidInitializationSettings('@mipmap/ic_launcher');
 
   //iOS-specific initialization settings with permission requests
   final _iosInitializationSettings = const DarwinInitializationSettings(
@@ -58,12 +63,20 @@ class LocalNotificationsService {
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse response) {
       // Handle notification tap in foreground
-      debugPrint('Foreground notification has been tapped: ${response.payload}');
+      debugPrint(
+          'Foreground notification has been tapped: ${response.payload}');
+      if (response.payload != null) {
+        final data = jsonDecode(response.payload!);
+        if (data['redirect_to'] == 'CHAT') {
+          pagesScreenKey.currentState?.jumpToPage(3);
+        }
+      }
     });
 
     // Create Android notification channel
     await _flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(_androidChannel);
 
     // Mark initialization as complete
@@ -93,14 +106,9 @@ class LocalNotificationsService {
       android: androidDetails,
       iOS: iosDetails,
     );
-
     // Display the notification
     await _flutterLocalNotificationsPlugin.show(
-      _notificationIdCounter++,
-      title,
-      body,
-      notificationDetails,
-      payload: payload,
-    );
+        _notificationIdCounter++, title, body, notificationDetails,
+        payload: payload);
   }
 }

@@ -29,7 +29,7 @@ class ServiceInfoWidget extends StatelessWidget {
       }
 
       return Padding(
-          padding: const EdgeInsets.only(right: 8),
+          padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
               onTap: () {
                 sl<CommentBloc>()
@@ -38,12 +38,13 @@ class ServiceInfoWidget extends StatelessWidget {
                     context, DetailServiceScreen(serviceEntity: serviceEntity));
               },
               child: Container(
+                  padding: EdgeInsets.all(8),
                   width: MediaQuery.of(context).size.width / 2,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(16),
                       color: isSelected
                           ? colorScheme.primary
-                          : Colors.transparent),
+                          : colorScheme.onPrimary),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -77,20 +78,26 @@ class ServiceInfoWidget extends StatelessWidget {
                                             ? colorScheme.onPrimary
                                             : colorScheme.onSurfaceVariant))),
                         const SizedBox(height: 8),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 8, bottom: 8),
-                                child: Text(
-                                    '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall!
-                                        .copyWith(
-                                            color: isSelected
-                                                ? colorScheme.onPrimary
-                                                : colorScheme.primary))))
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(children: [
+                              Text(
+                                  '\$${serviceEntity.minPrice} - ${serviceEntity.maxPrice}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                          color: isSelected
+                                              ? colorScheme.onPrimary
+                                              : colorScheme.primary)),
+                              Spacer(),
+                              Icon(Icons.star_rounded, color: Colors.amber),
+                              Text('${serviceEntity.rating}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(color: colorScheme.onSurface))
+                            ]))
                       ]))));
     });
   }

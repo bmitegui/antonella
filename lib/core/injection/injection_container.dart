@@ -54,7 +54,7 @@ Future<void> init() async {
       () => LocalNotificationsService.instance());
   sl.registerLazySingleton<FirebaseMessagingService>(
       () => FirebaseMessagingService.instance());
-      
+
   //! Data sources
   sl.registerLazySingleton<UserRemoteDataSource>(
       () => UserRemoteDataSourceImpl(client: sl<Dio>()));
@@ -135,6 +135,12 @@ Future<void> init() async {
   sl.registerLazySingleton<GetPromotionsUseCase>(
       () => GetPromotionsUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<GetNotificationsUseCase>(() =>
+      GetNotificationsUseCase(serviceRepository: sl<ServiceRepository>()));
+
+  sl.registerLazySingleton<GetAdminUseCase>(
+      () => GetAdminUseCase(userRepository: sl<UserRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -195,6 +201,12 @@ Future<void> init() async {
       () => PromotionBloc(getPromotionsUseCase: sl<GetPromotionsUseCase>()));
 
   sl.registerLazySingleton<PromotionCartBloc>(() => PromotionCartBloc());
+
+  sl.registerLazySingleton<NotificationsBloc>(() => NotificationsBloc(
+      getNotificationsUseCase: sl<GetNotificationsUseCase>()));
+
+  sl.registerLazySingleton<AdminBloc>(
+      () => AdminBloc(getAdminUseCase: sl<GetAdminUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

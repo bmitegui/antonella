@@ -42,11 +42,11 @@ class ServiceModel extends ServiceEntity {
         description: capitalize(json['description']),
         type: stringToType(json['type']),
         subtype: capitalize(json['subtype']),
-        duration: json['duration'],
+        duration: formatDurationToHours(json['duration']),
         prices: prices,
         images: List<String>.from(json['images']),
         questions: questions,
-        rating: generarDoubleEntre35y50(),
+        rating: json['stars'],
         minPrice: minOfAll,
         maxPrice: maxOfAll);
   }

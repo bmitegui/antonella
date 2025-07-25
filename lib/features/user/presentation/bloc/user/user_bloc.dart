@@ -33,7 +33,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Future<void> _onSignOutEventRequest(
       SignOutEvent event, Emitter<UserState> emit) async {
-    emit(UserLoading());
     final failureOrSuccess = await signOutUseCase(NoParams());
     failureOrSuccess.fold((failure) async {
       if (event.userEntity != null) {
