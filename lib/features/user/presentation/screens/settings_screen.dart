@@ -10,7 +10,6 @@ import 'package:antonella/features/user/presentation/screens/dark_mode_screen.da
 import 'package:antonella/features/user/presentation/screens/edit_profile_screen.dart';
 import 'package:antonella/features/user/presentation/screens/update_pasword_screen.dart';
 import 'package:antonella/features/user/presentation/widgets/list_title_settings.dart';
-import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
 import 'package:antonella/features/user/presentation/screens/support_screen.dart';
 import 'package:antonella/features/product/presentation/shopping_cart_screen.dart';
 import 'package:antonella/features/product/presentation/purchase_history_screen.dart';

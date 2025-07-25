@@ -25,14 +25,11 @@
 //   }
 // }
 
-import 'package:antonella/core/constant/environment.dart';
-import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
-import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+// import 'dart:io';
 
 class UploadUserPhotoWidget extends StatelessWidget {
   final String? initialPhotoUrl;
@@ -43,7 +40,7 @@ class UploadUserPhotoWidget extends StatelessWidget {
     final pickedFile = await picker.pickImage(source: source);
 
     if (pickedFile != null) {
-      final file = File(pickedFile.path);
+      // final file = File(pickedFile.path);
 
       // Aquí deberías subir la imagen al backend o actualizar el estado del usuario
       // Future<String?> img = convertFileToBase64(file);

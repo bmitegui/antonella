@@ -1,6 +1,8 @@
 import 'package:antonella/core/error/error.dart';
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:antonella/features/user/domain/usecases/send_messages_use_case.dart';
+import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'send_message_event.dart';
@@ -22,6 +24,7 @@ class SendMessageBloc extends Bloc<SendMessageEvent, SendMessageState> {
     failureOrMessages.fold((failure) {
       emit(SendMessagesError(failure: failure));
     }, (message) {
+      sl<MessagesBloc>().add(GetMessagesEvent());
       emit(SendMessagesLoaded());
     });
   }

@@ -12,8 +12,6 @@ import 'package:antonella/features/service/presentation/widgets/detail_service_s
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/service_comments_list.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/label_detail_service_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/form_service_selected_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/client/home_tab_bar.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/services_tab_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

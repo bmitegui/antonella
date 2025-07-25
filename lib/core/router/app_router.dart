@@ -13,11 +13,14 @@ import 'package:antonella/features/user/presentation/screens/sign_in_screen.dart
 import 'package:antonella/features/user/presentation/screens/sign_up_screen.dart';
 import 'package:antonella/features/user/presentation/screens/recover_forgot_password_screen.dart';
 import 'package:antonella/features/user/presentation/screens/reset_password_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final userBloc = sl<UserBloc>();
 final userBlocListenable = UserBlocListenable(userBloc);
+final GlobalKey<PagesScreenState> pagesScreenKey =
+    GlobalKey<PagesScreenState>();
 
 final appRouter = GoRouter(
     initialLocation: '/loading',
@@ -33,7 +36,9 @@ final appRouter = GoRouter(
           path: '/signIn', builder: (context, state) => const SignInScreen()),
       GoRoute(
           path: '/signUp', builder: (context, state) => const SignUpScreen()),
-      GoRoute(path: '/pages', builder: (context, state) => const PagesScreen()),
+      GoRoute(
+          path: '/pages',
+          builder: (context, state) => PagesScreen(key: pagesScreenKey)),
       GoRoute(
           path: '/forgotPassword',
           builder: (context, state) => const RecoverForgotPasswordScreen()),
@@ -51,6 +56,12 @@ final appRouter = GoRouter(
       bool isNotificationGranted = await isNotificationPermissionGranted();
       final isGoingTo = state.fullPath;
 
+      if (isNotificationGranted) {
+        await LocalNotificationsService.instance().init();
+        await FirebaseMessagingService.instance().init(
+            localNotificationsService: LocalNotificationsService.instance());
+      }
+
       if (userBloc.state is UserLoading) {
         return null;
       } else if (userBloc.state is UserAuthenticated) {
@@ -66,10 +77,6 @@ final appRouter = GoRouter(
           if (!isNotificationGranted) {
             await preferences.setBool('isFirebaseNotificationInit', false);
             return '/notification';
-          } else {
-            await sl<LocalNotificationsService>().init();
-            await sl<FirebaseMessagingService>().init(
-                localNotificationsService: sl<LocalNotificationsService>());
           }
           if (isGoingTo == '/signUp') {
             return '/signUp';

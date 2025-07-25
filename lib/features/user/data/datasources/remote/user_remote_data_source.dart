@@ -33,6 +33,7 @@ abstract class UserRemoteDataSource {
       required String content,
       required MessageType type});
   Future<void> addProfile({required String id, required String urlPhoto});
+  Future<void> signOut();
 }
 
 class UserRemoteDataSourceImpl
@@ -164,10 +165,24 @@ class UserRemoteDataSourceImpl
   }
 
   @override
-  Future<void> addProfile({required String id, required String urlPhoto}) async {
+  Future<void> addProfile(
+      {required String id, required String urlPhoto}) async {
     return await handleRequest(
-      request: () => client.put(Environment.signUp,
+        request: () => client.put(Environment.signUp,
             data: {'id': id, 'photo': urlPhoto}, options: defaultOptions),
-      onSuccess: (_) {});
+        onSuccess: (_) {});
+  }
+
+  @override
+  Future<void> signOut() async {
+    String userId = "";
+    final userState = sl<UserBloc>().state;
+    if (userState is UserAuthenticated) {
+      userId = userState.user.id;
+    }
+    final url = '${Environment.fcmToken}?user_id=$userId';
+    return await handleRequest(
+        request: () => client.delete(url, options: defaultOptions),
+        onSuccess: (_) {});
   }
 }

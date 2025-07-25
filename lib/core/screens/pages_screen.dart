@@ -25,10 +25,10 @@ class PagesScreen extends StatefulWidget {
   const PagesScreen({super.key});
 
   @override
-  State<PagesScreen> createState() => _PagesScreenState();
+  State<PagesScreen> createState() => PagesScreenState();
 }
 
-class _PagesScreenState extends State<PagesScreen> {
+class PagesScreenState extends State<PagesScreen> {
   late PageController _pageController;
   late int _currentIndex;
 
@@ -60,9 +60,7 @@ class _PagesScreenState extends State<PagesScreen> {
     if (userState is UserAuthenticated) {
       sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
       if (userState.user.rol == Rol.cliente) {
-        _timer = Timer.periodic(Duration(milliseconds: 1500), (timer) {
-          sl<MessagesBloc>().add(GetMessagesEvent());
-        });
+        sl<MessagesBloc>().add(GetMessagesEvent());
         sl<ServiceBloc>().add(GetServicesEvent());
         sl<ProductsBloc>().add(GetProductsEvent());
         sl<PromotionBloc>().add(GetPromotionsEvent());
@@ -81,6 +79,19 @@ class _PagesScreenState extends State<PagesScreen> {
     _pageController.dispose();
     _timer?.cancel();
     super.dispose();
+  }
+
+  void jumpToPage(int index) {
+    if (index >= 0 &&
+        index <
+            (_pageController.positions.isNotEmpty
+                ? _pageController.positions.first.viewportDimension
+                : 6)) {
+      setState(() {
+        _currentIndex = index;
+      });
+      _pageController.jumpToPage(index);
+    }
   }
 
   @override
