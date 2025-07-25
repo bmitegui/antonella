@@ -33,6 +33,6 @@ abstract class UserRepository {
       required MessageType type
     }
   );
-  Future<Either<Failure, void>> addProfile();
+  Future<Either<Failure, void>> addProfile({required String id, required String urlPhoto});
 
 }

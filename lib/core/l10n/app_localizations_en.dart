@@ -18,7 +18,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get start_title => 'Discover your best version here';
 
   @override
-  String get start_body => 'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
+  String get start_body =>
+      'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
 
   @override
   String get phone_number => 'Phone number';
@@ -114,7 +115,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get model_not_found_error => 'The user is not registered';
 
   @override
-  String get invalid_user_email_error => 'The format of the email entered is not correct';
+  String get invalid_user_email_error =>
+      'The format of the email entered is not correct';
 
   @override
   String get invalid_user_birthdate_error => 'The date of birth is invalid';
@@ -129,10 +131,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invalid_dni_error => 'The ID is invalid';
 
   @override
-  String get invalid_phone_number_error => 'The format of cell phone number is invalid';
+  String get invalid_phone_number_error =>
+      'The format of cell phone number is invalid';
 
   @override
-  String get invalid_user_password_error => 'The format of the password is invalid';
+  String get invalid_user_password_error =>
+      'The format of the password is invalid';
 
   @override
   String get change_language => 'Change language';
@@ -144,7 +148,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spanish => 'Spanish';
 
   @override
-  String get info_change_language => 'Change the language of buttons, titles and other text in \'Antonella\'.';
+  String get info_change_language =>
+      'Change the language of buttons, titles and other text in \'Antonella\'.';
 
   @override
   String get dark_mode => 'Dark mode';
@@ -153,7 +158,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get select_mode => 'Select a mode';
 
   @override
-  String get info_dark_mode => 'Switch between dark and light modes as needed, right from this screen.';
+  String get info_dark_mode =>
+      'Switch between dark and light modes as needed, right from this screen.';
 
   @override
   String get activated => 'Activated';
@@ -210,7 +216,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_notifications => 'No Notifications';
 
   @override
-  String get notification_message => 'We will let you know when there is something new for you.';
+  String get notification_message =>
+      'We will let you know when there is something new for you.';
 
   @override
   String get administrator => 'Administrator';

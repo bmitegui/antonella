@@ -32,7 +32,7 @@ abstract class UserRemoteDataSource {
       {required String userId,
       required String content,
       required MessageType type});
-  Future<void> addProfile();
+  Future<void> addProfile({required String id, required String urlPhoto});
 }
 
 class UserRemoteDataSourceImpl
@@ -163,9 +163,11 @@ class UserRemoteDataSourceImpl
         onSuccess: (_) {});
   }
 
-  Future<void> addProfile() {
+  @override
+  Future<void> addProfile({required String id, required String urlPhoto}) async {
     return await handleRequest(
-      request: () => ,
+      request: () => client.put(Environment.signUp,
+            data: {'id': id, 'photo': urlPhoto}, options: defaultOptions),
       onSuccess: (_) {});
   }
 }

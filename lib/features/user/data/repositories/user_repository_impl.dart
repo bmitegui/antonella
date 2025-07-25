@@ -127,11 +127,12 @@ class UserRepositoryImpl implements UserRepository {
         });
   }
 
-  Future<Either<Failure, void>> addProfile() {
+  @override
+  Future<Either<Failure, void>> addProfile({required String id, required String urlPhoto}) {
     return handleNetworkCall(
       networkInfo: networkInfo,
       operation: () async {
-        await userRemoteDataSource.addProfile();
+        await userRemoteDataSource.addProfile(id: id, urlPhoto: urlPhoto);
       }
     );
   }

@@ -46,7 +46,6 @@ class UploadUserPhotoWidget extends StatelessWidget {
       final file = File(pickedFile.path);
 
       // Aquí deberías subir la imagen al backend o actualizar el estado del usuario
-      print('Imagen seleccionada: ${file.path}');
       // Future<String?> img = convertFileToBase64(file);
       // print(Environment.apiUrl + file.path);
 
@@ -81,49 +80,5 @@ class UploadUserPhotoWidget extends StatelessWidget {
         ],
       ),
     );
-    // return CustomScaffold(
-    //   backgroundColor: Colors.black,
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-    //         if (initialPhotoUrl != null)
-    //               Image.network(initialPhotoUrl!,
-    //                   width: 250, height: 250, fit: BoxFit.cover),
-    //         SizedBox(height: 16),
-    //         Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //           children: [
-    //             Column(
-    //               mainAxisSize: MainAxisSize.min,
-    //               children: [
-    //                 CustomCircularIconButtom(
-    //                   icon: const Icon(Icons.photo_camera_outlined),
-    //                   onTap: () => _pickImage(context, ImageSource.camera),
-    //                 ),
-    //                 const Text("Cámara", style: TextStyle(color: Colors.white))
-    //               ],
-    //             ),
-    //             Column(
-    //               mainAxisSize: MainAxisSize.min,
-    //               children: [
-    //                 // IconButton(
-    //                 //   iconSize: 64,
-    //                 //   icon: const Icon(Icons.photo_outlined),
-    //                 //   onPressed: () => _pickImage(context, ImageSource.gallery),
-    //                 // ),
-    //                 CustomCircularIconButtom(
-    //                   icon: const Icon(Icons.photo_camera_outlined),
-    //                   onTap: () => _pickImage(context, ImageSource.gallery),
-    //                 ),
-    //                 const Text("Galería", style: TextStyle(color: Colors.white))
-    //               ],
-    //             )
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
