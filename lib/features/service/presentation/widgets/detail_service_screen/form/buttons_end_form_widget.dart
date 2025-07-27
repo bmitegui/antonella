@@ -58,13 +58,13 @@ class ButtonsEndFormWidget extends StatelessWidget {
                                       service: stateServiceForm.service));
                               showTopSnackBar(
                                   Overlay.of(context),
-                                  const CustomSnackBar.success(
+                                    CustomSnackBar.success(
                                       message: texts.form_saved));
                               Navigator.pop(context);
                             } else {
                               showTopSnackBar(
                                   Overlay.of(context),
-                                  const CustomSnackBar.error(
+                                   CustomSnackBar.error(
                                       message:
                                           texts.not_all_fields_completed));
                             }
