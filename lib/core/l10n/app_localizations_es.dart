@@ -18,7 +18,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get start_title => 'Descubre tu mejor versión aquí';
 
   @override
-  String get start_body => 'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
+  String get start_body =>
+      'Explora y agenda fácilmente citas para servicios de belleza, peluquería y bienestar, adaptados a tus necesidades y estilo.';
 
   @override
   String get phone_number => 'Teléfono';
@@ -114,13 +115,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get model_not_found_error => 'El usuario no se encuentra registrado';
 
   @override
-  String get invalid_user_email_error => 'El formato del correo ingresado no es el correcto';
+  String get invalid_user_email_error =>
+      'El formato del correo ingresado no es el correcto';
 
   @override
-  String get invalid_user_birthdate_error => 'La fecha de nacimiento es inválida';
+  String get invalid_user_birthdate_error =>
+      'La fecha de nacimiento es inválida';
 
   @override
-  String get user_already_exists_error => 'El usuario ya se encuentra registrado';
+  String get user_already_exists_error =>
+      'El usuario ya se encuentra registrado';
 
   @override
   String get invalid_user_name_error => 'El nombre de usuario es inválido';
@@ -129,10 +133,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get invalid_dni_error => 'El dni es inválido';
 
   @override
-  String get invalid_phone_number_error => 'El formato del número de celular es inválido';
+  String get invalid_phone_number_error =>
+      'El formato del número de celular es inválido';
 
   @override
-  String get invalid_user_password_error => 'El formato de la contraseña es inválido';
+  String get invalid_user_password_error =>
+      'El formato de la contraseña es inválido';
 
   @override
   String get change_language => 'Cambiar idioma';
@@ -144,7 +150,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get spanish => 'Español';
 
   @override
-  String get info_change_language => 'Cambia el idioma de los botones, títulos y otros textos de \'Antonella\'.';
+  String get info_change_language =>
+      'Cambia el idioma de los botones, títulos y otros textos de \'Antonella\'.';
 
   @override
   String get dark_mode => 'Modo oscuro';
@@ -153,7 +160,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get select_mode => 'Selecciona un modo';
 
   @override
-  String get info_dark_mode => 'Cambia entre los modos oscuro y claro según tus necesidades, directamente desde esta pantalla.';
+  String get info_dark_mode =>
+      'Cambia entre los modos oscuro y claro según tus necesidades, directamente desde esta pantalla.';
 
   @override
   String get activated => 'Activado';
@@ -210,7 +218,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get no_notifications => 'Sin Notificaciones';
 
   @override
-  String get notification_message => 'Te avisaremos cuando haya algo nuevo para ti.';
+  String get notification_message =>
+      'Te avisaremos cuando haya algo nuevo para ti.';
 
   @override
   String get administrator => 'Administrador';
@@ -327,7 +336,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get image_cut => 'Recorta la imagen';
 
   @override
-  String get change_password_full_info => 'Completa la informacion para cambiar la contraseña correctamente';
+  String get change_password_full_info =>
+      'Completa la informacion para cambiar la contraseña correctamente';
 
   @override
   String get last_password => 'Anterior Contraseña';
@@ -354,7 +364,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get save => 'Guardar';
 
   @override
-  String get select_technical_support => 'Seleccione uno de los medios a continuación para recibir soporte técnico:';
+  String get select_technical_support =>
+      'Seleccione uno de los medios a continuación para recibir soporte técnico:';
 
   @override
   String get email => 'Correo Electronico';
@@ -402,7 +413,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get write_new_password => 'Escriba su nueva contraseña';
 
   @override
-  String get enter_associated_email => 'Ingresa tu correo electrónico asociado a tu cuenta';
+  String get enter_associated_email =>
+      'Ingresa tu correo electrónico asociado a tu cuenta';
 
   @override
   String get code_sent => 'Código enviado';
@@ -417,7 +429,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get confirmation => 'Confirmación';
 
   @override
-  String get code_sent_to_number => 'El código ha sido enviado a su número telefónico';
+  String get code_sent_to_number =>
+      'El código ha sido enviado a su número telefónico';
 
   @override
   String get enter_code => 'Ingrese Código';
@@ -447,7 +460,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get description => 'Descripción';
 
   @override
-  String get all_ages_service => 'Este es un servicio que aplica para todas las edades.';
+  String get all_ages_service =>
+      'Este es un servicio que aplica para todas las edades.';
 
   @override
   String get total_billed => 'Total Facturado';
@@ -459,10 +473,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get total_to_receive => 'Total a Recibir';
 
   @override
-  String get no_service_for_category => 'No existen servicios para esta categoría';
+  String get no_service_for_category =>
+      'No existen servicios para esta categoría';
 
   @override
-  String get select_time_then_continue => 'Seleccione una hora que prefiera deslizando la pantalla para reservar la cita, y luego continue';
+  String get select_time_then_continue =>
+      'Seleccione una hora que prefiera deslizando la pantalla para reservar la cita, y luego continue';
 
   @override
   String get requested_date => 'Fecha solicitada:';
@@ -474,7 +490,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get approximate_value => 'Valor aproximado:';
 
   @override
-  String get request_sent_succesfully => 'Solicitud enviada correctamente \n En breve el administrador se contactará con usted';
+  String get request_sent_succesfully =>
+      'Solicitud enviada correctamente \n En breve el administrador se contactará con usted';
 
   @override
   String get submit_request => 'Enviar Petición';
@@ -483,7 +500,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get delete_service => 'Eliminar servicio';
 
   @override
-  String get sure_delete_service => '¿Está seguro de que desea eliminar el servicio seleccionado?';
+  String get sure_delete_service =>
+      '¿Está seguro de que desea eliminar el servicio seleccionado?';
 
   @override
   String get eliminate => 'Eliminar';
@@ -511,4 +529,50 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get end_appointment => 'Terminar cita';
+
+  @override
+  String get form_saved => 'Formulario guardado';
+
+  @override
+  String get not_all_fields_completed => 'No ha completado todos los campos';
+
+  @override
+  String get appointment_confirmed => 'Cita confirmada';
+
+  @override
+  String get confirm_appointment => 'Confirmar cita';
+
+  @override
+  String get pay_now => 'Pagar ahora';
+
+  @override
+  String get no_appointments_to_be_confirmed =>
+      'No hay citas pendientes por confirmar';
+
+  @override
+  String get see_more => 'Ver más';
+
+  @override
+  String get billing_information => 'Datos de facturación';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get about => 'Acerca de:';
+
+  @override
+  String get date => 'Fecha';
+
+  @override
+  String get schedule => 'Horario';
+
+  @override
+  String get value => 'Valor';
+
+  @override
+  String get form_done => 'Formulario hecho';
+
+  @override
+  String get view_form => 'Ver formulario';
 }

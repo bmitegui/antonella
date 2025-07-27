@@ -62,7 +62,8 @@ import 'app_localizations_es.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -1102,9 +1105,100 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'End appointment'**
   String get end_appointment;
+
+  /// No description provided for @form_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Form saved'**
+  String get form_saved;
+
+  /// No description provided for @not_all_fields_completed.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not completed all fields'**
+  String get not_all_fields_completed;
+
+  /// No description provided for @appointment_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment confirmed'**
+  String get appointment_confirmed;
+
+  /// No description provided for @confirm_appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm appointment'**
+  String get confirm_appointment;
+
+  /// No description provided for @pay_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay now'**
+  String get pay_now;
+
+  /// No description provided for @no_appointments_to_be_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no pending appointments to be confirmed.'**
+  String get no_appointments_to_be_confirmed;
+
+  /// No description provided for @see_more.
+  ///
+  /// In en, this message translates to:
+  /// **'See more'**
+  String get see_more;
+
+  /// No description provided for @billing_information.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing information'**
+  String get billing_information;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About:'**
+  String get about;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @schedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get schedule;
+
+  /// No description provided for @value.
+  ///
+  /// In en, this message translates to:
+  /// **'Value'**
+  String get value;
+
+  /// No description provided for @form_done.
+  ///
+  /// In en, this message translates to:
+  /// **'Form done'**
+  String get form_done;
+
+  /// No description provided for @view_form.
+  ///
+  /// In en, this message translates to:
+  /// **'View form'**
+  String get view_form;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -1113,25 +1207,25 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'es'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsEn();
-    case 'es': return AppLocalizationsEs();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
