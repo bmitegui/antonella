@@ -25,6 +25,10 @@
 //   }
 // }
 
+import 'dart:io';
+
+import 'package:antonella/core/l10n/app_localizations.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
@@ -33,16 +37,27 @@ import 'package:antonella/core/l10n/app_localizations.dart';
 
 // import 'dart:io';
 
-class UploadUserPhotoWidget extends StatelessWidget {
+class UploadUserPhotoWidget extends StatefulWidget {
   final String? initialPhotoUrl;
   const UploadUserPhotoWidget({super.key, this.initialPhotoUrl});
 
+  @override
+  State<UploadUserPhotoWidget> createState() => _UploadUserPhotoWidgetState();
+}
+
+class _UploadUserPhotoWidgetState extends State<UploadUserPhotoWidget> {
+  String? base64Image;
+  
   Future<void> _pickImage(BuildContext context, ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
 
     if (pickedFile != null) {
-      // final file = File(pickedFile.path);
+      final file = File(pickedFile.path);
+      final converted = await convertFileToBase64(file);
+      setState(() {
+        base64Image = converted;
+      });
 
       // Aquí deberías subir la imagen al backend o actualizar el estado del usuario
       // Future<String?> img = convertFileToBase64(file);
