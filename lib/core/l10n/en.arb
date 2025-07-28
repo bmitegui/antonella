@@ -212,7 +212,7 @@
     "confirm_appointment": "Confirm appointment",
     "pay_now": "Pay now",
 
-    "no_appointments_to_be_confirmed": "There are no pending appointments to be confirmed.",\
+    "no_appointments_to_be_confirmed": "There are no pending appointments to be confirmed.",
 
     "see_more": "See more",
 
@@ -224,5 +224,5 @@
     "schedule": "Schedule",
     "value": "Value",
     "form_done": "Form done",
-    "view_form": "View form",
+    "view_form": "View form"
 }

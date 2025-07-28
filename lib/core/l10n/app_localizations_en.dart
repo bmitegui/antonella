@@ -511,4 +511,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get end_appointment => 'End appointment';
+
+  @override
+  String get form_saved => 'Form saved';
+
+  @override
+  String get not_all_fields_completed => 'You have not completed all fields';
+
+  @override
+  String get appointment_confirmed => 'Appointment confirmed';
+
+  @override
+  String get confirm_appointment => 'Confirm appointment';
+
+  @override
+  String get pay_now => 'Pay now';
+
+  @override
+  String get no_appointments_to_be_confirmed => 'There are no pending appointments to be confirmed.';
+
+  @override
+  String get see_more => 'See more';
+
+  @override
+  String get billing_information => 'Billing information';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get about => 'About:';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get schedule => 'Schedule';
+
+  @override
+  String get value => 'Value';
+
+  @override
+  String get form_done => 'Form done';
+
+  @override
+  String get view_form => 'View form';
 }

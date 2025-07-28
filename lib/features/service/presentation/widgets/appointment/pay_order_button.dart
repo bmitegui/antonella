@@ -24,7 +24,7 @@ class PayOrderButton extends StatelessWidget {
         listener: (context, state) {
       if (state is PayOrderLoaded) {
         showTopSnackBar(Overlay.of(context),
-            const CustomSnackBar.success(message: texts.appointment_confirmed));
+            CustomSnackBar.success(message: texts.appointment_confirmed));
         final userState = sl<UserBloc>().state;
         if (userState is UserAuthenticated) {
           sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));

@@ -1102,6 +1102,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'End appointment'**
   String get end_appointment;
+
+  /// No description provided for @form_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Form saved'**
+  String get form_saved;
+
+  /// No description provided for @not_all_fields_completed.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not completed all fields'**
+  String get not_all_fields_completed;
+
+  /// No description provided for @appointment_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment confirmed'**
+  String get appointment_confirmed;
+
+  /// No description provided for @confirm_appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm appointment'**
+  String get confirm_appointment;
+
+  /// No description provided for @pay_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay now'**
+  String get pay_now;
+
+  /// No description provided for @no_appointments_to_be_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no pending appointments to be confirmed.'**
+  String get no_appointments_to_be_confirmed;
+
+  /// No description provided for @see_more.
+  ///
+  /// In en, this message translates to:
+  /// **'See more'**
+  String get see_more;
+
+  /// No description provided for @billing_information.
+  ///
+  /// In en, this message translates to:
+  /// **'Billing information'**
+  String get billing_information;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About:'**
+  String get about;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @schedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get schedule;
+
+  /// No description provided for @value.
+  ///
+  /// In en, this message translates to:
+  /// **'Value'**
+  String get value;
+
+  /// No description provided for @form_done.
+  ///
+  /// In en, this message translates to:
+  /// **'Form done'**
+  String get form_done;
+
+  /// No description provided for @view_form.
+  ///
+  /// In en, this message translates to:
+  /// **'View form'**
+  String get view_form;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -29,6 +29,8 @@ import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
+
 // import 'dart:io';
 
 class UploadUserPhotoWidget extends StatelessWidget {
@@ -55,7 +57,7 @@ class UploadUserPhotoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
     return CustomModalBottomSheetWidget(
-      title: 'Foto del perfil',
+      title: texts.profile_picture,
       otherAction: IconButton(
         onPressed: () {
           // Aquí podrías emitir un evento para eliminar la foto
@@ -68,12 +70,12 @@ class UploadUserPhotoWidget extends StatelessWidget {
           CustomCircularIconButtom(
             onTap: () => _pickImage(context, ImageSource.camera),
             icon: const Icon(Icons.photo_camera_outlined),
-            bottomTitle: 'Cámara',
+            bottomTitle: texts.camera,
           ),
           CustomCircularIconButtom(
             onTap: () => _pickImage(context, ImageSource.gallery),
             icon: const Icon(Icons.photo_outlined),
-            bottomTitle: 'Galería',
+            bottomTitle: texts.galery,
           ),
         ],
       ),

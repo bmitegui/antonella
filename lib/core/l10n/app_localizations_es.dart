@@ -511,4 +511,49 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get end_appointment => 'Terminar cita';
+
+  @override
+  String get form_saved => 'Formulario guardado';
+
+  @override
+  String get not_all_fields_completed => 'No ha completado todos los campos';
+
+  @override
+  String get appointment_confirmed => 'Cita confirmada';
+
+  @override
+  String get confirm_appointment => 'Confirmar cita';
+
+  @override
+  String get pay_now => 'Pagar ahora';
+
+  @override
+  String get no_appointments_to_be_confirmed => 'No hay citas pendientes por confirmar';
+
+  @override
+  String get see_more => 'Ver más';
+
+  @override
+  String get billing_information => 'Datos de facturación';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get about => 'Acerca de:';
+
+  @override
+  String get date => 'Fecha';
+
+  @override
+  String get schedule => 'Horario';
+
+  @override
+  String get value => 'Valor';
+
+  @override
+  String get form_done => 'Formulario hecho';
+
+  @override
+  String get view_form => 'Ver formulario';
 }
