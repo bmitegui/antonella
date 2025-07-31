@@ -14,13 +14,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        backgroundColor: const Color(0xFFE596A9),
+        backgroundColor: const Color(0xffdf4362),
         body: Center(
             child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Container(
-                    decoration: const BoxDecoration(
-                        color: Color(0xFFFFE6E9), shape: BoxShape.circle),
+                    // decoration: const BoxDecoration(
+                    //     color: Color(0xffdf4362)),
                     padding: const EdgeInsets.all(32),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -28,11 +28,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
                           Image.asset('assets/icon/logo.png',
                               height: height * 0.25),
                           const SizedBox(height: 16),
+                          LinearProgressIndicator(
+                            minHeight: 6,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          const SizedBox(height: 16),
                           Text('Descubre la reina\nque hay en ti',
                               textAlign: TextAlign.center,
                               style: textTheme.titleLarge!.copyWith(
                                   fontWeight: FontWeight.bold,
-                                  color: const Color(0xFFFF4B7D)))
+                                  color: Colors.white60))
                         ])))));
   }
 }

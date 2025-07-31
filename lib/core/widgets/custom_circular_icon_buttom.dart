@@ -35,8 +35,10 @@ class CustomCircularIconButtom extends StatelessWidget {
               padding: padding,
               decoration: BoxDecoration(
                   color: color,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: effectiveborderColor, width: 2)),
+                  shape: BoxShape.rectangle,
+                  border: Border.all(color: effectiveborderColor, width: 2),
+                  borderRadius: BorderRadius.circular(8)
+              ),
               child: icon)),
       if (bottomTitle != null) const SizedBox(height: 4),
       if (bottomTitle != null)
