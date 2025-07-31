@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class ActivityStateWidget extends StatelessWidget {
@@ -5,23 +6,24 @@ class ActivityStateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final n = (MediaQuery.of(context).size.width) / 20;
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       buildLabel(
           context: context,
-          title: 'No disponible',
+          title: texts.not_available,
           color: Color(0xFFF44565),
           size: n),
       const SizedBox(width: 8),
       buildLabel(
           context: context,
-          title: 'Seleccionado',
+          title: texts.selected,
           color: Colors.green,
           size: n),
       const SizedBox(width: 8),
       buildLabel(
           context: context,
-          title: 'Disponible',
+          title: texts.available,
           color: Colors.white,
           borderColor: Colors.grey,
           size: n)

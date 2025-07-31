@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/custom_table_calendar_events.dart';
@@ -10,8 +11,9 @@ class AppointmentEmployeeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
-        text: 'Agenda',
+        text: texts.agenda,
         body: RefreshIndicator(
             onRefresh: () async {
               final userState = sl<UserBloc>().state;

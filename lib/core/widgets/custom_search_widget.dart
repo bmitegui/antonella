@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -21,13 +22,14 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomTextFormFieldWidget(
         onChanged: (value) {
           setState(() {
             enable = value.trim().isNotEmpty;
           });
         },
-        hintText: '¿Qué estás buscando?',
+        hintText: texts.what_looking_for,
         prefixIcon: const Icon(Icons.search),
         onTapOutside: (event) {
           setState(() {
@@ -47,8 +49,8 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
                 onTap: () {
                   showTopSnackBar(
                       Overlay.of(context),
-                      const CustomSnackBar.error(
-                          message: 'No está implementado aún'));
+                      CustomSnackBar.error(
+                          message: texts.not_implemented_yet));
                 })
             : null);
   }

@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final textTheme = Theme.of(context).textTheme;
     final height = MediaQuery.of(context).size.height;
 
@@ -28,7 +30,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                           Image.asset('assets/icon/logo.png',
                               height: height * 0.25),
                           const SizedBox(height: 16),
-                          Text('Descubre la reina\nque hay en ti',
+                          Text(texts.discover_the_queen,
                               textAlign: TextAlign.center,
                               style: textTheme.titleLarge!.copyWith(
                                   fontWeight: FontWeight.bold,
