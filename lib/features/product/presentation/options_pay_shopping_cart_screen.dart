@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -28,6 +29,7 @@ class _OptionsPayShoppingCartScreenState
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     UserEntity? userEntity;
 
     final userState = sl<UserBloc>().state;
@@ -37,7 +39,7 @@ class _OptionsPayShoppingCartScreenState
 
     return CustomScaffold(
         leading: ArrowBack(),
-        text: "Pagar productos",
+        text: texts.pay_products,
         child: Column(children: [
           const SizedBox(height: 16),
           Container(
@@ -47,9 +49,9 @@ class _OptionsPayShoppingCartScreenState
                   borderRadius: BorderRadius.circular(16), color: Colors.white),
               child: Column(children: [
                 Row(children: [
-                  Text('Datos de facturación'),
+                  Text(texts.billing_information),
                   Spacer(),
-                  Text('Cambiar',
+                  Text(texts.change,
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: Color(0xFFF44565),
                           decoration: TextDecoration.underline,
@@ -97,10 +99,10 @@ class _OptionsPayShoppingCartScreenState
                           .add(AddToCart(products: widget.products));
                     },
                     child: (_metodo == "EFECTIVO")
-                        ? Text('Confirmar compra')
+                        ? Text(texts.confirm_purchase)
                         : Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text('Pagar ahora')]));
+                            children: [Text(texts.pay_now)]));
           })
         ]));
   }

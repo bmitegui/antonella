@@ -224,5 +224,42 @@
     "schedule": "Schedule",
     "value": "Value",
     "form_done": "Form done",
-    "view_form": "View form"
+    "view_form": "View form",
+
+    "add_service": "Add Service",
+    
+    "recent": "Recent",
+    "find_an_appointment": "Find an appointment",
+    "states": "States",
+    "order": "Order",
+    "appointment": "Appointment",
+
+    "control_panel": "Control Panel",
+    "manega_monitor_appointments": "Manage and monitor your appointments efficiently.",
+    "review_your_performance": "Review your performance and ensure good performance", 
+
+    "no_purchases_yet": "You have no purchases yet",
+
+    "no_products_for_category": "There are no products for this category",
+
+    "pay_products": "Pay products",
+    "change": "Change",
+    "confirm_purchase": "Confirm purchase",
+
+    "details": "Details",
+
+    "nothing_found": "Nothing found",
+
+    "what_looking_for": "What are you looking for?",
+    "not_implemented_yet": "Not implemented yet",
+
+    "not_available": "Not available",
+    "available": "Available",
+    "selected": "Selected",
+
+    "activate_notifications": "Activate notifications",
+    "do_not_miss_out": "Don't miss out on anything!",
+    "set_up_push_notifications": "Set up push notifications so you know when you receive messages or notifications.",
+
+    "discover_the_queen": "Discover the queen\n within you"
 }

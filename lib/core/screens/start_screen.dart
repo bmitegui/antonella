@@ -53,7 +53,7 @@ class _StartScreenState extends State<StartScreen> {
               left: 128,
               right: 128,
               child: FilledButton(
-                  onPressed: () async => await _seen(), child: Text('Iniciar')))
+                  onPressed: () async => await _seen(), child: Text(texts.start)))
         ]));
   }
 

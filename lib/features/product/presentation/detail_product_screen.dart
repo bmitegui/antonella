@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
@@ -25,6 +26,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     bool isSelected = false;
     return BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
         builder: (context, state) {
@@ -35,7 +37,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
           ? CustomScaffold(
               paddingScroll: EdgeInsets.all(0),
               leading: ArrowBack(),
-              text: 'Detalles',
+              text: texts.details,
               extendBodyBehindAppBar: true,
               bottomNavigationBar: Container(
                   padding:
@@ -90,7 +92,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                     SizedBox(height: 16),
                     Text('Volumen: ${widget.productEntity.volume}'),
                     Divider(),
-                    Text('Descripción'),
+                    Text(texts.description),
                     SizedBox(height: 16),
                     Text(widget.productEntity.description)
                   ])))

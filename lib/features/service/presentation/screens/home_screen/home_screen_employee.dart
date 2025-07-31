@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
@@ -21,6 +22,7 @@ class _HomeScreenEmployeeState extends State<HomeScreenEmployee> {
   String selectedLabel = 'Semanal';
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
         title: BienvenidaWidget(),
         body: RefreshIndicator(
@@ -38,9 +40,9 @@ class _HomeScreenEmployeeState extends State<HomeScreenEmployee> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Column(children: [
-                  CustomTitle(title: 'Panel de control'),
+                  CustomTitle(title: texts.control_panel),
                   const SizedBox(height: 16),
-                  Text('Gestiona y supervisa tus citas de manera eficiente.',
+                  Text(texts.manega_monitor_appointments,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -54,7 +56,7 @@ class _HomeScreenEmployeeState extends State<HomeScreenEmployee> {
                   const SizedBox(height: 16),
                   CustomTitle(title: 'Rendimiento $selectedLabel:'),
                   const SizedBox(height: 16),
-                  Text('Revisa tu rendimiento y asegura un buen desempeño',
+                  Text(texts.review_your_performance,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!

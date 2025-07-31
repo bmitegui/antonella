@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_elevated_button.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -47,6 +48,7 @@ class _DetailServiceScreenState extends State<DetailServiceScreen>
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
@@ -97,7 +99,7 @@ class _DetailServiceScreenState extends State<DetailServiceScreen>
                                 });
                           }
                         },
-                        text: 'Agregar Servicio')
+                        text: texts.add_service,)
                   ])),
           body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             ImagesScrollview(images: widget.serviceEntity.images),

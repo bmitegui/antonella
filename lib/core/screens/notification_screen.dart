@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(16),
@@ -20,7 +22,7 @@ class NotificationScreen extends StatelessWidget {
                   GoRouter.of(context).go('/signIn');
                 }
               },
-              child: Text('Activar notificaciones')),
+              child: Text(texts.activate_notifications)),
         ),
         body: Padding(
             padding: const EdgeInsets.all(32),
@@ -32,11 +34,11 @@ class NotificationScreen extends StatelessWidget {
                       child: LottieBuilder.asset(
                           "assets/lottie/notification.json")),
                   const SizedBox(height: 32),
-                  Text('¡No te pierdas de nada!',
+                  Text(texts.do_not_miss_out,
                       style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 16),
                   Text(
-                      'Configura las notificaciones push para que sepas cuándo te envían mensajes o te lleguen notificaciones.')
+                      texts.set_up_push_notifications)
                 ])));
   }
 }

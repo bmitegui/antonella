@@ -1,4 +1,5 @@
 import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
@@ -23,8 +24,9 @@ class _SearchScreenEmployeeState extends State<SearchScreenEmployee> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
-        text: 'Buscar cita',
+        text: texts.find_an_appointment,
         body: RefreshIndicator(onRefresh: () async {
           final userState = sl<UserBloc>().state;
           if (userState is UserAuthenticated) {
@@ -37,18 +39,18 @@ class _SearchScreenEmployeeState extends State<SearchScreenEmployee> {
               padding: EdgeInsets.only(right: 16, left: 16, bottom: 100),
               physics: AlwaysScrollableScrollPhysics(),
               child: Column(children: [
-                CustomTitle(title: 'Estados'),
+                CustomTitle(title: texts.states),
                 const SizedBox(height: 16),
                 StatusLabelAppointment(
                     onSelect: (value) => setState(() => _status = value)),
                 const SizedBox(height: 16),
-                CustomTitle(title: 'Ordenar'),
+                CustomTitle(title: texts.order),
                 const SizedBox(height: 16),
                 FilterLabelAppoinment(
                   onSelect: (data) => setState(() => _value = data)
                 ),
                 const SizedBox(height: 16),
-                CustomTitle(title: 'Citas'),
+                CustomTitle(title: texts.appointment),
                 const SizedBox(height: 16),
                 FilterListAppointment(status: _status, value: _value)
               ]));
