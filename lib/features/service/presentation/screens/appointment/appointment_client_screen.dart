@@ -53,8 +53,27 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
                 child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     child: const CustomTableCalendarEvents())),
-            ListOrdersToConfirm(),
-            ListOrdersNotConfirmed()
+            Expanded(
+                child: RefreshIndicator(
+                    onRefresh: () async {
+                      final userState = sl<UserBloc>().state;
+                      if (userState is UserAuthenticated) {
+                        sl<OrdersBloc>()
+                            .add(GetOrdersEvent(id: userState.user.id));
+                      }
+                    },
+                    child: ListOrdersToConfirm())),
+            Expanded(
+              child: RefreshIndicator(
+                  onRefresh: () async {
+                    final userState = sl<UserBloc>().state;
+                    if (userState is UserAuthenticated) {
+                      sl<OrdersBloc>()
+                          .add(GetOrdersEvent(id: userState.user.id));
+                    }
+                  },
+                  child: ListOrdersNotConfirmed()),
+            )
           ]))
         ]));
   }
