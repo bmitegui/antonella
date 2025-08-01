@@ -6,3 +6,4 @@ export './password_reset_use_case.dart';
 export './get_employee_info_use_case.dart';
 export './get_messages_use_case.dart';
 export './get_admin_use_case.dart';
+export './get_employees_use_case.dart';

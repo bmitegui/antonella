@@ -8,16 +8,18 @@ Future<void> showWarningDialog(
     required Function() onAccept,
     String textOnAccept = 'Aceptar'}) async {
   await AwesomeDialog(
-    dialogBackgroundColor: Colors.white,
+          dialogBackgroundColor: Colors.white,
           btnCancel: FilledButton(
               onPressed: () => Navigator.pop(context),
               child: const Text('Cancelar')),
-          btnOk: ElevatedButton(
+          btnOk: FilledButton(
+              style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.green)),
               onPressed: () {
                 Navigator.pop(context);
                 onAccept();
               },
-              child:  Text(textOnAccept)),
+              child: Text(textOnAccept)),
           context: context,
           animType: AnimType.scale,
           dialogType: DialogType.warning,

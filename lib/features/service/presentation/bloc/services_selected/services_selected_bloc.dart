@@ -8,19 +8,26 @@ class ServicesSelectedBloc
     extends Bloc<ServicesSelectedEvent, ServicesSelectedState> {
   ServicesSelectedBloc()
       : super(ServicesSelectedLoaded(
-            services: [], dateSelected: null, timeSelected: null)) {
+            services: [],
+            dateSelected: null,
+            timeSelected: null,
+            employeeIds: null)) {
     on<AddServiceEvent>(_onAddServiceEventRequest);
     on<DeleteServiceEvent>(_onDeleteServiceEventRequest);
     on<SelectTimeEvent>(_onSelectTimeEventRequest);
     on<SelectDateTimeEvent>(_onSelectDateTimeEventRequest);
     on<ClearServicesSelectedEvent>(_onClearServicesSelectedEventRequest);
+    on<SelectEmployeeEvent>(_onSelectEmployeeEventRequest);
   }
   Future<void> _onClearServicesSelectedEventRequest(
       ClearServicesSelectedEvent event,
       Emitter<ServicesSelectedState> emit) async {
     emit(ServicesSelectedLoading());
     emit(ServicesSelectedLoaded(
-        services: [], dateSelected: null, timeSelected: null));
+        services: [],
+        dateSelected: null,
+        timeSelected: null,
+        employeeIds: null));
   }
 
   Future<void> _onSelectDateTimeEventRequest(
@@ -29,6 +36,22 @@ class ServicesSelectedBloc
     if (currentState is ServicesSelectedLoaded) {
       emit(ServicesSelectedLoading());
       emit(currentState.copyWith(dateSelected: event.dateSelected));
+    }
+  }
+
+  Future<void> _onSelectEmployeeEventRequest(
+      SelectEmployeeEvent event, Emitter<ServicesSelectedState> emit) async {
+    final currentState = state;
+    if (currentState is ServicesSelectedLoaded) {
+      emit(ServicesSelectedLoading());
+      Map<String, String>? newEmployeeIds = currentState.employeeIds;
+      if (newEmployeeIds == null) {
+        newEmployeeIds = {event.serviceId: event.employeeId};
+      } else {
+        newEmployeeIds[event.serviceId] = event.employeeId;
+      }
+
+      emit(currentState.copyWith(employeeIds: newEmployeeIds));
     }
   }
 

@@ -10,20 +10,22 @@ final class ServicesSelectedLoaded extends ServicesSelectedState {
   final List<ServiceEntity> services;
   final DateTime? dateSelected;
   final String? timeSelected;
+  final Map<String, String>? employeeIds;
   ServicesSelectedLoaded(
       {required this.services,
       required this.dateSelected,
-      required this.timeSelected});
-  ServicesSelectedLoaded copyWith({
-    List<ServiceEntity>? services,
-    DateTime? dateSelected,
-    String? timeSelected,
-  }) {
+      required this.timeSelected,
+      required this.employeeIds});
+  ServicesSelectedLoaded copyWith(
+      {List<ServiceEntity>? services,
+      DateTime? dateSelected,
+      String? timeSelected,
+      Map<String, String>? employeeIds}) {
     return ServicesSelectedLoaded(
-      services: services ?? this.services,
-      dateSelected: dateSelected ?? this.dateSelected,
-      timeSelected: timeSelected ?? this.timeSelected,
-    );
+        services: services ?? this.services,
+        dateSelected: dateSelected ?? this.dateSelected,
+        timeSelected: timeSelected ?? this.timeSelected,
+        employeeIds: employeeIds ?? this.employeeIds);
   }
 
   String getSummedPriceRange() {

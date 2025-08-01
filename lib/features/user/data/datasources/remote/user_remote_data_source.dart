@@ -3,6 +3,7 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/services/key_value_storage_service_impl.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/user/data/models/models.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
@@ -35,6 +36,7 @@ abstract class UserRemoteDataSource {
       required MessageType type});
   Future<void> addProfile({required String id, required String urlPhoto});
   Future<void> signOut();
+  Future<List<UserModel>> getEmployees({required ServiceType serviceType});
 }
 
 class UserRemoteDataSourceImpl
@@ -192,5 +194,33 @@ class UserRemoteDataSourceImpl
     return await handleRequest(
         request: () => client.get(Environment.admin, options: defaultOptions),
         onSuccess: (data) => UserModel.fromJson(data));
+  }
+
+  @override
+  Future<List<UserModel>> getEmployees(
+      {required ServiceType serviceType}) async {
+    return await handleRequest(
+        request: () => client.post(Environment.userFilter,
+            data: {
+              "service_category": (serviceType == ServiceType.hair)
+                  ? "CABELLO"
+                  : (serviceType == ServiceType.nails)
+                      ? "UÑAS"
+                      : (serviceType == ServiceType.spa)
+                          ? "SPA"
+                          : "MAQUILLAJE"
+            },
+            options: defaultOptions),
+        onSuccess: (data) {
+          final employeesData = data['users'];
+          if (employeesData is! List) {
+            return [];
+          } else {
+            return employeesData
+                .map<UserModel>(
+                    (employeeData) => UserModel.fromJson(employeeData))
+                .toList();
+          }
+        });
   }
 }

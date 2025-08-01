@@ -43,7 +43,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
       {required String clientId,
       required String day,
       required String start,
-      required String employeeId,
+      required Map<String, String> employeeIds,
       required List<ServiceEntity> services}) async {
     return await handleNetworkCall(
         networkInfo: networkInfo,
@@ -52,7 +52,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
               clientId: clientId,
               day: day,
               start: start,
-              employeeId: employeeId,
+              employeeIds: employeeIds,
               services: services);
         });
   }

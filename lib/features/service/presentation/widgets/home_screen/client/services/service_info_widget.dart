@@ -96,7 +96,10 @@ class ServiceInfoWidget extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleSmall!
-                                      .copyWith(color: colorScheme.onSurface))
+                                      .copyWith(
+                                          color: isSelected
+                                              ? colorScheme.onPrimary
+                                              : colorScheme.onSurface))
                             ]))
                       ]))));
     });

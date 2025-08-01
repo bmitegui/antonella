@@ -12,7 +12,7 @@ abstract class ServiceRepository {
       {required String clientId,
       required String day,
       required String start,
-      required String employeeId,
+      required Map<String, String> employeeIds,
       required List<ServiceEntity> services});
   Future<Either<Failure, List<OrderModel>>> getOrders({required String id});
   Future<Either<Failure, void>> payOrder(

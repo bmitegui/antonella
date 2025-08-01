@@ -28,8 +28,6 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
     _selectedDay = _focusedDay;
     if (widget.eventLoader != null) {
       _selectedorders = widget.eventLoader!(_selectedDay!);
-      sl<ServicesSelectedBloc>()
-          .add(SelectDateTimeEvent(dateSelected: _selectedDay));
     }
   }
 

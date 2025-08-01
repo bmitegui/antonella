@@ -3,9 +3,14 @@ import 'package:antonella/features/service/presentation/widgets/appointment/cust
 import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/progress_search_widget.dart';
 import 'package:flutter/material.dart';
 
-class SelectDatePage extends StatelessWidget {
+class SelectDatePage extends StatefulWidget {
   const SelectDatePage({super.key});
 
+  @override
+  State<SelectDatePage> createState() => _SelectDatePageState();
+}
+
+class _SelectDatePageState extends State<SelectDatePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -18,9 +23,7 @@ class SelectDatePage extends StatelessWidget {
               const SizedBox(height: 16),
               ActivityStateWidget(),
               const SizedBox(height: 16),
-              SizedBox(
-                  height: 500,
-                  child: CustomTableCalendar())
+              SizedBox(height: 500, child: CustomTableCalendar())
             ]));
   }
 }

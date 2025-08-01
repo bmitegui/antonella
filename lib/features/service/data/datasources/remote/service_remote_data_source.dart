@@ -23,7 +23,7 @@ abstract class ServiceRemoteDataSource {
       {required String clientId,
       required String day,
       required String start,
-      required String employeeId,
+      required Map<String, String> employeeIds,
       required List<ServiceEntity> services});
   Future<void> payOrder(
       {required String orderId, required PaymentType paymentType});
@@ -87,7 +87,7 @@ class ServiceRemoteDataSourceImpl
       {required String clientId,
       required String day,
       required String start,
-      required String employeeId,
+      required Map<String, String> employeeIds,
       required List<ServiceEntity> services}) async {
     try {
       final orderId = await createOrder(clientId: clientId);
@@ -96,7 +96,7 @@ class ServiceRemoteDataSourceImpl
             orderId: orderId,
             day: day,
             start: start,
-            employeeId: employeeId,
+            employeeId: employeeIds[service.id]!,
             serviceId: service.id);
         await Future.wait(service.questions.map((q) => answer(
             clientId: clientId, question: q, serviceItemId: serviceItemId)));
@@ -176,8 +176,7 @@ class ServiceRemoteDataSourceImpl
     final rawAppointments = await handleRequest(
         request: () => client.post(Environment.getAppointments,
             data: {keyData: id}, options: defaultOptions),
-        onSuccess: (data) => data);
-
+        onSuccess: (data) => data['service_items']);
     if (rawAppointments is! List || rawAppointments.isEmpty) {
       return [];
     }
@@ -236,7 +235,6 @@ class ServiceRemoteDataSourceImpl
     final confirmedOrders = allOrders
         .where((order) => order.orderStatus == OrderStatus.confirmado)
         .toList();
-
     return confirmedOrders;
   }
 

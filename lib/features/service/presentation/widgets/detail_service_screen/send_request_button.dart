@@ -38,8 +38,7 @@ class SendRequestButton extends StatelessWidget {
                 showTopSnackBar(
                     Overlay.of(context),
                     CustomSnackBar.success(
-                      maxLines: 3,
-                      message: texts.request_sent_succesfully));
+                        maxLines: 3, message: texts.request_sent_succesfully));
                 context
                     .read<ServicesSelectedBloc>()
                     .add(ClearServicesSelectedEvent());
@@ -76,18 +75,42 @@ class SendRequestButton extends StatelessWidget {
                         children: [
                           CustomElevatedButton(
                               onPressed: () async {
-                                context.read<SendRequestBloc>().add(
-                                    EnviarPeticionEvent(
-                                        clientId: stateUser.user.id,
-                                        day:
-                                            formatDateTime(stateServiceSelected
-                                                .dateSelected),
-                                        start:
-                                            stateServiceSelected.timeSelected!,
-                                        employeeId:
-                                            '7a11beb4-a1aa-4528-8a88-40271c1f3ea1',
-                                        services:
-                                            stateServiceSelected.services));
+                                if (stateServiceSelected.dateSelected == null) {
+                                  showTopSnackBar(
+                                      Overlay.of(context),
+                                      CustomSnackBar.error(
+                                          message:
+                                              "Por favor elija una fecha"));
+                                } else if (stateServiceSelected.timeSelected ==
+                                    null) {
+                                  showTopSnackBar(
+                                      Overlay.of(context),
+                                      CustomSnackBar.error(
+                                          message:
+                                              "Por favor elija un horario"));
+                                } else if (stateServiceSelected.employeeIds ==
+                                        null ||
+                                    stateServiceSelected.employeeIds!.length !=
+                                        stateServiceSelected.services.length) {
+                                  showTopSnackBar(
+                                      Overlay.of(context),
+                                      CustomSnackBar.error(
+                                          message:
+                                              "Por favor elija un empleado para cada servicio escogido"));
+                                } else {
+                                  context.read<SendRequestBloc>().add(
+                                      EnviarPeticionEvent(
+                                          clientId: stateUser.user.id,
+                                          day: formatDateTime(
+                                              stateServiceSelected
+                                                  .dateSelected),
+                                          start: stateServiceSelected
+                                              .timeSelected!,
+                                          employeeIds:
+                                              stateServiceSelected.employeeIds!,
+                                          services:
+                                              stateServiceSelected.services));
+                                }
                               },
                               text: texts.submit_request)
                         ]));

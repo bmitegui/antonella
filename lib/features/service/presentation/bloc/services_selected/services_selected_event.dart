@@ -26,4 +26,10 @@ final class SelectDateTimeEvent extends ServicesSelectedEvent {
   SelectDateTimeEvent({required this.dateSelected});
 }
 
+final class SelectEmployeeEvent extends ServicesSelectedEvent {
+  final String serviceId;
+  final String employeeId;
+  SelectEmployeeEvent({required this.serviceId, required this.employeeId});
+}
+
 final class ClearServicesSelectedEvent extends ServicesSelectedEvent {}

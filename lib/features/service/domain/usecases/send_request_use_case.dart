@@ -15,7 +15,7 @@ class SendRequestUseCase implements UseCase<void, SendRequestParams> {
         clientId: sendRequestParams.clientId,
         day: sendRequestParams.day,
         start: sendRequestParams.start,
-        employeeId: sendRequestParams.employeeId,
+        employeeIds: sendRequestParams.employeeIds,
         services: sendRequestParams.services);
   }
 }
@@ -24,13 +24,13 @@ class SendRequestParams {
   final String clientId;
   final String day;
   final String start;
-  final String employeeId;
+  final Map<String, String> employeeIds;
   final List<ServiceEntity> services;
 
   SendRequestParams(
       {required this.clientId,
       required this.day,
       required this.start,
-      required this.employeeId,
+      required this.employeeIds,
       required this.services});
 }
