@@ -124,7 +124,7 @@ class _DetailServiceScreenState extends State<DetailServiceScreen>
                               context: context,
                               serviceCategory: widget.serviceEntity.type),
                           rating: widget.serviceEntity.rating,
-                          duration: widget.serviceEntity.duration),
+                          duration: widget.serviceEntity.duration)
                     ])),
             SizedBox(height: 8),
             DetailServiceTabBar(controller: _tabController),

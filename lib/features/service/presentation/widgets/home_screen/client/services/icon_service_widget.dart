@@ -1,6 +1,5 @@
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/core/widgets/custom_local_image.dart';
-import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:flutter/material.dart';
 
 class IconServiceWidget extends StatelessWidget {

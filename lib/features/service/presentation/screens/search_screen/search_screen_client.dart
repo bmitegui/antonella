@@ -4,6 +4,7 @@ import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/cart_button.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/promotions_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,54 +17,16 @@ class SearchScreenClient extends StatefulWidget {
 }
 
 class _SearchScreenClientState extends State<SearchScreenClient> {
-  // final listPromotions = [
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       description: 'description',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p1.jpg?alt=media&token=fc26e7a3-415d-4cfa-bb09-270546e09b88',
-  //       categoryServices: [ServiceType.hair, ServiceType.nails]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       description: 'description',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p2.jpg?alt=media&token=0e551465-1d6e-4885-8e97-68bd987ee9ea',
-  //       categoryServices: [ServiceType.spa]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p3.jpg?alt=media&token=86f4d4b9-6883-4298-8cf7-ec27e052bc4e',
-  //       description: 'description',
-  //       categoryServices: [
-  //         ServiceType.hair,
-  //         ServiceType.nails,
-  //         ServiceType.spa,
-  //         ServiceType.makeup
-  //       ]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p4.jpg?alt=media&token=ab842ea5-3455-4a31-a35c-e0d97898b0c5',
-  //       description: 'description',
-  //       categoryServices: [ServiceType.hair]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p5.jpg?alt=media&token=815d6272-c9ac-49e2-ade7-b98ae734a565',
-  //       description: 'description',
-  //       categoryServices: [ServiceType.nails])
-  // ];
-
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
     return CustomScaffold(
         text: texts.promotions,
+        bottomNavigationBar: Padding(
+            padding: const EdgeInsets.only(bottom: 80, right: 16),
+            child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              CartButton()
+            ])),
         body: BlocBuilder<PromotionBloc, PromotionState>(
             builder: (context, state) {
           List<PromotionEntity>? filteredPromotions;

@@ -1,4 +1,3 @@
-import 'package:antonella/core/widgets/curva_superior.dart';
 import 'package:flutter/material.dart';
 
 class LogoSignInWidget extends StatelessWidget {
