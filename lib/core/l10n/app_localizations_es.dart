@@ -294,7 +294,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get no_appointments => 'No hay citas para este día';
 
   @override
-  String get welcome_user => 'Bienvenid@, ';
+  String get welcome_user => 'Bienvenida, ';
 
   @override
   String get pay => 'Pagar';

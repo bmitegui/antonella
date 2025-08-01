@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListServiceFormsWidget extends StatelessWidget {
-  const ListServiceFormsWidget({super.key});
+  final bool isDescription;
+  const ListServiceFormsWidget({super.key, required this.isDescription});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ListServiceFormsWidget extends StatelessWidget {
                 return FormByType(
                     question: question, indexForm: (index + 1).toString());
               }),
-              ButtonsEndFormWidget()
+              ButtonsEndFormWidget(isDescription: isDescription)
             ])
           : CircularProgressIndicator();
     });

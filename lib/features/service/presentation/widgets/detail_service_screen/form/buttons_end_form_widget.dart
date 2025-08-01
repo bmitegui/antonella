@@ -8,7 +8,8 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class ButtonsEndFormWidget extends StatelessWidget {
-  const ButtonsEndFormWidget({super.key});
+  final bool isDescription;
+  const ButtonsEndFormWidget({super.key, required this.isDescription});
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +34,7 @@ class ButtonsEndFormWidget extends StatelessWidget {
                             onPressed: () async => await showWarningDialog(
                                 context: context,
                                 title: texts.delete_service,
-                                message:
-                                    texts.sure_delete_service,
+                                message: texts.sure_delete_service,
                                 textOnAccept: texts.eliminate,
                                 onAccept: () {
                                   context.read<ServicesSelectedBloc>().add(
@@ -58,15 +58,17 @@ class ButtonsEndFormWidget extends StatelessWidget {
                                       service: stateServiceForm.service));
                               showTopSnackBar(
                                   Overlay.of(context),
-                                    CustomSnackBar.success(
+                                  CustomSnackBar.success(
                                       message: texts.form_saved));
                               Navigator.pop(context);
+                              if (isDescription) {
+                                Navigator.pop(context);
+                              }
                             } else {
                               showTopSnackBar(
                                   Overlay.of(context),
-                                   CustomSnackBar.error(
-                                      message:
-                                          texts.not_all_fields_completed));
+                                  CustomSnackBar.error(
+                                      message: texts.not_all_fields_completed));
                             }
                           },
                           text: texts.save)

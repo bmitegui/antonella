@@ -116,7 +116,8 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                                 context: context,
                                                 builder:
                                                     (BuildContext context) {
-                                                  return FormServiceSelectedWidget();
+                                                  return FormServiceSelectedWidget(
+                                                      isDescription: false);
                                                 });
                                           },
                                           icon: Icon(Icons.edit,

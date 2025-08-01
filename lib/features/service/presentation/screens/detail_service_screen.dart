@@ -95,11 +95,12 @@ class _DetailServiceScreenState extends State<DetailServiceScreen>
                                 backgroundColor: Colors.white,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return FormServiceSelectedWidget();
+                                  return FormServiceSelectedWidget(isDescription: true);
                                 });
+                                
                           }
                         },
-                        text: texts.add_service,)
+                        text: isSelected? "Actualizar formulario":texts.add_service)
                   ])),
           body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             ImagesScrollview(images: widget.serviceEntity.images),
