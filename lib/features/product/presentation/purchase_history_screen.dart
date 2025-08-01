@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
@@ -40,18 +41,20 @@ class PurchaseHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     final purchases = _dummyPurchases;
 
     return CustomScaffold(
       leading: const ArrowBack(),
-      text: 'Historial de compras',
+      text: texts.purchases_history,
       body: purchases.isEmpty
           ? const _EmptyHistory()
           : ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: purchases.length,
               separatorBuilder: (_, __) => const SizedBox(height: 12),
-              itemBuilder: (_, index) => _PurchaseCard(purchase: purchases[index]),
+              itemBuilder: (_, index) =>
+                  _PurchaseCard(purchase: purchases[index]),
             ),
     );
   }
@@ -68,9 +71,9 @@ class _PurchaseCard extends StatelessWidget {
     final date = DateFormat('dd/MM/yyyy').format(purchase.createdAt);
 
     final (icon, color) = switch (purchase.status) {
-      PurchaseStatus.delivered  => (Icons.check_circle,  Colors.green),
-      PurchaseStatus.processing => (Icons.schedule,      Colors.orange),
-      PurchaseStatus.cancelled  => (Icons.cancel,        Colors.red),
+      PurchaseStatus.delivered => (Icons.check_circle, Colors.green),
+      PurchaseStatus.processing => (Icons.schedule, Colors.orange),
+      PurchaseStatus.cancelled => (Icons.cancel, Colors.red),
     };
 
     return Container(
@@ -141,18 +144,21 @@ class _EmptyHistory extends StatelessWidget {
   const _EmptyHistory();
 
   @override
-  Widget build(BuildContext context) => Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.receipt_long,
-                size: 64, color: Colors.grey.shade400),
-            const SizedBox(height: 12),
-            const Text('Aún no tienes compras',
-                style: TextStyle(fontSize: 16, color: Colors.grey)),
-          ],
-        ),
-      );
+  Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.receipt_long, size: 64, color: Colors.grey.shade400),
+          const SizedBox(height: 12),
+           Text(texts.no_purchases_yet,
+              style: TextStyle(fontSize: 16, color: Colors.grey)),
+        ],
+      ),
+    );
+  }
 }
 
 final _dummyPurchases = [
@@ -164,13 +170,15 @@ final _dummyPurchases = [
     items: [
       PurchaseItem(
         name: 'aceite de romero test',
-        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBIn3S1GGKiBuT7GN5cHOOLRNpmluzl7AkIg&s',
+        imageUrl:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBIn3S1GGKiBuT7GN5cHOOLRNpmluzl7AkIg&s',
         quantity: 2,
         price: 8.0,
       ),
       PurchaseItem(
         name: 'ejemplo test',
-        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBIn3S1GGKiBuT7GN5cHOOLRNpmluzl7AkIg&s',
+        imageUrl:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBIn3S1GGKiBuT7GN5cHOOLRNpmluzl7AkIg&s',
         quantity: 1,
         price: 21.0,
       ),
@@ -184,13 +192,15 @@ final _dummyPurchases = [
     items: [
       PurchaseItem(
         name: 'aceite de lavanda test',
-        imageUrl: 'https://images.ctfassets.net/a8l3ylu84syn/6hqIbk57KXINJUNVWKyMCm/42b1022e6a4eda2536cefbbfafdc4341/3.png',
+        imageUrl:
+            'https://images.ctfassets.net/a8l3ylu84syn/6hqIbk57KXINJUNVWKyMCm/42b1022e6a4eda2536cefbbfafdc4341/3.png',
         quantity: 2,
         price: 14.0,
       ),
       PurchaseItem(
         name: 'aceite de romero test',
-        imageUrl: 'https://images.ctfassets.net/a8l3ylu84syn/6hqIbk57KXINJUNVWKyMCm/42b1022e6a4eda2536cefbbfafdc4341/3.png',
+        imageUrl:
+            'https://images.ctfassets.net/a8l3ylu84syn/6hqIbk57KXINJUNVWKyMCm/42b1022e6a4eda2536cefbbfafdc4341/3.png',
         quantity: 3,
         price: 8.0,
       ),

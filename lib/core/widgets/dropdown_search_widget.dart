@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class CustomDropdownSearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final texts = AppLocalizations.of(context)!;
+    final texts = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -68,7 +69,7 @@ class CustomDropdownSearchWidget extends StatelessWidget {
               emptyBuilder: (context, searchEntry) => Padding(
                   padding: const EdgeInsets.all(10),
                   child:
-                      Text('No se encontró nada', textAlign: TextAlign.center)),
+                      Text(texts.nothing_found, textAlign: TextAlign.center)),
               showSearchBox: showSearchBox,
               fit: FlexFit.loose))
     ]);

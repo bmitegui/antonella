@@ -45,7 +45,8 @@ class _SignInScreenState extends State<SignInScreen> {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-        backgroundColor: colorScheme.primaryContainer,
+        backgroundColor: colorScheme.surface,
+        //colorScheme.primaryContainer,
         body: BlocConsumer<UserBloc, UserState>(
             listener: (BuildContext context, UserState state) {
           if (state is UserAuthenticated) {
@@ -57,7 +58,10 @@ class _SignInScreenState extends State<SignInScreen> {
               ? Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
                   child: Column(children: [
-                  LogoSignInWidget(),
+                  //LogoSignInWidget(),
+                  SizedBox(height: 100),
+                  Image.asset('assets/icon/logo.png',
+                    height: MediaQuery.of(context).size.height / 4),
                   Text(texts.welcome, style: textTheme.titleLarge),
                   SizedBox(height: 32),
                   Padding(

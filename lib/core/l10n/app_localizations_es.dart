@@ -537,7 +537,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get billing_information => 'Datos de facturación';
 
   @override
-  String get change => 'Change';
+  String get change => 'Cambiar';
 
   @override
   String get about => 'Acerca de:';
@@ -556,4 +556,76 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get view_form => 'Ver formulario';
+
+  @override
+  String get add_service => 'Agregar Servicio';
+
+  @override
+  String get recent => 'Recientes';
+
+  @override
+  String get find_an_appointment => 'Buscar cita';
+
+  @override
+  String get states => 'Estados';
+
+  @override
+  String get order => 'Ordenar';
+
+  @override
+  String get appointment => 'Citas';
+
+  @override
+  String get control_panel => 'Panel de control';
+
+  @override
+  String get manega_monitor_appointments => 'Gestiona y supervisa tus citas de manera eficiente.';
+
+  @override
+  String get review_your_performance => 'Revisa tu rendimiento y asegura un buen desempeño';
+
+  @override
+  String get no_purchases_yet => 'Aún no tienes compras';
+
+  @override
+  String get no_products_for_category => 'No existen productos para esta categoría';
+
+  @override
+  String get pay_products => 'Pagar productos';
+
+  @override
+  String get confirm_purchase => 'Confirmar compra';
+
+  @override
+  String get details => 'Detalles';
+
+  @override
+  String get nothing_found => 'No se encontró nada';
+
+  @override
+  String get what_looking_for => '¿Qué estás buscando?';
+
+  @override
+  String get not_implemented_yet => 'No está implementado aún';
+
+  @override
+  String get not_available => 'No disponible';
+
+  @override
+  String get available => 'Disponible';
+
+  @override
+  String get selected => 'Seleccionado';
+
+  @override
+  String get activate_notifications => 'Activar notificaciones';
+
+  @override
+  String get do_not_miss_out => '¡No te pierdas de nada!';
+
+  @override
+  String get set_up_push_notifications => 'Configura las notificaciones push para que sepas cuándo te envían mensajes o te lleguen notificaciones.';
+
+  @override
+  String get discover_the_queen => 'Descubre la reina\nque hay en ti';
 }

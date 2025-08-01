@@ -224,5 +224,42 @@
     "schedule": "Horario",
     "value": "Valor",
     "form_done": "Formulario hecho",
-    "view_form": "Ver formulario"
+    "view_form": "Ver formulario",
+
+    "add_service": "Agregar Servicio",
+
+    "recent": "Recientes",
+    "find_an_appointment": "Buscar cita",
+    "states": "Estados",
+    "order": "Ordenar",
+    "appointment": "Citas",
+
+    "control_panel": "Panel de control",
+    "manega_monitor_appointments": "Gestiona y supervisa tus citas de manera eficiente.",
+    "review_your_performance": "Revisa tu rendimiento y asegura un buen desempeño",
+
+    "no_purchases_yet": "Aún no tienes compras",
+
+    "no_products_for_category": "No existen productos para esta categoría", 
+
+    "pay_products": "Pagar productos",
+    "change": "Cambiar",
+    "confirm_purchase": "Confirmar compra",
+
+    "details": "Detalles",
+
+    "nothing_found": "No se encontró nada",
+
+    "what_looking_for": "¿Qué estás buscando?",
+    "not_implemented_yet": "No está implementado aún",
+
+    "not_available": "No disponible",
+    "available": "Disponible",
+    "selected": "Seleccionado",
+
+    "activate_notifications": "Activar notificaciones",
+    "do_not_miss_out": "¡No te pierdas de nada!",
+    "set_up_push_notifications": "Configura las notificaciones push para que sepas cuándo te envían mensajes o te lleguen notificaciones.",
+
+    "discover_the_queen": "Descubre la reina\nque hay en ti"
 }

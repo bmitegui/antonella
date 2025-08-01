@@ -1192,6 +1192,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View form'**
   String get view_form;
+
+  /// No description provided for @add_service.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Service'**
+  String get add_service;
+
+  /// No description provided for @recent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get recent;
+
+  /// No description provided for @find_an_appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Find an appointment'**
+  String get find_an_appointment;
+
+  /// No description provided for @states.
+  ///
+  /// In en, this message translates to:
+  /// **'States'**
+  String get states;
+
+  /// No description provided for @order.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get order;
+
+  /// No description provided for @appointment.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment'**
+  String get appointment;
+
+  /// No description provided for @control_panel.
+  ///
+  /// In en, this message translates to:
+  /// **'Control Panel'**
+  String get control_panel;
+
+  /// No description provided for @manega_monitor_appointments.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage and monitor your appointments efficiently.'**
+  String get manega_monitor_appointments;
+
+  /// No description provided for @review_your_performance.
+  ///
+  /// In en, this message translates to:
+  /// **'Review your performance and ensure good performance'**
+  String get review_your_performance;
+
+  /// No description provided for @no_purchases_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no purchases yet'**
+  String get no_purchases_yet;
+
+  /// No description provided for @no_products_for_category.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no products for this category'**
+  String get no_products_for_category;
+
+  /// No description provided for @pay_products.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay products'**
+  String get pay_products;
+
+  /// No description provided for @confirm_purchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm purchase'**
+  String get confirm_purchase;
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @nothing_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing found'**
+  String get nothing_found;
+
+  /// No description provided for @what_looking_for.
+  ///
+  /// In en, this message translates to:
+  /// **'What are you looking for?'**
+  String get what_looking_for;
+
+  /// No description provided for @not_implemented_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not implemented yet'**
+  String get not_implemented_yet;
+
+  /// No description provided for @not_available.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available'**
+  String get not_available;
+
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @selected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get selected;
+
+  /// No description provided for @activate_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate notifications'**
+  String get activate_notifications;
+
+  /// No description provided for @do_not_miss_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t miss out on anything!'**
+  String get do_not_miss_out;
+
+  /// No description provided for @set_up_push_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up push notifications so you know when you receive messages or notifications.'**
+  String get set_up_push_notifications;
+
+  /// No description provided for @discover_the_queen.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover the queen\n within you'**
+  String get discover_the_queen;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

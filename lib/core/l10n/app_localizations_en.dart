@@ -556,4 +556,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get view_form => 'View form';
+
+  @override
+  String get add_service => 'Add Service';
+
+  @override
+  String get recent => 'Recent';
+
+  @override
+  String get find_an_appointment => 'Find an appointment';
+
+  @override
+  String get states => 'States';
+
+  @override
+  String get order => 'Order';
+
+  @override
+  String get appointment => 'Appointment';
+
+  @override
+  String get control_panel => 'Control Panel';
+
+  @override
+  String get manega_monitor_appointments => 'Manage and monitor your appointments efficiently.';
+
+  @override
+  String get review_your_performance => 'Review your performance and ensure good performance';
+
+  @override
+  String get no_purchases_yet => 'You have no purchases yet';
+
+  @override
+  String get no_products_for_category => 'There are no products for this category';
+
+  @override
+  String get pay_products => 'Pay products';
+
+  @override
+  String get confirm_purchase => 'Confirm purchase';
+
+  @override
+  String get details => 'Details';
+
+  @override
+  String get nothing_found => 'Nothing found';
+
+  @override
+  String get what_looking_for => 'What are you looking for?';
+
+  @override
+  String get not_implemented_yet => 'Not implemented yet';
+
+  @override
+  String get not_available => 'Not available';
+
+  @override
+  String get available => 'Available';
+
+  @override
+  String get selected => 'Selected';
+
+  @override
+  String get activate_notifications => 'Activate notifications';
+
+  @override
+  String get do_not_miss_out => 'Don\'t miss out on anything!';
+
+  @override
+  String get set_up_push_notifications => 'Set up push notifications so you know when you receive messages or notifications.';
+
+  @override
+  String get discover_the_queen => 'Discover the queen\n within you';
 }

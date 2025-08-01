@@ -1,3 +1,4 @@
+import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/features/product/presentation/products_by_subcategory_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class ProductsInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = AppLocalizations.of(context)!;
     return BlocBuilder<ProductsBloc, ProductsState>(builder: (context, state) {
       return (state is ProductsLoaded)
           ? (state.listProducts.products.isNotEmpty)
@@ -26,8 +28,8 @@ class ProductsInfoWidget extends StatelessWidget {
                             return ProductsBySubcategoryWidget(
                                 subCategory: entry.key, products: entry.value);
                           }).toList())))
-              : const Center(
-                  child: Text('No existen productos para esta categoría'))
+              : Center(
+                  child: Text(texts.no_products_for_category))
           : (state is ProductsError)
               ? Center(
                   child: Text(mapFailureToMessage(
