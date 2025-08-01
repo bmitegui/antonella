@@ -20,6 +20,8 @@ class CustomTableCalendarEvents extends StatelessWidget {
               return orders.where((order) {
                 final isClientConfirmed =
                     order.clientStatus == ClientStatus.confirmado;
+                final isAdminConfirmed =
+                    order.orderStatus == OrderStatus.confirmado;
 
                 final hasAppointmentThatDay =
                     order.appointments.any((appointment) {
@@ -29,7 +31,9 @@ class CustomTableCalendarEvents extends StatelessWidget {
                       appointmentDate.day == day.day;
                 });
 
-                return isClientConfirmed && hasAppointmentThatDay;
+                return isClientConfirmed &&
+                    hasAppointmentThatDay &&
+                    isAdminConfirmed;
               }).toList();
             },
           );

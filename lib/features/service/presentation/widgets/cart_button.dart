@@ -16,8 +16,9 @@ class CartButton extends StatelessWidget {
 
     final stateOrder = sl<OrdersBloc>().state;
     final ordersToConfirmEmpty = stateOrder is OrdersLoaded &&
-        stateOrder.orders
-            .any((order) => order.clientStatus == ClientStatus.noConfirmado);
+        stateOrder.orders.any((order) =>
+            order.clientStatus == ClientStatus.noConfirmado &&
+            order.orderStatus == OrderStatus.confirmado);
     return productsEmpty || ordersToConfirmEmpty;
   }
 

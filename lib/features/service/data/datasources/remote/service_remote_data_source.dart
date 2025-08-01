@@ -232,10 +232,10 @@ class ServiceRemoteDataSourceImpl
     final allOrders = await Future.wait(futures);
 
     // Filtrar las que tienen estado confirmado
-    final confirmedOrders = allOrders
-        .where((order) => order.orderStatus == OrderStatus.confirmado)
-        .toList();
-    return confirmedOrders;
+    // final confirmedOrders = allOrders
+    //     .where((order) => order.orderStatus == OrderStatus.confirmado)
+    //     .toList();
+    return allOrders;
   }
 
   @override
