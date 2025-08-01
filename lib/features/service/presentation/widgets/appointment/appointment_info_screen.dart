@@ -4,7 +4,6 @@ import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_local_image.dart';
-import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';

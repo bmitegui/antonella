@@ -1,12 +1,19 @@
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
+import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
-import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
+import 'package:antonella/features/service/presentation/bloc/services_selected/services_selected_bloc.dart';
+import 'package:antonella/features/service/presentation/widgets/cart_button.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/bottom_buttons_search_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/confirmation_services_page.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/select_date_page.dart';
+import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/select_time_page.dart';
 import 'package:antonella/features/service/presentation/widgets/search_screen/promotions_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class SearchScreenClient extends StatefulWidget {
   const SearchScreenClient({super.key});
@@ -16,75 +23,132 @@ class SearchScreenClient extends StatefulWidget {
 }
 
 class _SearchScreenClientState extends State<SearchScreenClient> {
-  // final listPromotions = [
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       description: 'description',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p1.jpg?alt=media&token=fc26e7a3-415d-4cfa-bb09-270546e09b88',
-  //       categoryServices: [ServiceType.hair, ServiceType.nails]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       description: 'description',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p2.jpg?alt=media&token=0e551465-1d6e-4885-8e97-68bd987ee9ea',
-  //       categoryServices: [ServiceType.spa]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p3.jpg?alt=media&token=86f4d4b9-6883-4298-8cf7-ec27e052bc4e',
-  //       description: 'description',
-  //       categoryServices: [
-  //         ServiceType.hair,
-  //         ServiceType.nails,
-  //         ServiceType.spa,
-  //         ServiceType.makeup
-  //       ]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p4.jpg?alt=media&token=ab842ea5-3455-4a31-a35c-e0d97898b0c5',
-  //       description: 'description',
-  //       categoryServices: [ServiceType.hair]),
-  //   PromotionEntity(
-  //       id: 'id',
-  //       name: 'name',
-  //       imageUrl:
-  //           'https://firebasestorage.googleapis.com/v0/b/antonella-b58e2.firebasestorage.app/o/p5.jpg?alt=media&token=815d6272-c9ac-49e2-ade7-b98ae734a565',
-  //       description: 'description',
-  //       categoryServices: [ServiceType.nails])
-  // ];
+  late PageController _pageController;
+  int _currentPage = 0;
+  Key _pageViewKey = UniqueKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _nextPage() {
+    if (_currentPage < 3) {
+      final state = sl<ServicesSelectedBloc>().state;
+      if (state is ServicesSelectedLoaded) {
+        if (state.dateSelected == null) {
+          sl<ServicesSelectedBloc>()
+              .add(SelectDateTimeEvent(dateSelected: DateTime.now()));
+        }
+        if (state.timeSelected == null) {
+          sl<ServicesSelectedBloc>().add(SelectTimeEvent(
+              timeSelected: DateFormat('HH:mm').format(DateTime.now())));
+        }
+      }
+
+      _pageController.nextPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  void _previousPage() {
+    if (_currentPage > 0) {
+      final state = sl<ServicesSelectedBloc>().state;
+      if (state is ServicesSelectedLoaded) {
+        if (state.dateSelected == null) {
+          sl<ServicesSelectedBloc>()
+              .add(SelectDateTimeEvent(dateSelected: DateTime.now()));
+        }
+        if (state.timeSelected == null) {
+          sl<ServicesSelectedBloc>().add(SelectTimeEvent(
+              timeSelected: DateFormat('HH:mm').format(DateTime.now())));
+        }
+      }
+
+      _pageController.previousPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  void _sendRequest() {
+    _pageViewKey = UniqueKey();
+    _currentPage = 0;
+    _pageController.dispose();
+    _pageController = PageController();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
+
     return CustomScaffold(
-        text: texts.promotions,
-        body: BlocBuilder<PromotionBloc, PromotionState>(
-            builder: (context, state) {
-          List<PromotionEntity>? filteredPromotions;
-          if (state is PromotionLoaded) {
-            filteredPromotions = state.listPromotions;
-          }
-          return RefreshIndicator(
-            onRefresh: () async =>
-                sl<PromotionBloc>().add(GetPromotionsEvent()),
-            child: Padding(
-                padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
-                child: (state is PromotionLoaded)
-                    ? (state.listPromotions.isNotEmpty)
-                        ? PromotionsGridView(
-                            listPromotions: filteredPromotions!)
-                        : Center(child: Text(texts.no_promotions))
-                    : (state is PromotionError)
-                        ? Text(mapFailureToMessage(
-                            context: context, failure: state.failure))
-                        : Center(child: CircularProgressIndicator())),
-          );
-        }));
+      title: Row(children: [
+        Text(texts.promotions, style: Theme.of(context).textTheme.titleMedium),
+        const Spacer(),
+        const CartButton()
+      ]),
+      leading: _currentPage != 0 ? ArrowBack(onBack: _previousPage) : null,
+      body: Column(children: [
+        Expanded(
+            child: PageView(
+          key: _pageViewKey,
+          controller: _pageController,
+          onPageChanged: (index) => setState(() => _currentPage = index),
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            /// Página 0: Grid de Promociones
+            BlocBuilder<PromotionBloc, PromotionState>(
+              builder: (context, state) {
+                if (state is PromotionLoaded) {
+                  return (state.listPromotions.isNotEmpty)
+                      ? PromotionsGridView(listPromotions: state.listPromotions)
+                      : Center(child: Text(texts.no_promotions));
+                } else if (state is PromotionError) {
+                  return Center(
+                      child: Text(mapFailureToMessage(
+                          context: context, failure: state.failure)));
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+
+            /// Página 1: Selección de Fecha
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: SelectDatePage(),
+            ),
+
+            /// Página 2: Selección de Hora
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: SelectTimePage(),
+            ),
+
+            /// Página 3: Confirmación
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: ConfirmationServicesPage(),
+            ),
+          ],
+        )),
+
+        /// Botones inferiores (Siguiente, Anterior, Enviar)
+        BottomButtonsSearchScreen(
+          currentPage: _currentPage,
+          nextPage: _nextPage,
+          previousPage: _previousPage,
+          sendRequest: _sendRequest,
+        ),
+      ]),
+    );
   }
 }

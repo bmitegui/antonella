@@ -1,7 +1,6 @@
 import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_local_image.dart';
-import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/core/widgets/banner_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/order_screen.dart';
@@ -12,8 +11,14 @@ class InfoOrderContainer extends StatefulWidget {
   final bool hasCheckBox;
   final bool isSelected;
   final ValueChanged<bool?>? onChanged;
+  final bool canPay;
   const InfoOrderContainer(
-      {super.key, required this.orderEntity, this.hasCheckBox = false, this.isSelected = false, this.onChanged});
+      {super.key,
+      required this.orderEntity,
+      this.hasCheckBox = false,
+      this.isSelected = false,
+      this.onChanged,
+      this.canPay = true});
 
   @override
   State<InfoOrderContainer> createState() => _InfoOrderContainerState();
@@ -27,7 +32,9 @@ class _InfoOrderContainerState extends State<InfoOrderContainer> {
         .toList();
     return GestureDetector(
         onTap: () => navigateWithSlideTransition(
-            context, OrderScreen(orderEntity: widget.orderEntity)),
+            context,
+            OrderScreen(
+                orderEntity: widget.orderEntity, canPay: widget.canPay)),
         child: Container(
             padding: EdgeInsets.only(right: 16, left: 16, bottom: 16),
             decoration: BoxDecoration(
@@ -42,7 +49,6 @@ class _InfoOrderContainerState extends State<InfoOrderContainer> {
                     value: widget.isSelected,
                     onChanged: widget.onChanged,
                   ),
-
                 BannerWidget(
                     child: CustomLocalImage(
                         assetPath: imagesServiceCategory[ServiceType.all]!)),

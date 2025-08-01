@@ -28,7 +28,7 @@ class PromotionsGridView extends StatelessWidget {
                         promotionEntity: listPromotions[index])),
                 child: CustomCachedNetworkImage(
                     imageUrl:
-                        Environment.apiUrl + listPromotions[index].imageUrl[0]),
+                        Environment.apiUrl + listPromotions[index].images[0]),
               );
             }));
   }

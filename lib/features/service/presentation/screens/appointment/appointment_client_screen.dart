@@ -4,6 +4,7 @@ import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/agenda_tab_bar.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/custom_table_calendar_events.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/list_orders_not_confirmed.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/list_orders_to_confirm.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -52,7 +53,27 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
                 child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     child: const CustomTableCalendarEvents())),
-            ListOrdersToConfirm()
+            Expanded(
+                child: RefreshIndicator(
+                    onRefresh: () async {
+                      final userState = sl<UserBloc>().state;
+                      if (userState is UserAuthenticated) {
+                        sl<OrdersBloc>()
+                            .add(GetOrdersEvent(id: userState.user.id));
+                      }
+                    },
+                    child: ListOrdersToConfirm())),
+            Expanded(
+              child: RefreshIndicator(
+                  onRefresh: () async {
+                    final userState = sl<UserBloc>().state;
+                    if (userState is UserAuthenticated) {
+                      sl<OrdersBloc>()
+                          .add(GetOrdersEvent(id: userState.user.id));
+                    }
+                  },
+                  child: ListOrdersNotConfirmed()),
+            )
           ]))
         ]));
   }

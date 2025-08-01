@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
+import 'package:antonella/features/product/presentation/bloc/products_selected/products_selected_bloc.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/features/service/domain/entities/notification_entity.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
+import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
+import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -343,6 +347,12 @@ PaymentType stringToPaymentType(String type) {
   return type == 'EFECTIVO' ? PaymentType.efectivo : PaymentType.tarjeta;
 }
 
+ServiceItemType stringToServiceItemType(String type) {
+  return type == 'descuento'
+      ? ServiceItemType.descuento
+      : ServiceItemType.descuento;
+}
+
 NotificationType stringToNotificationType(String type) {
   return type == 'INSTANTANEA'
       ? NotificationType.instantanea
@@ -508,4 +518,20 @@ TextStyle titleBlack54Style(BuildContext context) {
   final colorScheme = Theme.of(context).colorScheme;
   return Theme.of(context).textTheme.titleMedium!.copyWith(
       color: colorScheme.onSurfaceVariant, fontWeight: FontWeight.bold);
+}
+
+bool showIconCart() {
+  final stateProduct = sl<ProductsSelectedBloc>().state;
+  final productsEmpty = stateProduct is ProductsSelectedLoaded &&
+      stateProduct.products.isNotEmpty;
+
+  final stateOrder = sl<OrdersBloc>().state;
+
+  final ordersToConfirmEmpty = stateOrder is OrdersLoaded &&
+      stateOrder.orders
+          .where((order) => order.clientStatus == ClientStatus.noConfirmado)
+          .toList()
+          .isNotEmpty;
+
+  return productsEmpty || ordersToConfirmEmpty;
 }

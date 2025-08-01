@@ -1,6 +1,5 @@
 import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/widgets/custom_local_image.dart';
-import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:flutter/material.dart';
 
@@ -23,12 +22,12 @@ class ServicestypeGroup extends StatelessWidget {
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
-                      border: Border.all(color: Color(0XFFF44565),width: 3)),
+                      border: Border.all(color: Color(0XFFF44565), width: 3)),
                   child: CircleAvatar(
                       radius: 32,
                       backgroundColor: Colors.white,
                       child: Padding(
-                          padding: const EdgeInsets.all(6.0),
+                          padding: const EdgeInsets.all(10),
                           child: CustomLocalImage(
                               assetPath: imagesServiceCategory[
                                   visibleServices[index]]!)))));

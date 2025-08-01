@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 
 class OrderScreen extends StatefulWidget {
   final OrderEntity orderEntity;
-  const OrderScreen({super.key, required this.orderEntity});
+  final bool canPay;
+  const OrderScreen({super.key, required this.orderEntity, this.canPay = true});
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();
@@ -28,7 +29,7 @@ class _OrderScreenState extends State<OrderScreen> {
         paddingScroll: EdgeInsets.all(16),
         child: Column(children: [
           InfoServicesChosen(orderEntity: widget.orderEntity),
-          if (!clientConfirmed)
+          if (!clientConfirmed && widget.canPay)
             Column(children: [
               const SizedBox(height: 16),
               InfoReceipt(orderEntity: widget.orderEntity),

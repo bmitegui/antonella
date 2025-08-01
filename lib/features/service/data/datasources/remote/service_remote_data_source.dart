@@ -232,10 +232,10 @@ class ServiceRemoteDataSourceImpl
     final allOrders = await Future.wait(futures);
 
     // Filtrar las que tienen estado confirmado
-    final confirmedOrders = allOrders
-        .where((order) => order.orderStatus == OrderStatus.confirmado)
-        .toList();
-    return confirmedOrders;
+    // final confirmedOrders = allOrders
+    //     .where((order) => order.orderStatus == OrderStatus.confirmado)
+    //     .toList();
+    return allOrders;
   }
 
   @override
@@ -293,13 +293,33 @@ class ServiceRemoteDataSourceImpl
 
   @override
   Future<List<PromotionModel>> getPromotions() async {
-    return await handleRequest(
+    final rawResponse = await handleRequest(
         request: () =>
             client.get(Environment.publicity, options: defaultOptions),
-        onSuccess: (data) => (data as List)
-            .map<PromotionModel>(
-                (dataJson) => PromotionModel.fromJson(dataJson))
-            .toList());
+        onSuccess: (data) => data);
+
+    if (rawResponse is! List || rawResponse.isEmpty) {
+      return [];
+    }
+
+    final List<PromotionModel> promotions = [];
+
+    for (final promotionJson in rawResponse) {
+      final List serviceItemsJson = promotionJson['service_items'] ?? [];
+
+      // Obtener los service items con su respectivo ServiceEntity
+      final List<ServiceItemModel> serviceItems = await Future.wait(
+          serviceItemsJson
+              .map<Future<ServiceItemModel>>((serviceItemJson) async {
+        final serviceEntity = await getService(id: serviceItemJson['id']);
+        return ServiceItemModel.fromJson(serviceItemJson, serviceEntity);
+      }));
+
+      final promotion = PromotionModel.fromJson(promotionJson, serviceItems);
+      promotions.add(promotion);
+    }
+
+    return promotions;
   }
 
   @override

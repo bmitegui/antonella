@@ -16,14 +16,24 @@ class AgendaTabBar extends StatelessWidget {
     return BlocBuilder<OrdersBloc, OrdersState>(
       builder: (context, state) {
         int pendingCount = 0;
+        int revisionCount = 0;
 
         if (state is OrdersLoaded) {
           pendingCount = state.orders
-              .where((order) => order.clientStatus == ClientStatus.noConfirmado)
+              .where((order) =>
+                  order.clientStatus == ClientStatus.noConfirmado &&
+                  order.orderStatus == OrderStatus.confirmado)
+              .length;
+          revisionCount = state.orders
+              .where((order) =>
+                  order.clientStatus == ClientStatus.noConfirmado &&
+                  order.orderStatus == OrderStatus.noConfirmado)
               .length;
         }
 
         return TabBar(
+            tabAlignment: TabAlignment.start,
+            isScrollable: true,
             controller: controller,
             unselectedLabelColor: Colors.black,
             indicatorColor: const Color(0xFFF44565),
@@ -32,8 +42,11 @@ class AgendaTabBar extends StatelessWidget {
             tabs: [
               CustomTab(text: texts.scheduled),
               CustomTab(
-                  text: texts.to_confirm,
-                  number: pendingCount == 0 ? null : pendingCount)
+                  text: "Por confirmar",
+                  number: pendingCount == 0 ? null : pendingCount),
+              CustomTab(
+                  text: "En revisión",
+                  number: revisionCount == 0 ? null : revisionCount)
             ]);
       },
     );
