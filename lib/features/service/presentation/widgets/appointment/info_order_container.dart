@@ -1,5 +1,6 @@
 import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/core/widgets/custom_local_image.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/core/widgets/banner_widget.dart';
@@ -43,7 +44,7 @@ class _InfoOrderContainerState extends State<InfoOrderContainer> {
                   ),
 
                 BannerWidget(
-                    child: CustomLocalSvgImage(
+                    child: CustomLocalImage(
                         assetPath: imagesServiceCategory[ServiceType.all]!)),
                 const SizedBox(width: 16),
                 Text(

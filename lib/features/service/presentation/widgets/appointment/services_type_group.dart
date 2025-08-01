@@ -1,4 +1,5 @@
 import 'package:antonella/core/constant/constant.dart';
+import 'package:antonella/core/widgets/custom_local_image.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class ServicestypeGroup extends StatelessWidget {
                       backgroundColor: Colors.white,
                       child: Padding(
                           padding: const EdgeInsets.all(6.0),
-                          child: CustomLocalSvgImage(
+                          child: CustomLocalImage(
                               assetPath: imagesServiceCategory[
                                   visibleServices[index]]!)))));
         })));
