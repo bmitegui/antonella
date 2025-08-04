@@ -10,7 +10,8 @@ final class ProfileUserInitial extends ProfileUserState {}
 final class ProfileUserLoading extends ProfileUserState {}
 
 final class ProfileUserLoaded extends ProfileUserState {
-  ProfileUserLoaded();
+  final String? photoBase64;
+  ProfileUserLoaded({this.photoBase64});
 }
 
 final class ProfileUserError extends ProfileUserState {

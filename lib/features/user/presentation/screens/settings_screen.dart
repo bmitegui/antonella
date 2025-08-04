@@ -52,7 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         }, builder: (context, state) {
           return (state is UserAuthenticated)
               ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Center(child: const UserPhotoWidget()),
+                  Center(child: UserPhotoWidget()),
                   const SizedBox(height: 8),
                   Center(
                       child: Text(state.user.name,

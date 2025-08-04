@@ -20,10 +20,12 @@ import 'package:antonella/features/service/presentation/promotion_cart/promotion
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
+import 'package:antonella/features/user/domain/usecases/get_profile_user_use_case.dart';
 import 'package:antonella/features/user/domain/usecases/send_messages_use_case.dart';
 import 'package:antonella/features/user/domain/usecases/usecases.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/profile_user/profile_user_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -143,6 +145,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetEmployeesUseCase>(
       () => GetEmployeesUseCase(userRepository: sl<UserRepository>()));
+  
+  sl.registerLazySingleton<GetProfileUserUseCase>(
+      () => GetProfileUserUseCase(userRepository: sl<UserRepository>()));
 
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
@@ -213,6 +218,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton<EmployeesBloc>(
       () => EmployeesBloc(getEmployeesUseCase: sl<GetEmployeesUseCase>()));
+  
+  sl.registerLazySingleton<ProfileUserBloc>(
+      () => ProfileUserBloc(getProfileUserUseCase: sl<GetProfileUserUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

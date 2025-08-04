@@ -11,6 +11,7 @@ import 'package:antonella/features/service/presentation/promotion_cart/promotion
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:antonella/core/injection/injection_container.dart' as di;
 import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/profile_user/profile_user_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<NotificationsBloc>()),
           BlocProvider(create: (context) => di.sl<AdminBloc>()),
           BlocProvider(create: (context) => di.sl<EmployeesBloc>()),
+          BlocProvider(create: (context) => di.sl<ProfileUserBloc>()),
         ],
         child: BlocBuilder<ThemeBloc, bool>(builder: (context, stateTheme) {
           return BlocBuilder<LanguageBloc, Locale>(
