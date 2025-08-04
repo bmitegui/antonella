@@ -105,13 +105,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       color: colorScheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Column(children: [
-                                    ListTitleSettings(
-                                        text: texts.purchases_history,
-                                        iconData: Icons.article_outlined,
-                                        goTo: PurchaseHistoryScreen()),
-                                    Divider(
-                                        height: 1,
-                                        color: colorScheme.onSurfaceVariant),
+                                    // ListTitleSettings(
+                                    //     text: texts.purchases_history,
+                                    //     iconData: Icons.article_outlined,
+                                    //     goTo: PurchaseHistoryScreen()),
+                                    // Divider(
+                                    //     height: 1,
+                                    //     color: colorScheme.onSurfaceVariant),
                                     ListTitleSettings(
                                         text: texts.shopping_cart,
                                         iconData: Icons.add_shopping_cart,

@@ -18,12 +18,13 @@ class ServicePromotionInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       bool isSelected = false;
       if (state is ServicesSelectedLoaded) {
         final index =
-            state.services.indexWhere((service) => service.id == service.id);
+            state.services.indexWhere((s) => s.id == service.id);
         if (index != -1) {
           isSelected = true;
         }
@@ -59,13 +60,24 @@ class ServicePromotionInfo extends StatelessWidget {
                               rating: service.rating,
                               duration: service.duration),
                           const SizedBox(height: 8),
-                          if (serviceItemEntity.discount != null)
-                            Text(
-                                "Descuento: ${serviceItemEntity.discount! * 100}%",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(color: Colors.red)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              if (serviceItemEntity.discount != null)
+                                Text(
+                                    "Descuento: ${serviceItemEntity.discount! * 100}%",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(color: Colors.red)),
+                              ElevatedButton(
+                                onPressed: () => navigateWithSlideTransition(context, DetailServiceScreen(serviceEntity: service)), 
+                                style: ElevatedButton.styleFrom(backgroundColor: colorScheme.primary),
+                                child: Text('Ver detalles', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white)), 
+                              ),
+                            ],
+                          ),
+                          
                           if (serviceItemEntity.fixedAmount != null)
                             Text(
                                 "Monto fijo: \$${serviceItemEntity.fixedAmount}",

@@ -25,7 +25,7 @@ class _CircleCheckboxState extends State<CircleCheckbox> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 5),
-                        color: colorScheme.onSecondaryContainer))
+                        color: colorScheme.primary))
                 : null));
   }
 }

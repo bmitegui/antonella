@@ -122,7 +122,7 @@ class MaterialTheme {
       textTheme: textTheme,
       scaffoldBackgroundColor: colorScheme.surface,
       canvasColor: colorScheme.surface,
-      cardTheme: CardTheme(color: colorScheme.onPrimary),
+      cardTheme: CardThemeData(color: colorScheme.onPrimary),
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: const EdgeInsets.only(left: 16),
         focusedBorder: OutlineInputBorder(

@@ -96,7 +96,7 @@ class SendRequestButton extends StatelessWidget {
                                       Overlay.of(context),
                                       CustomSnackBar.error(
                                           message:
-                                              "Por favor elija un empleado para cada servicio escogido"));
+                                              "Por favor elija un especialista para cada servicio escogido"));
                                 } else {
                                   context.read<SendRequestBloc>().add(
                                       EnviarPeticionEvent(

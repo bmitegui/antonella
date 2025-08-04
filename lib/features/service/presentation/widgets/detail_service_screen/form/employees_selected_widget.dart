@@ -18,12 +18,12 @@ class EmployeesSelectedWidget extends StatelessWidget {
       return CustomModalBottomSheetWidget(
           closeAction: false,
           title:
-              "Empleados de: ${getCategoryText(context: context, serviceCategory: service.type)}",
+              "Especialista de: ${getCategoryText(context: context, serviceCategory: service.type)}",
           body: (state is EmployeesLoaded)
               ? state.listEmployees.isNotEmpty
                   ? ListEmployeesWidget(
                       serviceId: service.id, employees: state.listEmployees)
-                  : Text('No existen empleados para esta categoría.')
+                  : Text('No existen especialistas para esta categoría.')
               : (state is EmployeesError)
                   ? Text(mapFailureToMessage(
                       context: context, failure: state.failure))
