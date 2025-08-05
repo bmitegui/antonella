@@ -18,12 +18,18 @@ class ServiceModel extends ServiceEntity {
       required super.maxPrice});
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
-    final prices = (json['prices'] as List)
-        .map((priceData) => PriceModel.fromJson(priceData))
-        .toList();
-    final questions = (json['questions'] as List)
-        .map((questionData) => QuestionModel.fromJson(questionData))
-        .toList();
+    final prices = json['prices'] != null
+        ? (json['prices'] as List)
+            .map((priceData) => PriceModel.fromJson(priceData))
+            .toList()
+        : <PriceModel>[];
+
+    final questions = json['questions'] != null
+        ? (json['questions'] as List)
+            .map((questionData) => QuestionModel.fromJson(questionData))
+            .toList()
+        : <QuestionModel>[];
+
     double minOfAll = prices.isNotEmpty
         ? prices
             .map((e) => e.minPrice)
