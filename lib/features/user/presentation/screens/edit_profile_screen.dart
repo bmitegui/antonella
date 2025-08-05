@@ -1,8 +1,11 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
+import 'package:antonella/features/user/presentation/bloc/profile_user/profile_user_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
+import 'package:antonella/features/user/presentation/widgets/button_save_profile.dart';
 import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,9 +35,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    final state = sl<UserBloc>().state;
+    if (state is UserAuthenticated) {
+      _nameController = TextEditingController(text: state.user.name);
+      _emailController = TextEditingController(text: state.user.email);
+      _phoneController = TextEditingController(text: state.user.phoneNumber);
+      _birthdateController =
+          TextEditingController(text: formatDateTime(state.user.birthdate));
+      _dniController = TextEditingController(text: state.user.dni);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
-    final screenWidht = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
         appBar: AppBar(
@@ -45,18 +62,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     color: Color(0XFFF44565), fontWeight: FontWeight.bold))),
         backgroundColor: Color(0xFFF0F0F0),
         body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-          if (state is UserAuthenticated) {
-            _nameController = TextEditingController(text: state.user.name);
-            _emailController = TextEditingController(text: state.user.email);
-
-            _phoneController =
-                TextEditingController(text: state.user.phoneNumber);
-
-            _birthdateController = TextEditingController(
-                text: formatDateTime(state.user.birthdate));
-
-            _dniController = TextEditingController(text: state.user.dni);
-          }
           return (state is UserAuthenticated)
               ? Padding(
                   padding: EdgeInsets.only(right: 16, left: 16, bottom: 32),
@@ -70,26 +75,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     SettingsPhotowidget(),
                     SizedBox(height: 32),
                     CustomTextFormFieldWidget(
-                      textEditingController: _nameController,
-                      title: texts.name,
-                    ),
+                        textEditingController: _nameController,
+                        title: texts.name),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
-                      readOnly: true,
-                      textEditingController: _dniController,
-                      title: texts.id,
-                    ),
+                        readOnly: true,
+                        textEditingController: _dniController,
+                        title: texts.id),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
-                      readOnly: true,
-                      textEditingController: _emailController,
-                      title: texts.email,
-                    ),
+                        readOnly: true,
+                        textEditingController: _emailController,
+                        title: texts.email),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
-                      textEditingController: _phoneController,
-                      title: texts.phone_number,
-                    ),
+                        textEditingController: _phoneController,
+                        title: texts.phone_number),
                     SizedBox(height: 16),
                     CustomTextFormFieldWidget(
                         readOnly: true,
@@ -97,16 +98,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         title: texts.birthdate,
                         suffixIcon: Icon(Icons.date_range, color: Colors.grey)),
                     SizedBox(height: 32),
-                    SizedBox(
-                        width: screenWidht * 0.35,
-                        child: FilledButton(
-                            style: ButtonStyle(
-                                textStyle: WidgetStateProperty.all(
-                                    TextStyle(fontWeight: FontWeight.bold)),
-                                backgroundColor:
-                                    WidgetStateProperty.all(Color(0xFFF44565))),
-                            onPressed: () {},
-                            child: Text(texts.save)))
+                    ButtonSaveProfile(onPressed: () {
+                      context.read<ProfileUserBloc>().add(
+                          UpdateUserProfileEvent(
+                              userId: state.user.id,
+                              base64Photo: null,
+                              name: _nameController.text.trim(),
+                              phoneNumber: _phoneController.text.trim(),
+                              gmail: _emailController.text.trim()));
+                    })
                   ]))))
               : const SizedBox.shrink();
         }));

@@ -24,11 +24,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<CheckAuthenticationEvent>(_onCheckAuthenticationEventRequest);
     on<SignOutEvent>(_onSignOutEventRequest);
     on<ResetUserEvent>(_onResetUserEventRequest);
+    on<UpdateUserEvent>(_onUpdateUserEventRequest);
   }
 
   Future<void> _onResetUserEventRequest(
       ResetUserEvent event, Emitter<UserState> emit) async {
     emit(UserInitial());
+  }
+
+  Future<void> _onUpdateUserEventRequest(
+      UpdateUserEvent event, Emitter<UserState> emit) async {
+    emit(UserAuthenticated(user: event.userEntity));
   }
 
   Future<void> _onSignOutEventRequest(

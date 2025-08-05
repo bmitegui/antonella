@@ -32,8 +32,12 @@ abstract class UserRepository {
       {required String userId,
       required String content,
       required MessageType type});
-  Future<Either<Failure, void>> addProfile(
-      {required String id, required String urlPhoto});
+  Future<Either<Failure, UserModel>> updateProfile(
+      {required String userId,
+      required String? base64Photo,
+      required String? name,
+      required String? phoneNumber,
+      required String? gmail});
   Future<Either<Failure, List<UserModel>>> getEmployees(
       {required ServiceType serviceType});
 }

@@ -34,7 +34,12 @@ abstract class UserRemoteDataSource {
       {required String userId,
       required String content,
       required MessageType type});
-  Future<void> addProfile({required String id, required String urlPhoto});
+  Future<UserModel> updateProfile(
+      {required String userId,
+      required String? base64Photo,
+      required String? name,
+      required String? phoneNumber,
+      required String? gmail});
   Future<void> signOut();
   Future<List<UserModel>> getEmployees({required ServiceType serviceType});
 }
@@ -168,15 +173,6 @@ class UserRemoteDataSourceImpl
   }
 
   @override
-  Future<void> addProfile(
-      {required String id, required String urlPhoto}) async {
-    return await handleRequest(
-        request: () => client.put(Environment.signUp,
-            data: {'id': id, 'photo': urlPhoto}, options: defaultOptions),
-        onSuccess: (_) {});
-  }
-
-  @override
   Future<void> signOut() async {
     String userId = "";
     final userState = sl<UserBloc>().state;
@@ -222,5 +218,28 @@ class UserRemoteDataSourceImpl
                 .toList();
           }
         });
+  }
+
+  @override
+  Future<UserModel> updateProfile(
+      {required String userId,
+      required String? base64Photo,
+      required String? name,
+      required String? phoneNumber,
+      required String? gmail}) async {
+    final data = {
+      "id": userId,
+      if (phoneNumber != null) "phone_number": phoneNumber,
+      if (name != null) "name": name,
+      if (gmail != null) "email": gmail,
+      if (base64Photo != null) "photo": base64Photo,
+    };
+
+    print(data);
+
+    return await handleRequest(
+        request: () =>
+            client.put(Environment.signUp, data: data, options: defaultOptions),
+        onSuccess: (data) => UserModel.fromJson(data));
   }
 }

@@ -132,16 +132,6 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, void>> addProfile(
-      {required String id, required String urlPhoto}) {
-    return handleNetworkCall(
-        networkInfo: networkInfo,
-        operation: () async {
-          await userRemoteDataSource.addProfile(id: id, urlPhoto: urlPhoto);
-        });
-  }
-
-  @override
   Future<Either<Failure, UserModel>> getAdmin() async {
     return handleNetworkCall(
         networkInfo: networkInfo,
@@ -158,6 +148,25 @@ class UserRepositoryImpl implements UserRepository {
         operation: () async {
           return await userRemoteDataSource.getEmployees(
               serviceType: serviceType);
+        });
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> updateProfile(
+      {required String userId,
+      required String? base64Photo,
+      required String? name,
+      required String? phoneNumber,
+      required String? gmail}) async {
+    return handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await userRemoteDataSource.updateProfile(
+              userId: userId,
+              base64Photo: base64Photo,
+              name: name,
+              phoneNumber: phoneNumber,
+              gmail: gmail);
         });
   }
 }

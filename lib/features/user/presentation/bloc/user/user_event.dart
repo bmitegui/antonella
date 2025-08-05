@@ -45,3 +45,8 @@ final class SignUpEvent extends UserEvent {
 final class CheckAuthenticationEvent extends UserEvent {}
 
 final class ResetUserEvent extends UserEvent {}
+
+final class UpdateUserEvent extends UserEvent {
+  final UserEntity userEntity;
+  UpdateUserEvent({required this.userEntity});
+}
