@@ -12,7 +12,6 @@ import 'package:antonella/features/user/presentation/screens/update_pasword_scre
 import 'package:antonella/features/user/presentation/widgets/list_title_settings.dart';
 import 'package:antonella/features/user/presentation/screens/support_screen.dart';
 import 'package:antonella/features/product/presentation/shopping_cart_screen.dart';
-import 'package:antonella/features/product/presentation/purchase_history_screen.dart';
 import 'package:antonella/features/user/presentation/widgets/user_photo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
