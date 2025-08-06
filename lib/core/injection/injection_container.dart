@@ -20,7 +20,6 @@ import 'package:antonella/features/service/presentation/promotion_cart/promotion
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
-import 'package:antonella/features/user/domain/usecases/update_profile_user_use_case.dart';
 import 'package:antonella/features/user/domain/usecases/send_messages_use_case.dart';
 import 'package:antonella/features/user/domain/usecases/usecases.dart';
 import 'package:antonella/features/user/presentation/bloc/bloc.dart';

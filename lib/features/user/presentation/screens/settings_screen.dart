@@ -137,10 +137,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             text: texts.dark_mode,
                             iconData: Icons.dark_mode,
                             goTo: DarkModeScreen()),
-                        Divider(height: 1, color: colorScheme.onSurfaceVariant),
-                        ListTitleSettings(
-                            text: texts.notifications,
-                            iconData: Icons.notifications)
                       ])),
                   const SizedBox(height: 16),
                   Text(texts.support_and_legal,

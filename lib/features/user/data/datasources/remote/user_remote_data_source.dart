@@ -235,8 +235,6 @@ class UserRemoteDataSourceImpl
       if (base64Photo != null) "photo": base64Photo,
     };
 
-    print(data);
-
     return await handleRequest(
         request: () =>
             client.put(Environment.signUp, data: data, options: defaultOptions),
