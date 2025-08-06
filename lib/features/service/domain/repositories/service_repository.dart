@@ -4,7 +4,8 @@ import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ServiceRepository {
-  Future<Either<Failure, ListServicesModel>> getServices();
+  Future<Either<Failure, ListServicesModel>> getServices(
+      {required String? name});
   Future<Either<Failure, List<NotificationModel>>> getNotifications();
   Future<Either<Failure, List<CommentModel>>> getServiceComments(
       {required String serviceId});
@@ -24,5 +25,6 @@ abstract class ServiceRepository {
   Future<Either<Failure, void>> endAppointment(
       {required String orderId, required String appointmentId});
   Future<Either<Failure, List<PromotionEntity>>> getPromotions();
-  Future<Either<Failure, ListServicesModel>> getServicesByName({required String nameService});
+  Future<Either<Failure, ListServicesModel>> getServicesByName(
+      {required String nameService});
 }

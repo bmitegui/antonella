@@ -18,6 +18,7 @@ class ServicesInfoWidget extends StatelessWidget {
                   onRefresh: () async =>
                       context.read<ServiceBloc>().add(GetServicesEvent()),
                   child: SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
                       padding: EdgeInsets.only(bottom: 100),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,8 +29,7 @@ class ServicesInfoWidget extends StatelessWidget {
                             return ServicesBySubcategoryWidget(
                                 subCategory: entry.key, services: entry.value);
                           }).toList())))
-              : Center(
-                  child: Text(texts.no_service_for_category))
+              : Center(child: Text(texts.no_service_for_category))
           : (state is ServicesError)
               ? Center(
                   child: Text(mapFailureToMessage(

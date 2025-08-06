@@ -3,8 +3,6 @@ import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/service/presentation/bloc/service/service_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class CustomSearchWidget extends StatefulWidget {
   const CustomSearchWidget({super.key});
@@ -16,20 +14,36 @@ class CustomSearchWidget extends StatefulWidget {
 class _CustomSearchWidgetState extends State<CustomSearchWidget> {
   late bool enable;
   late TextEditingController nameService;
+  late bool isLoading;
 
   @override
   void initState() {
     super.initState();
     enable = false;
     nameService = TextEditingController();
+    isLoading = false;
+  }
+
+  @override
+  void dispose() {
+    nameService.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
-    return BlocBuilder<ServiceBloc, ServiceState>(
-      builder: (context, state) {
-        return CustomTextFormFieldWidget(
+    return BlocConsumer<ServiceBloc, ServiceState>(listener: (context, state) {
+      setState(() {
+        if (state is ServicesLoaded) {
+          isLoading = false;
+          if (!state.isFiltered) {
+            nameService.clear();
+          }
+        }
+      });
+    }, builder: (context, state) {
+      return CustomTextFormFieldWidget(
           textEditingController: nameService,
           onChanged: (value) {
             setState(() {
@@ -51,17 +65,21 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
             FocusScope.of(context).unfocus();
           },
           suffixIcon: enable
-              ? GestureDetector(
-                  child: const Icon(Icons.send),
-                  onTap: () {
-                    showTopSnackBar(
-                        Overlay.of(context),
-                        CustomSnackBar.error(
-                            message: texts.not_implemented_yet));
-                  })
+              ? (isLoading)
+                  ? Container(
+                      alignment: Alignment.centerRight,
+                      padding: EdgeInsets.only(right: 8),
+                      child: const CircularProgressIndicator())
+                  : GestureDetector(
+                      child: const Icon(Icons.send),
+                      onTap: () {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        context.read<ServiceBloc>().add(
+                            GetServicesEvent(name: nameService.text.trim()));
+                      })
               : null);
-      }
-    );
-    
+    });
   }
 }

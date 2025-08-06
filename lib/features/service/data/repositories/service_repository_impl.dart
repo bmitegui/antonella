@@ -17,11 +17,13 @@ class ServiceRepositoryImpl implements ServiceRepository {
       {required this.networkInfo, required this.serviceRemoteDataSource});
 
   @override
-  Future<Either<Failure, ListServicesModel>> getServices() async {
+  Future<Either<Failure, ListServicesModel>> getServices(
+      {required String? name}) async {
     return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
-          final remoteServices = await serviceRemoteDataSource.getServices();
+          final remoteServices =
+              await serviceRemoteDataSource.getServices(name: name);
           return remoteServices;
         });
   }
@@ -129,16 +131,16 @@ class ServiceRepositoryImpl implements ServiceRepository {
           return await serviceRemoteDataSource.getNotifications();
         });
   }
-  
+
   @override
-  Future<Either<Failure, ListServicesModel>> getServicesByName({required String nameService}) async {
-    return await handleNetworkCall( 
-      networkInfo: networkInfo,
-      operation: () async {
-        final remoteServices = await serviceRemoteDataSource.getServicesByName(name: nameService);
-        return remoteServices;
-      }
-    );
+  Future<Either<Failure, ListServicesModel>> getServicesByName(
+      {required String nameService}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          final remoteServices = await serviceRemoteDataSource
+              .getServicesByName(name: nameService);
+          return remoteServices;
+        });
   }
-  
 }

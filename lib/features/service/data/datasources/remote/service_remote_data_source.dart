@@ -15,7 +15,7 @@ import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:dio/dio.dart';
 
 abstract class ServiceRemoteDataSource {
-  Future<ListServicesModel> getServices();
+  Future<ListServicesModel> getServices({required String? name});
   Future<List<NotificationModel>> getNotifications();
   Future<List<CommentModel>> getServiceComments({required String serviceId});
   Future<List<OrderModel>> getOrders({required String id});
@@ -44,11 +44,14 @@ class ServiceRemoteDataSourceImpl
   ServiceRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<ListServicesModel> getServices() async {
+  Future<ListServicesModel> getServices({required String? name}) async {
+    final query = name != null ? '?name=$name' : '';
+    final url = '${Environment.storeService}$query';
+
     return await handleRequest(
-        request: () =>
-            client.get(Environment.storeService, options: defaultOptions),
-        onSuccess: (data) => ListServicesModel.fromList(data));
+      request: () => client.get(url, options: defaultOptions),
+      onSuccess: (data) => ListServicesModel.fromList(data),
+    );
   }
 
   Future<ServiceModel> getService({required String id}) async {
@@ -339,13 +342,12 @@ class ServiceRemoteDataSourceImpl
                 NotificationModel.fromJson(notificationJson))
             .toList());
   }
-  
+
   @override
   Future<ListServicesModel> getServicesByName({required String name}) async {
     final url = '${Environment.storeService}?name=$name';
     return await handleRequest(
         request: () => client.get(url, options: defaultOptions),
-        onSuccess: (data) => ListServicesModel.fromList(data)
-    );
+        onSuccess: (data) => ListServicesModel.fromList(data));
   }
 }
