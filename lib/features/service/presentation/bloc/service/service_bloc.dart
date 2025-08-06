@@ -12,6 +12,7 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
 
   ServiceBloc({required this.getServicesUseCase}) : super(ServiceInitial()) {
     on<GetServicesEvent>(_onGetServicesEventRequest);
+    on<GetServicesByNameEvent>(_onGetServicesByNameEventRequest);
   }
 
   Future<void> _onGetServicesEventRequest(
@@ -31,6 +32,17 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
       } else {
         emit(ServicesLoaded(listServices: listServices));
       }
+    });
+  }
+
+  Future<void> _onGetServicesByNameEventRequest(GetServicesByNameEvent event, Emitter<ServiceState> emit) async {
+    emit(ServiceLoading());
+    final failureOrSuccess = await getServicesUseCase(NoParams());
+    failureOrSuccess.fold((failure) async {
+      emit(ServicesError(failure: failure));
+    }, (listServices) async {
+      final servicesFilter = listServices.services.where((e) => e.name.contains(event.name)).toList();
+      emit(ServicesLoaded(listServices: listServices.copyWith(services: servicesFilter)));
     });
   }
 

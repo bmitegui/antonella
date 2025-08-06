@@ -129,4 +129,16 @@ class ServiceRepositoryImpl implements ServiceRepository {
           return await serviceRemoteDataSource.getNotifications();
         });
   }
+  
+  @override
+  Future<Either<Failure, ListServicesModel>> getServicesByName({required String nameService}) async {
+    return await handleNetworkCall( 
+      networkInfo: networkInfo,
+      operation: () async {
+        final remoteServices = await serviceRemoteDataSource.getServicesByName(name: nameService);
+        return remoteServices;
+      }
+    );
+  }
+  
 }

@@ -34,6 +34,7 @@ abstract class ServiceRemoteDataSource {
   Future<void> endAppointment(
       {required String orderId, required String appointmentId});
   Future<List<PromotionEntity>> getPromotions();
+  Future<ListServicesModel> getServicesByName({required String name});
 }
 
 class ServiceRemoteDataSourceImpl
@@ -337,5 +338,14 @@ class ServiceRemoteDataSourceImpl
             .map<NotificationModel>((notificationJson) =>
                 NotificationModel.fromJson(notificationJson))
             .toList());
+  }
+  
+  @override
+  Future<ListServicesModel> getServicesByName({required String name}) async {
+    final url = '${Environment.storeService}?name=$name';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) => ListServicesModel.fromList(data)
+    );
   }
 }
