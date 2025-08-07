@@ -1336,6 +1336,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Discover the queen\n within you'**
   String get discover_the_queen;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get done;
+
+  /// No description provided for @requieres_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'It requires your confirmation'**
+  String get requieres_confirmation;
+
+  /// No description provided for @pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get pending;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -628,4 +628,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get discover_the_queen => 'Descubre la reina\nque hay en ti';
+
+  @override
+  String get done => 'Verificado';
+
+  @override
+  String get requieres_confirmation => 'Requiere su confirmación';
+
+  @override
+  String get pending => 'Pendientes';
 }

@@ -3,6 +3,7 @@ import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_receipt.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_services_chosen.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/info_services_new_format.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/pay_order_button.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/payment_method.dart';
 import 'package:flutter/material.dart';

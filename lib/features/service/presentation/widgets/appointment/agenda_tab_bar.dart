@@ -40,12 +40,12 @@ class AgendaTabBar extends StatelessWidget {
             dividerColor: Colors.grey.shade400,
             labelColor: const Color(0xFFF44565),
             tabs: [
-              CustomTab(text: texts.scheduled),
+              CustomTab(text: texts.done),
               CustomTab(
-                  text: "Por confirmar",
+                  text: texts.requieres_confirmation,
                   number: pendingCount == 0 ? null : pendingCount),
               CustomTab(
-                  text: "En revisión",
+                  text: texts.pending,
                   number: revisionCount == 0 ? null : revisionCount)
             ]);
       },
