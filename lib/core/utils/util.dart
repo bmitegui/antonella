@@ -300,7 +300,7 @@ Future<String?> convertFileToBase64(File? file) async {
   var result = await FlutterImageCompress.compressAndGetFile(
     file.absolute.path,
     targetPath,
-    quality: 85,
+    quality: 60,
     minWidth: isPortrait ? 768 : 1024,
     minHeight: isPortrait ? 1024 : 768,
   );

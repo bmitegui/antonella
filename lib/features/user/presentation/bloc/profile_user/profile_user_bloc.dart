@@ -11,10 +11,10 @@ class ProfileUserBloc extends Bloc<ProfileUserEvent, ProfileUserState> {
 
   ProfileUserBloc({required this.getProfileUserUseCase})
       : super(ProfileUserInitial()) {
-    on<UpdateUserProfileEvent>(_onUpdateProfilePhoto);
+    on<UpdateUserProfileEvent>(_onUpdateProfile);
   }
 
-  Future<void> _onUpdateProfilePhoto(
+  Future<void> _onUpdateProfile(
       UpdateUserProfileEvent event, Emitter<ProfileUserState> emit) async {
     emit(ProfileUserLoading());
     final failureOrSuccess = await getProfileUserUseCase(UpdateProfileParams(

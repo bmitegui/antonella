@@ -36,10 +36,14 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
     return BlocConsumer<ServiceBloc, ServiceState>(listener: (context, state) {
       setState(() {
         if (state is ServicesLoaded) {
+          enable = false;
           isLoading = false;
           if (!state.isFiltered) {
             nameService.clear();
           }
+        } else if (state is ServicesError) {
+          enable = false;
+          isLoading = false;
         }
       });
     }, builder: (context, state) {
@@ -61,7 +65,11 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
           onEditingComplete: () {
             setState(() {
               enable = false;
+              isLoading = true;
             });
+            context
+                .read<ServiceBloc>()
+                .add(GetServicesEvent(name: nameService.text.trim()));
             FocusScope.of(context).unfocus();
           },
           suffixIcon: enable
