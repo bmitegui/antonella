@@ -13,6 +13,7 @@ class UploadUserPhotoWidget extends StatelessWidget {
   const UploadUserPhotoWidget({super.key});
 
   Future<void> _pickImage(BuildContext context, ImageSource source) async {
+    Navigator.pop(context);
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
 
@@ -20,8 +21,6 @@ class UploadUserPhotoWidget extends StatelessWidget {
       final file = File(pickedFile.path);
       final converted = await convertFileToBase64(file);
       if (converted != null) {
-        // ignore: use_build_context_synchronously
-        Navigator.pop(context);
         final userState = sl<UserBloc>().state;
         if (userState is UserAuthenticated) {
           sl<ProfileUserBloc>().add(UpdateUserProfileEvent(

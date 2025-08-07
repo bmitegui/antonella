@@ -300,7 +300,7 @@ Future<String?> convertFileToBase64(File? file) async {
   var result = await FlutterImageCompress.compressAndGetFile(
     file.absolute.path,
     targetPath,
-    quality: 60,
+    quality: 50,
     minWidth: isPortrait ? 768 : 1024,
     minHeight: isPortrait ? 1024 : 768,
   );
@@ -308,8 +308,6 @@ Future<String?> convertFileToBase64(File? file) async {
 
   List<int> imageBytes = await result.readAsBytes();
   String imagenBase64 = base64Encode(imageBytes);
-  var extFoto = result.path.split("/").last.split(".").last;
-  imagenBase64 = "data:image/$extFoto;base64,$imagenBase64";
   return imagenBase64;
 }
 

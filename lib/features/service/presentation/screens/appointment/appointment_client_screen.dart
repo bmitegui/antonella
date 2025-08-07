@@ -20,7 +20,6 @@ class AppointmentClientScreen extends StatefulWidget {
 class _AppointmentClientScreenState extends State<AppointmentClientScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  int _previousTabIndex = 0;
   final _calendarRefreshKey = GlobalKey<RefreshIndicatorState>();
   final _toConfirmRefreshKey = GlobalKey<RefreshIndicatorState>();
   final _notConfirmedRefreshKey = GlobalKey<RefreshIndicatorState>();
@@ -29,11 +28,7 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-     _tabController.addListener(() {
-    if (_tabController.indexIsChanging) {
-      _previousTabIndex = _tabController.index;
-    }
-  });
+     _tabController.addListener(() {});
   }
 
   @override

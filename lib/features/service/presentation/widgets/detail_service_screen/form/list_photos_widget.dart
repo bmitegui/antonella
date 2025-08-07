@@ -81,9 +81,9 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
               if (imageBase64 != null) {
                 List<String>? listImages = widget.question.answer;
                 if (listImages != null) {
-                  listImages.add(imageBase64.split('base64,').last);
+                  listImages.add(imageBase64);
                 } else {
-                  listImages = [imageBase64.split('base64,').last];
+                  listImages = [imageBase64];
                 }
                 sl<ServiceFormBloc>().add(AnswerQuestionEvent(
                     questionId: widget.question.id, answer: listImages));
@@ -97,9 +97,9 @@ class _ListPhotosWidgetState extends State<ListPhotosWidget>
               if (imageBase64 != null) {
                 List<String>? listImages = widget.question.answer;
                 if (listImages != null) {
-                  listImages.add(imageBase64.split('base64,').last);
+                  listImages.add(imageBase64);
                 } else {
-                  listImages = [imageBase64.split('base64,').last];
+                  listImages = [imageBase64];
                 }
                 sl<ServiceFormBloc>().add(AnswerQuestionEvent(
                     questionId: widget.question.id, answer: listImages));

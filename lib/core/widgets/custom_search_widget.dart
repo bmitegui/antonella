@@ -67,9 +67,11 @@ class _CustomSearchWidgetState extends State<CustomSearchWidget> {
               enable = false;
               isLoading = true;
             });
-            context
-                .read<ServiceBloc>()
-                .add(GetServicesEvent(name: nameService.text.trim()));
+            if (nameService.text.trim().isNotEmpty) {
+              context
+                  .read<ServiceBloc>()
+                  .add(GetServicesEvent(name: nameService.text.trim()));
+            }
             FocusScope.of(context).unfocus();
           },
           suffixIcon: enable
