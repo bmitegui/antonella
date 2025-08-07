@@ -2,11 +2,12 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
+import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/core/widgets/custom_text_form_field_widget.dart';
 import 'package:antonella/features/user/presentation/bloc/profile_user/profile_user_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/button_save_profile.dart';
-import 'package:antonella/features/user/presentation/widgets/settings_photowidget.dart';
+import 'package:antonella/features/user/presentation/widgets/user_photo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,15 +53,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
-    final textTheme = Theme.of(context).textTheme;
-    return Scaffold(
-        appBar: AppBar(
-            leading: ArrowBack(color: Color(0XFFF44565)),
-            backgroundColor: Color(0xFFF0F0F0),
-            title: Text(texts.edit_profile,
-                style: textTheme.bodyLarge!.copyWith(
-                    color: Color(0XFFF44565), fontWeight: FontWeight.bold))),
-        backgroundColor: Color(0xFFF0F0F0),
+    return CustomScaffold(
+      text: texts.edit_profile,
+      leading: ArrowBack(),
         body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
           return (state is UserAuthenticated)
               ? Padding(
@@ -69,10 +64,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: Center(
                           child: Column(children: [
                     Text(texts.edit_account_information,
-                        style:
-                            textTheme.bodyLarge!.copyWith(color: Colors.black)),
+                        style: bodyBlack54Style(context)),
                     SizedBox(height: 32),
-                    SettingsPhotowidget(),
+                    UserPhotoWidget(canEdit: true),
                     SizedBox(height: 32),
                     CustomTextFormFieldWidget(
                         textEditingController: _nameController,

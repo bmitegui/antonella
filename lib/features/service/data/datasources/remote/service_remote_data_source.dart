@@ -49,9 +49,14 @@ class ServiceRemoteDataSourceImpl
     final url = '${Environment.storeService}$query';
 
     return await handleRequest(
-      request: () => client.get(url, options: defaultOptions),
-      onSuccess: (data) => ListServicesModel.fromList(data),
-    );
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) {
+          if (data.isEmpty) {
+            return ListServicesModel(services: [], types: {});
+          } else {
+            return ListServicesModel.fromList(data);
+          }
+        });
   }
 
   Future<ServiceModel> getService({required String id}) async {
