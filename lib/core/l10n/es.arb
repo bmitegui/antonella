@@ -261,5 +261,9 @@
     "do_not_miss_out": "¡No te pierdas de nada!",
     "set_up_push_notifications": "Configura las notificaciones push para que sepas cuándo te envían mensajes o te lleguen notificaciones.",
 
-    "discover_the_queen": "Descubre la reina\nque hay en ti"
+    "discover_the_queen": "Descubre la reina\nque hay en ti",
+
+    "done": "Verificado",
+    "requieres_confirmation": "Requiere su confirmación",
+    "pending": "Pendientes"
 }

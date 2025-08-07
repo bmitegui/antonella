@@ -129,7 +129,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(children: [
                         ListTitleSettings(
-                            text: texts.idm,
+                            text: texts.change_language,
                             iconData: Icons.language,
                             goTo: ChangeLanguageScreen()),
                         Divider(height: 1, color: colorScheme.onSurfaceVariant),
