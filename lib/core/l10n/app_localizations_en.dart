@@ -18,7 +18,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get start_title => 'Discover your best version here';
 
   @override
-  String get start_body => 'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
+  String get start_body =>
+      'Easily browse and schedule appointments for beauty, hair and wellness services tailored to your needs and style.';
 
   @override
   String get phone_number => 'Phone number';
@@ -114,7 +115,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get model_not_found_error => 'The user is not registered';
 
   @override
-  String get invalid_user_email_error => 'The format of the email entered is not correct';
+  String get invalid_user_email_error =>
+      'The format of the email entered is not correct';
 
   @override
   String get invalid_user_birthdate_error => 'The date of birth is invalid';
@@ -129,10 +131,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invalid_dni_error => 'The ID is invalid';
 
   @override
-  String get invalid_phone_number_error => 'The format of cell phone number is invalid';
+  String get invalid_phone_number_error =>
+      'The format of cell phone number is invalid';
 
   @override
-  String get invalid_user_password_error => 'The format of the password is invalid';
+  String get invalid_user_password_error =>
+      'The format of the password is invalid';
 
   @override
   String get change_language => 'Change language';
@@ -144,7 +148,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spanish => 'Spanish';
 
   @override
-  String get info_change_language => 'Change the language of buttons, titles and other text in \'Antonella\'.';
+  String get info_change_language =>
+      'Change the language of buttons, titles and other text in \'Antonella\'.';
 
   @override
   String get dark_mode => 'Dark mode';
@@ -153,7 +158,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get select_mode => 'Select a mode';
 
   @override
-  String get info_dark_mode => 'Switch between dark and light modes as needed, right from this screen.';
+  String get info_dark_mode =>
+      'Switch between dark and light modes as needed, right from this screen.';
 
   @override
   String get activated => 'Activated';
@@ -210,7 +216,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_notifications => 'No Notifications';
 
   @override
-  String get notification_message => 'We will let you know when there is something new for you.';
+  String get notification_message =>
+      'We will let you know when there is something new for you.';
 
   @override
   String get administrator => 'Administrator';
@@ -327,7 +334,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get image_cut => 'Image Cut';
 
   @override
-  String get change_password_full_info => 'Complete the information to change your password correctly.';
+  String get change_password_full_info =>
+      'Complete the information to change your password correctly.';
 
   @override
   String get last_password => 'Last Password';
@@ -354,7 +362,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get save => 'Save';
 
   @override
-  String get select_technical_support => 'Select one of the methods below to receive technical support:';
+  String get select_technical_support =>
+      'Select one of the methods below to receive technical support:';
 
   @override
   String get email => 'E-mail';
@@ -402,7 +411,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get write_new_password => 'Enter your new password';
 
   @override
-  String get enter_associated_email => 'Enter your email address associated with your account';
+  String get enter_associated_email =>
+      'Enter your email address associated with your account';
 
   @override
   String get code_sent => 'Code Sent';
@@ -417,7 +427,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmation => 'Confirmation';
 
   @override
-  String get code_sent_to_number => 'The code has been sent to your phone number';
+  String get code_sent_to_number =>
+      'The code has been sent to your phone number';
 
   @override
   String get enter_code => 'Enter Code';
@@ -459,10 +470,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get total_to_receive => 'Total to Receive';
 
   @override
-  String get no_service_for_category => 'There are no services for this category';
+  String get no_service_for_category =>
+      'There are no services for this category';
 
   @override
-  String get select_time_then_continue => 'Select a time you prefer by swiping the screen to book the appointment, and then continue';
+  String get select_time_then_continue =>
+      'Select a time you prefer by swiping the screen to book the appointment, and then continue';
 
   @override
   String get requested_date => 'Requested date:';
@@ -474,7 +487,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get approximate_value => 'Approximate value:';
 
   @override
-  String get request_sent_succesfully => 'Request sent successfully \n The administrator will contact you shortly';
+  String get request_sent_succesfully =>
+      'Request sent successfully \n The administrator will contact you shortly';
 
   @override
   String get submit_request => 'Submit Request';
@@ -483,7 +497,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete_service => 'Delete service';
 
   @override
-  String get sure_delete_service => 'Are you sure you want to delete the selected service?';
+  String get sure_delete_service =>
+      'Are you sure you want to delete the selected service?';
 
   @override
   String get eliminate => 'Eliminate';
@@ -528,7 +543,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pay_now => 'Pay now';
 
   @override
-  String get no_appointments_to_be_confirmed => 'There are no pending appointments to be confirmed.';
+  String get no_appointments_to_be_confirmed =>
+      'There are no pending appointments to be confirmed.';
 
   @override
   String get see_more => 'See more';
@@ -579,16 +595,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get control_panel => 'Control Panel';
 
   @override
-  String get manega_monitor_appointments => 'Manage and monitor your appointments efficiently.';
+  String get manega_monitor_appointments =>
+      'Manage and monitor your appointments efficiently.';
 
   @override
-  String get review_your_performance => 'Review your performance and ensure good performance';
+  String get review_your_performance =>
+      'Review your performance and ensure good performance';
 
   @override
   String get no_purchases_yet => 'You have no purchases yet';
 
   @override
-  String get no_products_for_category => 'There are no products for this category';
+  String get no_products_for_category =>
+      'There are no products for this category';
 
   @override
   String get pay_products => 'Pay products';
@@ -624,7 +643,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get do_not_miss_out => 'Don\'t miss out on anything!';
 
   @override
-  String get set_up_push_notifications => 'Set up push notifications so you know when you receive messages or notifications.';
+  String get set_up_push_notifications =>
+      'Set up push notifications so you know when you receive messages or notifications.';
 
   @override
   String get discover_the_queen => 'Discover the queen\n within you';

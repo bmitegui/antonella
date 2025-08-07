@@ -16,8 +16,8 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class PromotionViewDetails extends StatelessWidget {
   final PromotionEntity promotionEntity;
-  final void Function(bool data) selected;
-  const PromotionViewDetails({super.key, required this.promotionEntity, required this.selected});
+  final void Function(bool data)? selected;
+  const PromotionViewDetails({super.key, required this.promotionEntity, this.selected});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class PromotionViewDetails extends StatelessWidget {
                           promotionEntity: promotionEntity));
                       showTopSnackBar(Overlay.of(context),
                           CustomSnackBar.success(message: texts.product_added));
-                      selected(true);
+                      selected!(true);
                       Navigator.pop(context);
                     }
                   : null,
