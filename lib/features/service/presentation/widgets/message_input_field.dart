@@ -1,8 +1,13 @@
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
+import 'package:antonella/features/service/presentation/widgets/upload_image_chat_widget.dart';
+import 'package:antonella/features/user/domain/entities/message_entity.dart';
+import 'package:antonella/features/user/presentation/bloc/bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:flutter/material.dart';
 
 class MessageInputField extends StatefulWidget {
-  final void Function(String) onSend;
+  final void Function(String, MessageType type) onSend;
 
   const MessageInputField({super.key, required this.onSend});
 
@@ -17,7 +22,7 @@ class _MessageInputFieldState extends State<MessageInputField> {
   void _handleSend() {
     final text = _controller.text.trim();
     if (text.isNotEmpty) {
-      widget.onSend(text);
+      widget.onSend(text, MessageType.text);
       _controller.clear();
     }
   }
@@ -45,7 +50,17 @@ class _MessageInputFieldState extends State<MessageInputField> {
                   decoration: InputDecoration(
                       prefixIcon: IconButton(
                         icon: const Icon(Icons.add, color: Color(0xFFF44565)),
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (_) {
+                                return UploadImageChatWidget(
+                                  onImagePicked: (base64) {
+                                    widget.onSend(base64, MessageType.image);
+                                  }
+                                );
+                              });
+                        },
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),

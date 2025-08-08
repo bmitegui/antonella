@@ -105,9 +105,9 @@ class _VisualizeChatUserScreenState extends State<VisualizeChatUserScreen> {
         builder: (context, state) {
           return Padding(
             padding: const EdgeInsets.all(16),
-            child: MessageInputField(onSend: (value) {
+            child: MessageInputField(onSend: (value, messageType) {
               sl<SendMessageBloc>().add(SendMessagesEvent(
-                  userId: clientId, content: value, type: MessageType.text));
+                  userId: clientId, content: value, type: messageType));
             }),
           );
         },
