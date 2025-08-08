@@ -28,7 +28,7 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-     _tabController.addListener(() {});
+    _tabController.addListener(() {});
   }
 
   @override
@@ -43,7 +43,6 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
       sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -76,17 +75,14 @@ class _AppointmentClientScreenState extends State<AppointmentClientScreen>
                 child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     child: const CustomTableCalendarEvents())),
-            Expanded(
-                child: RefreshIndicator(
-                    key: _toConfirmRefreshKey,
-                    onRefresh: _refreshCurrentTab,
-                    child: ListOrdersToConfirm())),
-            Expanded(
-              child: RefreshIndicator(
-                  key: _notConfirmedRefreshKey,
-                  onRefresh: _refreshCurrentTab,
-                  child: ListOrdersNotConfirmed()),
-            )
+            RefreshIndicator(
+                key: _toConfirmRefreshKey,
+                onRefresh: _refreshCurrentTab,
+                child: ListOrdersToConfirm()),
+            RefreshIndicator(
+                key: _notConfirmedRefreshKey,
+                onRefresh: _refreshCurrentTab,
+                child: ListOrdersNotConfirmed())
           ]))
         ]));
   }
