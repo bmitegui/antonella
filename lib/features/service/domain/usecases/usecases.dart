@@ -7,3 +7,4 @@ export './get_form_done_use_case.dart';
 export './start_appointment_use_case.dart';
 export './end_appointment_use_case.dart';
 export './get_notifications_use_case.dart';
+export './get_promotions_related_use_case.dart';

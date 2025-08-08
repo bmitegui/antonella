@@ -35,6 +35,8 @@ abstract class ServiceRemoteDataSource {
       {required String orderId, required String appointmentId});
   Future<List<PromotionEntity>> getPromotions();
   Future<ListServicesModel> getServicesByName({required String name});
+  Future<List<PromotionEntity>> getPromotionsRelated(
+      {required List<String> servicesId, required List<String> productsId});
 }
 
 class ServiceRemoteDataSourceImpl
@@ -354,5 +356,40 @@ class ServiceRemoteDataSourceImpl
     return await handleRequest(
         request: () => client.get(url, options: defaultOptions),
         onSuccess: (data) => ListServicesModel.fromList(data));
+  }
+
+  @override
+  Future<List<PromotionEntity>> getPromotionsRelated(
+      {required List<String> servicesId,
+      required List<String> productsId}) async {
+    final data = {"services_id": servicesId, "products_id": productsId};
+    print(data);
+    final rawResponse = await handleRequest(
+        request: () => client.post(Environment.publicidadRelated,
+            data: data, options: defaultOptions),
+        onSuccess: (data) => data);
+    print(rawResponse);
+    if (rawResponse is! List || rawResponse.isEmpty) {
+      return [];
+    }
+
+    final List<PromotionModel> promotions = [];
+
+    for (final promotionJson in rawResponse) {
+      final List serviceItemsJson = promotionJson['service_items'] ?? [];
+
+      // Obtener los service items con su respectivo ServiceEntity
+      final List<ServiceItemModel> serviceItems = await Future.wait(
+          serviceItemsJson
+              .map<Future<ServiceItemModel>>((serviceItemJson) async {
+        final serviceEntity = await getService(id: serviceItemJson['id']);
+        return ServiceItemModel.fromJson(serviceItemJson, serviceEntity);
+      }));
+
+      final promotion = PromotionModel.fromJson(promotionJson, serviceItems);
+      promotions.add(promotion);
+    }
+    print(promotions);
+    return promotions;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:antonella/core/constant/environment.dart';
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
@@ -11,7 +12,7 @@ import 'package:antonella/features/service/domain/entities/appointment_entity.da
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
-import 'package:antonella/features/service/presentation/promotion_cart/promotion_cart_bloc.dart';
+import 'package:antonella/features/service/presentation/bloc/promotion_cart/promotion_cart_bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_services_new_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +28,14 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   bool initialized = false;
   final Set<String> selectedProductIds = {};
   final Set<String> selectedPromotionIds = {};
+
+
+  @override
+  void initState() {
+    super.initState();
+    Map<String, List<String>> data = getSelectedIds();
+    sl<PromotionCartBloc>().add(GetPromotionRelatedEvent(servicesId: data['services']!, productsId: data['products']!));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +88,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 final selectedPromotions = promotionState.cartPromotions
                     .where((p) => selectedPromotionIds.contains(p.id))
                     .toList();
-
+                
                 final appointments = ordersToConfirm
                     .expand((p) => p.appointments.map((ap) => ap))
                     .toList();

@@ -143,4 +143,18 @@ class ServiceRepositoryImpl implements ServiceRepository {
           return remoteServices;
         });
   }
+
+  @override
+  Future<Either<Failure, List<PromotionEntity>>> getPromotionsRelated(
+      {required List<String> servicesId,
+      required List<String> productsId}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          final remotePromotions =
+              await serviceRemoteDataSource.getPromotionsRelated(
+                  servicesId: servicesId, productsId: productsId);
+          return remotePromotions;
+        });
+  }
 }

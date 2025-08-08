@@ -27,4 +27,6 @@ abstract class ServiceRepository {
   Future<Either<Failure, List<PromotionEntity>>> getPromotions();
   Future<Either<Failure, ListServicesModel>> getServicesByName(
       {required String nameService});
+  Future<Either<Failure, List<PromotionEntity>>> getPromotionsRelated(
+      {required List<String> servicesId, required List<String> productsId});
 }
