@@ -94,12 +94,9 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                         order.orderStatus == OrderStatus.confirmado)
                     .toList();
 
-                print(ordersToConfirm.length);
-
                 if (!initialized &&
                     selectedProductIds.isEmpty &&
                     selectedServiceIds.isEmpty) {
-                  print('Se ejecuta');
                   selectedProductIds
                       .addAll(productState.products.map((p) => p.id));
                   selectedServiceIds.addAll(ordersToConfirm.map((o) => o.id));
