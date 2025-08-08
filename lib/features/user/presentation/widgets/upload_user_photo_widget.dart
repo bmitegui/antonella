@@ -12,6 +12,8 @@ import 'package:antonella/core/l10n/app_localizations.dart';
 class UploadUserPhotoWidget extends StatelessWidget {
   const UploadUserPhotoWidget({super.key});
 
+  final String defaultImagePath = 'assets/img/placeholder_women.png';
+
   Future<void> _pickImage(BuildContext context, ImageSource source) async {
     Navigator.pop(context);
     final picker = ImagePicker();
@@ -34,16 +36,41 @@ class UploadUserPhotoWidget extends StatelessWidget {
     }
   }
 
+  // void _deletePhoto(BuildContext context) async {
+  //   Navigator.pop(context);
+  //   File file = File('assets/img/placeholder_women.png');
+  //   final converted = await convertFileToBase64(file);
+  //   if (converted != null) {
+  //     final userState = sl<UserBloc>().state;
+  //     if (userState is UserAuthenticated) {
+  //       sl<ProfileUserBloc>().add(UpdateUserProfileEvent(
+  //         userId: userState.user.id,
+  //         base64Photo: converted,
+  //         name: null,
+  //         phoneNumber: null,
+  //         gmail: null,
+  //       ));
+  //     }
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
+    //final userState = sl<UserBloc>().state;
+
+    //bool showDeleteButton = false;
+    // if (userState is UserAuthenticated) {
+    //   showDeleteButton = userState.user.photoUrl != defaultImagePath;
+    // }
     return CustomModalBottomSheetWidget(
         title: texts.profile_picture,
-        otherAction: IconButton(
-            onPressed: () {
-              // Aquí podrías emitir un evento para eliminar la foto
-            },
-            icon: const Icon(Icons.delete_outline)),
+        // otherAction: showDeleteButton
+        //   ? IconButton(
+        //       onPressed: () => _deletePhoto(context),
+        //       icon: const Icon(Icons.delete_outline),
+        //     )
+        //   : null,
         body: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           CustomCircularIconButtom(
               onTap: () => _pickImage(context, ImageSource.camera),
