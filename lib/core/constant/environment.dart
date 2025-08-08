@@ -30,4 +30,5 @@ class Environment {
   static String addCard = '$apiUrl${dotenv.env['addCard']}';
   static String debit = '$apiUrl${dotenv.env['debit']}';
   static String payment = '$apiUrl${dotenv.env['payment']}';
+  static String publicidadRelated = '$apiUrl${dotenv.env['publicidadRelated']}';
 }

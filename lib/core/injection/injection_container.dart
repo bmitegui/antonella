@@ -16,7 +16,6 @@ import 'package:antonella/features/service/domain/usecases/get_promotions_use_ca
 import 'package:antonella/features/service/domain/usecases/usecases.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/promotions/promotion_bloc.dart';
-import 'package:antonella/features/service/presentation/promotion_cart/promotion_cart_bloc.dart';
 import 'package:antonella/features/user/data/datasources/datasources.dart';
 import 'package:antonella/features/user/data/repositories/repositories.dart';
 import 'package:antonella/features/user/domain/repositories/repositories.dart';
@@ -153,9 +152,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton<DebitCardUseCase>(
       () => DebitCardUseCase(userRepository: sl<UserRepository>()));
-  
+
   sl.registerLazySingleton<GetCardsUseCase>(
       () => GetCardsUseCase(userRepository: sl<UserRepository>()));
+
+  sl.registerLazySingleton<GetPromotionsRelatedUseCase>(() =>
+      GetPromotionsRelatedUseCase(serviceRepository: sl<ServiceRepository>()));
 
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
@@ -216,7 +218,8 @@ Future<void> init() async {
   sl.registerLazySingleton<PromotionBloc>(
       () => PromotionBloc(getPromotionsUseCase: sl<GetPromotionsUseCase>()));
 
-  sl.registerLazySingleton<PromotionCartBloc>(() => PromotionCartBloc());
+  sl.registerLazySingleton<PromotionCartBloc>(() => PromotionCartBloc(
+      getPromotionsRelated: sl<GetPromotionsRelatedUseCase>()));
 
   sl.registerLazySingleton<NotificationsBloc>(() => NotificationsBloc(
       getNotificationsUseCase: sl<GetNotificationsUseCase>()));
@@ -233,9 +236,9 @@ Future<void> init() async {
   sl.registerLazySingleton<CardBloc>(() => CardBloc(
       addCardUseCase: sl<AddCardUseCase>(),
       debitCardUseCase: sl<DebitCardUseCase>()));
-  
-  sl.registerLazySingleton<CardsBloc>(() => CardsBloc(
-      getCardsUseCase: sl<GetCardsUseCase>()));
+
+  sl.registerLazySingleton<CardsBloc>(
+      () => CardsBloc(getCardsUseCase: sl<GetCardsUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

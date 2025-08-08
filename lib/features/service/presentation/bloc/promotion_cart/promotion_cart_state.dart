@@ -11,7 +11,6 @@ final class PromotionLoading extends PromotionCartState {}
 
 class PromotionCartLoaded extends PromotionCartState {
   final List<PromotionEntity> cartPromotions;
-
   PromotionCartLoaded({required this.cartPromotions});
 }
 

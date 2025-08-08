@@ -532,6 +532,33 @@ List<Map<String, dynamic>> groupProducts(
   return grouped.values.toList();
 }
 
+Map<String, List<String>> getSelectedIds() {
+  List<String> productsId = [];
+  List<String> servicesId = [];
+
+  final productState = sl<ProductsSelectedBloc>().state;
+  if (productState is ProductsSelectedLoaded) {
+    productsId = getUniqueProducts(productState.products)
+        .map((product) => product.id)
+        .toList();
+  }
+
+  final orderState = sl<OrdersBloc>().state;
+  if (orderState is OrdersLoaded) {
+    final ordersToConfirm = orderState.orders
+        .where((order) =>
+            order.clientStatus == ClientStatus.noConfirmado &&
+            order.orderStatus == OrderStatus.confirmado)
+        .toList();
+
+    servicesId = ordersToConfirm
+        .expand((p) => p.appointments.map((ap) => ap.serviceEntity.id))
+        .toList();
+  }
+
+  return {'products': productsId, 'services': servicesId};
+}
+
 Future<bool> isNotificationPermissionGranted() async {
   final status = await Permission.notification.status;
   return status.isGranted;
