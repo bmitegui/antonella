@@ -1,3 +1,5 @@
+import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/features/user/presentation/screens/card/card_main.dart';
 import 'package:flutter/material.dart';
 
 class PaymentMethod extends StatelessWidget {
@@ -29,6 +31,9 @@ class PaymentMethod extends StatelessWidget {
             const SizedBox(height: 16),
             metodoPagoOpcion("CRÉDITO/DÉBITO", enabled: false), // solo visual
             const SizedBox(height: 16),
+            Divider(color: Colors.grey.shade300),
+            const SizedBox(height: 16),
+            AddCard("AÑADIR TARJETA", context),
             Divider(color: Colors.grey.shade300),
             const SizedBox(height: 16),
             Row(children: [
@@ -72,5 +77,27 @@ class PaymentMethod extends StatelessWidget {
                   color: isSelected ? const Color(0xFFF44565) : Colors.black,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal))
         ]));
+  }
+
+  Widget AddCard(String text, BuildContext context) {
+    final bool isSelected =
+        metodo == text || (metodo == "TARJETA" && text == "CRÉDITO/DÉBITO");
+
+    return GestureDetector(
+      onTap: () => navigateWithSlideTransition(context, CardMain()),
+      child: Row(children: [
+          CircleAvatar(
+              backgroundColor: Colors.black,
+              radius: 8,
+              child: CircleAvatar(
+                  backgroundColor:
+                      isSelected ? const Color(0xFFF44565) : Colors.white,
+                  radius: 7)),
+          const SizedBox(width: 8),
+          Text(text,
+        style: TextStyle(
+          color: const Color(0xFFF44565),
+          fontWeight: FontWeight.bold))])
+    );
   }
 }
