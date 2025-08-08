@@ -2,7 +2,6 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/services_selected/services_selected_bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/appointment/info_order_container.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_services_new_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

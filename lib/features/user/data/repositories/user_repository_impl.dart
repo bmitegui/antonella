@@ -169,4 +169,36 @@ class UserRepositoryImpl implements UserRepository {
               gmail: gmail);
         });
   }
+
+  @override
+  Future<Either<Failure, void>> addCard(
+      {required String userId,
+      required String number,
+      required int expiryMonth,
+      required int expiryYear,
+      required String cvc}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await userRemoteDataSource.addCard(
+              userId: userId,
+              number: number,
+              expiryMonth: expiryMonth,
+              expiryYear: expiryYear,
+              cvc: cvc);
+        });
+  }
+
+  @override
+  Future<Either<Failure, void>> debitCard(
+      {required String userId,
+      required String orderId,
+      required double taxableAmount}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await userRemoteDataSource.debitCard(
+              userId: userId, orderId: orderId, taxableAmount: taxableAmount);
+        });
+  }
 }

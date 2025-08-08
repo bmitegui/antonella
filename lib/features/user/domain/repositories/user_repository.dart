@@ -40,4 +40,14 @@ abstract class UserRepository {
       required String? gmail});
   Future<Either<Failure, List<UserModel>>> getEmployees(
       {required ServiceType serviceType});
+  Future<Either<Failure, void>> addCard(
+      {required String userId,
+      required String number,
+      required int expiryMonth,
+      required int expiryYear,
+      required String cvc});
+  Future<Either<Failure, void>> debitCard(
+      {required String userId,
+      required String orderId,
+      required double taxableAmount});
 }

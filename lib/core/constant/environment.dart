@@ -27,4 +27,6 @@ class Environment {
   static String notifications = '$apiUrl${dotenv.env['notifications']}';
   static String admin = '$apiUrl${dotenv.env['admin']}';
   static String userFilter = '$apiUrl${dotenv.env['userFilter']}';
+  static String addCard = '$apiUrl${dotenv.env['addCard']}';
+  static String debit = '$apiUrl${dotenv.env['debit']}'; 
 }
