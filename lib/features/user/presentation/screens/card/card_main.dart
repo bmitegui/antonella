@@ -1,18 +1,25 @@
+import 'package:antonella/core/injection/injection_container.dart';
+import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
+import 'package:antonella/features/user/presentation/bloc/card/card_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/cards/cards_bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:antonella/features/user/presentation/widgets/card_text_format_widget.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './card_alert_dialog.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import './card_input_formatter.dart';
 import './card_month_input_formatter.dart';
 import './master_card.dart';
 import './my_painter.dart';
 
 class CardMain extends StatefulWidget {
-  const CardMain({Key? key}) : super(key: key);
+  const CardMain({super.key});
 
   @override
   State<CardMain> createState() => _CardMainState();
@@ -44,17 +51,15 @@ class _CardMainState extends State<CardMain> {
                   fill: Fill.fillFront,
                   direction: FlipDirection.HORIZONTAL,
                   controller: flipCardController,
-                  onFlip: () {
-                  },
+                  onFlip: () {},
                   flipOnTouch: false,
-                  onFlipDone: (isFront) {
-                  },
+                  onFlipDone: (isFront) {},
                   front: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: buildCreditCard(
                       color: kDarkBlue,
                       cardExpiration: cardExpiryDateController.text.isEmpty
-                          ? "08/2022"
+                          ? "XX/XXXX"
                           : cardExpiryDateController.text,
                       cardHolder: cardHolderNameController.text.isEmpty
                           ? "Card Holder"
@@ -99,7 +104,7 @@ class _CardMainState extends State<CardMain> {
                             CustomPaint(
                               painter: MyPainter(),
                               child: SizedBox(
-                                height: 35,
+                                height: 45,
                                 width: MediaQuery.of(context).size.width / 1.2,
                                 child: Align(
                                   alignment: Alignment.centerRight,
@@ -107,7 +112,7 @@ class _CardMainState extends State<CardMain> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       cardCvvController.text.isEmpty
-                                          ? "322"
+                                          ? "XXX"
                                           : cardCvvController.text,
                                       style: const TextStyle(
                                         color: Colors.black,
@@ -134,23 +139,44 @@ class _CardMainState extends State<CardMain> {
                   )),
               const SizedBox(height: 40),
               CardTextFormatWidget(
-                textController: cardNumberController, 
-                hintText: 'Card Number', 
-                prefixIcon: Icon(
-                  Icons.credit_card,
-                  color: Colors.grey,
-                ),
-                formatters: [
+                  onChanged: (value) {
+                    var text = value.replaceAll(RegExp(r'\s+\b|\b\s'), ' ');
+                    setState(() {
+                      cardNumberController.value = cardNumberController.value
+                          .copyWith(
+                              text: text,
+                              selection:
+                                  TextSelection.collapsed(offset: text.length),
+                              composing: TextRange.empty);
+                    });
+                  },
+                  textController: cardNumberController,
+                  hintText: 'Card Number',
+                  prefixIcon: Icon(
+                    Icons.credit_card,
+                    color: Colors.grey,
+                  ),
+                  formatters: [
                     FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(16),
                     CardInputFormatter(),
-                  ], 
-                width: MediaQuery.of(context).size.width / 1.12
-              ),
+                  ],
+                  width: MediaQuery.of(context).size.width / 1.12),
               const SizedBox(height: 12),
               CardTextFormatWidget(
-                textController: cardHolderNameController, 
-                hintText: 'Full Name', 
+                textController: cardHolderNameController,
+                onChanged: (value) {
+                  var text = value.replaceAll(RegExp(r'\s+\b|\b\s'), ' ');
+                  setState(() {
+                    cardHolderNameController.value =
+                        cardHolderNameController.value.copyWith(
+                            text: text,
+                            selection:
+                                TextSelection.collapsed(offset: text.length),
+                            composing: TextRange.empty);
+                  });
+                },
+                hintText: 'Full Name',
                 prefixIcon: Icon(
                   Icons.person,
                   color: Colors.grey,
@@ -159,7 +185,6 @@ class _CardMainState extends State<CardMain> {
                 type: TextInputType.name,
               ),
               const SizedBox(height: 12),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -257,17 +282,8 @@ class _CardMainState extends State<CardMain> {
                 ],
               ),
               const SizedBox(height: 20 * 3),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.pink,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  minimumSize:
-                      Size(MediaQuery.of(context).size.width / 1.12, 55),
-                ),
-                onPressed: () {
+              BlocConsumer<CardBloc, CardState>(listener: (context, state) {
+                if (state is CardLoaded) {
                   Future.delayed(const Duration(milliseconds: 300), () {
                     cardCvvController.clear();
                     cardExpiryDateController.clear();
@@ -275,15 +291,62 @@ class _CardMainState extends State<CardMain> {
                     cardNumberController.clear();
                     flipCardController.toggleCard();
                   });
-                },
-                child: Text(
-                  'Add Card'.toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+                  setState(() {});
+                  showTopSnackBar(
+                      Overlay.of(context),
+                      const CustomSnackBar.success(
+                          message: 'Tarjeta añadida correctamente'));
+
+                  final stateUser = sl<UserBloc>().state;
+                  if (stateUser is UserAuthenticated) {
+                    context
+                        .read<CardsBloc>()
+                        .add(GetCardsEvent(userId: stateUser.user.id));
+                  }
+                } else if (state is CardError) {
+                  showTopSnackBar(
+                      Overlay.of(context),
+                      CustomSnackBar.error(
+                          message: mapFailureToMessage(
+                              context: context, failure: state.failure)));
+                }
+              }, builder: (context, state) {
+                return (state is AddCardLoading)
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.pink,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          minimumSize: Size(
+                              MediaQuery.of(context).size.width / 1.12, 55),
+                        ),
+                        onPressed: () {
+                          final stateUser = sl<UserBloc>().state;
+                          if (stateUser is UserAuthenticated) {
+                            final date =
+                                cardExpiryDateController.text.split('/');
+
+                            context.read<CardBloc>().add(AddCardEvent(
+                                userId: stateUser.user.id,
+                                number: cardNumberController.text
+                                    .replaceAll(RegExp(r"\s+"), ""),
+                                expiryMonth: int.parse(date[0]),
+                                expiryYear: int.parse('20${date[1]}'),
+                                cvc: cardCvvController.text));
+                          }
+                        },
+                        child: Text(
+                          'Añadir tarjeta'.toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      );
+              })
             ],
           ),
         ),

@@ -10,19 +10,19 @@ class DebitCardUseCase implements UseCase<void, DebitCardParams> {
   @override
   Future<Either<Failure, void>> call(DebitCardParams debitCardParams) async {
     return await userRepository.debitCard(
-        userId: debitCardParams.userId,
+        cardId: debitCardParams.cardId,
         orderId: debitCardParams.orderId,
         taxableAmount: debitCardParams.taxableAmount);
   }
 }
 
 class DebitCardParams {
-  final String userId;
+  final String cardId;
   final String orderId;
   final double taxableAmount;
 
   DebitCardParams(
-      {required this.userId,
+      {required this.cardId,
       required this.orderId,
       required this.taxableAmount});
 }

@@ -191,14 +191,24 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<Failure, void>> debitCard(
-      {required String userId,
+      {required String cardId,
       required String orderId,
       required double taxableAmount}) async {
     return await handleNetworkCall(
         networkInfo: networkInfo,
         operation: () async {
           await userRemoteDataSource.debitCard(
-              userId: userId, orderId: orderId, taxableAmount: taxableAmount);
+              cardId: cardId, orderId: orderId, taxableAmount: taxableAmount);
+        });
+  }
+
+  @override
+  Future<Either<Failure, List<CardModel>>> getCards(
+      {required String userId}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await userRemoteDataSource.getCards(userId: userId);
         });
   }
 }

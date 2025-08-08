@@ -47,7 +47,10 @@ abstract class UserRepository {
       required int expiryYear,
       required String cvc});
   Future<Either<Failure, void>> debitCard(
-      {required String userId,
+      {required String cardId,
       required String orderId,
       required double taxableAmount});
+    Future<Either<Failure, List<CardModel>>> getCards(
+      {required String userId});
+
 }

@@ -100,9 +100,12 @@ class FirebaseMessagingService {
     final notificationData = message.notification;
     if (notificationData != null) {
       if (message.data['redirect_to'] == 'CHAT') {
+        final type = message.data['type'];
         sl<MessagesBloc>().add(UpdateMessagesEvent(
-            content: notificationData.body!,
-            type: message.data['type'],
+            content: type == "IMAGE"
+                ? message.data['content_image']
+                : notificationData.body,
+            type: type,
             userId: message.data['user_id'],
             messageId: message.data['message_id'],
             senderId: message.data['sender_id']));

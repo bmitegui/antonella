@@ -49,9 +49,10 @@ abstract class UserRemoteDataSource {
       required int expiryYear,
       required String cvc});
   Future<void> debitCard(
-      {required String userId,
+      {required String cardId,
       required String orderId,
       required double taxableAmount});
+  Future<List<CardModel>> getCards({required String userId});
 }
 
 class UserRemoteDataSourceImpl
@@ -273,11 +274,11 @@ class UserRemoteDataSourceImpl
 
   @override
   Future<void> debitCard(
-      {required String userId,
+      {required String cardId,
       required String orderId,
       required double taxableAmount}) async {
     final data = {
-      "user_id": userId,
+      "card_id": cardId,
       "order_id": orderId,
       "taxable_amount": taxableAmount
     };
@@ -285,5 +286,21 @@ class UserRemoteDataSourceImpl
         request: () =>
             client.post(Environment.debit, data: data, options: defaultOptions),
         onSuccess: (_) {});
+  }
+
+  @override
+  Future<List<CardModel>> getCards({required String userId}) async {
+    final url = '${Environment.payment}?user_id=$userId';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) {
+          if (data is! List) {
+            return [];
+          } else {
+            return data
+                .map<CardModel>((cardData) => CardModel.fromJson(cardData))
+                .toList();
+          }
+        });
   }
 }

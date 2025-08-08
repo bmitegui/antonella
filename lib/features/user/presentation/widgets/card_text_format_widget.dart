@@ -55,15 +55,7 @@ class _CardTextFormatWidgetState extends State<CardTextFormatWidget> {
             ),
             prefixIcon: widget.prefixIcon),
         inputFormatters: widget.formatters,
-        onChanged: (widget.onChanged == null) ? (value) {
-          var text = value.replaceAll(RegExp(r'\s+\b|\b\s'), ' ');
-          setState(() {
-            widget.textController.value = widget.textController.value.copyWith(
-                text: text,
-                selection: TextSelection.collapsed(offset: text.length),
-                composing: TextRange.empty);
-          });
-        } : widget.onChanged,
+        onChanged: widget.onChanged,
       ),
     );
   }

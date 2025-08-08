@@ -20,13 +20,13 @@ class CardBloc extends Bloc<CardEvent, CardState> {
       DebitCardEvent event, Emitter<CardState> emit) async {
     emit(CardLoading());
     final failureOrEmployees = await debitCardUseCase(DebitCardParams(
-        userId: event.userId,
+        cardId: event.cardId,
         orderId: event.orderId,
         taxableAmount: event.taxableAmount));
 
     failureOrEmployees.fold((failure) {
       emit(CardError(failure: failure));
-    }, (employees) {
+    }, (data) {
       emit(CardLoaded());
     });
   }
@@ -43,7 +43,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
 
     failureOrEmployees.fold((failure) {
       emit(CardError(failure: failure));
-    }, (employees) {
+    }, (data) {
       emit(CardLoaded());
     });
   }

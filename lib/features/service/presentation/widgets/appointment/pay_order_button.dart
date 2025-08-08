@@ -5,6 +5,7 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
 import 'package:antonella/features/service/presentation/bloc/pay_order/pay_order_bloc.dart';
+import 'package:antonella/features/user/domain/entities/card_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/card/card_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,12 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 class PayOrderButton extends StatelessWidget {
   final String metodo;
   final OrderEntity orderEntity;
+  final CardEntity? selectedCard;
   const PayOrderButton(
-      {super.key, required this.metodo, required this.orderEntity});
+      {super.key,
+      required this.metodo,
+      required this.orderEntity,
+      this.selectedCard});
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +75,17 @@ class PayOrderButton extends StatelessWidget {
                             orderId: orderEntity.id,
                             paymentType: stringToPaymentType(metodo)));
                       } else {
+                        if (selectedCard == null) {
+                          showTopSnackBar(
+                              Overlay.of(context),
+                              CustomSnackBar.error(
+                                  message: "Seleccione una tarjeta"));
+                          return;
+                        }
                         final userState = sl<UserBloc>().state;
                         if (userState is UserAuthenticated) {
                           context.read<CardBloc>().add(DebitCardEvent(
-                              userId: userState.user.id,
+                              cardId: selectedCard!.cardId,
                               orderId: orderEntity.id,
                               taxableAmount:
                                   getTotalBasePrice(orderEntity.appointments)));

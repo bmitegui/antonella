@@ -22,12 +22,12 @@ final class AddCardEvent extends CardEvent {
 }
 
 final class DebitCardEvent extends CardEvent {
-  final String userId;
+  final String cardId;
   final String orderId;
   final double taxableAmount;
 
   DebitCardEvent(
-      {required this.userId,
+      {required this.cardId,
       required this.orderId,
       required this.taxableAmount});
 }
