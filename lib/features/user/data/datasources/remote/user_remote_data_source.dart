@@ -42,6 +42,16 @@ abstract class UserRemoteDataSource {
       required String? gmail});
   Future<void> signOut();
   Future<List<UserModel>> getEmployees({required ServiceType serviceType});
+  Future<void> addCard(
+      {required String userId,
+      required String number,
+      required int expiryMonth,
+      required int expiryYear,
+      required String cvc});
+  Future<void> debitCard(
+      {required String userId,
+      required String orderId,
+      required double taxableAmount});
 }
 
 class UserRemoteDataSourceImpl
@@ -239,5 +249,41 @@ class UserRemoteDataSourceImpl
         request: () =>
             client.put(Environment.signUp, data: data, options: defaultOptions),
         onSuccess: (data) => UserModel.fromJson(data));
+  }
+
+  @override
+  Future<void> addCard(
+      {required String userId,
+      required String number,
+      required int expiryMonth,
+      required int expiryYear,
+      required String cvc}) async {
+    final data = {
+      "user_id": userId,
+      "number": number,
+      "expiry_month": expiryMonth,
+      "expiry_year": expiryYear,
+      "cvc": cvc
+    };
+    return await handleRequest(
+        request: () => client.post(Environment.addCard,
+            data: data, options: defaultOptions),
+        onSuccess: (_) {});
+  }
+
+  @override
+  Future<void> debitCard(
+      {required String userId,
+      required String orderId,
+      required double taxableAmount}) async {
+    final data = {
+      "user_id": userId,
+      "order_id": orderId,
+      "taxable_amount": taxableAmount
+    };
+    return await handleRequest(
+        request: () =>
+            client.post(Environment.debit, data: data, options: defaultOptions),
+        onSuccess: (_) {});
   }
 }

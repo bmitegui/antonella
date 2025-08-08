@@ -9,12 +9,13 @@ extension DioResponseExtensions on Response {
       return parser(data['data']);
     } else {
       final exception = data['error'];
-      throw getException(exception: exception);
+      final message = data['message'];
+      throw getException(exception: exception, message: message);
     }
   }
 }
 
-Exception getException({required String exception}) {
+Exception getException({required String exception, required String? message}) {
   return (exception == 'Exception')
       ? IncompleteFieldsException()
       : (exception == 'ModelNotFoundException')
@@ -36,7 +37,7 @@ Exception getException({required String exception}) {
                                       : (exception ==
                                               'InvalidUserPasswordException')
                                           ? InvalidUserPasswordException()
-                                          : ServerException();
+                                          : ServerException(message: message);
 }
 
 mixin RemoteRequestHelper {

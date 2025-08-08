@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Pago Nuvei</title>
+  <script src="https://cdn.safecharge.com/safecharge_resources/v1/websdk/safecharge.js"></script>
+</head>
+<body>
+  <h2>Procesando pago...</h2>
+
+  <script>
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    async function startPayment() {
+      const sessionToken = getQueryParam("sessionToken");
+
+      const sc = SafeCharge({
+        env: "int", // o "prod" en producción
+        merchantId: "TU_MERCHANT_ID",
+        merchantSiteId: "TU_MERCHANT_SITE_ID"
+      });
+
+      try {
+        const result = await sc.payment({
+          sessionToken,
+          paymentOption: { card: {} } // Cambiar si quieres otro método
+        });
+
+        if (window.flutter_inappwebview) {
+          window.flutter_inappwebview.callHandler("onPaymentResult", result);
+        }
+      } catch (err) {
+        if (window.flutter_inappwebview) {
+          window.flutter_inappwebview.callHandler("onPaymentResult", { error: err.message });
+        }
+      }
+    }
+
+    startPayment();
+  </script>
+</body>
+</html>

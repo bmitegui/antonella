@@ -144,9 +144,15 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetEmployeesUseCase>(
       () => GetEmployeesUseCase(userRepository: sl<UserRepository>()));
-  
+
   sl.registerLazySingleton<GetProfileUserUseCase>(
       () => GetProfileUserUseCase(userRepository: sl<UserRepository>()));
+
+  sl.registerLazySingleton<AddCardUseCase>(
+      () => AddCardUseCase(userRepository: sl<UserRepository>()));
+
+  sl.registerLazySingleton<DebitCardUseCase>(
+      () => DebitCardUseCase(userRepository: sl<UserRepository>()));
 
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
@@ -217,9 +223,13 @@ Future<void> init() async {
 
   sl.registerLazySingleton<EmployeesBloc>(
       () => EmployeesBloc(getEmployeesUseCase: sl<GetEmployeesUseCase>()));
-  
-  sl.registerLazySingleton<ProfileUserBloc>(
-      () => ProfileUserBloc(getProfileUserUseCase: sl<GetProfileUserUseCase>()));
+
+  sl.registerLazySingleton<ProfileUserBloc>(() =>
+      ProfileUserBloc(getProfileUserUseCase: sl<GetProfileUserUseCase>()));
+
+  sl.registerLazySingleton<CardBloc>(() => CardBloc(
+      addCardUseCase: sl<AddCardUseCase>(),
+      debitCardUseCase: sl<DebitCardUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

@@ -114,7 +114,7 @@ class InfoServicesNewFormat extends StatelessWidget {
                             const Icon(Icons.email,
                                 size: 16, color: Colors.black54),
                             const SizedBox(width: 6),
-                            Text(user?.email ?? "Sin correo"),
+                            Text(user.email),
                             const Spacer(),
                             const Icon(Icons.access_time,
                                 size: 16, color: Colors.black54),
