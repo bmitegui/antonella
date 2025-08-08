@@ -7,6 +7,7 @@ import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/product/presentation/bloc/bloc.dart';
+import 'package:antonella/features/product/presentation/options_pay_shopping_cart_screen.dart';
 import 'package:antonella/features/product/presentation/quantity_selection_widget.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
@@ -28,13 +29,15 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   bool initialized = false;
   final Set<String> selectedProductIds = {};
   final Set<String> selectedPromotionIds = {};
-
+  final Set<String> selectedServiceIds = {};
+  Map<String, double> dataTotal = {};
 
   @override
   void initState() {
     super.initState();
     Map<String, List<String>> data = getSelectedIds();
-    sl<PromotionCartBloc>().add(GetPromotionRelatedEvent(servicesId: data['services']!, productsId: data['products']!));
+    sl<PromotionCartBloc>().add(GetPromotionRelatedEvent(
+        servicesId: data['services']!, productsId: data['products']!));
   }
 
   @override
@@ -47,17 +50,34 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
             padding: const EdgeInsets.all(16),
             child: BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
                 builder: (context, state) {
-              return FilledButton(
-                  onPressed: () {
-                    // if (dataTotal[]) {
-                    //   final selected = state.products
-                    //       .where((p) => selectedProductIds.contains(p.id))
-                    //       .toList();
-                    //   navigateWithSlideTransition(context,
-                    //       OptionsPayShoppingCartScreen(products: selected));
-                    // }
-                  },
-                  child: Text(texts.pay));
+              return BlocBuilder<OrdersBloc, OrdersState>(
+                  builder: (context, orderState) {
+                return FilledButton(
+                    onPressed: () {
+                      if (state is ProductsSelectedLoaded &&
+                          orderState is OrdersLoaded) {
+                        final productsSelected = state.products
+                            .where((p) => selectedProductIds.contains(p.id))
+                            .toList();
+
+                        final servicesSelected = orderState.orders
+                            .where((o) =>
+                                o.clientStatus == ClientStatus.noConfirmado &&
+                                o.orderStatus == OrderStatus.confirmado &&
+                                selectedServiceIds.contains(o.id))
+                            .toList();
+
+                        navigateWithSlideTransition(
+                          context,
+                          OptionsPayShoppingCartScreen(
+                              products: productsSelected,
+                              services: servicesSelected,
+                              total: dataTotal['total']!),
+                        );
+                      }
+                    },
+                    child: Text(texts.pay));
+              });
             })),
         body: BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
             builder: (context, productState) {
@@ -70,14 +90,19 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                   promotionState is PromotionCartLoaded) {
                 final ordersToConfirm = orderState.orders
                     .where((order) =>
-                        order.clientStatus == ClientStatus.noConfirmado && order.orderStatus == OrderStatus.confirmado)
+                        order.clientStatus == ClientStatus.noConfirmado &&
+                        order.orderStatus == OrderStatus.confirmado)
                     .toList();
+
+                print(ordersToConfirm.length);
 
                 if (!initialized &&
                     selectedProductIds.isEmpty &&
-                    productState.products.isNotEmpty) {
+                    selectedServiceIds.isEmpty) {
+                  print('Se ejecuta');
                   selectedProductIds
                       .addAll(productState.products.map((p) => p.id));
+                  selectedServiceIds.addAll(ordersToConfirm.map((o) => o.id));
                   initialized = true;
                 }
 
@@ -88,12 +113,13 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 final selectedPromotions = promotionState.cartPromotions
                     .where((p) => selectedPromotionIds.contains(p.id))
                     .toList();
-                
+
                 final appointments = ordersToConfirm
+                    .where((o) => selectedServiceIds.contains(o.id))
                     .expand((p) => p.appointments.map((ap) => ap))
                     .toList();
 
-                final dataTotal = calculateTotals(
+                dataTotal = calculateTotals(
                     selectedProducts: selectedProducts,
                     selectedPromotions: selectedPromotions,
                     appointments: appointments);
@@ -144,15 +170,37 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                                         .titleMedium),
                                 const SizedBox(height: 16),
                                 ListView.separated(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: ordersToConfirm.length,
-                                    separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 16),
-                                    itemBuilder: (context, index) =>
-                                        InfoServicesNewFormat(
-                                            order: ordersToConfirm[index],
-                                            canPay: false))
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: ordersToConfirm.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 16),
+                                  itemBuilder: (context, index) {
+                                    final order = ordersToConfirm[index];
+                                    return Row(
+                                      children: [
+                                        Checkbox(
+                                          value: selectedServiceIds
+                                              .contains(order.id),
+                                          onChanged: (bool? value) {
+                                            setState(() {
+                                              if (value == true) {
+                                                selectedServiceIds
+                                                    .add(order.id);
+                                              } else {
+                                                selectedServiceIds
+                                                    .remove(order.id);
+                                              }
+                                            });
+                                          },
+                                        ),
+                                        Expanded(
+                                            child: InfoServicesNewFormat(
+                                                order: order, canPay: false)),
+                                      ],
+                                    );
+                                  },
+                                )
                               ],
                               if (promotionState.cartPromotions.isNotEmpty) ...[
                                 const SizedBox(height: 16),

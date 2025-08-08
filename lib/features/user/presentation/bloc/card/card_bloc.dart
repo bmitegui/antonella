@@ -1,4 +1,6 @@
 import 'package:antonella/core/error/error.dart';
+import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/user/domain/usecases/add_card_use_case.dart';
 import 'package:antonella/features/user/domain/usecases/debit_card_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +16,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
       : super(CardInitial()) {
     on<AddCardEvent>(_onAddCardEventRequest);
     on<DebitCardEvent>(_onDebitCardEventRequest);
+    on<DebitCardsEvent>(_onDebitCardsEventRequest);
   }
 
   Future<void> _onDebitCardEventRequest(
@@ -46,5 +49,26 @@ class CardBloc extends Bloc<CardEvent, CardState> {
     }, (data) {
       emit(CardLoaded());
     });
+  }
+
+  Future<void> _onDebitCardsEventRequest(
+      DebitCardsEvent event, Emitter<CardState> emit) async {
+    emit(CardLoading());
+    for (final order in event.orders) {
+      final failureOrEmployees = await debitCardUseCase(DebitCardParams(
+        cardId: event.cardId,
+        orderId: order.id,
+        taxableAmount: getTotalBasePrice(order.appointments),
+      ));
+
+      if (failureOrEmployees.isLeft()) {
+        failureOrEmployees.fold((failure) {
+          emit(CardError(failure: failure));
+        }, (_) {});
+        return;
+      }
+    }
+
+    emit(CardLoaded());
   }
 }

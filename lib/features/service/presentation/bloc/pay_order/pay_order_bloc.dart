@@ -11,6 +11,8 @@ class PayOrderBloc extends Bloc<PayOrderEvent, PayOrderState> {
 
   PayOrderBloc({required this.payOrderUseCase}) : super(PayOrderInitial()) {
     on<PagarOrdenEvent>(_onPagarOrdenEventRequest);
+        on<PagarVariasOrdenesEvent>(_onPagarVariasOrdenesEventRequest);
+
   }
 
   Future<void> _onPagarOrdenEventRequest(
@@ -24,4 +26,27 @@ class PayOrderBloc extends Bloc<PayOrderEvent, PayOrderState> {
       emit(PayOrderLoaded());
     });
   }
+
+  Future<void> _onPagarVariasOrdenesEventRequest(
+      PagarVariasOrdenesEvent event, Emitter<PayOrderState> emit) async {
+    emit(PayOrderLoading());
+
+    for (final orderId in event.orderIds) {
+      final failureOrSuccess = await payOrderUseCase(
+        PayOrderParams(orderId: orderId.id, paymentType: event.paymentType),
+      );
+
+      if (failureOrSuccess.isLeft()) {
+        // Si falla alguna orden, emite error y termina
+        failureOrSuccess.fold((failure) {
+          emit(PayOrderError(failure: failure));
+        }, (_) {});
+        return;
+      }
+    }
+
+    emit(PayOrderLoaded());
+  }
+
+  
 }

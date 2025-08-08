@@ -31,3 +31,9 @@ final class DebitCardEvent extends CardEvent {
       required this.orderId,
       required this.taxableAmount});
 }
+
+class DebitCardsEvent extends CardEvent {
+  final String cardId;
+  final List<OrderEntity> orders; 
+  DebitCardsEvent({required this.cardId, required this.orders});
+}

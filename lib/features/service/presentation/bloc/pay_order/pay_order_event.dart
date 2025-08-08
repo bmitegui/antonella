@@ -11,3 +11,10 @@ final class PagarOrdenEvent extends PayOrderEvent {
   final PaymentType paymentType;
   PagarOrdenEvent({required this.orderId, required this.paymentType});
 }
+
+class PagarVariasOrdenesEvent extends PayOrderEvent {
+  final List<OrderEntity> orderIds;
+  final PaymentType paymentType;
+
+  PagarVariasOrdenesEvent({required this.orderIds, required this.paymentType});
+}

@@ -362,13 +362,11 @@ class ServiceRemoteDataSourceImpl
   Future<List<PromotionEntity>> getPromotionsRelated(
       {required List<String> servicesId,
       required List<String> productsId}) async {
-    final data = {"services_id": servicesId, "products_id": productsId};
-    print(data);
+    final data = {"services_id": [servicesId.first], "products_id": []};
     final rawResponse = await handleRequest(
         request: () => client.post(Environment.publicidadRelated,
             data: data, options: defaultOptions),
         onSuccess: (data) => data);
-    print(rawResponse);
     if (rawResponse is! List || rawResponse.isEmpty) {
       return [];
     }
@@ -389,7 +387,6 @@ class ServiceRemoteDataSourceImpl
       final promotion = PromotionModel.fromJson(promotionJson, serviceItems);
       promotions.add(promotion);
     }
-    print(promotions);
     return promotions;
   }
 }
