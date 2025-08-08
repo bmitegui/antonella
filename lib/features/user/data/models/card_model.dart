@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/user/domain/entities/entities.dart';
 
 class CardModel extends CardEntity {
@@ -12,6 +13,6 @@ class CardModel extends CardEntity {
         userId: json['user_id'],
         cardId: json['card_id'],
         hideNumber: json['number'],
-        type: json['type']);
+        type: stringToCardType(json['type']));
   }
 }

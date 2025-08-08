@@ -42,7 +42,7 @@ class AgendaTabBar extends StatelessWidget {
             tabs: [
               CustomTab(text: texts.done),
               CustomTab(
-                  text: texts.requieres_confirmation,
+                  text: "Por pagar",
                   number: pendingCount == 0 ? null : pendingCount),
               CustomTab(
                   text: texts.pending,
