@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class UserPhotoWidget extends StatelessWidget {
   final bool canEdit;
   const UserPhotoWidget({super.key, this.canEdit = false});
+  
 
   @override
   Widget build(BuildContext context) {
