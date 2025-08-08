@@ -96,7 +96,7 @@ class _ProductsBySubcategoryWidgetState
             bottom: 30,
             child: Center(
               child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios),
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.pink),
                 onPressed: _scrollLeft,
               ),
             ),
@@ -108,7 +108,7 @@ class _ProductsBySubcategoryWidgetState
             bottom: 30,
             child: Center(
               child: IconButton(
-                icon: const Icon(Icons.arrow_forward_ios),
+                icon:  Icon(Icons.arrow_forward_ios, color: Colors.pink),
                 onPressed: _scrollRight,
                 //color: Colors.white,
               ),

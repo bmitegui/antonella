@@ -63,11 +63,18 @@ class InfoAppointmentContainer extends StatelessWidget {
                         assetPath: imagesServiceCategory[
                             appointmentEntity.serviceEntity.type]!)),
                 const SizedBox(width: 16),
-                Text(
-                    getCategoryText(
-                        context: context,
-                        serviceCategory: appointmentEntity.serviceEntity.type),
-                    style: Theme.of(context).textTheme.titleMedium),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                        getCategoryText(
+                            context: context,
+                            serviceCategory: appointmentEntity.serviceEntity.type),
+                        style: Theme.of(context).textTheme.titleMedium),
+                    SizedBox(height: 8),
+                    Text(appointmentEntity.serviceEntity.name)
+                  ],
+                ),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios)
               ]),
