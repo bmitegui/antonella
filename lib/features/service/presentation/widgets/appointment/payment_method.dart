@@ -74,7 +74,8 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ),
                     child: Row(
                       children: [
-                        Text('${card.type} •••• ${card.hideNumber}'),
+                        Text(
+                            '${cardTypeToName(card.type)} •••• ${card.hideNumber}'),
                       ],
                     ),
                   ),

@@ -24,12 +24,11 @@ class ListOrdersToConfirm extends StatelessWidget {
 
         return ordersToConfirm.isNotEmpty
             ? ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.only(
+                    right: 16, left: 16, top: 8, bottom: 100),
                 itemCount: ordersToConfirm.length,
                 itemBuilder: (BuildContext context, int index) =>
                     InfoServicesNewFormat(
-                      
                   order: ordersToConfirm[index],
                 ),
                 separatorBuilder: (BuildContext context, int index) =>

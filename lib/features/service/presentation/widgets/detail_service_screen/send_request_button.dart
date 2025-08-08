@@ -35,10 +35,6 @@ class SendRequestButton extends StatelessWidget {
                             context: context,
                             failure: stateSendRequest.failure)));
               } else {
-                showTopSnackBar(
-                    Overlay.of(context),
-                    CustomSnackBar.success(
-                        maxLines: 3, message: texts.request_sent_succesfully));
                 context
                     .read<ServicesSelectedBloc>()
                     .add(ClearServicesSelectedEvent());
@@ -48,6 +44,10 @@ class SendRequestButton extends StatelessWidget {
                       .read<OrdersBloc>()
                       .add(GetOrdersEvent(id: userState.user.id));
                 }
+                showTopSnackBar(
+                    Overlay.of(context),
+                    CustomSnackBar.success(
+                        maxLines: 3, message: texts.request_sent_succesfully));
 
                 sendRequest();
               }

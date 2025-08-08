@@ -21,8 +21,8 @@ class ListOrdersNotConfirmed extends StatelessWidget {
 
         return unconfirmedOrders.isNotEmpty
             ? ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.only(
+                    right: 16, left: 16, top: 8, bottom: 100),
                 itemCount: unconfirmedOrders.length,
                 itemBuilder: (BuildContext context, int index) =>
                     InfoServicesNewFormat(

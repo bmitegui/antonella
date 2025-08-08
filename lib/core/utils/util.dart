@@ -10,6 +10,7 @@ import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
+import 'package:antonella/features/user/domain/entities/card_entity.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -319,6 +320,51 @@ ServiceType stringToType(String type) {
           : type == 'CABELLO'
               ? ServiceType.hair
               : ServiceType.makeup;
+}
+
+CardType stringToCardType(String cardType) {
+  return cardType == 'vi'
+      ? CardType.visa
+      : cardType == 'mc'
+          ? CardType.mastercard
+          : cardType == 'ax'
+              ? CardType.americanExpress
+              : cardType == 'di'
+                  ? CardType.diners
+                  : cardType == 'dc'
+                      ? CardType.discover
+                      : cardType == 'ms'
+                          ? CardType.maestro
+                          : cardType == 'cs'
+                              ? CardType.credisensa
+                              : cardType == 'so'
+                                  ? CardType.solidario
+                                  : cardType == 'up'
+                                      ? CardType.unionPay
+                                      : CardType.visa;
+}
+
+String cardTypeToName(CardType type) {
+  switch (type) {
+    case CardType.visa:
+      return 'Visa';
+    case CardType.mastercard:
+      return 'Mastercard';
+    case CardType.americanExpress:
+      return 'American Express';
+    case CardType.diners:
+      return 'Diners Club';
+    case CardType.discover:
+      return 'Discover';
+    case CardType.maestro:
+      return 'Maestro';
+    case CardType.credisensa:
+      return 'Credisensa';
+    case CardType.solidario:
+      return 'Banco Solidario';
+    case CardType.unionPay:
+      return 'UnionPay';
+  }
 }
 
 MessageType stringToMessageType(String type) {
