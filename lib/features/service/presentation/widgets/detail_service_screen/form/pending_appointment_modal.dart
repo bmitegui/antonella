@@ -88,19 +88,7 @@ class PendingAppointmentModal extends StatelessWidget {
                         Text(orderEntity.userEntity.name)
                       ]))
                 ]),
-                const SizedBox(height: 16),
-                Row(children: [
-                  Icon(Icons.email),
-                  SizedBox(width: 8),
-                  Text(orderEntity.userEntity.email)
-                ]),
-                const SizedBox(height: 8),
-                Row(children: [
-                  Icon(Icons.phone),
-                  SizedBox(width: 8),
-                  Text(orderEntity.userEntity.phoneNumber)
-                ]),
-                const SizedBox(height: 16),
+                const SizedBox(height: 40),
                 StartAppoinmentButton(
                   isAgendaScreen: isAgendaScreen,
                     orderEntity: orderEntity,
