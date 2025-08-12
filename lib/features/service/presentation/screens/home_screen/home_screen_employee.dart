@@ -19,7 +19,7 @@ class HomeScreenEmployee extends StatefulWidget {
 
 class _HomeScreenEmployeeState extends State<HomeScreenEmployee> {
   final List<String> labels = ['Semanal', 'Mensual', 'Anual'];
-  String selectedLabel = 'Semanal';
+  String selectedLabel = '';
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
