@@ -38,11 +38,11 @@ class FilterListAppointment extends StatelessWidget {
           if (value != null) {
             if (value == "Nombre") {
               // Ordenar por nombre
-              appointmentEntries.sort((a, b) => a.appointment.serviceEntity.id.compareTo(b.appointment.serviceEntity.id));
+              appointmentEntries.sort((a, b) => b.appointment.serviceEntity.name.compareTo(a.appointment.serviceEntity.name));
               
             } else if (value == "Precio") {
               // Ordenar por precio
-              appointmentEntries.sort((a, b) => a.appointment.basePrice!.compareTo(b.appointment.basePrice!));
+              appointmentEntries.sort((a, b) => b .appointment.basePrice!.compareTo(a.appointment.basePrice!));
             } else {
               // Ordenar por los mas recientes
               appointmentEntries.sort((a, b) => b.appointment.day.compareTo(a.appointment.day));
