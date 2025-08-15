@@ -34,7 +34,7 @@ class SendRequestButton extends StatelessWidget {
                         message: mapFailureToMessage(
                             context: context,
                             failure: stateSendRequest.failure)));
-              } else {
+              } else if (stateSendRequest is SendRequestLoaded) {
                 context
                     .read<ServicesSelectedBloc>()
                     .add(ClearServicesSelectedEvent());
@@ -109,7 +109,9 @@ class SendRequestButton extends StatelessWidget {
                                           employeeIds:
                                               stateServiceSelected.employeeIds!,
                                           services:
-                                              stateServiceSelected.services));
+                                              stateServiceSelected.services,
+                                          products:
+                                              stateServiceSelected.products));
                                 }
                               },
                               text: texts.submit_request)

@@ -45,8 +45,9 @@ class _QuantitySelectionWidgetState extends State<QuantitySelectionWidget> {
         child: Container(
             height: 40,
             decoration: BoxDecoration(
+              
                 border: Border.all(width: 1.0, color: Colors.grey),
-                borderRadius: BorderRadius.circular(3)),
+                borderRadius: BorderRadius.circular(8)),
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child:

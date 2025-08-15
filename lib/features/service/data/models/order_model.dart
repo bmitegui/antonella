@@ -13,7 +13,8 @@ class OrderModel extends OrderEntity {
       required super.paymentStatus,
       required super.paymentType,
       required super.appointments,
-      required super.userEntity});
+      required super.userEntity,
+      required super.iva});
 
   factory OrderModel.fromJson(Map<String, dynamic> json,
       List<AppointmentModel> appointments, UserModel userModel) {
@@ -27,6 +28,7 @@ class OrderModel extends OrderEntity {
         paymentStatus: stringToPaymentStatus(json['status']['payment_status']),
         paymentType: stringToPaymentType(json['status']['payment_type']),
         appointments: appointments,
-        userEntity: userModel);
+        userEntity: userModel,
+        iva: json['iva']);
   }
 }

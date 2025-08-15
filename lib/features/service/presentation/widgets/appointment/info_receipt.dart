@@ -20,12 +20,12 @@ class InfoReceipt extends StatelessWidget {
             Text(texts.billing_information,
                 style: Theme.of(context).textTheme.titleLarge!
                     .copyWith(fontWeight: FontWeight.bold)),
-            Spacer(),
-            Text(texts.change,
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: Color(0xFFF44565),
-                    decoration: TextDecoration.underline,
-                    decorationColor: Color(0xFFF44565)))
+            // Spacer(),
+            // Text(texts.change,
+            //     style: Theme.of(context).textTheme.titleSmall!.copyWith(
+            //         color: Color(0xFFF44565),
+            //         decoration: TextDecoration.underline,
+            //         decorationColor: Color(0xFFF44565)))
           ]),
           Divider(color: Colors.grey.shade300),
           const SizedBox(height: 8),

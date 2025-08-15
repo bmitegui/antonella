@@ -45,7 +45,7 @@ class _OrderScreenState extends State<OrderScreen> {
       }
       return CustomScaffold(
         leading: ArrowBack(),
-        text: clientConfirmed ? 'Cita Confirmada' : 'Cita',
+        text: clientConfirmed ? 'Orden Confirmada' : 'Orden',
         paddingScroll: EdgeInsets.all(16),
         child: Column(
           children: [

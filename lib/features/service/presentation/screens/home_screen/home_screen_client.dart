@@ -135,6 +135,7 @@ class _HomeScreenClientState extends State<HomeScreenClient>
   Widget build(BuildContext context) {
     return CustomScaffold(
         title: BienvenidaWidget(),
+        noPaddingTitle: true,
         body: Column(children: [
           HomeTabBar(controller: _tabController),
           const SizedBox(height: 16),

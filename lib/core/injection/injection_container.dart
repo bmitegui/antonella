@@ -186,8 +186,6 @@ Future<void> init() async {
   sl.registerLazySingleton<ProductsBloc>(
       () => ProductsBloc(getProductsUseCase: sl<GetProductsUseCase>()));
 
-  sl.registerLazySingleton<ProductsSelectedBloc>(() => ProductsSelectedBloc());
-
   sl.registerLazySingleton<EmployeeInfoBloc>(() =>
       EmployeeInfoBloc(getEmployeeInfoUseCase: sl<GetEmployeeInfoUseCase>()));
 

@@ -13,7 +13,7 @@ class ProgressSearchWidget extends StatelessWidget {
             ? 'Seleccione una fecha'
             : page == 3
                 ? 'Seleccione una hora'
-                : 'Confirme su cita';
+                : 'Confirme su orden';
     return page == 1
         ? Align(
             alignment: Alignment.center,

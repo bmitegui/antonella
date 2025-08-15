@@ -1,3 +1,4 @@
+import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/send_request_button.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class BottomButtonsSearchScreen extends StatelessWidget {
       {super.key,
       required this.currentPage,
       required this.nextPage,
-      required this.previousPage, required this.sendRequest});
+      required this.previousPage,
+      required this.sendRequest});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class BottomButtonsSearchScreen extends StatelessWidget {
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
       if (state is ServicesSelectedLoaded) {
-        if (state.services.isNotEmpty) {
+        if (state.services.isNotEmpty || state.products.isNotEmpty) {
           if (currentPage < 3) {
             return Container(
                 width: double.infinity,
@@ -35,7 +37,8 @@ class BottomButtonsSearchScreen extends StatelessWidget {
                       IconButton(
                           onPressed: nextPage,
                           icon: Row(children: [
-                            Text('Seleccionados(${state.services.length})',
+                            Text(
+                                'Seleccionados(${state.services.length + getUniqueProducts(state.products).length})',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

@@ -1,4 +1,5 @@
 import 'package:antonella/core/error/error.dart';
+import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/data/models/models.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:dartz/dartz.dart';
@@ -14,7 +15,8 @@ abstract class ServiceRepository {
       required String day,
       required String start,
       required Map<String, String> employeeIds,
-      required List<ServiceEntity> services});
+      required List<ServiceEntity> services,
+      required List<ProductEntity> products});
   Future<Either<Failure, List<OrderModel>>> getOrders({required String id});
   Future<Either<Failure, void>> payOrder(
       {required String orderId, required PaymentType paymentType});

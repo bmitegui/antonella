@@ -1,5 +1,6 @@
 import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/usecases/usecase.dart';
+import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
 import 'package:antonella/features/service/domain/repositories/service_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -16,7 +17,8 @@ class SendRequestUseCase implements UseCase<void, SendRequestParams> {
         day: sendRequestParams.day,
         start: sendRequestParams.start,
         employeeIds: sendRequestParams.employeeIds,
-        services: sendRequestParams.services);
+        services: sendRequestParams.services,
+        products: sendRequestParams.products);
   }
 }
 
@@ -26,11 +28,13 @@ class SendRequestParams {
   final String start;
   final Map<String, String> employeeIds;
   final List<ServiceEntity> services;
+  final List<ProductEntity> products;
 
   SendRequestParams(
       {required this.clientId,
       required this.day,
       required this.start,
       required this.employeeIds,
-      required this.services});
+      required this.services,
+      required this.products});
 }

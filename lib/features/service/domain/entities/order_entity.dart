@@ -22,6 +22,7 @@ class OrderEntity extends Equatable {
   final PaymentType paymentType;
   final List<AppointmentEntity> appointments;
   final UserEntity userEntity;
+  final double iva;
 
   const OrderEntity(
       {required this.id,
@@ -32,7 +33,8 @@ class OrderEntity extends Equatable {
       required this.paymentStatus,
       required this.paymentType,
       required this.appointments,
-      required this.userEntity});
+      required this.userEntity,
+      required this.iva});
 
   @override
   List<Object?> get props => [id];

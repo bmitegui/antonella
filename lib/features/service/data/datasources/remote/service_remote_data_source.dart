@@ -3,6 +3,7 @@ import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/data/models/models.dart';
 import 'package:antonella/features/service/data/models/promotion_model.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
@@ -24,7 +25,8 @@ abstract class ServiceRemoteDataSource {
       required String day,
       required String start,
       required Map<String, String> employeeIds,
-      required List<ServiceEntity> services});
+      required List<ServiceEntity> services,
+      required List<ProductEntity> products});
   Future<void> payOrder(
       {required String orderId, required PaymentType paymentType});
   Future<List<QuestionModel>> getFormDone(
@@ -99,7 +101,8 @@ class ServiceRemoteDataSourceImpl
       required String day,
       required String start,
       required Map<String, String> employeeIds,
-      required List<ServiceEntity> services}) async {
+      required List<ServiceEntity> services,
+      required List<ProductEntity> products}) async {
     try {
       final orderId = await createOrder(clientId: clientId);
       for (ServiceEntity service in services) {
@@ -111,6 +114,14 @@ class ServiceRemoteDataSourceImpl
             serviceId: service.id);
         await Future.wait(service.questions.map((q) => answer(
             clientId: clientId, question: q, serviceItemId: serviceItemId)));
+      }
+
+      final result = groupProducts(products, orderId);
+      for (Map<String, dynamic> data in result) {
+        await handleRequest(
+            request: () => client.post(Environment.orderProductItem,
+                options: defaultOptions, data: data),
+            onSuccess: (_) => {});
       }
     } on ServerException {
       rethrow;
@@ -241,11 +252,7 @@ class ServiceRemoteDataSourceImpl
 
     // Esperar todas las órdenes
     final allOrders = await Future.wait(futures);
-
-    // Filtrar las que tienen estado confirmado
-    // final confirmedOrders = allOrders
-    //     .where((order) => order.orderStatus == OrderStatus.confirmado)
-    //     .toList();
+    
     return allOrders;
   }
 
@@ -362,7 +369,10 @@ class ServiceRemoteDataSourceImpl
   Future<List<PromotionEntity>> getPromotionsRelated(
       {required List<String> servicesId,
       required List<String> productsId}) async {
-    final data = {"services_id": [servicesId.first], "products_id": []};
+    final data = {
+      "services_id": [servicesId.first],
+      "products_id": []
+    };
     final rawResponse = await handleRequest(
         request: () => client.post(Environment.publicidadRelated,
             data: data, options: defaultOptions),

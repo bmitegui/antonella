@@ -12,9 +12,11 @@ class CustomScaffold extends StatelessWidget {
   final bool? resizeToAvoidBottomInset;
   final Color? backgroundColor;
   final String? backgroundImageAsset;
+  final bool noPaddingTitle;
 
   const CustomScaffold({
     super.key,
+    this.noPaddingTitle = false,
     this.resizeToAvoidBottomInset,
     this.title,
     this.text,
@@ -58,11 +60,17 @@ class CustomScaffold extends StatelessWidget {
               leading: leading,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: title ??
-                  Text(
-                    text ?? '',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
+              title: title != null
+                  ? null
+                  : Text(text ?? '',
+                      style: Theme.of(context).textTheme.titleMedium),
+              flexibleSpace: title != null
+                  ? Padding(
+                      padding: EdgeInsets.only(
+                          left: noPaddingTitle ? 16 : 52, right: 16.0, top: 16),
+                      child: Align(alignment: Alignment.center, child: title),
+                    )
+                  : null,
             )
           : null,
       body: content,

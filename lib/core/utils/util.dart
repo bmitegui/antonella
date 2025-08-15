@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
-import 'package:antonella/features/product/presentation/bloc/products_selected/products_selected_bloc.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/features/service/domain/entities/notification_entity.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
@@ -536,13 +535,6 @@ Map<String, List<String>> getSelectedIds() {
   List<String> productsId = [];
   List<String> servicesId = [];
 
-  final productState = sl<ProductsSelectedBloc>().state;
-  if (productState is ProductsSelectedLoaded) {
-    productsId = getUniqueProducts(productState.products)
-        .map((product) => product.id)
-        .toList();
-  }
-
   final orderState = sl<OrdersBloc>().state;
   if (orderState is OrdersLoaded) {
     final ordersToConfirm = orderState.orders
@@ -592,10 +584,6 @@ TextStyle titleBlack54Style(BuildContext context) {
 }
 
 bool showIconCart() {
-  final stateProduct = sl<ProductsSelectedBloc>().state;
-  final productsEmpty = stateProduct is ProductsSelectedLoaded &&
-      stateProduct.products.isNotEmpty;
-
   final stateOrder = sl<OrdersBloc>().state;
 
   final ordersToConfirmEmpty = stateOrder is OrdersLoaded &&
@@ -604,5 +592,5 @@ bool showIconCart() {
           .toList()
           .isNotEmpty;
 
-  return productsEmpty || ordersToConfirmEmpty;
+  return ordersToConfirmEmpty;
 }

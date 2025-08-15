@@ -1,4 +1,5 @@
 import 'package:antonella/core/error/error.dart';
+import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/domain/usecases/send_request_use_case.dart';
 
@@ -22,7 +23,8 @@ class SendRequestBloc extends Bloc<SendRequestEvent, SendRequestState> {
         day: event.day,
         start: event.start,
         employeeIds: event.employeeIds,
-        services: event.services));
+        services: event.services,
+        products: event.products));
     failureOrSuccess.fold((failure) async {
       emit(SendRequestError(failure: failure));
     }, (data) async {

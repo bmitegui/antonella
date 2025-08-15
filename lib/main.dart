@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<ServiceFormBloc>()),
           BlocProvider(create: (context) => di.sl<SendRequestBloc>()),
           BlocProvider(create: (context) => di.sl<ProductsBloc>()),
-          BlocProvider(create: (context) => di.sl<ProductsSelectedBloc>()),
           BlocProvider(create: (context) => di.sl<EmployeeInfoBloc>()),
           BlocProvider(create: (context) => di.sl<OrdersBloc>()),
           BlocProvider(create: (context) => di.sl<CartBloc>()),

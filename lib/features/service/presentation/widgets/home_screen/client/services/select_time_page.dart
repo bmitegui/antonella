@@ -1,5 +1,4 @@
 import 'package:antonella/core/l10n/app_localizations.dart';
-import 'package:antonella/features/service/presentation/widgets/home_screen/client/services/progress_search_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/time_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +13,8 @@ class SelectTimePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-          const ProgressSearchWidget(page: 3),
           const SizedBox(height: 16),
-          Text(
-              texts.select_time_then_continue),
+          Text(texts.select_time_then_continue),
           const SizedBox(height: 32),
           TimePicker()
         ]));

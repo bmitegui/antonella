@@ -19,14 +19,42 @@ final class ServicesLoaded extends ServiceState {
 
   Map<String, List<ServiceEntity>> getDataBySubCategories() {
     Map<String, List<ServiceEntity>> data = {};
+
+    // Paso 1: agrupar
     for (var service in listServices.services) {
-      if (!data.containsKey(service.subtype)) {
-        data[service.subtype] = [service];
-      } else {
-        data[service.subtype]!.add(service);
-      }
+      data.putIfAbsent(service.subtype, () => []);
+      data[service.subtype]!.add(service);
     }
-    return data;
+
+    // Paso 2: definir orden deseado
+    final order = [
+      'TRATAMIENTOS',
+      'COLOR',
+      'CORTES',
+      'MANICURA',
+      'PEDICURA',
+      'EXTENSIONES',
+      'ESMALTADO',
+      'CORPORAL',
+      'SPA',
+      'MASAJE'
+    ];
+
+    // Paso 3: ordenar según el índice en `order`
+    final sortedEntries = data.entries.toList()
+      ..sort((a, b) {
+        final indexA = order.indexOf(a.key.toUpperCase());
+        final indexB = order.indexOf(b.key.toUpperCase());
+
+        // Si no está en el orden, lo mando al final
+        final safeA = indexA == -1 ? order.length : indexA;
+        final safeB = indexB == -1 ? order.length : indexB;
+
+        return safeA.compareTo(safeB);
+      });
+
+    // Paso 4: reconstruir manteniendo orden
+    return Map.fromEntries(sortedEntries);
   }
 }
 

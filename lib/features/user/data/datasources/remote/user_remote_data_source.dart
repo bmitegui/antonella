@@ -206,18 +206,18 @@ class UserRemoteDataSourceImpl
   @override
   Future<List<UserModel>> getEmployees(
       {required ServiceType serviceType}) async {
+    final data = {
+      "service_category": (serviceType == ServiceType.hair)
+          ? "CABELLO"
+          : (serviceType == ServiceType.nails)
+              ? "UÑAS"
+              : (serviceType == ServiceType.spa)
+                  ? "SPA"
+                  : "MAQUILLAJE"
+    };
     return await handleRequest(
         request: () => client.post(Environment.userFilter,
-            data: {
-              "service_category": (serviceType == ServiceType.hair)
-                  ? "CABELLO"
-                  : (serviceType == ServiceType.nails)
-                      ? "UÑAS"
-                      : (serviceType == ServiceType.spa)
-                          ? "SPA"
-                          : "MAQUILLAJE"
-            },
-            options: defaultOptions),
+            data: data, options: defaultOptions),
         onSuccess: (data) {
           final employeesData = data['users'];
           if (employeesData is! List) {
