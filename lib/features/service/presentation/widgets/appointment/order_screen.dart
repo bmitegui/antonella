@@ -2,10 +2,12 @@ import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/info_products_chose.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_receipt.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/info_services_chosen.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/pay_order_button.dart';
 import 'package:antonella/features/service/presentation/widgets/appointment/payment_method.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/total_order_container.dart';
 import 'package:antonella/features/user/domain/entities/card_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/cards/cards_bloc.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
@@ -40,6 +42,7 @@ class _OrderScreenState extends State<OrderScreen> {
     final clientConfirmed =
         widget.orderEntity.clientStatus == ClientStatus.confirmado;
     return BlocBuilder<CardsBloc, CardsState>(builder: (context, state) {
+      
       if (state is CardsLoaded) {
         cards = state.cards;
       }
@@ -50,6 +53,8 @@ class _OrderScreenState extends State<OrderScreen> {
         child: Column(
           children: [
             InfoServicesChosen(orderEntity: widget.orderEntity),
+            const SizedBox(height: 16),
+            InfoProductsChosen(orderEntity: widget.orderEntity),
             if (!clientConfirmed && widget.canPay)
               Column(
                 children: [
@@ -72,6 +77,9 @@ class _OrderScreenState extends State<OrderScreen> {
                       });
                     },
                   ),
+                  const SizedBox(height: 16),
+                 TotalOrderContainer(orderEntity: widget.orderEntity),
+
                   const SizedBox(height: 16),
                   PayOrderButton(
                     metodo: _metodo,

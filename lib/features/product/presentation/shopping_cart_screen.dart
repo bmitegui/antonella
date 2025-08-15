@@ -1,22 +1,14 @@
 import 'package:antonella/core/constant/environment.dart';
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/arrow_back.dart';
 import 'package:antonella/core/widgets/custom_cached_network_image.dart';
 import 'package:antonella/core/widgets/custom_scaffold.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
-import 'package:antonella/features/product/presentation/bloc/bloc.dart';
-import 'package:antonella/features/product/presentation/options_pay_shopping_cart_screen.dart';
-import 'package:antonella/features/product/presentation/quantity_selection_widget.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
-import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/domain/entities/promotion_entity.dart';
-import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
-import 'package:antonella/features/service/presentation/bloc/promotion_cart/promotion_cart_bloc.dart';
-import 'package:antonella/features/service/presentation/widgets/appointment/info_services_new_format.dart';
+import 'package:antonella/features/service/presentation/widgets/appointment/list_orders_to_confirm.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({super.key});
@@ -26,19 +18,6 @@ class ShoppingCartScreen extends StatefulWidget {
 }
 
 class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
-  bool initialized = false;
-  final Set<String> selectedProductIds = {};
-  final Set<String> selectedPromotionIds = {};
-  final Set<String> selectedServiceIds = {};
-  Map<String, double> dataTotal = {};
-
-  @override
-  void initState() {
-    super.initState();
-    Map<String, List<String>> data = getSelectedIds();
-    sl<PromotionCartBloc>().add(GetPromotionRelatedEvent(
-        servicesId: data['services']!, productsId: data['products']!));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +25,15 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
     return CustomScaffold(
         leading: ArrowBack(),
         text: texts.shopping_cart,
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text("Aquí puedes revisar las órdenes pendientes de pago", style: bodyBlack54Style(context)),
+            ),
+            Expanded(child: ListOrdersToConfirm()),
+          ],
+        ),
         // bottomNavigationBar: Container(
         //     padding: const EdgeInsets.all(16),
         //     child: BlocBuilder<ProductsSelectedBloc, ProductsSelectedState>(
@@ -330,11 +318,9 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
 
   Map<String, double> calculateTotals({
     required List<ProductEntity> selectedProducts,
-    required List<PromotionEntity> selectedPromotions,
     required List<AppointmentEntity> appointments,
   }) {
     double subtotal = 0.0;
-    double discountTotal = 0.0;
 
     for (final product in selectedProducts) {
       subtotal += product.price;
@@ -344,24 +330,13 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
       subtotal += appointment.basePrice!;
     }
 
-    for (final promo in selectedPromotions) {
-      for (final item in promo.serviceItems) {
-        if (item.serviceItemType == ServiceItemType.descuento) {
-          final base = item.fixedAmount ?? 0.0;
-          final percent = item.discount ?? 0.0;
-          discountTotal += base + (item.serviceEntity.minPrice * percent);
-        }
-      }
-    }
-
-    final iva = (subtotal - discountTotal) * 0.12;
-    final total = subtotal - discountTotal + iva;
+    final iva = (subtotal) * 0.12;
+    final total = subtotal + iva;
 
     return {
       'subtotal': subtotal,
       'iva': iva,
       'total': total,
-      'discount': discountTotal
     };
   }
 }

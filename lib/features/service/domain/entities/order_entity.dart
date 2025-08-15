@@ -1,3 +1,4 @@
+import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/domain/entities/appointment_entity.dart';
 import 'package:antonella/features/user/domain/entities/user_entity.dart';
 import 'package:equatable/equatable.dart';
@@ -21,6 +22,7 @@ class OrderEntity extends Equatable {
   final PaymentStatus paymentStatus;
   final PaymentType paymentType;
   final List<AppointmentEntity> appointments;
+  final List<ProductEntity> products;
   final UserEntity userEntity;
   final double iva;
 
@@ -33,6 +35,7 @@ class OrderEntity extends Equatable {
       required this.paymentStatus,
       required this.paymentType,
       required this.appointments,
+      required this.products,
       required this.userEntity,
       required this.iva});
 

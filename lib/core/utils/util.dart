@@ -207,15 +207,26 @@ void navigateWithSlideTransition(BuildContext context, Widget page) {
           }));
 }
 
-Map<String, double> calculateTotals(List<ProductEntity> products) {
-  final subtotal = products.fold<double>(0.0, (sum, item) => sum + item.price);
-  final iva = subtotal * 0.15;
+Map<String, double> calculateTotals(OrderEntity order) {
+  double subtotal = 0.0;
+
+  for (final product in order.products) {
+    subtotal += product.price;
+  }
+
+  for (final appointment in order.appointments) {
+    subtotal += appointment.basePrice ?? 0.0;
+  }
+
+  // Usamos el iva de la orden si existe, si no, 12% por defecto
+  final double ivaRate = order.iva;
+  final iva = subtotal * ivaRate/100;
   final total = subtotal + iva;
 
   return {
-    'subtotal': double.parse(subtotal.toStringAsFixed(2)),
-    'iva': double.parse(iva.toStringAsFixed(2)),
-    'total': double.parse(total.toStringAsFixed(2)),
+    'subtotal': subtotal,
+    'iva': iva,
+    'total': total,
   };
 }
 

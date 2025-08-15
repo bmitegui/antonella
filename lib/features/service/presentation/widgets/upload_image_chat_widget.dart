@@ -1,13 +1,7 @@
 import 'dart:io';
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/core/widgets/custom_circular_icon_buttom.dart';
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
-import 'package:antonella/features/user/domain/entities/entities.dart';
-import 'package:antonella/features/user/presentation/bloc/bloc.dart';
-import 'package:antonella/features/user/presentation/bloc/message/message_bloc.dart';
-import 'package:antonella/features/user/presentation/bloc/profile_user/profile_user_bloc.dart';
-import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';

@@ -19,8 +19,6 @@ class ListOrdersNotConfirmed extends StatelessWidget {
               order.orderStatus == OrderStatus.noConfirmado;
         }).toList();
 
-        unconfirmedOrders.map((order)=>print(order.id)).toList();
-
         return unconfirmedOrders.isNotEmpty
             ? ListView.separated(
                 padding: const EdgeInsets.only(

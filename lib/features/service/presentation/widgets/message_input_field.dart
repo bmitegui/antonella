@@ -1,9 +1,6 @@
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/features/service/presentation/widgets/upload_image_chat_widget.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
-import 'package:antonella/features/user/presentation/bloc/bloc.dart';
-import 'package:antonella/features/user/presentation/bloc/send_message/send_message_bloc.dart';
 import 'package:flutter/material.dart';
 
 class MessageInputField extends StatefulWidget {

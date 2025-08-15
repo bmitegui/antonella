@@ -40,7 +40,7 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
 
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
-      if (state is ServicesSelectedLoaded) {
+      if (state is ServicesSelectedLoaded && widget.eventLoader == null) {
         _focusedDay = state.dateSelected ?? DateTime.now();
         _selectedDay = state.dateSelected ?? DateTime.now();
       }

@@ -1,4 +1,5 @@
 import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/features/product/data/models/product_model.dart';
 import 'package:antonella/features/service/data/models/appointment_model.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/user/data/models/user_model.dart';
@@ -13,11 +14,15 @@ class OrderModel extends OrderEntity {
       required super.paymentStatus,
       required super.paymentType,
       required super.appointments,
+      required super.products,
       required super.userEntity,
       required super.iva});
 
-  factory OrderModel.fromJson(Map<String, dynamic> json,
-      List<AppointmentModel> appointments, UserModel userModel) {
+  factory OrderModel.fromJson(
+      Map<String, dynamic> json,
+      List<AppointmentModel> appointments,
+      List<ProductModel> products,
+      UserModel userModel) {
     return OrderModel(
         id: json['id'],
         clientId: json['client_id'],
@@ -28,6 +33,7 @@ class OrderModel extends OrderEntity {
         paymentStatus: stringToPaymentStatus(json['status']['payment_status']),
         paymentType: stringToPaymentType(json['status']['payment_type']),
         appointments: appointments,
+        products: products,
         userEntity: userModel,
         iva: json['iva']);
   }

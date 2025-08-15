@@ -13,14 +13,6 @@ class ProductsTabSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
       builder: (context, state) {
-        int initialPage = 0;
-
-        if (state is ServicesSelectedLoaded) {
-          // Si no hay servicios pero sí hay productos, ir directo a confirmación
-          if (state.services.isEmpty && state.products.isNotEmpty) {
-            initialPage = 3; // índice de ConfirmationServicesPage
-          }
-        }
         return TabSectionPageView(
           pages: [
             ProductsInfoWidget(),

@@ -3,6 +3,7 @@ import 'package:antonella/core/error/error.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/remote_data_source_util.dart';
 import 'package:antonella/core/utils/util.dart';
+import 'package:antonella/features/product/data/models/product_model.dart';
 import 'package:antonella/features/product/domain/entities/product_entity.dart';
 import 'package:antonella/features/service/data/models/models.dart';
 import 'package:antonella/features/service/data/models/promotion_model.dart';
@@ -214,16 +215,60 @@ class ServiceRemoteDataSourceImpl
     return appointments;
   }
 
+  Future<ProductModel> getProduct({required String id}) async {
+    final url = '${Environment.product}?id=$id';
+
+    final rawProduct = await handleRequest(
+      request: () => client.get(
+        url,
+        options: defaultOptions,
+      ),
+      onSuccess: (data) => data,
+    );
+
+    if (rawProduct == null) {
+      throw Exception("Producto no encontrado con id $id");
+    }
+
+    return ProductModel.fromJson(rawProduct);
+  }
+
+  Future<List<ProductModel>> getProducts({required String orderId}) async {
+    final url = '${Environment.orderProductItem}?order_id=$orderId';
+    final rawProducts = await handleRequest(
+      request: () => client.get(
+        url,
+        options: defaultOptions,
+      ),
+      onSuccess: (data) => data,
+    );
+
+    if (rawProducts is! List || rawProducts.isEmpty) {
+      return [];
+    }
+
+    final products = await Future.wait(
+      rawProducts.map<Future<ProductModel>>((productData) async {
+        final productId = productData['product_id'] as String;
+        final productModel = await getProduct(id: productId);
+        return productModel;
+      }),
+    );
+
+    return products;
+  }
+
   Future<OrderModel> getOrder(
       {required String orderId,
-      required List<AppointmentModel> appointments}) async {
+      required List<AppointmentModel> appointments,
+      required List<ProductModel> products}) async {
     final url = '${Environment.order}?id=$orderId';
     final orderJson = await handleRequest(
         request: () => client.get(url, options: defaultOptions),
         onSuccess: (data) => data);
     final clientId = orderJson['client_id'] as String;
     final userModel = await getUser(userId: clientId);
-    return OrderModel.fromJson(orderJson, appointments, userModel);
+    return OrderModel.fromJson(orderJson, appointments, products, userModel);
   }
 
   Future<UserModel> getUser({required String userId}) async {
@@ -247,12 +292,16 @@ class ServiceRemoteDataSourceImpl
     final futures = groupedByOrder.entries.map((entry) async {
       final orderId = entry.key;
       final appointmentList = entry.value;
-      return await getOrder(orderId: orderId, appointments: appointmentList);
+      final productList = await getProducts(orderId: orderId);
+      return await getOrder(
+          orderId: orderId,
+          appointments: appointmentList,
+          products: productList);
     }).toList();
 
     // Esperar todas las órdenes
     final allOrders = await Future.wait(futures);
-    
+
     return allOrders;
   }
 
