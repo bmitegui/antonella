@@ -23,8 +23,7 @@ class ServicePromotionInfo extends StatelessWidget {
         builder: (context, state) {
       bool isSelected = false;
       if (state is ServicesSelectedLoaded) {
-        final index =
-            state.services.indexWhere((s) => s.id == service.id);
+        final index = state.services.indexWhere((s) => s.id == service.id);
         if (index != -1) {
           isSelected = true;
         }
@@ -71,13 +70,20 @@ class ServicePromotionInfo extends StatelessWidget {
                                         .titleMedium!
                                         .copyWith(color: Colors.red)),
                               ElevatedButton(
-                                onPressed: () => navigateWithSlideTransition(context, DetailServiceScreen(serviceEntity: service)), 
-                                style: ElevatedButton.styleFrom(backgroundColor: colorScheme.primary),
-                                child: Text('Ver detalles', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white)), 
+                                onPressed: () => navigateWithSlideTransition(
+                                    context,
+                                    DetailServiceScreen(
+                                        serviceEntity: service)),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: colorScheme.primary),
+                                child: Text('Ver detalles',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(color: Colors.white)),
                               ),
                             ],
                           ),
-                          
                           if (serviceItemEntity.fixedAmount != null)
                             Text(
                                 "Monto fijo: \$${serviceItemEntity.fixedAmount}",
