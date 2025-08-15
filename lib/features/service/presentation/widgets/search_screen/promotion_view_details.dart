@@ -16,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PromotionViewDetails extends StatelessWidget {
   final PromotionEntity promotionEntity;
-  final void Function(bool data)? selected;
+  final void Function(bool data, {bool allSelected})? selected;
   const PromotionViewDetails({super.key, required this.promotionEntity, this.selected});
 
   @override
@@ -25,17 +25,24 @@ class PromotionViewDetails extends StatelessWidget {
 
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
         builder: (context, state) {
-      // bool allServicesSelected = false;
+      bool allServicesSelected = false;
 
-      // if (state is ServicesSelectedLoaded) {
-      //   final selectedServiceIds = state.services.map((s) => s.id).toSet();
-      //   final requiredServiceIds = promotionEntity.serviceItems
-      //       .map((item) => item.serviceEntity.id)
-      //       .toSet();
+      if (state is ServicesSelectedLoaded) {
+        final selectedServiceIds = state.services.map((s) => s.id).toSet();
+        final requiredServiceIds = promotionEntity.serviceItems
+            .map((item) => item.serviceEntity.id)
+            .toSet();
 
-      //   allServicesSelected =
-      //       requiredServiceIds.difference(selectedServiceIds).isEmpty;
-      // }
+        allServicesSelected =
+            requiredServiceIds.difference(selectedServiceIds).isEmpty;
+
+        if (allServicesSelected && selected != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            selected!(true, allSelected: true);
+            Navigator.pop(context); // Regresa a la lista de promociones
+          });
+        }
+      }
 
       return CustomScaffold(
           text: promotionEntity.title,

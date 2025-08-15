@@ -45,7 +45,7 @@ class _PromotionsGridViewState extends State<PromotionsGridView> {
                     context,
                     PromotionViewDetails(
                         promotionEntity: widget.listPromotions[index], 
-                        selected: (wasSelected) {
+                        selected: (wasSelected, {bool allSelected = false}) {
                           if (wasSelected) {
                             setState(() {
                               selectedPromotionIds.add(widget.listPromotions[index].id);
