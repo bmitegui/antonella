@@ -11,6 +11,8 @@ class ImagesScrollview extends StatelessWidget {
   final bool isSVG;
   final bool isUrl;
   final double? height;
+  final double? width;
+  final bool? borderR;
   final PageController controller =
       PageController(viewportFraction: 1, keepPage: true);
 
@@ -19,28 +21,32 @@ class ImagesScrollview extends StatelessWidget {
       required this.images,
       this.isSVG = false,
       this.height,
-      this.isUrl = true});
+      this.isUrl = true, 
+      this.width, 
+      this.borderR = false});
 
   @override
   Widget build(BuildContext context) {
     final heightSize = MediaQuery.of(context).size.height / 2.5;
+    final widthSize = MediaQuery.of(context).size.width;
     final isEmpty = images.length < 2;
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       SizedBox(
           height: height ?? heightSize,
+          width: width ?? widthSize,
           child: PageView.builder(
               controller: controller,
               itemCount: images.length,
               itemBuilder: (_, index) {
                 return ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: (borderR!) ? BorderRadius.circular(16) :BorderRadius.only(
                         bottomLeft: Radius.circular(48),
                         bottomRight: Radius.circular(48)),
                     child: isSVG
                         ? CustomLocalSvgImage(assetPath: images[index])
                         : isUrl
                             ? CustomCachedNetworkImage(
-                                imageUrl: Environment.apiUrl + images[index])
+                                imageUrl: Environment.apiUrl + images[index])                     
                             : Image.memory(
                                 fit: BoxFit.fitHeight,
                                 alignment: Alignment.center,

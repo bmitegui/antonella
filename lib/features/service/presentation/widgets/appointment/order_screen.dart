@@ -17,7 +17,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class OrderScreen extends StatefulWidget {
   final OrderEntity orderEntity;
   final bool canPay;
-  const OrderScreen({super.key, required this.orderEntity, this.canPay = true});
+  final bool canViewReceipt;
+  const OrderScreen({super.key, required this.orderEntity, this.canPay = true, this.canViewReceipt = true});
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();
@@ -88,6 +89,8 @@ class _OrderScreenState extends State<OrderScreen> {
                   ),
                 ],
               ),
+            const SizedBox(height: 16),
+            if (widget.canViewReceipt) InfoReceipt(orderEntity: widget.orderEntity, isPaid: true, metodo: _metodo)
           ],
         ),
       );
