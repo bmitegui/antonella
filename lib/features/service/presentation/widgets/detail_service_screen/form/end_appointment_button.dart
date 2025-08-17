@@ -39,6 +39,7 @@ class EndAppoinmentButton extends StatelessWidget {
           Navigator.pop(context);
         } else {
           Navigator.pop(context);
+          Navigator.pop(context);
         }
       } else if (state is EndAppointmentError) {
         showTopSnackBar(
@@ -51,10 +52,37 @@ class EndAppoinmentButton extends StatelessWidget {
       return (state is EndAppointmentLoading)
           ? Center(child: CircularProgressIndicator())
           : FilledButton(
-              onPressed: () => context.read<EndAppointmentBloc>().add(
-                  TerminarCitaEvent(
-                      orderId: orderEntity.id,
-                      appointmentId: appointmentEntity.id)),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text("Terminar Cita"),
+                      content: const Text("Deseas terminar la cita"),
+                      backgroundColor: Colors.white,
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // Close the dialog
+                          },
+                          child: const Text('Cerrar'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Perform an action
+                            context.read<EndAppointmentBloc>().add(
+                              TerminarCitaEvent(
+                                  orderId: orderEntity.id,
+                                  appointmentId: appointmentEntity.id));
+                          },
+                          child: const Text('Aceptar'),
+                        ),
+                      ],
+                    );
+                  }
+                );
+                
+              },
               child: Text(texts.end_appointment));
     });
   }
