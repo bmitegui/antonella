@@ -11,9 +11,16 @@ import 'package:antonella/features/user/presentation/bloc/employees/employees_bl
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListServicesSelectedWidget extends StatelessWidget {
+class ListServicesSelectedWidget extends StatefulWidget {
   const ListServicesSelectedWidget({super.key});
 
+  @override
+  State<ListServicesSelectedWidget> createState() => _ListServicesSelectedWidgetState();
+}
+
+class _ListServicesSelectedWidgetState extends State<ListServicesSelectedWidget> {
+  bool isSelected = false;
+  
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
@@ -139,10 +146,16 @@ class ListServicesSelectedWidget extends StatelessWidget {
                                           builder:
                                               (BuildContext context) {
                                             return EmployeesSelectedWidget(
-                                                service: service);
+                                                service: service,
+                                                onSelected: (data) {
+                                                  setState(() {
+                                                    isSelected = data;
+                                                  });
+                                                });
                                           });
                                     }, 
-                                    text: "Elegir Especialista")
+                                    text: "Elegir Especialista",
+                                    backgroundColor: (isSelected) ? Colors.green : const Color(0xFFF44565))
                                 ],
                               )));
                     }).toList())))
