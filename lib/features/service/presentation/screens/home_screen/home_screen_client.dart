@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:math';
 
 class HomeScreenClient extends StatefulWidget {
   const HomeScreenClient({super.key});
@@ -97,7 +98,11 @@ class _HomeScreenClientState extends State<HomeScreenClient>
                               height: 300,
                               child: Image.network(
                                 Environment.apiUrl +
-                                    state.listPromotions.last.images.first,
+                                    state
+                                        .listPromotions[Random().nextInt(
+                                            state.listPromotions.length)]
+                                        .images
+                                        .first,
                                 fit: BoxFit.cover,
                                 width: 200,
                                 height: 300,
@@ -115,7 +120,8 @@ class _HomeScreenClientState extends State<HomeScreenClient>
                         navigateWithSlideTransition(
                             context,
                             PromotionViewDetails(
-                                promotionEntity: state.listPromotions.last));
+                                promotionEntity: state.listPromotions[Random()
+                                    .nextInt(state.listPromotions.length)]));
                       },
                       text: "Ver más",
                     ),
