@@ -52,9 +52,11 @@ class InfoServicesChosen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                   Text(orderEntity.appointments
-                      .map((appoitment) => appoitment.serviceEntity.name)
-                      .toList()
-                      .join(', '))
+                        .map((appoitment) => appoitment.serviceEntity.name)
+                        .toList()
+                        .join(', '),
+                      softWrap: true,
+                      overflow: TextOverflow.visible)
                 ]))
           ]),
           SizedBox(height: 8),

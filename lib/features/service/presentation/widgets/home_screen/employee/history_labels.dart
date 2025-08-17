@@ -6,6 +6,8 @@ import 'package:antonella/features/user/presentation/bloc/employee_info/employee
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class HistoryLabels extends StatefulWidget {
   final List<String> labels;
@@ -85,6 +87,34 @@ class _HistoryLabelsState extends State<HistoryLabels> {
 
   void _filterByCustomDates() {
     if (!isFilterEnabled) return;
+
+    final startDate = DateTime.tryParse(_startDateController.text);
+    final endDate = DateTime.tryParse(_endDateController.text);
+    final now = DateTime.now();
+
+    if (startDate != null && startDate.isAfter(now)) {
+      showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.error(message: "La fecha de inicio no puede ser mayor al día actual"),
+      );
+      return;
+    }
+
+    if (startDate != null && endDate != null && endDate.isBefore(startDate)) {
+      showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.error(message: "La fecha de fin no puede ser menor que la fecha de inicio"),
+      );
+      return;
+    }
+
+    if (startDate != null && endDate != null && endDate.isAfter(now)) {
+      showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.error(message: "La fecha de fin no puede ser mayor al día actual"),
+      );
+      return;
+    }
 
     final userState = sl<UserBloc>().state;
     if (userState is UserAuthenticated) {
