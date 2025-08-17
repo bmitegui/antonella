@@ -1,4 +1,3 @@
-import 'package:antonella/core/constant/environment.dart';
 import 'package:antonella/core/widgets/custom_title.dart';
 import 'package:antonella/core/widgets/images_scrollview.dart';
 import 'package:antonella/features/service/domain/entities/question_entity.dart';
@@ -11,7 +10,6 @@ class FormDoneByType extends StatelessWidget {
       {super.key, required this.question, required this.indexForm});
   @override
   Widget build(BuildContext context) {
-    print(question.answer);
     return Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Column(children: [

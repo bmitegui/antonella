@@ -208,7 +208,14 @@ class ServiceRemoteDataSourceImpl
       rawAppointments.map<Future<AppointmentModel>>((appointmentData) async {
         final serviceId = appointmentData['service_id'] as String;
         final serviceModel = await getService(id: serviceId);
-        return AppointmentModel.fromJson(appointmentData, serviceModel);
+
+        final employees = await Future.wait(
+            (appointmentData['payments'] as List).map<Future<UserModel>>(
+                (employeeData) async =>
+                    await getUser(userId: employeeData['employee_id'])));
+
+        return AppointmentModel.fromJson(
+            appointmentData, serviceModel, employees);
       }),
     );
 

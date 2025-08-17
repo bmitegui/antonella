@@ -154,7 +154,7 @@ class _ListServicesSelectedWidgetState extends State<ListServicesSelectedWidget>
                                                 });
                                           });
                                     }, 
-                                    text: "Elegir Especialista",
+                                    text: (isSelected) ?"Cambiar Especialista": "Elegir Especialista",
                                     backgroundColor: (isSelected) ? Colors.green : const Color(0xFFF44565))
                                 ],
                               )));

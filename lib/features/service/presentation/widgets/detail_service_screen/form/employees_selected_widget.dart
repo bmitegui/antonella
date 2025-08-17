@@ -10,9 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class EmployeesSelectedWidget extends StatelessWidget {
   final ServiceEntity service;
   final Function(bool data)? onSelected;
-  EmployeesSelectedWidget({super.key, required this.service, this.onSelected});
-
-  bool autoClosedOnce = false;
+  const EmployeesSelectedWidget(
+      {super.key, required this.service, this.onSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +24,9 @@ class EmployeesSelectedWidget extends StatelessWidget {
           body: (state is EmployeesLoaded)
               ? state.listEmployees.isNotEmpty
                   ? ListEmployeesWidget(
-                      serviceId: service.id, employees: state.listEmployees, 
-                      onSelected: onSelected
-                    )
+                      serviceId: service.id,
+                      employees: state.listEmployees,
+                      onSelected: onSelected)
                   : Text('No existen especialistas para esta categoría.')
               : (state is EmployeesError)
                   ? Text(mapFailureToMessage(

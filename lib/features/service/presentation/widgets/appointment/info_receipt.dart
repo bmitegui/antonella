@@ -1,8 +1,6 @@
-import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
 import 'package:antonella/core/widgets/custom_local_svg_image.dart';
 import 'package:antonella/features/service/domain/entities/entities.dart';
-import 'package:antonella/features/service/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 class InfoReceipt extends StatelessWidget {

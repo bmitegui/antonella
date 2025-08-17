@@ -43,12 +43,15 @@ class ListEmployeesWidget extends StatelessWidget {
                     const Icon(Icons.check_circle, color: Colors.green);
               } else {
                 trailingWidget = FilledButton(
-                  onPressed: () => context.read<ServicesSelectedBloc>().add(
+                  onPressed: () {
+                    context.read<ServicesSelectedBloc>().add(
                         SelectEmployeeEvent(
                           serviceId: serviceId,
                           employeeId: employee.id,
                         ),
-                      ),
+                      );
+                      Navigator.pop(context);
+                  } ,
                   child: const Text("Seleccionar"),
                 );
               }

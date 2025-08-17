@@ -14,6 +14,7 @@ class AppointmentEntity extends Equatable {
   final double? basePrice;
   final ServiceEntity serviceEntity;
   final UserEntity? userEntity;
+  final List<UserEntity> employees;
 
   const AppointmentEntity(
       {required this.id,
@@ -25,7 +26,8 @@ class AppointmentEntity extends Equatable {
       required this.status,
       required this.basePrice,
       required this.serviceEntity,
-      this.userEntity});
+      this.userEntity,
+      required this.employees});
 
   @override
   List<Object?> get props => [id];
@@ -41,18 +43,19 @@ class AppointmentEntity extends Equatable {
     double? basePrice,
     ServiceEntity? serviceEntity,
     UserEntity? userEntity,
+    List<UserEntity>? employees,
   }) {
     return AppointmentEntity(
-      id: id ?? this.id,
-      orderId: orderId ?? this.orderId,
-      serviceId: serviceId ?? this.serviceId,
-      day: day ?? this.day,
-      startTime: startTime ?? this.startTime,
-      endTime: endTime ?? this.endTime,
-      status: status ?? this.status,
-      basePrice: basePrice ?? this.basePrice,
-      serviceEntity: serviceEntity ?? this.serviceEntity,
-      userEntity: userEntity ?? this.userEntity,
-    );
+        id: id ?? this.id,
+        orderId: orderId ?? this.orderId,
+        serviceId: serviceId ?? this.serviceId,
+        day: day ?? this.day,
+        startTime: startTime ?? this.startTime,
+        endTime: endTime ?? this.endTime,
+        status: status ?? this.status,
+        basePrice: basePrice ?? this.basePrice,
+        serviceEntity: serviceEntity ?? this.serviceEntity,
+        userEntity: userEntity ?? this.userEntity,
+        employees: employees ?? this.employees);
   }
 }
