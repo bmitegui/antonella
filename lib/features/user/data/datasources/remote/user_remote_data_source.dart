@@ -53,6 +53,8 @@ abstract class UserRemoteDataSource {
       required String orderId,
       required double taxableAmount});
   Future<List<CardModel>> getCards({required String userId});
+  Future<List<ScheduleModel>> getEmployeeBusySchedule(
+      {required String employeeId});
 }
 
 class UserRemoteDataSourceImpl
@@ -299,6 +301,24 @@ class UserRemoteDataSourceImpl
           } else {
             return data
                 .map<CardModel>((cardData) => CardModel.fromJson(cardData))
+                .toList();
+          }
+        });
+  }
+
+  @override
+  Future<List<ScheduleModel>> getEmployeeBusySchedule(
+      {required String employeeId}) async {
+    final url = '${Environment.employeeInfo}?employee_id=$employeeId';
+    return await handleRequest(
+        request: () => client.get(url, options: defaultOptions),
+        onSuccess: (data) {
+          if (data is! List) {
+            return [];
+          } else {
+            return data
+                .map<ScheduleModel>(
+                    (timeData) => ScheduleModel.fromJson(timeData))
                 .toList();
           }
         });

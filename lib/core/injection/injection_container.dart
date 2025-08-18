@@ -159,6 +159,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetPromotionsRelatedUseCase>(() =>
       GetPromotionsRelatedUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<GetEmployeeBusyScheduleInfoUseCase>(() =>
+      GetEmployeeBusyScheduleInfoUseCase(userRepository: sl<UserRepository>()));
+
   //! Blocs
   sl.registerLazySingleton<UserBloc>(() => UserBloc(
       keyValueStorageService: sl<KeyValueStorageServiceImpl>(),
@@ -237,6 +240,10 @@ Future<void> init() async {
 
   sl.registerLazySingleton<CardsBloc>(
       () => CardsBloc(getCardsUseCase: sl<GetCardsUseCase>()));
+
+  sl.registerLazySingleton<EmployeeScheduleBloc>(() => EmployeeScheduleBloc(
+      getEmployeeBusyScheduleInfoUseCase:
+          sl<GetEmployeeBusyScheduleInfoUseCase>()));
 
   // Theme
   sl.registerLazySingleton<ThemeBloc>(() => ThemeBloc());

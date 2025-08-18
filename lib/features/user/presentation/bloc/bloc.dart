@@ -5,3 +5,4 @@ export './admin/admin_bloc.dart';
 export './employees/employees_bloc.dart';
 export './card/card_bloc.dart';
 export './cards/cards_bloc.dart';
+export './employee_schedule/employee_schedule_bloc.dart';

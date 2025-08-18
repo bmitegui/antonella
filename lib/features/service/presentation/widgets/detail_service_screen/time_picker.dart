@@ -24,8 +24,8 @@ class _TimePickerState extends State<TimePicker> {
             : DateTime.now();
       }
       return Container(
-          margin: EdgeInsets.symmetric(horizontal: 32),
-          padding: EdgeInsets.all(16),
+          margin: EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Color(0XFFFAE2E1)),

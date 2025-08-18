@@ -1,3 +1,5 @@
+import 'package:antonella/core/constant/constant.dart';
+import 'package:antonella/core/utils/util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:antonella/core/l10n/app_localizations.dart';
@@ -21,7 +23,8 @@ class TermsAndConditionsWidget extends StatelessWidget {
                   text: texts.terms_2,
                   style:
                       textTheme.bodySmall!.copyWith(color: colorScheme.primary),
-                  recognizer: TapGestureRecognizer()..onTap = () {}),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => utilLaunchUrl(url: privacyPolicies)),
               TextSpan(
                   text: texts.terms_3,
                   style: textTheme.bodySmall!
@@ -30,7 +33,8 @@ class TermsAndConditionsWidget extends StatelessWidget {
                   text: texts.terms_4,
                   style:
                       textTheme.bodySmall!.copyWith(color: colorScheme.primary),
-                  recognizer: TapGestureRecognizer()..onTap = () {}),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => utilLaunchUrl(url: privacyPolicies)),
               TextSpan(
                   text: '.',
                   style: textTheme.bodySmall!

@@ -20,3 +20,4 @@ final imagesServiceCategory = {
 const String phoneNumber = '+593 961530738';
 const String email = 'contacto@hubitrack.com';
 const String instagram = 'https://www.instagram.com/antonellacbe/';
+const String privacyPolicies = 'https://www.termsfeed.com/live/8722ba1c-6282-4305-b94b-74c5c0dba27b';

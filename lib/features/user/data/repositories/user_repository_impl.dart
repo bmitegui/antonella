@@ -211,4 +211,15 @@ class UserRepositoryImpl implements UserRepository {
           return await userRemoteDataSource.getCards(userId: userId);
         });
   }
+
+  @override
+  Future<Either<Failure, List<ScheduleModel>>> getEmployeeBusySchedule(
+      {required String employeeId}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          return await userRemoteDataSource.getEmployeeBusySchedule(
+              employeeId: employeeId);
+        });
+  }
 }

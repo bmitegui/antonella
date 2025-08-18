@@ -8,10 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmployeesSelectedWidget extends StatelessWidget {
-  final ServiceEntity service;
-  final Function(bool data)? onSelected;
+  final List<ServiceEntity> services;
   const EmployeesSelectedWidget(
-      {super.key, required this.service, this.onSelected});
+      {super.key, required this.services});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +19,12 @@ class EmployeesSelectedWidget extends StatelessWidget {
       return CustomModalBottomSheetWidget(
           closeAction: false,
           title:
-              "Especialista de: ${getCategoryText(context: context, serviceCategory: service.type)}",
+              "Especialista de: ${getCategoryText(context: context, serviceCategory: services[0].type)}",
           body: (state is EmployeesLoaded)
               ? state.listEmployees.isNotEmpty
                   ? ListEmployeesWidget(
-                      serviceId: service.id,
-                      employees: state.listEmployees,
-                      onSelected: onSelected)
+                      services: services,
+                      employees: state.listEmployees)
                   : Text('No existen especialistas para esta categoría.')
               : (state is EmployeesError)
                   ? Text(mapFailureToMessage(

@@ -1,3 +1,4 @@
+import 'package:antonella/core/constant/constant.dart';
 import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/utils/error_messages_util.dart';
 import 'package:antonella/core/utils/util.dart';
@@ -104,13 +105,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       color: colorScheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Column(children: [
-                                    // ListTitleSettings(
-                                    //     text: texts.purchases_history,
-                                    //     iconData: Icons.article_outlined,
-                                    //     goTo: PurchaseHistoryScreen()),
-                                    // Divider(
-                                    //     height: 1,
-                                    //     color: colorScheme.onSurfaceVariant),
                                     ListTitleSettings(
                                         text: texts.shopping_cart,
                                         iconData: Icons.add_shopping_cart,
@@ -149,7 +143,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(children: [
                         ListTitleSettings(
-                            text: texts.privacy_policy, iconData: Icons.policy),
+                            onTap: () => utilLaunchUrl(url: privacyPolicies),
+                            text: texts.privacy_policy,
+                            iconData: Icons.policy),
                         Divider(height: 1, color: colorScheme.onSurfaceVariant),
                         ListTitleSettings(
                             text: texts.technical_support,

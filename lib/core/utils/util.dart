@@ -11,6 +11,7 @@ import 'package:antonella/features/service/domain/entities/service_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
 import 'package:antonella/features/user/domain/entities/card_entity.dart';
 import 'package:antonella/features/user/domain/entities/message_entity.dart';
+import 'package:antonella/features/user/domain/entities/schedule_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -132,6 +133,42 @@ String getCategoryText(
                   : texts.all;
 }
 
+List<String> getUniqueCategoriesText(
+    BuildContext context, List<ServiceEntity> services) {
+  final uniqueTypes = services.map((s) => s.type).toSet(); // tipos únicos
+  return uniqueTypes
+      .map((t) => getCategoryText(context: context, serviceCategory: t))
+      .toList();
+}
+
+bool allEmployeesSelectedByCategory({
+  required Map<String, String>? employeeIds,
+  required List<ServiceEntity> services,
+  required ServiceType category,
+}) {
+  // filtrar servicios de la categoría
+  final filtered = services.where((s) => s.type == category);
+
+  if (filtered.isEmpty) return false; // no hay servicios en esa categoría
+
+  // comprobar que todos tengan un empleado asignado
+  return filtered.every((s) => employeeIds?[s.id]?.isNotEmpty ?? false);
+}
+
+bool isEmployeeSelectedForAnyService({
+  required Map<String, String>? employeeIds,
+  required List<ServiceEntity> services,
+  required ServiceType category,
+  required String employeeId,
+}) {
+  final filtered = services.where((s) => s.type == category);
+
+  if (filtered.isEmpty) return false;
+
+  return filtered.any((s) => employeeIds?[s.id] == employeeId);
+}
+
+
 String getCategoryTextList({
   required BuildContext context,
   required List<ServiceType> serviceCategories,
@@ -220,7 +257,7 @@ Map<String, double> calculateTotals(OrderEntity order) {
 
   // Usamos el iva de la orden si existe, si no, 12% por defecto
   final double ivaRate = order.iva;
-  final iva = subtotal * ivaRate/100;
+  final iva = subtotal * ivaRate / 100;
   final total = subtotal + iva;
 
   return {
@@ -604,4 +641,25 @@ bool showIconCart() {
           .isNotEmpty;
 
   return ordersToConfirmEmpty;
+}
+
+bool isEmployeeAvailable({
+  required List<ScheduleEntity> dates,
+  required DateTime dateSelected,
+  required DateTime timeSelected,
+}) {
+  for (final d in dates) {
+    // 1. ¿Es el mismo día?
+    if (d.day.year == dateSelected.year &&
+        d.day.month == dateSelected.month &&
+        d.day.day == dateSelected.day) {
+      // 2. ¿El timeSelected está en el rango ocupado?
+      if (timeSelected.isAfter(d.startTime) &&
+          timeSelected.isBefore(d.endTime)) {
+        return false; // Está ocupado
+      }
+    }
+  }
+
+  return true; // Libre si no entra en ningún rango
 }

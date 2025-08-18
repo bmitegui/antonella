@@ -15,12 +15,12 @@ class ListServicesSelectedWidget extends StatefulWidget {
   const ListServicesSelectedWidget({super.key});
 
   @override
-  State<ListServicesSelectedWidget> createState() => _ListServicesSelectedWidgetState();
+  State<ListServicesSelectedWidget> createState() =>
+      _ListServicesSelectedWidgetState();
 }
 
-class _ListServicesSelectedWidgetState extends State<ListServicesSelectedWidget> {
-  bool isSelected = false;
-  
+class _ListServicesSelectedWidgetState
+    extends State<ListServicesSelectedWidget> {
   @override
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
@@ -34,6 +34,9 @@ class _ListServicesSelectedWidgetState extends State<ListServicesSelectedWidget>
                     borderRadius: BorderRadius.circular(32),
                     child: ExpansionPanelList.radio(
                         children: state.services.map((service) {
+                      bool isSelected =
+                          state.employeeIds?[service.id]?.isNotEmpty ?? false;
+
                       return ExpansionPanelRadio(
                           backgroundColor: Colors.white,
                           canTapOnHeader: true,
@@ -99,11 +102,13 @@ class _ListServicesSelectedWidgetState extends State<ListServicesSelectedWidget>
                                                 sl<ServiceFormBloc>().add(
                                                     SelectServiceEvent(
                                                         service: service));
-                                                await showModalBottomSheet<List>(
+                                                await showModalBottomSheet<
+                                                        List>(
                                                     scrollControlDisabledMaxHeightRatio:
                                                         1,
                                                     isScrollControlled: true,
-                                                    backgroundColor: Colors.white,
+                                                    backgroundColor:
+                                                        Colors.white,
                                                     context: context,
                                                     builder:
                                                         (BuildContext context) {
@@ -118,44 +123,45 @@ class _ListServicesSelectedWidgetState extends State<ListServicesSelectedWidget>
                                               onPressed: () async =>
                                                   await showWarningDialog(
                                                       context: context,
-                                                      title: texts.delete_service,
-                                                      message:
-                                                          texts.sure_delete_service,
-                                                      textOnAccept: texts.eliminate,
+                                                      title:
+                                                          texts.delete_service,
+                                                      message: texts
+                                                          .sure_delete_service,
+                                                      textOnAccept:
+                                                          texts.eliminate,
                                                       onAccept: () => context
                                                           .read<
                                                               ServicesSelectedBloc>()
                                                           .add(DeleteServiceEvent(
-                                                              service: service))),
+                                                              service:
+                                                                  service))),
                                               icon: Icon(Icons.delete_outline,
                                                   color: Colors.red, size: 32))
                                         ])
                                   ]),
                                   SizedBox(height: 8),
                                   CustomElevatedButton(
-                                    onPressed: () async {
-                                      sl<EmployeesBloc>().add(
-                                          GetEmployeesEvent(
-                                              serviceType: service.type));
-                                      await showModalBottomSheet<List>(
-                                          scrollControlDisabledMaxHeightRatio:
-                                              1,
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.white,
-                                          context: context,
-                                          builder:
-                                              (BuildContext context) {
-                                            return EmployeesSelectedWidget(
-                                                service: service,
-                                                onSelected: (data) {
-                                                  setState(() {
-                                                    isSelected = data;
-                                                  });
-                                                });
-                                          });
-                                    }, 
-                                    text: (isSelected) ?"Cambiar Especialista": "Elegir Especialista",
-                                    backgroundColor: (isSelected) ? Colors.green : const Color(0xFFF44565))
+                                      onPressed: () async {
+                                        sl<EmployeesBloc>().add(
+                                            GetEmployeesEvent(
+                                                serviceType: service.type));
+                                        await showModalBottomSheet<List>(
+                                            scrollControlDisabledMaxHeightRatio:
+                                                1,
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.white,
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return EmployeesSelectedWidget(
+                                                  services: [service]);
+                                            });
+                                      },
+                                      text: (isSelected)
+                                          ? "Cambiar Especialista"
+                                          : "Elegir Especialista",
+                                      backgroundColor: (isSelected)
+                                          ? Colors.green
+                                          : const Color(0xFFF44565))
                                 ],
                               )));
                     }).toList())))

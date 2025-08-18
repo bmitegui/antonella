@@ -50,7 +50,7 @@ abstract class UserRepository {
       {required String cardId,
       required String orderId,
       required double taxableAmount});
-    Future<Either<Failure, List<CardModel>>> getCards(
-      {required String userId});
-
+  Future<Either<Failure, List<CardModel>>> getCards({required String userId});
+  Future<Either<Failure, List<ScheduleModel>>> getEmployeeBusySchedule(
+      {required String employeeId});
 }
