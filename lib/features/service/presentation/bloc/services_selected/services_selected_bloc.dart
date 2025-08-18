@@ -57,7 +57,8 @@ class ServicesSelectedBloc
     final currentState = state;
     if (currentState is ServicesSelectedLoaded) {
       emit(ServicesSelectedLoading());
-      final newEmployeeIds = Map<String, String>.from(currentState.employeeIds ?? {});
+      final newEmployeeIds =
+          Map<String, String>.from(currentState.employeeIds ?? {});
       newEmployeeIds[event.serviceId] = event.employeeId;
       emit(currentState.copyWith(employeeIds: newEmployeeIds));
     }
@@ -89,8 +90,17 @@ class ServicesSelectedBloc
     if (currentState is ServicesSelectedLoaded) {
       final services = List<ServiceEntity>.from(currentState.services);
       services.removeWhere((service) => service.id == event.service.id);
+
+      // Eliminar del mapa de empleados si existía
+      final newEmployeeIds =
+          Map<String, String>.from(currentState.employeeIds ?? {});
+      newEmployeeIds.remove(event.service.id);
+
       emit(ServicesSelectedLoading());
-      emit(currentState.copyWith(services: services));
+      emit(currentState.copyWith(
+        services: services,
+        employeeIds: newEmployeeIds, // actualizar mapa
+      ));
     }
   }
 
