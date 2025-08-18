@@ -17,18 +17,38 @@ class ServicesInfoWidget extends StatelessWidget {
               ? RefreshIndicator(
                   onRefresh: () async =>
                       context.read<ServiceBloc>().add(GetServicesEvent()),
-                  child: SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      padding: EdgeInsets.only(bottom: 100),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: state
-                              .getDataBySubCategories()
-                              .entries
-                              .map((entry) {
-                            return ServicesBySubcategoryWidget(
-                                subCategory: entry.key, services: entry.value);
-                          }).toList())))
+                  child: BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
+                    builder: (context, selectedState) {
+                      return SingleChildScrollView(
+                          physics: AlwaysScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(bottom: 100),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: state
+                                  .getDataBySubCategories()
+                                  .entries
+                                  .map((entry) {
+                                    final services = List.of(entry.value);
+                                    
+                                    List<String> selectedIds = [];
+                                    if(selectedState is ServicesSelectedLoaded) {
+                                      selectedIds = selectedState.services.map((s) => s.id).toList();
+                                    }
+                      
+                                    services.sort((a, b) {
+                                      final aSelected = selectedIds.contains(a.id);
+                                      final bSelected = selectedIds.contains(b.id);
+                      
+                                      if (aSelected && !bSelected) return -1;
+                                      if (!aSelected && bSelected) return 1;
+                                      return 0;
+                                    });
+                      
+                                    return ServicesBySubcategoryWidget(
+                                        subCategory: entry.key, services: services);
+                                  }).toList()));
+                    }
+                  ))
               : Center(child: Text(texts.no_service_for_category))
           : (state is ServicesError)
               ? Center(
