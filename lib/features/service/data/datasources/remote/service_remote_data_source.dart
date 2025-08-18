@@ -349,7 +349,7 @@ class ServiceRemoteDataSourceImpl
             options: defaultOptions),
         onSuccess: (_) {});
     await handleRequest(
-        request: () => client.put(Environment.oderServiceItem,
+        request: () => client.post(Environment.appointmentProgress,
             data: {"id": appointmentId, "status": "EN_PROGRESO"},
             options: defaultOptions),
         onSuccess: (_) {});
@@ -359,7 +359,7 @@ class ServiceRemoteDataSourceImpl
   Future<void> endAppointment(
       {required String orderId, required String appointmentId}) async {
     await handleRequest(
-        request: () => client.put(Environment.oderServiceItem,
+        request: () => client.post(Environment.appointmentProgress,
             data: {"id": appointmentId, "status": "FINALIZADO"},
             options: defaultOptions),
         onSuccess: (_) {});

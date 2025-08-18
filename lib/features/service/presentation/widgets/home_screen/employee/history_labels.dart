@@ -141,6 +141,7 @@ class _HistoryLabelsState extends State<HistoryLabels> {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: widget.labels.map((label) {
                     return ChoiceChip(
+                      checkmarkColor: Colors.white,
                       labelStyle: TextStyle(color: Colors.white),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),

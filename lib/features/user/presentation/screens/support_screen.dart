@@ -33,7 +33,7 @@ class SupportScreen extends StatelessWidget {
               icon: Icons.mail_outline,
               color: Colors.yellow.shade700,
               title: texts.email,
-              subtitle: texts.contact_mail),
+              subtitle: email),
 
           const SizedBox(height: 16),
 

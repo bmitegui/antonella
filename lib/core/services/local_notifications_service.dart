@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:antonella/core/injection/injection_container.dart';
 import 'package:antonella/core/router/app_router.dart';
+import 'package:antonella/features/service/presentation/bloc/bloc.dart';
+import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -69,6 +72,13 @@ class LocalNotificationsService {
         final data = jsonDecode(response.payload!);
         if (data['redirect_to'] == 'CHAT') {
           pagesScreenKey.currentState?.jumpToPage(3);
+        } else if (data['redirect_to'] == 'servicio_finalizado' ||
+            data['redirect_to'] == 'servicio_progreso' || data['redirect_to'] == 'orden_detalle') {
+          final userState = sl<UserBloc>().state;
+          if (userState is UserAuthenticated) {
+            sl<OrdersBloc>().add(GetOrdersEvent(id: userState.user.id));
+            pagesScreenKey.currentState?.jumpToPage(0);
+          }
         }
       }
     });

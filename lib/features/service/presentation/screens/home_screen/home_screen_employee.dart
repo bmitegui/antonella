@@ -56,6 +56,7 @@ class _HomeScreenEmployeeState extends State<HomeScreenEmployee> {
     final texts = AppLocalizations.of(context)!;
 
     return CustomScaffold(
+      noPaddingTitle: true,
       title: BienvenidaWidget(),
       body: RefreshIndicator(
         onRefresh: _onRefresh,

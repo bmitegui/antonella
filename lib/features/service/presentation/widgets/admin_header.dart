@@ -13,20 +13,24 @@ class AdminHeader extends StatelessWidget {
     final texts = AppLocalizations.of(context)!;
     return BlocBuilder<AdminBloc, AdminState>(builder: (context, state) {
       return (state is AdminLoaded)
-          ? Row(children: [
-              Container(
-                  width: 32,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
-                  clipBehavior: Clip.hardEdge,
-                  child: state.userEntity.photoUrl != null
-                      ? CustomCachedNetworkImage(
-                          imageUrl:
-                              Environment.apiUrl + state.userEntity.photoUrl!)
-                      : Icon(Icons.person)),
-              const SizedBox(width: 8),
-              Text(state.userEntity.name)
-            ])
+          ? Container(
+            padding: EdgeInsets.all(16),
+            color: Colors.white,
+            child: Row(children: [
+                Container(
+                    width: 32,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.white),
+                    clipBehavior: Clip.hardEdge,
+                    child: state.userEntity.photoUrl != null
+                        ? CustomCachedNetworkImage(
+                            imageUrl:
+                                Environment.apiUrl + state.userEntity.photoUrl!)
+                        : Icon(Icons.person)),
+                const SizedBox(width: 8),
+                Text(state.userEntity.name)
+              ]),
+          )
           : Row(children: [
               Icon(Icons.person),
               const SizedBox(width: 8),

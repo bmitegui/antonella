@@ -58,27 +58,29 @@ class _OrderScreenState extends State<OrderScreen> {
             InfoServicesChosen(orderEntity: widget.orderEntity),
             const SizedBox(height: 16),
             InfoProductsChosen(orderEntity: widget.orderEntity),
+            const SizedBox(height: 16),
+            InfoReceipt(
+                orderEntity: widget.orderEntity,
+                isPaid: true,
+                metodo: widget.orderEntity.paymentType.name.toUpperCase()),
             if (!clientConfirmed && widget.canPay)
               Column(children: [
                 const SizedBox(height: 16),
-                InfoReceipt(orderEntity: widget.orderEntity),
-                const SizedBox(height: 16),
                 PaymentMethod(
-                  metodo: _metodo,
-                  onChangeMetodo: (value) {
-                    setState(() {
-                      _metodo = value;
-                      if (_metodo != "TARJETA") _selectedCard = null;
-                    });
-                  },
-                  cards: cards,
-                  selectedCard: _selectedCard,
-                  onCardSelected: (card) {
-                    setState(() {
-                      _selectedCard = card;
-                    });
-                  }
-                ),
+                    metodo: _metodo,
+                    onChangeMetodo: (value) {
+                      setState(() {
+                        _metodo = value;
+                        if (_metodo != "TARJETA") _selectedCard = null;
+                      });
+                    },
+                    cards: cards,
+                    selectedCard: _selectedCard,
+                    onCardSelected: (card) {
+                      setState(() {
+                        _selectedCard = card;
+                      });
+                    }),
                 const SizedBox(height: 16),
                 TotalOrderContainer(orderEntity: widget.orderEntity),
                 const SizedBox(height: 16),
@@ -86,13 +88,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     metodo: _metodo,
                     orderEntity: widget.orderEntity,
                     selectedCard: _selectedCard)
-              ]),
-            const SizedBox(height: 16),
-            if (widget.canViewReceipt)
-              InfoReceipt(
-                  orderEntity: widget.orderEntity,
-                  isPaid: true,
-                  metodo: widget.orderEntity.paymentType.name.toUpperCase())
+              ])
           ]));
     });
   }

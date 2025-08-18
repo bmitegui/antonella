@@ -49,13 +49,13 @@ class _MessageInputFieldState extends State<MessageInputField> {
                         icon: const Icon(Icons.add, color: Color(0xFFF44565)),
                         onPressed: () {
                           showModalBottomSheet(
+                              backgroundColor: Colors.white,
                               context: context,
                               builder: (_) {
                                 return UploadImageChatWidget(
-                                  onImagePicked: (base64) {
-                                    widget.onSend(base64, MessageType.image);
-                                  }
-                                );
+                                    onImagePicked: (base64) {
+                                  widget.onSend(base64, MessageType.image);
+                                });
                               });
                         },
                       ),
@@ -64,7 +64,7 @@ class _MessageInputFieldState extends State<MessageInputField> {
                         borderSide: BorderSide.none,
                       ),
                       filled: true,
-                      fillColor: const Color(0xFFFAE2E1),
+                      fillColor: Colors.white,
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
                       hintText: texts.write_message,
