@@ -10,6 +10,8 @@ abstract class ServiceRepository {
   Future<Either<Failure, List<NotificationModel>>> getNotifications();
   Future<Either<Failure, List<CommentModel>>> getServiceComments(
       {required String serviceId});
+  Future<Either<Failure, void>> addServiceComment(
+      {required String serviceId, required String comment, required int stars});
   Future<Either<Failure, void>> sendRequest(
       {required String clientId,
       required String day,

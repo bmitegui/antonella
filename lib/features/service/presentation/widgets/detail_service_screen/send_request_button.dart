@@ -77,42 +77,72 @@ class SendRequestButton extends StatelessWidget {
                               onPressed: () async {
                                 if (stateServiceSelected.dateSelected == null) {
                                   showTopSnackBar(
-                                      Overlay.of(context),
-                                      CustomSnackBar.error(
-                                          message:
-                                              "Por favor elija una fecha"));
+                                    Overlay.of(context),
+                                    CustomSnackBar.error(
+                                        message: "Por favor elija una fecha"),
+                                  );
+                                  return;
                                 } else if (stateServiceSelected.timeSelected ==
                                     null) {
                                   showTopSnackBar(
-                                      Overlay.of(context),
-                                      CustomSnackBar.error(
-                                          message:
-                                              "Por favor elija un horario"));
+                                    Overlay.of(context),
+                                    CustomSnackBar.error(
+                                        message: "Por favor elija un horario"),
+                                  );
+                                  return;
                                 } else if (stateServiceSelected.employeeIds ==
                                         null ||
                                     stateServiceSelected.employeeIds!.length !=
                                         stateServiceSelected.services.length) {
                                   showTopSnackBar(
-                                      Overlay.of(context),
-                                      CustomSnackBar.error(
-                                          message:
-                                              "Por favor elija un especialista para cada servicio escogido"));
-                                } else {
-                                  context.read<SendRequestBloc>().add(
-                                      EnviarPeticionEvent(
-                                          clientId: stateUser.user.id,
-                                          day: formatDateTime(
-                                              stateServiceSelected
-                                                  .dateSelected),
-                                          start: stateServiceSelected
-                                              .timeSelected!,
-                                          employeeIds:
-                                              stateServiceSelected.employeeIds!,
-                                          services:
-                                              stateServiceSelected.services,
-                                          products:
-                                              stateServiceSelected.products));
+                                    Overlay.of(context),
+                                    CustomSnackBar.error(
+                                        message:
+                                            "Por favor elija un especialista para cada servicio escogido"),
+                                  );
+                                  return;
                                 }
+
+                                // ✅ Nueva validación: que la fecha/hora sea al menos 2 horas después
+                                final now = DateTime.now();
+                                final selectedDate =
+                                    stateServiceSelected.dateSelected!;
+                                final selectedTime = stateServiceSelected
+                                    .timeSelected!; // formato "HH:mm"
+
+                                final parts = selectedTime.split(":");
+                                final selectedDateTime = DateTime(
+                                  selectedDate.year,
+                                  selectedDate.month,
+                                  selectedDate.day,
+                                  int.parse(parts[0]),
+                                  int.parse(parts[1]),
+                                );
+
+                                if (selectedDateTime.isBefore(
+                                    now.add(const Duration(hours: 1)))) {
+                                  showTopSnackBar(
+                                    Overlay.of(context),
+                                    CustomSnackBar.error(
+                                        message:
+                                            "La cita debe ser agendada con al menos 1 hora de anticipación"),
+                                  );
+                                  return;
+                                }
+
+                                context.read<SendRequestBloc>().add(
+                                      EnviarPeticionEvent(
+                                        clientId: stateUser.user.id,
+                                        day: formatDateTime(
+                                            stateServiceSelected.dateSelected),
+                                        start:
+                                            stateServiceSelected.timeSelected!,
+                                        employeeIds:
+                                            stateServiceSelected.employeeIds!,
+                                        services: stateServiceSelected.services,
+                                        products: stateServiceSelected.products,
+                                      ),
+                                    );
                               },
                               text: texts.submit_request)
                         ]));

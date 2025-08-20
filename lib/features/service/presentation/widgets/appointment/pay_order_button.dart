@@ -89,13 +89,12 @@ class _PayOrderButtonState extends State<PayOrderButton> {
               width: double.infinity,
               child: FilledButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Color(0xFFF44565)),
+                  backgroundColor:
+                      WidgetStateProperty.all(const Color(0xFFF44565)),
                 ),
                 onPressed: isLoading
                     ? null
                     : () {
-                        isLoading = true;
-
                         if (widget.metodo == "EFECTIVO") {
                           context.read<PayOrderBloc>().add(
                                 PagarOrdenEvent(
@@ -123,21 +122,31 @@ class _PayOrderButtonState extends State<PayOrderButton> {
                               );
                         }
                       },
-                child: (widget.metodo == "EFECTIVO")
-                    ? Text(texts.confirm_appointment)
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(texts.pay_now),
-                          Text(
-                            '\$${totals['total']!.toStringAsFixed(2)}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(color: Colors.white),
+                child: isLoading
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      )
+                    : (widget.metodo == "EFECTIVO")
+                        ? Text(texts.confirm_appointment)
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(texts.pay_now),
+                              Text(
+                                '\$${totals['total']!.toStringAsFixed(2)}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(color: Colors.white),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
               ),
             );
           },

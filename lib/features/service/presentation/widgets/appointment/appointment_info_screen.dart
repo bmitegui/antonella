@@ -13,6 +13,7 @@ import 'package:antonella/features/service/presentation/bloc/form_done/form_done
 import 'package:antonella/features/service/presentation/widgets/appointment/progress_status_label.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/end_appointment_button.dart';
 import 'package:antonella/features/service/presentation/widgets/detail_service_screen/form/form_done.dart';
+import 'package:antonella/features/service/presentation/widgets/rate_service.dart';
 import 'package:antonella/features/user/domain/entities/user_entity.dart';
 import 'package:antonella/features/user/presentation/bloc/user/user_bloc.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ class AppointmentInfoScreen extends StatelessWidget {
     }
     final bool canFinishAppointment =
         (!isClient && appointmentEntity.status == ProgressStatus.enProgreso);
+    final bool canComment = isClient && appointmentEntity.status == ProgressStatus.finalizado;
     return CustomScaffold(
         bottomNavigationBar: canFinishAppointment
             ? Padding(
@@ -48,8 +50,7 @@ class AppointmentInfoScreen extends StatelessWidget {
             : null,
         leading: ArrowBack(),
         text: 'Cita',
-        body: Container(
-            margin: EdgeInsets.all(16),
+        child: Container(
             padding: EdgeInsets.only(right: 16, left: 16, bottom: 16),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
@@ -84,12 +85,20 @@ class AppointmentInfoScreen extends StatelessWidget {
               Text(appointmentEntity.serviceEntity.name),
               Text(appointmentEntity.serviceEntity.description),
               const SizedBox(height: 16),
+              if (canComment)
+                Divider(color: Colors.grey.shade300),
+              if (canComment)
+                RateService(serviceId: appointmentEntity.serviceId),
+              if (canComment)
+                const SizedBox(height: 16),
               Divider(color: Colors.grey.shade300),
               const SizedBox(height: 16),
-              CustomTitle(title: texts.date, description: appointmentEntity.day),
+              CustomTitle(
+                  title: texts.date, description: appointmentEntity.day),
               const SizedBox(height: 16),
               CustomTitle(
-                  title: texts.schedule, description: appointmentEntity.startTime),
+                  title: texts.schedule,
+                  description: appointmentEntity.startTime),
               const SizedBox(height: 16),
               CustomTitle(
                   title: texts.value,

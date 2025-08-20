@@ -88,7 +88,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     metodo: _metodo,
                     orderEntity: widget.orderEntity,
                     selectedCard: _selectedCard)
-              ])
+              ]),
           ]));
     });
   }

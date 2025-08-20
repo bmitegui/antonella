@@ -48,7 +48,7 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(children: [
             TableCalendar(
-              availableGestures: AvailableGestures.horizontalSwipe,
+                availableGestures: AvailableGestures.horizontalSwipe,
                 rowHeight: 48,
                 eventLoader: widget.eventLoader,
                 daysOfWeekHeight: 36,
@@ -78,15 +78,32 @@ class _CustomTableCalendarState extends State<CustomTableCalendar> {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: events.map((event) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 1),
-                          width: 7,
-                          height: 7,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.primary,
-                            shape: BoxShape.circle,
-                          ),
-                        );
+                        if (event is OrderEntity) {
+                          // 👇 elegimos color según progressStatus
+                          Color color;
+                          switch (event.progressStatus) {
+                            case ProgressStatus.pendiente:
+                              color = Colors.orange; // pendiente
+                              break;
+                            case ProgressStatus.enProgreso:
+                              color = Colors.green; // en curso
+                              break;
+                            case ProgressStatus.finalizado:
+                              color = Colors.blueAccent; // finalizado
+                              break;
+                          }
+
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 1),
+                            width: 7,
+                            height: 7,
+                            decoration: BoxDecoration(
+                              color: color,
+                              shape: BoxShape.circle,
+                            ),
+                          );
+                        }
+                        return const SizedBox.shrink();
                       }).toList(), // 👈 convertir Iterable a List
                     );
                   }

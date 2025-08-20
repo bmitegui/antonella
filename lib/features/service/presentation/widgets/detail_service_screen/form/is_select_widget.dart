@@ -11,6 +11,7 @@ class IsSelectWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return BlocBuilder<ServiceFormBloc, ServiceFormState>(
         builder: (context, state) {
       return (state is ServiceFormLoaded)
@@ -22,9 +23,10 @@ class IsSelectWidget extends StatelessWidget {
                   .map((value) => value.isEmpty
                       ? SizedBox()
                       : CustomElevatedButton(
+                        textColor: value != question.answer?colorScheme.onSurface:Colors.white,
                           backgroundColor: value != question.answer
                               ? Color(0xFFFAE2E1)
-                              : Color(0xFFF44565),
+                              : colorScheme.primary,
                           padding: EdgeInsets.symmetric(
                               horizontal: 40, vertical: 12),
                           onPressed: () {

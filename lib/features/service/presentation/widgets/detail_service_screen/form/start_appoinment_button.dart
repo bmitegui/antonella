@@ -51,11 +51,32 @@ class StartAppoinmentButton extends StatelessWidget {
       return (state is StartAppointmentLoading)
           ? Center(child: CircularProgressIndicator())
           : FilledButton(
-              onPressed: () => context.read<StartAppointmentBloc>().add(
-                  EmpezarCitaEvent(
-                      orderId: orderEntity.id,
-                      appointmentId: appointmentEntity.id)),
-              child: Text(texts.start_appointment));
+              onPressed: () {
+                final appointmentDate = DateTime.parse(appointmentEntity.day);
+                final today = DateTime.now();
+
+                final isSameDay = appointmentDate.year == today.year &&
+                    appointmentDate.month == today.month &&
+                    appointmentDate.day == today.day;
+
+                if (!isSameDay) {
+                  showTopSnackBar(
+                    Overlay.of(context),
+                    CustomSnackBar.error(
+                        message:
+                            "Solo puedes iniciar la cita el día agendado."),
+                  );
+                  return;
+                }
+                context.read<StartAppointmentBloc>().add(
+                      EmpezarCitaEvent(
+                        orderId: orderEntity.id,
+                        appointmentId: appointmentEntity.id,
+                      ),
+                    );
+              },
+              child: Text(texts.start_appointment),
+            );
     });
   }
 }

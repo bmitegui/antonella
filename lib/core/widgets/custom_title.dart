@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 class CustomTitle extends StatelessWidget {
   final String title;
   final String? description;
   final String? index;
-  final bool isExpanded; // <-- nuevo
-  final VoidCallback? onTap; // <-- nuevo
+  final bool isExpanded;
+  final VoidCallback? onTap;
 
   const CustomTitle({
     super.key,
@@ -21,19 +22,16 @@ class CustomTitle extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           (index == null)
-              ? Container(
-                  width: 6, height: 24, color: colorScheme.primary)
-              : CircleAvatar(
-                  backgroundColor: colorScheme.primary,
-                  child: Text(
-                    index!,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: colorScheme.onPrimary),
-                  ),
+              ? Container(width: 6, height: 24, color: colorScheme.primary)
+              : Text(
+                  '${index!}.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(color: colorScheme.onSurface),
                 ),
           const SizedBox(width: 8),
           Expanded(

@@ -40,6 +40,8 @@ abstract class ServiceRemoteDataSource {
   Future<ListServicesModel> getServicesByName({required String name});
   Future<List<PromotionEntity>> getPromotionsRelated(
       {required List<String> servicesId, required List<String> productsId});
+  Future<void> addServiceComment(
+      {required String serviceId, required String comment, required int stars});
 }
 
 class ServiceRemoteDataSourceImpl
@@ -454,5 +456,29 @@ class ServiceRemoteDataSourceImpl
       promotions.add(promotion);
     }
     return promotions;
+  }
+
+  @override
+  Future<void> addServiceComment(
+      {required String serviceId,
+      required String comment,
+      required int stars}) async {
+    String userId = '';
+    final userState = sl<UserBloc>().state;
+
+    if (userState is UserAuthenticated) {
+      userId = userState.user.id;
+    }
+
+    final data = {
+      "content": comment,
+      "stars": stars,
+      "user_id": userId,
+      "service_id": serviceId
+    };
+    return await handleRequest(
+        request: () => client.post(Environment.comments,
+            data: data, options: defaultOptions),
+        onSuccess: (_) {});
   }
 }

@@ -5,12 +5,14 @@ class CustomElevatedButton extends StatelessWidget {
   final String text;
   final EdgeInsetsGeometry? padding;
   final Color backgroundColor;
+  final Color textColor;
   const CustomElevatedButton(
       {super.key,
       required this.onPressed,
       required this.text,
       this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      this.backgroundColor = const Color(0xFFF44565)});
+      this.backgroundColor = const Color(0xFFF44565),
+      this.textColor = Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,6 @@ class CustomElevatedButton extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium!
-                .copyWith(color: Colors.white)));
+                .copyWith(color: textColor)));
   }
 }

@@ -21,6 +21,8 @@ class ListServiceFormsWidget extends StatelessWidget {
                 return FormByType(
                     question: question, indexForm: (index + 1).toString());
               }),
+              Divider(color: Colors.grey.shade300, thickness: 1),
+              const SizedBox(height: 8),
               ButtonsEndFormWidget(isDescription: isDescription)
             ])
           : CircularProgressIndicator();

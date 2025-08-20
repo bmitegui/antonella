@@ -99,6 +99,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetServiceCommentsUseCase>(() =>
       GetServiceCommentsUseCase(serviceRepository: sl<ServiceRepository>()));
 
+  sl.registerLazySingleton<AddServiceCommentUseCase>(() =>
+      AddServiceCommentUseCase(serviceRepository: sl<ServiceRepository>()));
+
   sl.registerLazySingleton<SendRequestUseCase>(
       () => SendRequestUseCase(serviceRepository: sl<ServiceRepository>()));
 
@@ -178,8 +181,9 @@ Future<void> init() async {
       passwordCodeUseCase: sl<PasswordCodeUseCase>(),
       passwordResetUseCase: sl<PasswordResetUseCase>()));
 
-  sl.registerLazySingleton<CommentBloc>(
-      () => CommentBloc(getCommentsUseCase: sl<GetServiceCommentsUseCase>()));
+  sl.registerLazySingleton<CommentBloc>(() => CommentBloc(
+      getCommentsUseCase: sl<GetServiceCommentsUseCase>(),
+      addServiceCommentUseCase: sl<AddServiceCommentUseCase>()));
 
   sl.registerLazySingleton<ServiceFormBloc>(() => ServiceFormBloc());
 

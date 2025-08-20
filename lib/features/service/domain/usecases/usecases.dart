@@ -8,3 +8,4 @@ export './start_appointment_use_case.dart';
 export './end_appointment_use_case.dart';
 export './get_notifications_use_case.dart';
 export './get_promotions_related_use_case.dart';
+export './add_service_comments_use_case.dart';

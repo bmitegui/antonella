@@ -3,6 +3,8 @@ import 'package:antonella/core/utils/util.dart';
 import 'package:antonella/features/product/presentation/shopping_cart_screen.dart';
 import 'package:antonella/features/service/domain/entities/order_entity.dart';
 import 'package:antonella/features/service/presentation/bloc/orders/orders_bloc.dart';
+import 'package:antonella/features/user/domain/entities/user_entity.dart';
+import 'package:antonella/features/user/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 class CartButton extends StatelessWidget {
@@ -14,7 +16,10 @@ class CartButton extends StatelessWidget {
         stateOrder.orders.any((order) =>
             order.clientStatus == ClientStatus.noConfirmado &&
             order.orderStatus == OrderStatus.confirmado);
-    return ordersToConfirmEmpty;
+    final stateUser = sl<UserBloc>().state;
+    final isClient =
+        stateUser is UserAuthenticated && stateUser.user.rol == Rol.cliente;
+    return ordersToConfirmEmpty && isClient;
   }
 
   @override

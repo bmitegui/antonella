@@ -160,4 +160,17 @@ class ServiceRepositoryImpl implements ServiceRepository {
           return remotePromotions;
         });
   }
+
+  @override
+  Future<Either<Failure, void>> addServiceComment(
+      {required String serviceId,
+      required String comment,
+      required int stars}) async {
+    return await handleNetworkCall(
+        networkInfo: networkInfo,
+        operation: () async {
+          await serviceRemoteDataSource.addServiceComment(
+              serviceId: serviceId, comment: comment, stars: stars);
+        });
+  }
 }
