@@ -27,6 +27,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
   Widget build(BuildContext context) {
     final texts = AppLocalizations.of(context)!;
     bool isSelected = false;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return BlocBuilder<ServicesSelectedBloc, ServicesSelectedState>(
       builder: (context, state) {
@@ -99,16 +100,56 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ImagesScrollview(images: widget.productEntity.images),
                       SizedBox(height: 16),
-                      Text(widget.productEntity.nombre),
+                      Text(widget.productEntity.serviceSubtype,
+                          style: titleBlack54Style(context)),
+                      SizedBox(height: 8),
+                      
+                      Text(widget.productEntity.nombre,
+                        style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(color: colorScheme.onSurface)),
                       SizedBox(height: 16),
-                      Text('Volumen: ${widget.productEntity.volume}'),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.local_offer,
+                            color: Colors.pink
+                          ),
+                          SizedBox(width: 8),
+                          Text(productTypeToString(widget.productEntity.type)),
+                          SizedBox(width: 20),
+
+                          Icon(
+                            Icons.inventory_outlined,
+                            color: Colors.blueGrey
+                          ),
+                          SizedBox(width: 8),
+                          Text("Stock: ${widget.productEntity.stock.toString()}"),
+                          SizedBox(width: 20),
+
+                          Icon(
+                            Icons.water_drop,
+                            color: Colors.blue
+                          ),
+                          SizedBox(width: 8),
+                          Text("${widget.productEntity.volume.toString()} mL")
+                        ]
+                      ),
+                      SizedBox(height: 16),
                       Divider(),
-                      Text(texts.description),
+                      SizedBox(height: 10),
+                      Text(texts.description,
+                        style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(color: colorScheme.primary)),
                       SizedBox(height: 16),
-                      Text(widget.productEntity.description),
+                      Text(widget.productEntity.description, style: bodyBlack54Style(context))
                     ],
                   ),
                 ),

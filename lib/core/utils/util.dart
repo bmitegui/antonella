@@ -472,8 +472,22 @@ ProgressStatus stringToProgressStatus(String status) {
 }
 
 ProductType stringToProductType(String type) {
-  return type == 'SHAMPOO' ? ProductType.shampoo : ProductType.crema;
+  return type == 'SHAMPOO' ? ProductType.shampoo : type == 'CREMA' ? ProductType.crema : ProductType.aceite;
 }
+
+String productTypeToString(ProductType type) {
+  switch (type) {
+    case ProductType.shampoo:
+      return 'Shampoo';
+    case ProductType.crema:
+      return 'Crema';
+    case ProductType.aceite:
+      return 'Aceite';
+    default:
+      return "Todos";
+  }
+}
+
 
 Map<String, String> obtenerRangoFechas(String tipo) {
   final ahora = DateTime.now();
