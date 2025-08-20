@@ -15,7 +15,7 @@ class CommentModel extends CommentEntity {
     return CommentModel(
         id: '${json['id']}',
         rating: json['starts'].toDouble(),
-        dateTime: parseStringToDate(json['created_at']),
+        dateTime: parseStringToDate(json['created_at']).toLocal(),
         userEntity: userModel,
         comment: capitalize(json['content']));
   }

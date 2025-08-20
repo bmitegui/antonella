@@ -52,7 +52,7 @@ class ServiceModel extends ServiceEntity {
         prices: prices,
         images: List<String>.from(json['images']),
         questions: questions,
-        rating: json['stars'],
+        rating: double.parse(json['stars'].toStringAsFixed(2)),
         minPrice: minOfAll,
         maxPrice: maxOfAll);
   }

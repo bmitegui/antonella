@@ -14,7 +14,7 @@ class NotificationModel extends NotificationEntity {
         id: '${json['id']}',
         title: capitalize(json['title']),
         body: capitalize(json['body']),
-        createdAt: parseStringToDate(json['created_at']),
+        createdAt: parseStringToDate(json['created_at']).toLocal(),
         notificationType: stringToNotificationType(json['notification_type']));
   }
 }
