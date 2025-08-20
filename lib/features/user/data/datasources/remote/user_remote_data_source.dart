@@ -139,11 +139,13 @@ class UserRemoteDataSourceImpl
         request: () => client.post(Environment.employeeInfo,
             data: {
               "employee_id": employeeId,
-              "start_date": startDate,
-              "end_date": endDate
+              // "start_date": startDate,
+              // "end_date": endDate
             },
             options: defaultOptions),
-        onSuccess: (data) => EmployeeInfoModel.fromJson(data));
+        onSuccess: (data) {
+          return EmployeeInfoModel.fromJson(data);
+        } );
   }
 
   @override

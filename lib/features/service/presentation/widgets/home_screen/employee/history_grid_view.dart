@@ -18,27 +18,41 @@ class HistoryGridView extends StatelessWidget {
         {
           'title': texts.total_billed,
           'valor': '\$325.0',
-          'image': 'assets/svg/facturas.svg',
+          'image': 'assets/img/total-facturado.png',
           'color': Color(0xFF009387)
         },
         {
-          'title': 'Total Clientes',
+          'title': 'Total de citas',
           'valor': '23',
-          'image': 'assets/svg/roles.svg',
+          'image': 'assets/img/total-citas.png',
           'color': Color(0xFF2995CD)
         },
         {
-          'title': 'Total a Recibir',
+          'title': 'Total pagado',
           'valor': '\$24',
-          'image': 'assets/svg/ganancias.svg',
+          'image': 'assets/img/total-pagado.png',
+          'color': Color(0xFF399F49)
+        },
+        {
+          'title': 'Total por pagar',
+          'valor': '\$24',
+          'image': 'assets/img/total-por-pagar.png',
+          'color': Color(0xFF399F49)
+        },
+        {
+          'title': 'Restante',
+          'valor': '\$24',
+          'image': 'assets/img/restante.png',
           'color': Color(0xFF399F49)
         }
       ];
       bool isLoading = false;
       if (state is EmployeeInfoLoaded) {
-        data[0]['valor'] = '\$${state.employeeInfoEntity.facturado}';
+        data[0]['valor'] = '\$${state.employeeInfoEntity.totalFacturado}';
         data[1]['valor'] = '${state.employeeInfoEntity.numClientes}';
-        data[2]['valor'] = '\$${state.employeeInfoEntity.pagado}';
+        data[2]['valor'] = '\$${state.employeeInfoEntity.totalPagado}';
+        data[3]['valor'] = '\$${state.employeeInfoEntity.totalPorPagar}';
+        data[4]['valor'] = '\$${state.employeeInfoEntity.restante}';
       } else if (state is EmployeeInfoLoading) {
         isLoading = true;
       } else if (state is EmployeeInfoError) {

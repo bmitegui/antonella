@@ -1,4 +1,4 @@
-import 'package:antonella/core/widgets/custom_local_svg_image.dart';
+import 'package:antonella/core/widgets/custom_local_image.dart';
 import 'package:flutter/material.dart';
 
 class HistoryContainer extends StatelessWidget {
@@ -20,7 +20,7 @@ class HistoryContainer extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(16)),
         child: Row(children: [
-          CustomLocalSvgImage(assetPath: image, width: 40, color: color),
+          CustomLocalImage(assetPath: image, width: 40),
           const SizedBox(width: 8),
           Expanded(
               child: Column(
