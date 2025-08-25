@@ -40,9 +40,6 @@ jobs:
       - name: Analyze (opcional)
         run: flutter analyze
 
-      - name: Build APK
-        run: flutter build apk --no-shrink
-
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
