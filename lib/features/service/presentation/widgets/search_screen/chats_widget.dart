@@ -1,5 +1,5 @@
 import 'package:antonella/core/widgets/custom_modal_bottom_sheet_widget.dart';
-import 'package:antonella/features/service/presentation/widgets/search_screen/list_chats_widget.dart';
+import 'package:antonella/features/service/presentation/widgets/detail_service_screen/list_chats_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListEmployees extends StatelessWidget {

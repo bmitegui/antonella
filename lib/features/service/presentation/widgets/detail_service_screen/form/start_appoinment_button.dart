@@ -59,15 +59,15 @@ class StartAppoinmentButton extends StatelessWidget {
                     appointmentDate.month == today.month &&
                     appointmentDate.day == today.day;
 
-                // if (!isSameDay) {
-                //   showTopSnackBar(
-                //     Overlay.of(context),
-                //     CustomSnackBar.error(
-                //         message:
-                //             "Solo puedes iniciar la cita el día agendado."),
-                //   );
-                //   return;
-                // }
+                if (!isSameDay) {
+                  showTopSnackBar(
+                    Overlay.of(context),
+                    CustomSnackBar.error(
+                        message:
+                            "Solo puedes iniciar la cita el día agendado."),
+                  );
+                  return;
+                }
                 context.read<StartAppointmentBloc>().add(
                       EmpezarCitaEvent(
                         orderId: orderEntity.id,

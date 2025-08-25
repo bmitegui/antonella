@@ -1,5 +1,5 @@
+import 'package:antonella/core/widgets/banner_widget.dart';
 import 'package:antonella/features/service/domain/entities/service_entity.dart';
-import 'package:antonella/features/service/presentation/widgets/banner_widget.dart';
 import 'package:antonella/features/service/presentation/widgets/services_group.dart';
 import 'package:flutter/material.dart';
 

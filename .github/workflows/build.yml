@@ -34,11 +34,16 @@ jobs:
       - name: Create temporary .env file
         run: echo "DUMMY_KEY=dummy_value" > .env
 
+      - name: Create dummy google-services.json
+        run: |
+          mkdir -p android/app
+          echo '{}' > android/app/google-services.json
+
       - name: Analyze (opcional)
         run: flutter analyze
 
       - name: Build APK
-        run: flutter build apk
+        run: flutter build apk --no-shrink
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5

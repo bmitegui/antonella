@@ -17,10 +17,7 @@ class SettingsPhotowidget extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if (state is UserAuthenticated) {
-              final url = state.user.photoUrl != null
-                  ? Environment.apiUrl + state.user.photoUrl!
-                  : null;
-                  navigateWithSlideTransition(context, UploadUserPhotoWidget());
+              navigateWithSlideTransition(context, UploadUserPhotoWidget());
             }
           },
           child: Container(
@@ -30,11 +27,11 @@ class SettingsPhotowidget extends StatelessWidget {
               child: CircleAvatar(
                   radius: 80.rh(context),
                   backgroundColor: Colors.white,
-                  foregroundImage:
-                      (state is UserAuthenticated && state.user.photoUrl != null)
-                          ? CachedNetworkImageProvider(
-                              Environment.apiUrl + state.user.photoUrl!)
-                          : null,
+                  foregroundImage: (state is UserAuthenticated &&
+                          state.user.photoUrl != null)
+                      ? CachedNetworkImageProvider(
+                          Environment.apiUrl + state.user.photoUrl!)
+                      : null,
                   backgroundImage:
                       const AssetImage('assets/img/placeholder_women.png'))),
         ),
