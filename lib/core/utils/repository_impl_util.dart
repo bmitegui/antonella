@@ -5,7 +5,8 @@ import 'package:dartz/dartz.dart';
 Future<Either<Failure, T>> handleNetworkCall<T>(
     {required Future<T> Function() operation,
     required NetworkInfo networkInfo}) async {
-  if (await networkInfo.isConnected) {
+      print(await networkInfo.isConnected);
+  // if (await networkInfo.isConnected) {
     try {
       final result = await operation();
       return Right(result);
@@ -38,9 +39,9 @@ Future<Either<Failure, T>> handleNetworkCall<T>(
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
-  } else {
-    return Left(NetworkConnectionFailure());
-  }
+  // } else {
+  //   return Left(NetworkConnectionFailure());
+  // }
 }
 
 Future<Either<Failure, T>> handleLocalCall<T>(

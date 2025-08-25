@@ -39,7 +39,13 @@ final sl = GetIt.instance;
 Future<void> init() async {
   //! Core
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  sl.registerLazySingleton<Dio>(() => Dio());
+  sl.registerLazySingleton<Dio>(() => Dio(
+     BaseOptions(
+    connectTimeout: const Duration(seconds: 30), // tiempo para conectar
+    receiveTimeout: const Duration(seconds: 30), // tiempo para recibir respuesta
+    sendTimeout: const Duration(seconds: 30),    // tiempo para enviar datos
+  ),
+  ));
   sl.registerLazySingleton(() => KeyValueStorageServiceImpl());
 
   sl.registerLazySingleton<InternetConnection>(() => InternetConnection());
